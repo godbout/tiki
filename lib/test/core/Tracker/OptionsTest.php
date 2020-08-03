@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,51 +8,51 @@
 
 class Tracker_OptionsTest extends PHPUnit\Framework\TestCase
 {
-	public function testBuildLegacyStringBuilder()
-	{
-		$options = Tracker_Options::fromSerialized(
-			json_encode(['a' => 3, 'b' => 2, 'c' => 1]),
-			[
-				'params' => [
-					'a' => [
-						'legacy_index' => 2,
-					],
-					'b' => [
-						'legacy_index' => 1,
-					],
-					'c' => [
-						'legacy_index' => 0,
-					],
-					'd' => [
-						// No legacy
-					],
-				],
-			]
-		);
+    public function testBuildLegacyStringBuilder()
+    {
+        $options = Tracker_Options::fromSerialized(
+            json_encode(['a' => 3, 'b' => 2, 'c' => 1]),
+            [
+                'params' => [
+                    'a' => [
+                        'legacy_index' => 2,
+                    ],
+                    'b' => [
+                        'legacy_index' => 1,
+                    ],
+                    'c' => [
+                        'legacy_index' => 0,
+                    ],
+                    'd' => [
+                        // No legacy
+                    ],
+                ],
+            ]
+        );
 
-		$this->assertEquals(['1', '2', '3'], $options->buildOptionsArray());
-	}
+        $this->assertEquals(['1', '2', '3'], $options->buildOptionsArray());
+    }
 
-	public function testSeparatorOnEmptyData()
-	{
-		$options = Tracker_Options::fromString(
-			'a,,b',
-			[
-				'params' => [
-					'a' => [
-						'legacy_index' => 0,
-					],
-					'b' => [
-						'legacy_index' => 1,
-						'separator' => '|',
-					],
-					'c' => [
-						'legacy_index' => 2,
-					],
-				],
-			]
-		);
+    public function testSeparatorOnEmptyData()
+    {
+        $options = Tracker_Options::fromString(
+            'a,,b',
+            [
+                'params' => [
+                    'a' => [
+                        'legacy_index' => 0,
+                    ],
+                    'b' => [
+                        'legacy_index' => 1,
+                        'separator' => '|',
+                    ],
+                    'c' => [
+                        'legacy_index' => 2,
+                    ],
+                ],
+            ]
+        );
 
-		$this->assertEquals([], $options->getParam('b'));
-	}
+        $this->assertEquals([], $options->getParam('b'));
+    }
 }

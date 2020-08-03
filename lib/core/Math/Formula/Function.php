@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,46 +8,50 @@
 
 abstract class Math_Formula_Function
 {
-	private $callback;
-	protected $suppress_error = false;
+    private $callback;
+    protected $suppress_error = false;
 
-	function evaluateTemplate($element, $evaluateCallback)
-	{
-		$this->callback = $evaluateCallback;
-		$this->suppress_error = false;
-		return $this->evaluate($element);
-	}
+    public function evaluateTemplate($element, $evaluateCallback)
+    {
+        $this->callback = $evaluateCallback;
+        $this->suppress_error = false;
 
-	function evaluateTemplateFull($element, $evaluateCallback)
-	{
-		$this->callback = $evaluateCallback;
-		$this->suppress_error = true;
-		if (method_exists($this, 'evaluateFull')) {
-			return $this->evaluateFull($element);
-		} else {
-			return $this->evaluate($element);
-		}
-	}
+        return $this->evaluate($element);
+    }
 
-	abstract function evaluate($element);
+    public function evaluateTemplateFull($element, $evaluateCallback)
+    {
+        $this->callback = $evaluateCallback;
+        $this->suppress_error = true;
+        if (method_exists($this, 'evaluateFull')) {
+            return $this->evaluateFull($element);
+        }
 
-	protected function evaluateChild($child, array $extraVariables = [])
-	{
-		return call_user_func($this->callback, $child, $extraVariables);
-	}
+        return $this->evaluate($element);
+    }
 
-	protected function error($message)
-	{
-		throw new Math_Formula_Exception($message);
-	}
+    abstract public function evaluate($element);
 
-	protected function firstOrApplicator(&$elements) {
-		foreach ($elements as $key => $element) {
-			if ($element instanceof Math_Formula_Applicator) {
-				array_splice($elements, $key, 1);
-				return $element;
-			}
-		}
-		return array_shift($elements);
-	}
+    protected function evaluateChild($child, array $extraVariables = [])
+    {
+        return call_user_func($this->callback, $child, $extraVariables);
+    }
+
+    protected function error($message)
+    {
+        throw new Math_Formula_Exception($message);
+    }
+
+    protected function firstOrApplicator(&$elements)
+    {
+        foreach ($elements as $key => $element) {
+            if ($element instanceof Math_Formula_Applicator) {
+                array_splice($elements, $key, 1);
+
+                return $element;
+            }
+        }
+
+        return array_shift($elements);
+    }
 }

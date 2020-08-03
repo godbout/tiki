@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -26,133 +27,132 @@ define("SERVER_ERROR", -1);
 
 class TikiPhpBBLib
 {
+    public $db;
 
-	var $db;
+    public function check($user, $pass)
+    {
 
-	function check($user, $pass)
-	{
+    // no need to progress further if the user doesn't even exist
+        if (! $this->userExists($user)) {
+            return PHPBB_NO_SUCH_USER;
+        }
 
-	// no need to progress further if the user doesn't even exist
-		if (! $this->userExists($user)) {
-			return PHPBB_NO_SUCH_USER;
-		}
+        // if the user does exist, authenticate
+        if ($this->authenticate($user, $pass)) {
+            return PHPBB_SUCCESS;
+        }
 
-		// if the user does exist, authenticate
-		if ($this->authenticate($user, $pass)) {
-			return PHPBB_SUCCESS;
-		} else {
-			return PHPBB_INVALID_CREDENTIALS;
-		}
-	}
+        return PHPBB_INVALID_CREDENTIALS;
+    }
 
-	function connectdb()
-	{
-		global $prefs;
-		$dbhost = $prefs['auth_phpbb_dbhost'];
-		$dbuser = $prefs['auth_phpbb_dbuser'];
-		$dbpasswd = $prefs['auth_phpbb_dbpasswd'];
-		$dbname = $prefs['auth_phpbb_dbname'];
-		$dbtype = 'mysql';//$prefs['auth_phpbb_dbtype'];
+    public function connectdb()
+    {
+        global $prefs;
+        $dbhost = $prefs['auth_phpbb_dbhost'];
+        $dbuser = $prefs['auth_phpbb_dbuser'];
+        $dbpasswd = $prefs['auth_phpbb_dbpasswd'];
+        $dbname = $prefs['auth_phpbb_dbname'];
+        $dbtype = 'mysql';//$prefs['auth_phpbb_dbtype'];
 
-		// Force autoloading
-		if (! class_exists('ADOConnection')) {
-			return false;
-		}
+        // Force autoloading
+        if (! class_exists('ADOConnection')) {
+            return false;
+        }
 
 
-		$dbconnection = NewADOConnection($dbtype);
-		$dbconnection->Connect($dbhost, $dbuser, $dbpasswd, $dbname);
+        $dbconnection = NewADOConnection($dbtype);
+        $dbconnection->Connect($dbhost, $dbuser, $dbpasswd, $dbname);
 
-		if ($dbconnection) {
-			return $dbconnection;
-		}
-		return false;
-	}
+        if ($dbconnection) {
+            return $dbconnection;
+        }
 
-	/**
-	* Check whether there exists a user account with the given name.
-	*
-	* @param string $username
-	* @return bool
-	* @access public
-	*/
-	function userExists($username)
-	{
-		global $prefs;
+        return false;
+    }
 
-		$dbconnection = $this->connectdb();
-		$username = $dbconnection->Quote($username);
+    /**
+    * Check whether there exists a user account with the given name.
+    *
+    * @param string $username
+    * @return bool
+    * @access public
+    */
+    public function userExists($username)
+    {
+        global $prefs;
 
-		// MySQL queries are case insensitive anyway
-		$query = "select username from " . $prefs['auth_phpbb_table_prefix'] . "users where lcase(username) = lcase('" . $username . "')";
-		/** @var ADORecordSet $result */
-		$result = $dbconnection->Execute($query);
-		if ($result === false) {
-			die('AuthPhpBB : Query failed: ' . $dbconnection->ErrorMsg());
-		}
+        $dbconnection = $this->connectdb();
+        $username = $dbconnection->Quote($username);
 
-		return $result->RecordCount() > 0;
-	}
+        // MySQL queries are case insensitive anyway
+        $query = "select username from " . $prefs['auth_phpbb_table_prefix'] . "users where lcase(username) = lcase('" . $username . "')";
+        /** @var ADORecordSet $result */
+        $result = $dbconnection->Execute($query);
+        if ($result === false) {
+            die('AuthPhpBB : Query failed: ' . $dbconnection->ErrorMsg());
+        }
 
-	/**
-	* Check if a username+password pair is a valid login.
-	*
-	* @param string $username
-	* @param string $password
-	* @return bool
-	* @access public
-	*/
-	function authenticate($username, $password)
-	{
-		global $prefs;
+        return $result->RecordCount() > 0;
+    }
 
-		$dbconnection = $this->connectdb();
-		$username = $dbconnection->Quote($username);
+    /**
+    * Check if a username+password pair is a valid login.
+    *
+    * @param string $username
+    * @param string $password
+    * @return bool
+    * @access public
+    */
+    public function authenticate($username, $password)
+    {
+        global $prefs;
 
-		$query = "select user_password from " . $prefs['auth_phpbb_table_prefix'] . "users where lcase(username) = lcase('" . $username . "')";
-		$result = $dbconnection->Execute($query);
-		if ($result === false) {
-			die('AuthPhpBB : Query failed: ' . $dbconnection->ErrorMsg());
-		}
+        $dbconnection = $this->connectdb();
+        $username = $dbconnection->Quote($username);
 
-		if ($result->RecordCount() == 0) {
-			return false;
-		} else {
-		// TODO: check for phpBB version here, and select a different hasher, if needed.
-		// This one is hardcoded for phpbb3
-			$PasswordHasher = new PasswordHash(8, true);
+        $query = "select user_password from " . $prefs['auth_phpbb_table_prefix'] . "users where lcase(username) = lcase('" . $username . "')";
+        $result = $dbconnection->Execute($query);
+        if ($result === false) {
+            die('AuthPhpBB : Query failed: ' . $dbconnection->ErrorMsg());
+        }
 
-			if ($PasswordHasher->CheckPassword($password, $result->fields[0])) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	}
+        if ($result->RecordCount() == 0) {
+            return false;
+        }
+        // TODO: check for phpBB version here, and select a different hasher, if needed.
+        // This one is hardcoded for phpbb3
+        $PasswordHasher = new PasswordHash(8, true);
 
-	/**
-	* Returns a users email from the phpbb3 user table.
-	* @param Username $username
-	* @access public
-	* @return email or 0
-	*/
-	function grabEmail(&$username)
-	{
-		global $prefs;
-		$dbconnection = $this->connectdb();
-		$username = $dbconnection->Quote($username);
+        if ($PasswordHasher->CheckPassword($password, $result->fields[0])) {
+            return true;
+        }
 
-		// Just add email
-		$query = "select user_email from " . $prefs['auth_phpbb_table_prefix'] . "users where lcase(username) = lcase('" . $username . "')";
-		$result = $dbconnection->Execute($query);
-		if ($result === false) {
-			die('AuthPhpBB : Query failed: ' . $dbconnection->ErrorMsg());
-		}
+        return false;
+    }
 
-		if ($result->RecordCount() > 0) {
-			return $result->field[0];
-		}
+    /**
+    * Returns a users email from the phpbb3 user table.
+    * @param Username $username
+    * @access public
+    * @return email or 0
+    */
+    public function grabEmail(&$username)
+    {
+        global $prefs;
+        $dbconnection = $this->connectdb();
+        $username = $dbconnection->Quote($username);
 
-		return 0;
-	}
+        // Just add email
+        $query = "select user_email from " . $prefs['auth_phpbb_table_prefix'] . "users where lcase(username) = lcase('" . $username . "')";
+        $result = $dbconnection->Execute($query);
+        if ($result === false) {
+            die('AuthPhpBB : Query failed: ' . $dbconnection->ErrorMsg());
+        }
+
+        if ($result->RecordCount() > 0) {
+            return $result->field[0];
+        }
+
+        return 0;
+    }
 }

@@ -16,26 +16,26 @@ $access->check_feature('feature_messages');
 $access->check_permission('tiki_p_messages');
 
 if ((! isset($_REQUEST['msgId']) || $_REQUEST['msgId'] == 0) && empty($_POST['msgdel'])) {
-	$smarty->assign('unread', 0);
-	$smarty->assign('legend', tra("No more messages"));
-	$smarty->assign('mid', 'messu-read.tpl');
-	$smarty->display("tiki.tpl");
-	die;
+    $smarty->assign('unread', 0);
+    $smarty->assign('legend', tra("No more messages"));
+    $smarty->assign('mid', 'messu-read.tpl');
+    $smarty->display("tiki.tpl");
+    die;
 }
 
 
 if (isset($_POST['action']) && $access->checkCsrf()) {
-	$messulib->flag_message($user, $_POST['msgId'], $_POST['action'], $_POST['actionval']);
+    $messulib->flag_message($user, $_POST['msgId'], $_POST['action'], $_POST['actionval']);
 }
 if (isset($_POST['msgdel']) && $access->checkCsrf(true)) {
-	$result = $messulib->delete_message($user, $_POST['msgdel']);
-	if ($result->numRows()) {
-		Feedback::success(tr('Message deleted'));
-	} else {
-		Feedback::error(tr('Message not deleted'));
-	}
-	header('location: messu-mailbox.php');
-	exit;
+    $result = $messulib->delete_message($user, $_POST['msgdel']);
+    if ($result->numRows()) {
+        Feedback::success(tr('Message deleted'));
+    } else {
+        Feedback::error(tr('Message not deleted'));
+    }
+    header('location: messu-mailbox.php');
+    exit;
 }
 
 $smarty->assign('sort_mode', $_REQUEST['sort_mode']);
@@ -60,17 +60,17 @@ $smarty->assign('msg', $msg);
 // which quote format should tiki use?
 global $prefs;
 if ($prefs['feature_use_quoteplugin'] == 'y') {
-	$quote_format = 'fancy';
+    $quote_format = 'fancy';
 } else {
-	$quote_format = 'simple';
+    $quote_format = 'simple';
 }
 $smarty->assign('quote_format', $quote_format);
 if ($messulib->get_user_preference($user, 'mess_sendReadStatus', 'n') == 'y') {
-	// Mark the message as read in the senders sent box:
-	$messulib->flag_message($msg['user_from'], $_REQUEST['msgId'], 'isRead', 'y', 'sent');
+    // Mark the message as read in the senders sent box:
+    $messulib->flag_message($msg['user_from'], $_REQUEST['msgId'], 'isRead', 'y', 'sent');
 }
 if ($prefs['feature_actionlog'] == 'y') {
-	$logslib->add_action('Viewed', '', 'message');
+    $logslib->add_action('Viewed', '', 'message');
 }
 include_once('tiki-section_options.php');
 include_once('tiki-mytiki_shared.php');

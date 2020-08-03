@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,32 +8,33 @@
 
 class DeclFilter_KeyPatternFilterRule extends DeclFilter_FilterRule
 {
-	private $rules;
+    private $rules;
 
-	function __construct($rules)
-	{
-		$this->rules = $rules;
-	}
+    public function __construct($rules)
+    {
+        $this->rules = $rules;
+    }
 
-	private function getMatchingPattern($key)
-	{
-		foreach ($this->rules as $pattern => $filter) {
-			if (preg_match($pattern, $key)) {
-				return $pattern;
-			}
-		}
+    private function getMatchingPattern($key)
+    {
+        foreach ($this->rules as $pattern => $filter) {
+            if (preg_match($pattern, $key)) {
+                return $pattern;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	function match($key)
-	{
-		return false !== $this->getMatchingPattern($key);
-	}
+    public function match($key)
+    {
+        return false !== $this->getMatchingPattern($key);
+    }
 
-	function getFilter($key)
-	{
-		$pattern = $this->getMatchingPattern($key);
-		return TikiFilter::get($this->rules[$pattern]);
-	}
+    public function getFilter($key)
+    {
+        $pattern = $this->getMatchingPattern($key);
+
+        return TikiFilter::get($this->rules[$pattern]);
+    }
 }

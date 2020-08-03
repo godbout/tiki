@@ -19,31 +19,31 @@
  *
  * Define the current section
  * @var string $section
- */ 
+ */
 
 $section = 'accounting';
 require_once('tiki-setup.php');
 
 // Feature available?
 if ($prefs['feature_accounting'] != 'y') {
-	$smarty->assign('msg', tra('This feature is disabled') . ': feature_accounting');
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tra('This feature is disabled') . ': feature_accounting');
+    $smarty->display('error.tpl');
+    die;
 }
 
 $globalperms = Perms::get();
 $objectperms = Perms::get([ 'type' => 'accounting book', 'object' => $bookId ]);
 
 if (! ($globalperms->acct_book or $objectperms->acct_book)) {
-	$smarty->assign('msg', tra('You do not have the right to book'));
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tra('You do not have the right to book'));
+    $smarty->display('error.tpl');
+    die;
 }
 
 if (! isset($_REQUEST['bookId'])) {
-	$smarty->assign('msg', tra('Missing book id'));
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tra('Missing book id'));
+    $smarty->display('error.tpl');
+    die;
 }
 $bookId = $_REQUEST['bookId'];
 $smarty->assign('bookId', $bookId);
@@ -56,58 +56,58 @@ $accounts = $accountinglib->getAccounts($bookId, $all = true);
 $smarty->assign('accounts', $accounts);
 
 if ($_POST['journal_Year']) {
-	$journalDate = new DateTime();
-	$journalDate->setDate(
-		$_POST['journal_Year'],
-		$_POST['journal_Month'],
-		$_POST['journal_Day']
-	);
+    $journalDate = new DateTime();
+    $journalDate->setDate(
+        $_POST['journal_Year'],
+        $_POST['journal_Month'],
+        $_POST['journal_Day']
+    );
 }
 
 if (isset($_POST['book']) && $access->checkCsrf(true)) {
-	$result = $accountinglib->book(
-		$bookId,
-		$journalDate,
-		$_POST['journalDescription'],
-		$_POST['debitAccount'],
-		$_POST['creditAccount'],
-		$_POST['debitAmount'],
-		$_POST['creditAmount'],
-		$_POST['debitText'],
-		$_POST['creditText']
-	);
-	if (is_numeric($result)) {
-		if (isset($_POST['statementId'])) {
-			$accountinglib->updateStatement($bookId, $_POST['statementId'], $result);
-		}
-	}
+    $result = $accountinglib->book(
+        $bookId,
+        $journalDate,
+        $_POST['journalDescription'],
+        $_POST['debitAccount'],
+        $_POST['creditAccount'],
+        $_POST['debitAmount'],
+        $_POST['creditAmount'],
+        $_POST['debitText'],
+        $_POST['creditText']
+    );
+    if (is_numeric($result)) {
+        if (isset($_POST['statementId'])) {
+            $accountinglib->updateStatement($bookId, $_POST['statementId'], $result);
+        }
+    }
 } else {
-	$result = 0;
+    $result = 0;
 }
 
 if (is_array($result)) {
-	Feedback::error(['mes' => $result]);
-	$smarty->assign('journalDate', $journalDate);
-	$smarty->assign('journalDescription', $_POST['journalDescription']);
-	$smarty->assign('debitAccount', $_POST['debitAccount']);
-	$smarty->assign('creditAccount', $_POST['creditAccount']);
-	$smarty->assign('debitAmount', $_POST['debitAmount']);
-	$smarty->assign('creditAmount', $_POST['creditAmount']);
-	$smarty->assign('debitText', $_POST['debitText']);
-	$smarty->assign('creditText', $_POST['creditText']);
-	if (isset($_POST['statementId'])) {
-		$smarty->assign('statementId', $_POST['statementId']);
-	}
+    Feedback::error(['mes' => $result]);
+    $smarty->assign('journalDate', $journalDate);
+    $smarty->assign('journalDescription', $_POST['journalDescription']);
+    $smarty->assign('debitAccount', $_POST['debitAccount']);
+    $smarty->assign('creditAccount', $_POST['creditAccount']);
+    $smarty->assign('debitAmount', $_POST['debitAmount']);
+    $smarty->assign('creditAmount', $_POST['creditAmount']);
+    $smarty->assign('debitText', $_POST['debitText']);
+    $smarty->assign('creditText', $_POST['creditText']);
+    if (isset($_POST['statementId'])) {
+        $smarty->assign('statementId', $_POST['statementId']);
+    }
 } else {
-	if (is_numeric($result) && $result > 0) {
-		Feedback::success(tr('Journal %0 successfully recorded in book %1', $result, $book['bookName']));
-	}
-	$smarty->assign('debitAccount', ['']);
-	$smarty->assign('creditAccount', ['']);
-	$smarty->assign('debitAmount', ['']);
-	$smarty->assign('creditAmount', ['']);
-	$smarty->assign('debitText', ['']);
-	$smarty->assign('creditText', ['']);
+    if (is_numeric($result) && $result > 0) {
+        Feedback::success(tr('Journal %0 successfully recorded in book %1', $result, $book['bookName']));
+    }
+    $smarty->assign('debitAccount', ['']);
+    $smarty->assign('creditAccount', ['']);
+    $smarty->assign('debitAmount', ['']);
+    $smarty->assign('creditAmount', ['']);
+    $smarty->assign('debitText', ['']);
+    $smarty->assign('creditText', ['']);
 }
 
 $journal = $accountinglib->getJournal($bookId, '%', '`journalId` DESC', 5);

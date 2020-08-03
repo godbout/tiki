@@ -9,12 +9,12 @@
 // $Id$
 
 $inputConfiguration = [
-	['staticKeyFilters' => [
-		'email' => 'email',
-		'name' => 'text',
-		'pass' => 'text',
-		'passAgain' => 'text',
-	]]
+    ['staticKeyFilters' => [
+        'email' => 'email',
+        'name' => 'text',
+        'pass' => 'text',
+        'passAgain' => 'text',
+    ]]
 ];
 
 $auto_query_args = [];
@@ -24,33 +24,33 @@ require_once('tiki-setup.php');
 ask_ticket('register');
 
 if (isset($redirect) && ! empty($redirect)) {
-	header('Location: ' . $redirect);
-	exit;
+    header('Location: ' . $redirect);
+    exit;
 }
 
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 
 if ($prefs['allowRegister'] != 'y') {
-	header("location: index.php");
-	die;
+    header("location: index.php");
+    die;
 }
 
 if (! empty($prefs['registerKey']) && (empty($_GET['key']) || $_GET['key'] !== $prefs['registerKey'])) {
-	$access->redirect('', '', 404);
+    $access->redirect('', '', 404);
 }
 
 global $user, $prefs;
 if (! empty($prefs['feature_alternate_registration_page']) && $prefs['feature_alternate_registration_page'] !== 'tiki-register.php') {
-	header("location: " . $prefs['feature_alternate_registration_page']);
-	die;
+    header("location: " . $prefs['feature_alternate_registration_page']);
+    die;
 }
 $smarty->assign('user_exists', TikiLib::lib('user')->user_exists($user));
 
 $re = $userlib->get_group_info(isset($_REQUEST['chosenGroup']) ? $_REQUEST['chosenGroup'] : 'Registered');
 $tr = TikiLib::lib('trk')->get_tracker($re['usersTrackerId']);
 if (! empty($tr['description'])) {
-	$smarty->assign('userTrackerHasDescription', true);
+    $smarty->assign('userTrackerHasDescription', true);
 }
 
 $smarty->assign('mid', 'tiki-register.tpl');

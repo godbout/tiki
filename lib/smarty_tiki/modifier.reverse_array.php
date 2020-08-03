@@ -3,6 +3,7 @@
  * Smarty plugin
  * @package Smarty
  * @subpackage plugins
+ * @param mixed $array
  */
 
 
@@ -15,8 +16,7 @@
  * @param array
  * @return array
  */
-
 function smarty_modifier_reverse_array($array)
 {
-	return array_reverse($array);
+    return array_reverse($array);
 }

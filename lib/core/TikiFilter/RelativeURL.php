@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -13,38 +14,35 @@ use Laminas\Uri\Exception\InvalidUriPartException;
  */
 class TikiFilter_RelativeURL implements Laminas\Filter\FilterInterface
 {
-	/**
-	 *
-	 * @param string $input		Absolute or relative URL.
-	 * @return string			Absolute URL components stripped out, or a blank string if errors were encountered parsing.
-	 */
+    /**
+     *
+     * @param string $input		Absolute or relative URL.
+     * @return string			Absolute URL components stripped out, or a blank string if errors were encountered parsing.
+     */
+    public function filter($input) : string
+    {
+        $filter = new Laminas\Filter\StripTags();
+        $url = $filter->filter($input);
 
+        try {
+            $url = Laminas\Uri\UriFactory::factory($url);
+        } catch (InvalidUriPartException $e) {
+            // if the url is invalid, return a blank string.
+            return '';
+        }
+        $url->normalize();
 
-	public function filter($input) : string
-	{
+        $query = $url->getQuery();
+        $fragment = $url->getFragment();
+        $url = preg_replace('/^\/\/+/', '', $url->getPath());
 
-		$filter = new Laminas\Filter\StripTags();
-		$url = $filter->filter($input);
+        if ($query) {
+            $url .= '?' . $query;
+        }
+        if ($fragment) {
+            $url .= '#' . $fragment;
+        }
 
-		try {
-			$url = Laminas\Uri\UriFactory::factory($url);
-		} catch (InvalidUriPartException $e) {
-			// if the url is invalid, return a blank string.
-			return '';
-		}
-		$url->normalize();
-
-		$query = $url->getQuery();
-		$fragment = $url->getFragment();
-		$url = preg_replace('/^\/\/+/', '', $url->getPath());
-
-		if ($query) {
-			$url .= '?' . $query;
-		}
-		if ($fragment) {
-			$url .= '#' . $fragment;
-		}
-
-		return $url;
-	}
+        return $url;
+    }
 }

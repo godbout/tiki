@@ -17,34 +17,34 @@ require_once('tiki-setup.php');
 
 // Reindex the file for search
 if (($id = (int)$_GET['id']) > 0) {
-	// Check feature
-	if ($prefs['feature_file_galleries'] == 'y'
-		&& $prefs['feature_search'] == 'y'
-		&& $prefs['feature_search_fulltext'] != 'y'
-		&& $prefs['search_refresh_index_mode'] == 'normal'
-		&& $prefs['fgal_asynchronous_indexing'] == 'y'
-	) {
-		$filegallib = TikiLib::lib('filegal');
-		require_once('lib/search/refresh-functions.php');
+    // Check feature
+    if ($prefs['feature_file_galleries'] == 'y'
+        && $prefs['feature_search'] == 'y'
+        && $prefs['feature_search_fulltext'] != 'y'
+        && $prefs['search_refresh_index_mode'] == 'normal'
+        && $prefs['fgal_asynchronous_indexing'] == 'y'
+    ) {
+        $filegallib = TikiLib::lib('filegal');
+        require_once('lib/search/refresh-functions.php');
 
-		$info = $filegallib->get_file_info($id);
+        $info = $filegallib->get_file_info($id);
 
-		if ($info['galleryId'] > 0) {
-			$gal_info = $filegallib->get_file_gallery($info['galleryId']);
+        if ($info['galleryId'] > 0) {
+            $gal_info = $filegallib->get_file_gallery($info['galleryId']);
 
-			// Check perms
-			$tikilib->get_perm_object($info['galleryId'], 'file gallery', $gal_info, true);
+            // Check perms
+            $tikilib->get_perm_object($info['galleryId'], 'file gallery', $gal_info, true);
 
-			if ($tiki_p_admin_file_galleries == 'y'
-				|| ( ( empty($fileInfo['lockedby']) || $fileInfo['lockedby'] == $user ) && $tiki_p_edit_gallery_file == 'y' )
-			) { // must be the owner or the locker or have the perms
-				error_reporting(0);
-				ignore_user_abort(true);
-				session_write_close(); // close the session to allow the user to continue browsing
-				register_shutdown_function('refresh_index', 'files', $id);
-			}
-		}
-	}
+            if ($tiki_p_admin_file_galleries == 'y'
+                || ((empty($fileInfo['lockedby']) || $fileInfo['lockedby'] == $user) && $tiki_p_edit_gallery_file == 'y')
+            ) { // must be the owner or the locker or have the perms
+                error_reporting(0);
+                ignore_user_abort(true);
+                session_write_close(); // close the session to allow the user to continue browsing
+                register_shutdown_function('refresh_index', 'files', $id);
+            }
+        }
+    }
 }
 
 // Display the 1x1 transparent gif image
@@ -52,10 +52,10 @@ header('Cache-Control: no-cache');
 header('Content-type: image/gif');
 header('Content-length: 85');
 print base64_decode(
-	'R0lGODlhAQABALMAAAAAAIAAAACAA' .
-	'ICAAAAAgIAAgACAgMDAwICAgP8AAA' .
-	'D/AP//AAAA//8A/wD//wBiZCH5BAE' .
-	'AAA8ALAAAAAABAAEAAAQC8EUAOw=='
+    'R0lGODlhAQABALMAAAAAAIAAAACAA' .
+    'ICAAAAAgIAAgACAgMDAwICAgP8AAA' .
+    'D/AP//AAAA//8A/wD//wBiZCH5BAE' .
+    'AAA8ALAAAAAABAAEAAAQC8EUAOw=='
 );
 flush();
 exit;

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,59 +8,62 @@
 
 abstract class Search_Query_Facet_Abstract implements Search_Query_Facet_Interface
 {
-	protected $name;
-	protected $field;
-	protected $renderCallback;
-	protected $label;
+    protected $name;
+    protected $field;
+    protected $renderCallback;
+    protected $label;
 
-	function __construct($field)
-	{
-		$this->field = $field;
-		$this->name = $field;
-		$this->label = ucfirst($field);
-	}
+    public function __construct($field)
+    {
+        $this->field = $field;
+        $this->name = $field;
+        $this->label = ucfirst($field);
+    }
 
-	function getName()
-	{
-		return $this->name;
-	}
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	function setName($name)
-	{
-		$this->name = $name;
-		return $this;
-	}
+    public function setName($name)
+    {
+        $this->name = $name;
 
-	function getField()
-	{
-		return $this->field;
-	}
+        return $this;
+    }
 
-	function getLabel()
-	{
-		return $this->label;
-	}
+    public function getField()
+    {
+        return $this->field;
+    }
 
-	function setLabel($label)
-	{
-		$this->label = $label;
-		return $this;
-	}
+    public function getLabel()
+    {
+        return $this->label;
+    }
 
-	function setRenderCallback($callback)
-	{
-		$this->renderCallback = $callback;
-		return $this;
-	}
+    public function setLabel($label)
+    {
+        $this->label = $label;
 
-	function render($value)
-	{
-		if ($cb = $this->renderCallback) {
-			return call_user_func($cb, $value);
-		}
+        return $this;
+    }
 
-		return $value;
-	}
+    public function setRenderCallback($callback)
+    {
+        $this->renderCallback = $callback;
 
-	abstract function getType();
+        return $this;
+    }
+
+    public function render($value)
+    {
+        if ($cb = $this->renderCallback) {
+            return call_user_func($cb, $value);
+        }
+
+        return $value;
+    }
+
+    abstract public function getType();
 }

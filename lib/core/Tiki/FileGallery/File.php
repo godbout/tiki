@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,9 +8,9 @@
 
 namespace Tiki\FileGallery;
 
-use TikiLib;
 use Feedback;
 use JitFilter;
+use TikiLib;
 
 /**
  * A basic file representation in Tiki. Includes params needed to store back contents
@@ -21,283 +22,310 @@ use JitFilter;
  */
 class File
 {
-	public $param = [
-		"fileId" 	=> 0,
-		"galleryId" 	=> 1,
-		"name"		=> "",
-		"description"	=> "",
-		"created" 	=> 0,
-		"filename" 	=> "",
-		"filesize" 	=> 0,
-		"filetype" 	=> "",
-		"data" 		=> "",
-		"user"	 	=> "",
-		"author" 	=> "",
-		"hits" 		=> 0,
-		"maxhits"	=> 0,
-		"lastDownload" 	=> 0,
-		"votes" 	=> 0,
-		"points" 	=> 0,
-		"path" 		=> "",
-		"reference_url" => "",
-		"is_reference" 	=> false,
-		"hash" 		=> "",
-		"metadata" => "",
-		"search_data" 	=> "",
-		"lastModif" 	=> 0,
-		"lastModifUser" => "",
-		"lockedby" 	=> "",
-		"comment"	=> "",
-		"archiveId"	=> 0,
-		"deleteAfter" 	=> 0,
-		"backlinkPerms"	=> "",
-		"ocr_state" => null,
-	];
-	private $exists = false;
-	private $wrapper = null;
+    public $param = [
+        "fileId" => 0,
+        "galleryId" => 1,
+        "name" => "",
+        "description" => "",
+        "created" => 0,
+        "filename" => "",
+        "filesize" => 0,
+        "filetype" => "",
+        "data" => "",
+        "user" => "",
+        "author" => "",
+        "hits" => 0,
+        "maxhits" => 0,
+        "lastDownload" => 0,
+        "votes" => 0,
+        "points" => 0,
+        "path" => "",
+        "reference_url" => "",
+        "is_reference" => false,
+        "hash" => "",
+        "metadata" => "",
+        "search_data" => "",
+        "lastModif" => 0,
+        "lastModifUser" => "",
+        "lockedby" => "",
+        "comment" => "",
+        "archiveId" => 0,
+        "deleteAfter" => 0,
+        "backlinkPerms" => "",
+        "ocr_state" => null,
+    ];
+    private $exists = false;
+    private $wrapper = null;
 
-	function __construct($params = [])
-	{
-		global $mimetypes;
-		include_once(__DIR__ . '/../../../mime/mimetypes.php');
+    public function __construct($params = [])
+    {
+        global $mimetypes;
+        include_once(__DIR__ . '/../../../mime/mimetypes.php');
 
-		$this->setParam('filetype', $mimetypes["txt"]);
-		$this->setParam('name', tr("New File"));
-		$this->setParam('description', tr("New File"));
-		$this->setParam('filename', tr("New File"));
+        $this->setParam('filetype', $mimetypes["txt"]);
+        $this->setParam('name', tr("New File"));
+        $this->setParam('description', tr("New File"));
+        $this->setParam('filename', tr("New File"));
 
-		$this->init($params);
-	}
+        $this->init($params);
+    }
 
-	function __get($name) {
-		return $this->getParam($name);
-	}
+    public function __get($name)
+    {
+        return $this->getParam($name);
+    }
 
-	function __isset($name) {
-		return isset($this->param[$name]);
-	}
+    public function __isset($name)
+    {
+        return isset($this->param[$name]);
+    }
 
-	static function filename($filename = "")
-	{
-		$tikilib = TikiLib::lib('tiki');
+    public static function filename($filename = "")
+    {
+        $tikilib = TikiLib::lib('tiki');
 
-		$id = $tikilib->getOne("SELECT fileId FROM tiki_files WHERE filename = ? AND archiveId  < 1", [$filename]);
+        $id = $tikilib->getOne("SELECT fileId FROM tiki_files WHERE filename = ? AND archiveId  < 1", [$filename]);
 
-		if (! empty($id)) {
-			return self::id($id);
-		}
+        if (! empty($id)) {
+            return self::id($id);
+        }
 
-		//always use ->exists() to check if the file was found, if the above is returned, a file was found, if below, there wasent
-		$me = new self();
-		$me->setParam('filename', $filename);
-		return $me;
-	}
+        //always use ->exists() to check if the file was found, if the above is returned, a file was found, if below, there wasent
+        $me = new self();
+        $me->setParam('filename', $filename);
 
-	/**
-	 * Facade method to instantiate a File object based on the db fileId
-	 */
-	static function id($id = 0)
-	{
-		$me = new self(TikiLib::lib("filegal")->get_file((int)$id));
-		return $me;
-	}
+        return $me;
+    }
 
-	function clone() {
-		$params = $this->getParams();
-		unset($params['fileId']);
-		$params['created'] = 0;
-		return new self($params);
-	}
+    /**
+     * Facade method to instantiate a File object based on the db fileId
+     * @param mixed $id
+     */
+    public static function id($id = 0)
+    {
+        $me = new self(TikiLib::lib("filegal")->get_file((int)$id));
 
-	function init($params) {
-		foreach ($params as $key => $val) {
-			$this->setParam($key, $val);
-		}
-		if ($this->getParam('created') > 0) {
-			$this->exists = true;
-		}
-	}
+        return $me;
+    }
 
-	function validateDraft($draft) {
-		foreach ($draft->getParams() as $key => $val) {
-			$this->setParam($key, $val);
-		}
-		if ($this->replaceContents($draft->getContents())) {
-			$saveHandler = new SaveHandler($this);
-			$saveHandler->validateDraft();
-		}
-	}
+    public function clone()
+    {
+        $params = $this->getParams();
+        unset($params['fileId']);
+        $params['created'] = 0;
 
-	function setParam($param = "", $value)
-	{
-		$this->param[$param] = $value;
-		return $this;
-	}
+        return new self($params);
+    }
 
-	function getParam($param = "")
-	{
-		return $this->param[$param];
-	}
+    public function init($params)
+    {
+        foreach ($params as $key => $val) {
+            $this->setParam($key, $val);
+        }
+        if ($this->getParam('created') > 0) {
+            $this->exists = true;
+        }
+    }
 
-	function getParams() {
-		return $this->param;
-	}
+    public function validateDraft($draft)
+    {
+        foreach ($draft->getParams() as $key => $val) {
+            $this->setParam($key, $val);
+        }
+        if ($this->replaceContents($draft->getContents())) {
+            $saveHandler = new SaveHandler($this);
+            $saveHandler->validateDraft();
+        }
+    }
 
-	/**
-	 * Retrieve parameters to be saved in files db table.
-	 */
-	function getParamsForDB() {
-		return array_filter($this->param, function($key){
-			return $key != 'backlinkPerms';
-		}, ARRAY_FILTER_USE_KEY);
-	}
+    public function setParam($param = "", $value)
+    {
+        $this->param[$param] = $value;
 
-	function archive($archive = 0)
-	{
-		$archives = $this->listArchives();
-		return self::id($archives[$archive]['id']);
-	}
+        return $this;
+    }
 
-	function archiveFromLastModif($lastModif)
-	{
-		foreach ($this->listArchives() as $archive) {
-			if ($archive['lastModif'] == $lastModif) {
-				return $archive;
-			}
-		}
-	}
+    public function getParam($param = "")
+    {
+        return $this->param[$param];
+    }
 
-	function data()
-	{
-		return $this->getParam('data');
-	}
+    public function getParams()
+    {
+        return $this->param;
+    }
 
-	function exists()
-	{
-		return $this->exists;
-	}
+    /**
+     * Retrieve parameters to be saved in files db table.
+     */
+    public function getParamsForDB()
+    {
+        return array_filter($this->param, function ($key) {
+            return $key != 'backlinkPerms';
+        }, ARRAY_FILTER_USE_KEY);
+    }
 
-	function listArchives()
-	{
-		$archives = TikiLib::lib("filegal")->get_archives((int)$this->getParam('fileId'));
-		$archives = \array_reverse($archives['data']);
-		return $archives;
-	}
+    public function archive($archive = 0)
+    {
+        $archives = $this->listArchives();
 
-	function replace($data, $type = null, $name = null, $filename = null, $resizex = null, $resizey = null) {
-		global $user, $prefs, $jitRequest;
+        return self::id($archives[$archive]['id']);
+    }
 
-		$user = (! empty($user) ? $user : 'Anonymous');
+    public function archiveFromLastModif($lastModif)
+    {
+        foreach ($this->listArchives() as $archive) {
+            if ($archive['lastModif'] == $lastModif) {
+                return $archive;
+            }
+        }
+    }
 
-		if ($type) {
-			$this->setParam('filetype', $type);
-		}
-		if ($name) {
-			$this->setParam('name', $name);
-		}
-		if ($filename) {
-			$this->setParam('filename', $filename);
-		}
-		if (($jitRequest instanceof JitFilter) && ! empty($jitRequest->ocr_state->int())) {
-			$this->setParam('ocr_state', $jitRequest->ocr_state->int());
-		}
+    public function data()
+    {
+        return $this->getParam('data');
+    }
 
-		if ($data && !$this->replaceContents($data)) {
-			// Do not replace with empty file as could be updating properties only
-			return false;
-		}
+    public function exists()
+    {
+        return $this->exists;
+    }
 
-		$result = (new Manipulator\Validator($this))->run();
-		if (! $result) {
-			// uploaded file was saved to folder already (eg by jquery upload),
-			// so we need to remove it again or we'll have tons of
-			// unreferenced junk files in the folder
-			$this->galleryDefinition()->delete($this);
-			return false;
-		}
+    public function listArchives()
+    {
+        $archives = TikiLib::lib("filegal")->get_archives((int)$this->getParam('fileId'));
+        $archives = \array_reverse($archives['data']);
 
-		(new Manipulator\ImageTransformer($this))->run(['width' => $resizex, 'height' => $resizey]);
-		(new Manipulator\MetadataExtractor($this))->run();
+        return $archives;
+    }
 
-		$saveHandler = new SaveHandler($this);
-		return $saveHandler->save();
-	}
+    public function replace($data, $type = null, $name = null, $filename = null, $resizex = null, $resizey = null)
+    {
+        global $user, $prefs, $jitRequest;
 
-	function replaceQuick($data) {
-		global $user;
-		if (!$this->replaceContents($data)) {
-			return false;
-		}
-		$this->setParam('lastModifUser', $user);
-		TikiLib::lib('filegal')->update_file($this->fileId, $this->getParamsForDB());
-	}
+        $user = (! empty($user) ? $user : 'Anonymous');
 
-	function delete()
-	{
-		TikiLib::lib("filegal")->remove_file($this->param);
-	}
+        if ($type) {
+            $this->setParam('filetype', $type);
+        }
+        if ($name) {
+            $this->setParam('name', $name);
+        }
+        if ($filename) {
+            $this->setParam('filename', $filename);
+        }
+        if (($jitRequest instanceof JitFilter) && ! empty($jitRequest->ocr_state->int())) {
+            $this->setParam('ocr_state', $jitRequest->ocr_state->int());
+        }
 
-	function diffLatestWithArchive($archive = 0)
-	{
-		include_once(__DIR__ . "/../../../diff/Diff.php");
+        if ($data && !$this->replaceContents($data)) {
+            // Do not replace with empty file as could be updating properties only
+            return false;
+        }
 
-		$textDiff = new \Text_Diff(
-			self::id($this->getParam('fileId'))
-			->archive($archive)
-			->data(),
-			$this->data()
-		);
+        $result = (new Manipulator\Validator($this))->run();
+        if (! $result) {
+            // uploaded file was saved to folder already (eg by jquery upload),
+            // so we need to remove it again or we'll have tons of
+            // unreferenced junk files in the folder
+            $this->galleryDefinition()->delete($this);
 
-		return $textDiff->getDiff();
-	}
+            return false;
+        }
 
-	/**
-	 * Get gallery definition object for this file.
-	 */
-	function galleryDefinition() {
-		return TikiLib::lib('filegal')->getGalleryDefinition($this->getParam('galleryId'));
-	}
+        (new Manipulator\ImageTransformer($this))->run(['width' => $resizex, 'height' => $resizey]);
+        (new Manipulator\MetadataExtractor($this))->run();
 
-	/**
-	 * Get file wrapper object responsible for accessing the underlying storage.
-	 * Ensures unique filename is available for new files if underlying storage
-	 * requires it. Ensures data/path db parameters are sane.
-	 * @see FileWrapper\WrapperInterface for supported methods.
-	 */
-	function getWrapper() {
-		if ($this->wrapper !== null) {
-			return $this->wrapper;
-		}
-		$definition = $this->galleryDefinition();
-		$this->setParam('path', $definition->uniquePath($this));
-		if ($this->getParam('path')) {
-			$this->setParam('data', '');
-		}
-		$this->wrapper = $definition->getFileWrapper($this);
-		return $this->wrapper;
-	}
+        $saveHandler = new SaveHandler($this);
 
-	/**
-	 * Retrieve file contents as a string.
-	 */
-	function getContents() {
-		return $this->getWrapper()->getContents();
-	}
+        return $saveHandler->save();
+    }
 
-	/**
-	 * Replace file contents from a string. Prepares the params to be later saved in db.
-	 */
-	function replaceContents($data) {
-		$wrapper = $this->getWrapper();
-		try {
-			$wrapper->replaceContents($data);
-		} catch (FileWrapper\WriteException $e) {
-			Feedback::error($e->getMessage());
-			return false;
-		}
-		foreach ($wrapper->getStorableContent() as $key => $val) {
-			$this->setParam($key, $val);
-		}
-		return true;
-	}
+    public function replaceQuick($data)
+    {
+        global $user;
+        if (!$this->replaceContents($data)) {
+            return false;
+        }
+        $this->setParam('lastModifUser', $user);
+        TikiLib::lib('filegal')->update_file($this->fileId, $this->getParamsForDB());
+    }
+
+    public function delete()
+    {
+        TikiLib::lib("filegal")->remove_file($this->param);
+    }
+
+    public function diffLatestWithArchive($archive = 0)
+    {
+        include_once(__DIR__ . "/../../../diff/Diff.php");
+
+        $textDiff = new \Text_Diff(
+            self::id($this->getParam('fileId'))
+                ->archive($archive)
+                ->data(),
+            $this->data()
+        );
+
+        return $textDiff->getDiff();
+    }
+
+    /**
+     * Get gallery definition object for this file.
+     */
+    public function galleryDefinition()
+    {
+        return TikiLib::lib('filegal')->getGalleryDefinition($this->getParam('galleryId'));
+    }
+
+    /**
+     * Get file wrapper object responsible for accessing the underlying storage.
+     * Ensures unique filename is available for new files if underlying storage
+     * requires it. Ensures data/path db parameters are sane.
+     * @see FileWrapper\WrapperInterface for supported methods.
+     */
+    public function getWrapper()
+    {
+        if ($this->wrapper !== null) {
+            return $this->wrapper;
+        }
+        $definition = $this->galleryDefinition();
+        $this->setParam('path', $definition->uniquePath($this));
+        if ($this->getParam('path')) {
+            $this->setParam('data', '');
+        }
+        $this->wrapper = $definition->getFileWrapper($this);
+
+        return $this->wrapper;
+    }
+
+    /**
+     * Retrieve file contents as a string.
+     */
+    public function getContents()
+    {
+        return $this->getWrapper()->getContents();
+    }
+
+    /**
+     * Replace file contents from a string. Prepares the params to be later saved in db.
+     * @param mixed $data
+     */
+    public function replaceContents($data)
+    {
+        $wrapper = $this->getWrapper();
+
+        try {
+            $wrapper->replaceContents($data);
+        } catch (FileWrapper\WriteException $e) {
+            Feedback::error($e->getMessage());
+
+            return false;
+        }
+        foreach ($wrapper->getStorableContent() as $key => $val) {
+            $this->setParam($key, $val);
+        }
+
+        return true;
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -16,85 +17,85 @@ use Tiki\FileGallery\FileWrapper;
 
 class Tiki_FileGallery_FileTest extends TikiTestCase
 {
-	protected function setUp() : void
-	{
-		global $prefs;
-		$this->oldPrefs = $prefs;
-		parent::setUp();
-		TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
-	}
+    protected function setUp() : void
+    {
+        global $prefs;
+        $this->oldPrefs = $prefs;
+        parent::setUp();
+        TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
+    }
 
-	protected function tearDown() : void
-	{
-		global $prefs;
-		$prefs = $this->oldPrefs;
-		TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
-	}
+    protected function tearDown() : void
+    {
+        global $prefs;
+        $prefs = $this->oldPrefs;
+        TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
+    }
 
-	public function testInstantiation()
-	{
-		$file = new File();
-		$this->assertEquals(0, $file->fileId);
-		$this->assertFalse($file->exists());
-	}
+    public function testInstantiation()
+    {
+        $file = new File();
+        $this->assertEquals(0, $file->fileId);
+        $this->assertFalse($file->exists());
+    }
 
-	public function testInitialization()
-	{
-		$file = new File(['filename' => 'test.zip']);
-		$this->assertEquals('test.zip', $file->filename);
-	}
+    public function testInitialization()
+    {
+        $file = new File(['filename' => 'test.zip']);
+        $this->assertEquals('test.zip', $file->filename);
+    }
 
-	public function testLoading()
-	{
-		$file = new File(['filename' => 'test.zip']);
-		$filesTable = TikiLib::lib('filegal')->table('tiki_files');
-		$fileId = $filesTable->insert($file->getParamsForDb());
+    public function testLoading()
+    {
+        $file = new File(['filename' => 'test.zip']);
+        $filesTable = TikiLib::lib('filegal')->table('tiki_files');
+        $fileId = $filesTable->insert($file->getParamsForDb());
 
-		$file = File::id($fileId);
-		$this->assertEquals('test.zip', $file->filename);
+        $file = File::id($fileId);
+        $this->assertEquals('test.zip', $file->filename);
 
-		$filesTable->delete(['fileId' => $fileId]);
-	}
+        $filesTable->delete(['fileId' => $fileId]);
+    }
 
-	public function testCorrectWrapper()
-	{
-		global $prefs;
+    public function testCorrectWrapper()
+    {
+        global $prefs;
 
-		$file = new File(['filename' => 'test.txt', 'data' => 'test content', 'path' => '']);
-		$prefs['fgal_use_db'] = 'y';
+        $file = new File(['filename' => 'test.txt', 'data' => 'test content', 'path' => '']);
+        $prefs['fgal_use_db'] = 'y';
 
-		$this->assertInstanceOf(FileWrapper\PreloadedContent::class, $file->getWrapper());
+        $this->assertInstanceOf(FileWrapper\PreloadedContent::class, $file->getWrapper());
 
-		TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
+        TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
 
-		$file = new File(['filename' => 'test.txt', 'data' => 'test content', 'path' => 'abcdtest']);
-		$prefs['fgal_use_db'] = 'n';
-		$prefs['fgal_use_dir'] = vfsStream::setup(uniqid('', true), null)->url();
+        $file = new File(['filename' => 'test.txt', 'data' => 'test content', 'path' => 'abcdtest']);
+        $prefs['fgal_use_db'] = 'n';
+        $prefs['fgal_use_dir'] = vfsStream::setup(uniqid('', true), null)->url();
 
-		$this->assertInstanceOf(FileWrapper\PhysicalFile::class, $file->getWrapper());
-		$this->assertEmpty($file->data);
-	}
+        $this->assertInstanceOf(FileWrapper\PhysicalFile::class, $file->getWrapper());
+        $this->assertEmpty($file->data);
+    }
 
-	public function testReplaceContents()
-	{
-		global $prefs;
+    public function testReplaceContents()
+    {
+        global $prefs;
 
-		$file = new File(['filename' => 'test.txt', 'data' => 'test content', 'path' => '']);
-		$prefs['fgal_use_db'] = 'y';
+        $file = new File(['filename' => 'test.txt', 'data' => 'test content', 'path' => '']);
+        $prefs['fgal_use_db'] = 'y';
 
-		$file->replaceContents('updated content');
-		$this->assertEquals('updated content', $file->data);
-		$this->assertEmpty($file->path);
+        $file->replaceContents('updated content');
+        $this->assertEquals('updated content', $file->data);
+        $this->assertEmpty($file->path);
 
-		TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
+        TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
 
-		$file = new File(['filename' => 'test.txt', 'data' => '', 'path' => 'abcdtest']);
-		$prefs['fgal_use_db'] = 'n';
-		$prefs['fgal_use_dir'] = vfsStream::setup(uniqid('', true), null)->url();
-		file_put_contents($prefs['fgal_use_dir'] . '/' . $file->path, 'test content');
+        $file = new File(['filename' => 'test.txt', 'data' => '', 'path' => 'abcdtest']);
+        $prefs['fgal_use_db'] = 'n';
+        $prefs['fgal_use_dir'] = vfsStream::setup(uniqid('', true), null)->url();
+        file_put_contents($prefs['fgal_use_dir'] . '/' . $file->path, 'test content');
 
-		$file->replaceContents('updated content');
-		$this->assertEquals('updated content', file_get_contents($prefs['fgal_use_dir'] . '/' . $file->path));
-		$this->assertEmpty($file->data);
-	}
+        $file->replaceContents('updated content');
+        $this->assertEquals('updated content', file_get_contents($prefs['fgal_use_dir'] . '/' . $file->path));
+        $this->assertEmpty($file->data);
+    }
 }

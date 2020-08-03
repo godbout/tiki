@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,69 +8,69 @@
 
 class Tiki_Version_Checker
 {
-	private $cycle;
-	private $version;
+    private $cycle;
+    private $version;
 
-	function setCycle($cycle)
-	{
-		$this->cycle = $cycle;
-	}
+    public function setCycle($cycle)
+    {
+        $this->cycle = $cycle;
+    }
 
-	function setVersion($version)
-	{
-		$this->version = Tiki_Version_Version::get($version);
-	}
+    public function setVersion($version)
+    {
+        $this->version = Tiki_Version_Version::get($version);
+    }
 
-	function check($callback)
-	{
-		$upgrades = [];
-		$branchupdate = null;
+    public function check($callback)
+    {
+        $upgrades = [];
+        $branchupdate = null;
 
-		$content = call_user_func($callback, "http://tiki.org/{$this->cycle}.cycle");
-		$versions = $this->getSupportedVersions($content);
+        $content = call_user_func($callback, "http://tiki.org/{$this->cycle}.cycle");
+        $versions = $this->getSupportedVersions($content);
 
-		if ($supported = $this->findSupportedInBranch($versions)) {
-			if ($supported->isUpgradeTo($this->version)) {
-				$upgrades[] = new Tiki_Version_Upgrade($this->version, $supported, true);
-				$branchupdate = $supported;
-			}
-		}
+        if ($supported = $this->findSupportedInBranch($versions)) {
+            if ($supported->isUpgradeTo($this->version)) {
+                $upgrades[] = new Tiki_Version_Upgrade($this->version, $supported, true);
+                $branchupdate = $supported;
+            }
+        }
 
-		$max = $this->getLatestVersion($versions);
+        $max = $this->getLatestVersion($versions);
 
-		if ($max !== $branchupdate && $max->isUpgradeTo($this->version)) {
-			$upgrades[] = new Tiki_Version_Upgrade($supported ?: $this->version, $max, $supported === false);
-		}
+        if ($max !== $branchupdate && $max->isUpgradeTo($this->version)) {
+            $upgrades[] = new Tiki_Version_Upgrade($supported ?: $this->version, $max, $supported === false);
+        }
 
-		return $upgrades;
-	}
+        return $upgrades;
+    }
 
-	private function getSupportedVersions($content)
-	{
-		return array_filter(array_map(['Tiki_Version_Version', 'get'], explode("\n", $content)));
-	}
+    private function getSupportedVersions($content)
+    {
+        return array_filter(array_map(['Tiki_Version_Version', 'get'], explode("\n", $content)));
+    }
 
-	private function findSupportedInBranch($versions)
-	{
-		foreach ($versions as $supported) {
-			if ($supported->getMajor() == $this->version->getMajor()) {
-				return $supported;
-			}
-		}
+    private function findSupportedInBranch($versions)
+    {
+        foreach ($versions as $supported) {
+            if ($supported->getMajor() == $this->version->getMajor()) {
+                return $supported;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	private function getLatestVersion($versions)
-	{
-		$max = array_shift($versions);
+    private function getLatestVersion($versions)
+    {
+        $max = array_shift($versions);
 
-		foreach ($versions as $candidate) {
-			if ($candidate->isUpgradeTo($max)) {
-				$max = $candidate;
-			}
-		}
+        foreach ($versions as $candidate) {
+            if ($candidate->isUpgradeTo($max)) {
+                $max = $candidate;
+            }
+        }
 
-		return $max;
-	}
+        return $max;
+    }
 }

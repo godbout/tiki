@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,27 +13,28 @@ use GuzzleHttp\Client as GuzzleClient;
 
 class WebClientHelper
 {
-	/**
-	 * @var bool $followRedirects if the client should automatically follow redirects
-	 *
-	 * @return GoutteClient
-	 */
-	public static function createTestClient($followRedirects = true): GoutteClient
-	{
-		$client = new GoutteClient();
-		$client->setClient(
-			new GuzzleClient([
-				'allow_redirects' => false,
-				'cookies'         => true,
-				'curl' => [
-					CURLOPT_SSL_VERIFYPEER => false,
-					CURLOPT_SSL_VERIFYHOST => false,
-				]
-			])
-		);
-		$client->followRedirects($followRedirects);
-		$client->getCookieJar()->clear();
+    /**
+     * @var bool $followRedirects if the client should automatically follow redirects
+     *
+     * @param mixed $followRedirects
+     * @return GoutteClient
+     */
+    public static function createTestClient($followRedirects = true): GoutteClient
+    {
+        $client = new GoutteClient();
+        $client->setClient(
+            new GuzzleClient([
+                'allow_redirects' => false,
+                'cookies' => true,
+                'curl' => [
+                    CURLOPT_SSL_VERIFYPEER => false,
+                    CURLOPT_SSL_VERIFYHOST => false,
+                ]
+            ])
+        );
+        $client->followRedirects($followRedirects);
+        $client->getCookieJar()->clear();
 
-		return $client;
-	}
+        return $client;
+    }
 }

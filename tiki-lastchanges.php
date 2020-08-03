@@ -17,28 +17,28 @@ $access->check_feature('feature_wiki');
 $access->check_feature('feature_lastChanges');
 $access->check_permission('tiki_p_view');
 if (! isset($_REQUEST["find"])) {
-	$findwhat = '';
+    $findwhat = '';
 } else {
-	$findwhat = $_REQUEST["find"];
+    $findwhat = $_REQUEST["find"];
 }
 $smarty->assign('find', $findwhat);
 if (! isset($_REQUEST["days"])) {
-	$days = 1;
+    $days = 1;
 } else {
-	$days = $_REQUEST["days"];
+    $days = $_REQUEST["days"];
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'lastModif_desc';
+    $sort_mode = 'lastModif_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 $smarty->assign_by_ref('days', $days);
 $smarty->assign_by_ref('findwhat', $findwhat);
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 // Get a list of last changes to the Wiki database
@@ -50,14 +50,14 @@ $cant_pages = ceil($lastchanges["cant"] / $maxRecords);
 $smarty->assign_by_ref('cant_pages', $cant_pages);
 $smarty->assign('actual_page', 1 + ($offset / $maxRecords));
 if ($lastchanges["cant"] > ($offset + $maxRecords)) {
-	$smarty->assign('next_offset', $offset + $maxRecords);
+    $smarty->assign('next_offset', $offset + $maxRecords);
 } else {
-	$smarty->assign('next_offset', -1);
+    $smarty->assign('next_offset', -1);
 }
 if ($offset > 0) {
-	$smarty->assign('prev_offset', $offset - $maxRecords);
+    $smarty->assign('prev_offset', $offset - $maxRecords);
 } else {
-	$smarty->assign('prev_offset', -1);
+    $smarty->assign('prev_offset', -1);
 }
 $smarty->assign_by_ref('lastchanges', $lastchanges["data"]);
 ask_ticket('lastchanges');

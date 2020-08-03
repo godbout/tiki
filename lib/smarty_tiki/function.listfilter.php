@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 // this script may only be included - so it's better to die if called directly
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	die;
+    header("location: index.php");
+    die;
 }
 
 /**
@@ -31,60 +32,59 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * @parentSelector	CSS (jQuery) selector(s) for parent nodes of what to filter
  * @childPrefix = 'child-of-'	prefix for child class (to hide parent if all children are hidden by the filter)
  *
+ * @param mixed $params
+ * @param mixed $smarty
  * @return html string (with jQuery added to headerlib)
  */
-
-
-
 function smarty_function_listfilter($params, $smarty)
 {
-	global $prefs, $listfilter_id;
-	$headerlib = TikiLib::lib('header');
+    global $prefs, $listfilter_id;
+    $headerlib = TikiLib::lib('header');
 
-	if ($prefs['feature_jquery'] != 'y' || $prefs['javascript_enabled'] != 'y') {
-		return '';
-	} else {
-		extract($params);
-		$childPrefix = isset($childPrefix) ? $childPrefix : 'child-of-';
-		$exclude = isset($exclude) ? $exclude : '';
+    if ($prefs['feature_jquery'] != 'y' || $prefs['javascript_enabled'] != 'y') {
+        return '';
+    }
+    extract($params);
+    $childPrefix = isset($childPrefix) ? $childPrefix : 'child-of-';
+    $exclude = isset($exclude) ? $exclude : '';
 
-		$input = ' <div class="form-horizontal my-2"><div class="form-group form-row"><div class="col"><div class="input-group"><div class="input-group-prepend"><label class="col-form-label input-group-text">';
+    $input = ' <div class="form-horizontal my-2"><div class="form-group form-row"><div class="col"><div class="input-group"><div class="input-group-prepend"><label class="col-form-label input-group-text">';
 
-		if (! isset($prefix)) {
-			$input .= tra("Filter:");
-		} else {
-			$input .= tra($prefix);
-		}
-		$input .= '</label></div><input type="text" class="form-control listfilter"';
-		if (! isset($id)) {
-			if (isset($listfilter_id)) {
-				$listfilter_id++;
-			} else {
-				$listfilter_id = 1;
-			}
-			$id = "listfilter_$listfilter_id";
-			$input .= " id='$id'";
-		} else {
-			$input .= " id='$id'";
-		}
-		if (isset($size)) {
-			$input .= " size='$size'";
-		}
-		if (isset($maxlength)) {
-			$input .= " maxlength='$maxlength'";
-		}
+    if (! isset($prefix)) {
+        $input .= tra("Filter:");
+    } else {
+        $input .= tra($prefix);
+    }
+    $input .= '</label></div><input type="text" class="form-control listfilter"';
+    if (! isset($id)) {
+        if (isset($listfilter_id)) {
+            $listfilter_id++;
+        } else {
+            $listfilter_id = 1;
+        }
+        $id = "listfilter_$listfilter_id";
+        $input .= " id='$id'";
+    } else {
+        $input .= " id='$id'";
+    }
+    if (isset($size)) {
+        $input .= " size='$size'";
+    }
+    if (isset($maxlength)) {
+        $input .= " maxlength='$maxlength'";
+    }
 
-		// value from url
-		if (! isset($query)) {
-			$query = 'textFilter';
-		}
-		if (! empty($query) && ! empty($_REQUEST[$query])) {
-			$input .= ' value="' . $_REQUEST[$query] . '"';
-		} elseif (! empty($editorId)) {
-			$parentTabId = (empty($parentTabId) ? "" : $parentTabId);
+    // value from url
+    if (! isset($query)) {
+        $query = 'textFilter';
+    }
+    if (! empty($query) && ! empty($_REQUEST[$query])) {
+        $input .= ' value="' . $_REQUEST[$query] . '"';
+    } elseif (! empty($editorId)) {
+        $parentTabId = (empty($parentTabId) ? "" : $parentTabId);
 
-			$headerlib->add_jq_onready(
-				"
+        $headerlib->add_jq_onready(
+            "
 				$(document).bind('editHelpOpened', function() {
 					var text = getTASelection('#" . $editorId . "'),
 					possiblePlugin = text.split(/[ \(}]/)[0];
@@ -106,22 +106,22 @@ function smarty_function_listfilter($params, $smarty)
 					}
 				});
 			"
-			);
-		}
+        );
+    }
 
-		$input .= "><div class='input-group-append'>";
-		$smartylib = TikiLib::lib('smarty');
-		$smartylib->loadPlugin('smarty_function_icon');
-		$icon = smarty_function_icon(['name' => 'times-circle'], $smarty);
-		$input .= "<a href='#' onclick=\"\$('#$id').val('').focus().keyup();return false;\" class='btn input-group-text closeicon tips' title=':"
-				. tr('Clear filter') . "'>$icon</a>";
-		$input .= '</div></div></div></div></div>';
+    $input .= "><div class='input-group-append'>";
+    $smartylib = TikiLib::lib('smarty');
+    $smartylib->loadPlugin('smarty_function_icon');
+    $icon = smarty_function_icon(['name' => 'times-circle'], $smarty);
+    $input .= "<a href='#' onclick=\"\$('#$id').val('').focus().keyup();return false;\" class='btn input-group-text closeicon tips' title=':"
+                . tr('Clear filter') . "'>$icon</a>";
+    $input .= '</div></div></div></div></div>';
 
-		if (! isset($selectors)) {
-			$selectors = ".$id table tr";
-		}
+    if (! isset($selectors)) {
+        $selectors = ".$id table tr";
+    }
 
-		$content = "
+    $content = "
 $('#$id').keyup( function() {
 	var criterias = this.value.toLowerCase().split( /\s+/ );
 	$('$selectors').each( function() {
@@ -136,8 +136,8 @@ $('#$id').keyup( function() {
 		$(this).show();
 	} );
 ";
-		if (! empty($parentSelector)) {
-			$content .= "
+    if (! empty($parentSelector)) {
+        $content .= "
 	\$('$parentSelector').show().each( function() {
 		if (\$('{$selectors}[data-tt-parent-id=' + \$(this).data('tt-id') + ']:visible:not(\"$exclude\")').length == 0) {	// excluded things don't count
 			\$(this).hide();
@@ -147,21 +147,21 @@ $('#$id').keyup( function() {
 		}
 	});
 ";
-		}
-		$content .= '
+    }
+    $content .= '
 } );	// end keyup
 ';
-		if (! empty($query) && ! empty($_REQUEST[$query])) {
-			$content .= "
+    if (! empty($query) && ! empty($_REQUEST[$query])) {
+        $content .= "
 setTimeout(function () {
 	if ($('#$id').val() != '') {
 		$('#$id').keyup();
 	}
 }, 1000);
 ";
-		}
+    }
 
-		$headerlib->add_jq_onready($content);
-		return $input;
-	}
+    $headerlib->add_jq_onready($content);
+
+    return $input;
 }

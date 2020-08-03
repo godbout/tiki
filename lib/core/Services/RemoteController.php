@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,60 +8,61 @@
 
 class Services_RemoteController
 {
-	private $url;
-	private $controller;
+    private $url;
+    private $controller;
 
-	function __construct($url, $controller)
-	{
-		$this->url = $url;
-		$this->controller = $controller;
-	}
+    public function __construct($url, $controller)
+    {
+        $this->url = $url;
+        $this->controller = $controller;
+    }
 
-	function __call($action, $args)
-	{
-		$arguments = [];
-		if (isset($args[0]) && is_array($args[0])) {
-			$arguments = $args[0];
-		}
+    public function __call($action, $args)
+    {
+        $arguments = [];
+        if (isset($args[0]) && is_array($args[0])) {
+            $arguments = $args[0];
+        }
 
-		return $this->getJson($action, $arguments);
-	}
+        return $this->getJson($action, $arguments);
+    }
 
-	function getResultLoader($action, $arguments, $offsetKey = 'offset', $maxRecordsKey = 'maxRecords', $resultKey = 'result', $perPage = 20)
-	{
-		$client = $this->getClient($action, $arguments);
-		return new Services_ResultLoader(
-			[new Services_ResultLoader_WebService($client, $offsetKey, $maxRecordsKey, $resultKey), '__invoke'],
-			$perPage
-		);
-	}
+    public function getResultLoader($action, $arguments, $offsetKey = 'offset', $maxRecordsKey = 'maxRecords', $resultKey = 'result', $perPage = 20)
+    {
+        $client = $this->getClient($action, $arguments);
 
-	private function getClient($action, $postArguments = [])
-	{
-		$tikilib = TikiLib::lib('tiki');
-		$client = $tikilib->get_http_client($this->url . '/tiki-ajax_services.php');
-		$client->setParameterGet(
-			[
-				'controller' => $this->controller,
-				'action' => $action,
-			]
-		);
-		$client->setParameterPost($postArguments);
+        return new Services_ResultLoader(
+            [new Services_ResultLoader_WebService($client, $offsetKey, $maxRecordsKey, $resultKey), '__invoke'],
+            $perPage
+        );
+    }
 
-		return $client;
-	}
+    private function getClient($action, $postArguments = [])
+    {
+        $tikilib = TikiLib::lib('tiki');
+        $client = $tikilib->get_http_client($this->url . '/tiki-ajax_services.php');
+        $client->setParameterGet(
+            [
+                'controller' => $this->controller,
+                'action' => $action,
+            ]
+        );
+        $client->setParameterPost($postArguments);
 
-	private function getJson($action, $postArguments = [])
-	{
-		$client = $this->getClient($action, $postArguments);
-		$client->setHeaders(['Accept' => 'application/json']);
-		$client->setMethod(Laminas\Http\Request::METHOD_POST);
-		$response = $client->send();
+        return $client;
+    }
 
-		if (! $response->isSuccess()) {
-			throw new Services_Exception(tr('Remote service inaccessible (%0)', $response->getStatusCode()), 400);
-		}
+    private function getJson($action, $postArguments = [])
+    {
+        $client = $this->getClient($action, $postArguments);
+        $client->setHeaders(['Accept' => 'application/json']);
+        $client->setMethod(Laminas\Http\Request::METHOD_POST);
+        $response = $client->send();
 
-		return json_decode($response->getBody(), true);
-	}
+        if (! $response->isSuccess()) {
+            throw new Services_Exception(tr('Remote service inaccessible (%0)', $response->getStatusCode()), 400);
+        }
+
+        return json_decode($response->getBody(), true);
+    }
 }

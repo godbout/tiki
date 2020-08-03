@@ -10,7 +10,7 @@
 
 require_once('tiki-setup.php');
 if (! $prefs['feature_antibot'] == 'y') {
-	die;
+    die;
 }
 
 $captchalib = TikiLib::lib('captcha');

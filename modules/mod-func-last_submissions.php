@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 
@@ -17,13 +18,13 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function module_last_submissions_info()
 {
-	return [
-		'name' => tra('Newest Article Submissions'),
-		'description' => tra('Lists the specified number of article submissions from newest to oldest.'),
-		'prefs' => ["feature_submissions"],
-		'params' => [],
-		'common_params' => ['nonums', 'rows']
-	];
+    return [
+        'name' => tra('Newest Article Submissions'),
+        'description' => tra('Lists the specified number of article submissions from newest to oldest.'),
+        'prefs' => ["feature_submissions"],
+        'params' => [],
+        'common_params' => ['nonums', 'rows']
+    ];
 }
 
 /**
@@ -32,8 +33,8 @@ function module_last_submissions_info()
  */
 function module_last_submissions($mod_reference, $module_params)
 {
-	$smarty = TikiLib::lib('smarty');
-	$artlib = TikiLib::lib('art');
-	$ranking = $artlib->list_submissions(0, $mod_reference['rows'], 'created_desc', '', '');
-	$smarty->assign('modLastSubmissions', $ranking["data"]);
+    $smarty = TikiLib::lib('smarty');
+    $artlib = TikiLib::lib('art');
+    $ranking = $artlib->list_submissions(0, $mod_reference['rows'], 'created_desc', '', '');
+    $smarty->assign('modLastSubmissions', $ranking["data"]);
 }

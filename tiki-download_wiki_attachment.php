@@ -12,27 +12,27 @@ $force_no_compression = true;
 require_once('tiki-setup.php');
 
 if (! empty($_REQUEST['attId'])) {
-	$info = $tikilib->get_wiki_attachment($_REQUEST['attId']);
+    $info = $tikilib->get_wiki_attachment($_REQUEST['attId']);
 }
 if (empty($info)) {
-	$smarty->assign('msg', tra('Incorrect param') . ' attid');
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tra('Incorrect param') . ' attid');
+    $smarty->display('error.tpl');
+    die;
 }
 
 $perms = Perms::get([ 'type' => 'wiki page', 'object' => $info['page'] ]);
 if ((! $perms->view || ! $perms->wiki_view_attachments) && ! $perms->wiki_admin_attachments) {
-	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('errortype', 401);
+    $smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
+    $smarty->display("error.tpl");
+    die;
 }
 
 $tikilib->add_wiki_attachment_hit($_REQUEST["attId"]);
 
 if (empty($info['filetype']) || $info['filetype'] == 'application/x-octetstream' || $info['filetype'] == 'application/octet-stream') {
-	$mimelib = TikiLib::lib('mime');
-	$info['filetype'] = $mimelib->from_filename($info['filename']);
+    $mimelib = TikiLib::lib('mime');
+    $info['filetype'] = $mimelib->from_filename($info['filename']);
 }
 $type = $info["filetype"];
 $file = $info["filename"];
@@ -50,9 +50,9 @@ header("Content-type: $type");
 // plugin, but the old behaviour really seems like The Wrong Thing to me.  -rlpowell
 // --> added a choice for compatibility issue
 if (isset($_REQUEST['download'])) {
-	header("Content-Disposition: attachment; filename=\"$file\"");
+    header("Content-Disposition: attachment; filename=\"$file\"");
 } else {
-	header("Content-Disposition: filename=\"$file\"");
+    header("Content-Disposition: filename=\"$file\"");
 }
 
 // No reason to make everything uncacheable
@@ -62,9 +62,9 @@ header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 header("Pragma: public");
 
 if ($info["path"]) {
-	header("Content-Length: " . filesize($prefs['w_use_dir'] . $info["path"]));
-	readfile($prefs['w_use_dir'] . $info["path"]);
+    header("Content-Length: " . filesize($prefs['w_use_dir'] . $info["path"]));
+    readfile($prefs['w_use_dir'] . $info["path"]);
 } else {
-	header("Content-Length: " . $info[ "filesize" ]);
-	echo "$content";
+    header("Content-Length: " . $info[ "filesize" ]);
+    echo "$content";
 }

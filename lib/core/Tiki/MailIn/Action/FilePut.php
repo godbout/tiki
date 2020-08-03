@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -13,59 +14,61 @@ use TikiLib;
 
 class FilePut implements ActionInterface
 {
-	private $galleryId;
+    private $galleryId;
 
-	function __construct(array $params)
-	{
-		$this->galleryId = isset($params['galleryId']) ? (int)$params['galleryId'] : 0;
-	}
+    public function __construct(array $params)
+    {
+        $this->galleryId = isset($params['galleryId']) ? (int)$params['galleryId'] : 0;
+    }
 
-	function getName()
-	{
-		return tr('Save File');
-	}
+    public function getName()
+    {
+        return tr('Save File');
+    }
 
-	function isEnabled()
-	{
-		global $prefs;
+    public function isEnabled()
+    {
+        global $prefs;
 
-		return $prefs['feature_file_galleries'] == 'y';
-	}
+        return $prefs['feature_file_galleries'] == 'y';
+    }
 
-	function isAllowed(Account $account, Message $message)
-	{
-		$user = $message->getAssociatedUser();
-		$perms = TikiLib::lib('tiki')->get_user_permission_accessor($user, 'file gallery', $this->galleryId);
+    public function isAllowed(Account $account, Message $message)
+    {
+        $user = $message->getAssociatedUser();
+        $perms = TikiLib::lib('tiki')->get_user_permission_accessor($user, 'file gallery', $this->galleryId);
 
-		if (! $perms->upload_files) {
-			return false;
-		}
+        if (! $perms->upload_files) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	function execute(Account $account, Message $message)
-	{
-		global $user;
+    public function execute(Account $account, Message $message)
+    {
+        global $user;
 
-		$preserve_user = $user;
-		$user = $message->getAssociatedUser();
+        $preserve_user = $user;
+        $user = $message->getAssociatedUser();
 
-		$logslib = TikiLib::lib('logs');
-		$filegallib = TikiLib::lib('filegal');
+        $logslib = TikiLib::lib('logs');
+        $filegallib = TikiLib::lib('filegal');
 
-		$gal_info = $filegallib->get_file_gallery_info($this->galleryId);
+        $gal_info = $filegallib->get_file_gallery_info($this->galleryId);
 
-		if (! $gal_info) {
-			$logslib->add_log('mailin', tr("Gallery not found: %0", $this->galleryId), $message->getAssociatedUser());
-			$user = $preserve_user;
-			return false;
-		}
+        if (! $gal_info) {
+            $logslib->add_log('mailin', tr("Gallery not found: %0", $this->galleryId), $message->getAssociatedUser());
+            $user = $preserve_user;
 
-		$content = $message->getContent();
-		$result = $filegallib->upload_single_file($gal_info, $message->getSubject(), strlen($content), 'message/rfc822', $content, $user, null, null, $message->getMessageId());
+            return false;
+        }
 
-		$user = $preserve_user;
-		return $result;
-	}
+        $content = $message->getContent();
+        $result = $filegallib->upload_single_file($gal_info, $message->getSubject(), strlen($content), 'message/rfc822', $content, $user, null, null, $message->getMessageId());
+
+        $user = $preserve_user;
+
+        return $result;
+    }
 }

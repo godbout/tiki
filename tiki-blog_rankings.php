@@ -15,31 +15,31 @@ $access->check_feature(['feature_blogs', 'feature_blog_rankings']);
 $access->check_permission('tiki_p_read_blog');
 
 $allrankings = [
-	[
-		'name' => tra('Top visited blogs') ,
-		'value' => 'blog_ranking_top_blogs'
-	] ,
-	[
-		'name' => tra('Last posts') ,
-		'value' => 'blog_ranking_last_posts'
-	] ,
-	[
-		'name' => tra('Top active blogs') ,
-		'value' => 'blog_ranking_top_active_blogs'
-	]
+    [
+        'name' => tra('Top visited blogs') ,
+        'value' => 'blog_ranking_top_blogs'
+    ] ,
+    [
+        'name' => tra('Last posts') ,
+        'value' => 'blog_ranking_last_posts'
+    ] ,
+    [
+        'name' => tra('Top active blogs') ,
+        'value' => 'blog_ranking_top_active_blogs'
+    ]
 ];
 $smarty->assign('allrankings', $allrankings);
 if (! isset($_REQUEST["which"])) {
-	$which = 'blog_ranking_top_blogs';
+    $which = 'blog_ranking_top_blogs';
 } else {
-	$which = $_REQUEST["which"];
+    $which = $_REQUEST["which"];
 }
 $smarty->assign('which', $which);
 // Get the page from the request var or default it to HomePage
 if (! isset($_REQUEST["limit"])) {
-	$limit = 10;
+    $limit = 10;
 } else {
-	$limit = $_REQUEST["limit"];
+    $limit = $_REQUEST["limit"];
 }
 $smarty->assign_by_ref('limit', $limit);
 // Rankings:

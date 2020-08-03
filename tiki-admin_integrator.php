@@ -30,54 +30,57 @@ $integrator = new TikiIntegrator($dbTiki);
 
 // Check if 'submit' pressed ...
 if (isset($_REQUEST['save'])) {
-	// ... and all mandatory paramaters r OK
-	if (strlen($name) > 0) {
-		$integrator->add_replace_repository($repID, $name, $path, $start, $cssfile, $vis, $cacheable, $expiration, $description);
-	} else {
-		$smarty->assign('msg', tra("Repository name can't be an empty"));
-		$smarty->display('error.tpl');
-		die;
-	}
+    // ... and all mandatory paramaters r OK
+    if (strlen($name) > 0) {
+        $integrator->add_replace_repository($repID, $name, $path, $start, $cssfile, $vis, $cacheable, $expiration, $description);
+    } else {
+        $smarty->assign('msg', tra("Repository name can't be an empty"));
+        $smarty->display('error.tpl');
+        die;
+    }
 }
 
 // Whether some action requested?
 if (isset($_REQUEST['action'])) {
-	switch ($_REQUEST['action']) {
-		case 'edit':
-			if ($repID != 0) {
-				$rep = $integrator->get_repository($repID);
-				$smarty->assign('repID', $repID);
-				$smarty->assign('name', $rep['name']);
-				$smarty->assign('path', $rep['path']);
-				$smarty->assign('start', $rep['start_page']);
-				$smarty->assign('cssfile', $rep['css_file']);
-				$smarty->assign('expiration', $rep['expiration']);
-				$smarty->assign('vis', $rep['visibility']);
-				$smarty->assign('cacheable', $rep['cacheable']);
-				$smarty->assign('description', $rep['description']);
-			}
-			break;
+    switch ($_REQUEST['action']) {
+        case 'edit':
+            if ($repID != 0) {
+                $rep = $integrator->get_repository($repID);
+                $smarty->assign('repID', $repID);
+                $smarty->assign('name', $rep['name']);
+                $smarty->assign('path', $rep['path']);
+                $smarty->assign('start', $rep['start_page']);
+                $smarty->assign('cssfile', $rep['css_file']);
+                $smarty->assign('expiration', $rep['expiration']);
+                $smarty->assign('vis', $rep['visibility']);
+                $smarty->assign('cacheable', $rep['cacheable']);
+                $smarty->assign('description', $rep['description']);
+            }
 
-		case 'rm':
-			if ($repID != 0) {
-				$access->check_authenticity();
-				$integrator->remove_repository($repID);
-			}
-			break;
+            break;
 
-		case 'clear':
-			if ($repID != 0) {
-				$integrator->clear_cache($repID);
-			}
-			header('location: ' . $_SERVER['SCRIPT_NAME'] . '?action=edit&repID=' . $repID);
-			exit;
+        case 'rm':
+            if ($repID != 0) {
+                $access->check_authenticity();
+                $integrator->remove_repository($repID);
+            }
 
-		default:
-			$smarty->assign('msg', tra('Requested action is not supported on repository'));
-			$smarty->display('error.tpl');
-			die;
-			break;
-	}
+            break;
+
+        case 'clear':
+            if ($repID != 0) {
+                $integrator->clear_cache($repID);
+            }
+            header('location: ' . $_SERVER['SCRIPT_NAME'] . '?action=edit&repID=' . $repID);
+            exit;
+
+        default:
+            $smarty->assign('msg', tra('Requested action is not supported on repository'));
+            $smarty->display('error.tpl');
+            die;
+
+            break;
+    }
 }
 
 // Fill list of repositories

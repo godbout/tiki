@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,150 +8,153 @@
 
 class Services_Workspace_ProfileAnalyser
 {
-	private $profile;
-	private $builder;
+    private $profile;
+    private $builder;
 
-	function __construct(Tiki_Profile $profile)
-	{
-		$this->profile = $profile;
-		$this->builder = new Services_Workspace_ProfileBuilder;
-	}
+    public function __construct(Tiki_Profile $profile)
+    {
+        $this->profile = $profile;
+        $this->builder = new Services_Workspace_ProfileBuilder;
+    }
 
-	function ref($name)
-	{
-		return $this->builder->ref($name);
-	}
+    public function ref($name)
+    {
+        return $this->builder->ref($name);
+    }
 
-	function user($name)
-	{
-		return $this->builder->user($name);
-	}
+    public function user($name)
+    {
+        return $this->builder->user($name);
+    }
 
-	function contains(array $conditions)
-	{
-		$objects = $this->profile->getObjects();
+    public function contains(array $conditions)
+    {
+        $objects = $this->profile->getObjects();
 
-		if (isset($conditions['type'])) {
-			$objects = array_filter(
-				$objects,
-				function ($object) use ($conditions) {
-					return $conditions['type'] == $object->getType();
-				}
-			);
-			unset($conditions['type']);
-		}
+        if (isset($conditions['type'])) {
+            $objects = array_filter(
+                $objects,
+                function ($object) use ($conditions) {
+                    return $conditions['type'] == $object->getType();
+                }
+            );
+            unset($conditions['type']);
+        }
 
-		if (isset($conditions['ref'])) {
-			$objects = array_filter(
-				$objects,
-				function ($object) use ($conditions) {
-					return $conditions['ref'] === $object->getRef();
-				}
-			);
-			unset($conditions['ref']);
-		}
+        if (isset($conditions['ref'])) {
+            $objects = array_filter(
+                $objects,
+                function ($object) use ($conditions) {
+                    return $conditions['ref'] === $object->getRef();
+                }
+            );
+            unset($conditions['ref']);
+        }
 
-		foreach ($conditions as $condition => $value) {
-			$objects = array_filter(
-				$objects,
-				function ($object) use ($condition, $value) {
-					$data = $object->getData();
-					return isset($data[$condition]) && $data[$condition] === $value;
-				}
-			);
-		}
+        foreach ($conditions as $condition => $value) {
+            $objects = array_filter(
+                $objects,
+                function ($object) use ($condition, $value) {
+                    $data = $object->getData();
 
-		return count($objects) > 0;
-	}
+                    return isset($data[$condition]) && $data[$condition] === $value;
+                }
+            );
+        }
 
-	/**
-	 * Provides group information using the permission details from a specific object.
-	 */
-	function getGroups($type, $object)
-	{
-		$out = [];
+        return count($objects) > 0;
+    }
 
-		$groupMap = $this->profile->getGroupMap();
-		$permissions = $this->profile->getPermissions();
+    /**
+     * Provides group information using the permission details from a specific object.
+     * @param mixed $type
+     * @param mixed $object
+     */
+    public function getGroups($type, $object)
+    {
+        $out = [];
 
-		foreach ($groupMap as $key => $name) {
-			$out[$key] = [
-				'name' => $name,
-				'managing' => false,
-				'autojoin' => true,
-				'permissions' => [],
-			];
+        $groupMap = $this->profile->getGroupMap();
+        $permissions = $this->profile->getPermissions();
 
-			if (isset($permissions[$key])) {
-				$related = $permissions[$key];
-				$out[$key]['managing'] = $this->isManagingGroup($related['objects']);
-				$out[$key]['autojoin'] = $this->isAutojoin($related['general']);
-				$out[$key]['permissions'] = $this->getObjectPermissions($related['objects'], $type, $object);
-			}
-		}
+        foreach ($groupMap as $key => $name) {
+            $out[$key] = [
+                'name' => $name,
+                'managing' => false,
+                'autojoin' => true,
+                'permissions' => [],
+            ];
 
-		return $this->simplify($out);
-	}
+            if (isset($permissions[$key])) {
+                $related = $permissions[$key];
+                $out[$key]['managing'] = $this->isManagingGroup($related['objects']);
+                $out[$key]['autojoin'] = $this->isAutojoin($related['general']);
+                $out[$key]['permissions'] = $this->getObjectPermissions($related['objects'], $type, $object);
+            }
+        }
 
-	function getObjects($type, $default = null)
-	{
-		$out = [];
+        return $this->simplify($out);
+    }
 
-		foreach ($this->profile->getObjects() as $object) {
-			if ($object->getType() == $type) {
-				$out[] = $object->getData();
-			}
-		}
+    public function getObjects($type, $default = null)
+    {
+        $out = [];
 
-		if (! count($out) && is_array($default)) {
-			$out[] = $default;
-		}
+        foreach ($this->profile->getObjects() as $object) {
+            if ($object->getType() == $type) {
+                $out[] = $object->getData();
+            }
+        }
 
-		return $this->simplify($out);
-	}
+        if (! count($out) && is_array($default)) {
+            $out[] = $default;
+        }
 
-	private function simplify($data)
-	{
-		array_walk_recursive(
-			$data,
-			function (& $entry) {
-				if (is_string($entry)) {
-					$entry = preg_replace('/\$profilerequest:(\w+)\$[^\$]*\$/', '{$1}', $entry);
-				}
-			}
-		);
+        return $this->simplify($out);
+    }
 
-		return $data;
-	}
+    private function simplify($data)
+    {
+        array_walk_recursive(
+            $data,
+            function (& $entry) {
+                if (is_string($entry)) {
+                    $entry = preg_replace('/\$profilerequest:(\w+)\$[^\$]*\$/', '{$1}', $entry);
+                }
+            }
+        );
 
-	private function isManagingGroup($objects)
-	{
-		foreach ($objects as $o) {
-			if ($o['type'] == 'group' && in_array('group_add_member', $o['allow'])) {
-				return true;
-			}
-		}
+        return $data;
+    }
 
-		return false;
-	}
+    private function isManagingGroup($objects)
+    {
+        foreach ($objects as $o) {
+            if ($o['type'] == 'group' && in_array('group_add_member', $o['allow'])) {
+                return true;
+            }
+        }
 
-	private function isAutojoin($general)
-	{
-		if (! isset($general['autojoin'])) {
-			return false;
-		}
+        return false;
+    }
 
-		return $general['autojoin'] === true || $general['autojoin'] === 'y';
-	}
+    private function isAutojoin($general)
+    {
+        if (! isset($general['autojoin'])) {
+            return false;
+        }
 
-	private function getObjectPermissions($objects, $type, $object)
-	{
-		foreach ($objects as $o) {
-			if ($o['type'] == $type && $o['id'] == $object) {
-				return $o['allow'];
-			}
-		}
+        return $general['autojoin'] === true || $general['autojoin'] === 'y';
+    }
 
-		return [];
-	}
+    private function getObjectPermissions($objects, $type, $object)
+    {
+        foreach ($objects as $o) {
+            if ($o['type'] == $type && $o['id'] == $object) {
+                return $o['allow'];
+            }
+        }
+
+        return [];
+    }
 }

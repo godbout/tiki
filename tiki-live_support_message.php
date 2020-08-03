@@ -14,11 +14,11 @@ $access->check_feature('feature_live_support');
 $smarty->assign('sent', 'n');
 $smarty->assign('nomsg', 'y');
 if (isset($_REQUEST['save'])) {
-	$lsadminlib->post_support_message($_REQUEST['username'], $user, $_REQUEST['user_email'], $_REQUEST['data'], $_REQUEST['priority'], $_REQUEST['module'], 'o', '');
-	$smarty->assign('sent', 'y');
+    $lsadminlib->post_support_message($_REQUEST['username'], $user, $_REQUEST['user_email'], $_REQUEST['data'], $_REQUEST['priority'], $_REQUEST['module'], 'o', '');
+    $smarty->assign('sent', 'y');
 }
 if ($user) {
-	$smarty->assign('user_email', $userlib->get_user_email($user));
+    $smarty->assign('user_email', $userlib->get_user_email($user));
 }
 $smarty->assign('modules', $lsadminlib->get_modules());
 // Display the template

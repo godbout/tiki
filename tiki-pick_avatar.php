@@ -16,67 +16,68 @@ $access->check_feature('feature_userPreferences');
 $access->check_user($user);
 $auto_query_args = ['view_user'];
 if (! isset($_REQUEST["showall"])) {
-	$_REQUEST["showall"] = 'n';
+    $_REQUEST["showall"] = 'n';
 }
 $smarty->assign('showall', $_REQUEST["showall"]);
 $userwatch = $user;
 if (isset($_REQUEST["view_user"])) {
-	if ($_REQUEST["view_user"] <> $user) {
-		if ($tiki_p_admin == 'y') {
-			$userwatch = $_REQUEST["view_user"];
-		} else {
-			$smarty->assign('errortype', 401);
-			$smarty->assign('msg', tra("You do not have permission to view other users data"));
-			$smarty->display("error.tpl");
-			die;
-		}
-	} else {
-		$userwatch = $user;
-	}
+    if ($_REQUEST["view_user"] <> $user) {
+        if ($tiki_p_admin == 'y') {
+            $userwatch = $_REQUEST["view_user"];
+        } else {
+            $smarty->assign('errortype', 401);
+            $smarty->assign('msg', tra("You do not have permission to view other users data"));
+            $smarty->display("error.tpl");
+            die;
+        }
+    } else {
+        $userwatch = $user;
+    }
 }
 $smarty->assign('userwatch', $userwatch);
 // Upload avatar is processed here
 if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
-	check_ticket('pick-avatar');
-	$name = $_FILES['userfile1']['name'];
+    check_ticket('pick-avatar');
+    $name = $_FILES['userfile1']['name'];
 
-	$filegallib = TikiLib::lib('filegal');
-	try {
-		$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
-	} catch (Exception $e) {
-		$smarty->assign('errortype', 403);
-		$smarty->assign('msg', $e->getMessage());
-		$smarty->display("error.tpl");
-		die;
-	}
+    $filegallib = TikiLib::lib('filegal');
 
-	$avatarlib = TikiLib::lib('avatar');
-	$avatarlib->set_avatar_from_url($_FILES['userfile1']['tmp_name'], $userwatch, $name);
+    try {
+        $filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
+    } catch (Exception $e) {
+        $smarty->assign('errortype', 403);
+        $smarty->assign('msg', $e->getMessage());
+        $smarty->display("error.tpl");
+        die;
+    }
 
-	/* redirect to prevent re-submit on page reload */
-	if ($tiki_p_admin == 'y' && $user !== $userwatch) {
-		header('Location: tiki-pick_avatar.php?view_user=' . $userwatch);
-	} else {
-		header('Location: tiki-pick_avatar.php');
-	}
-	exit;
+    $avatarlib = TikiLib::lib('avatar');
+    $avatarlib->set_avatar_from_url($_FILES['userfile1']['tmp_name'], $userwatch, $name);
+
+    /* redirect to prevent re-submit on page reload */
+    if ($tiki_p_admin == 'y' && $user !== $userwatch) {
+        header('Location: tiki-pick_avatar.php?view_user=' . $userwatch);
+    } else {
+        header('Location: tiki-pick_avatar.php');
+    }
+    exit;
 }
 
 if (isset($_REQUEST["uselib"])) {
-	check_ticket('pick-avatar');
-	$userprefslib->set_user_avatar($userwatch, 'l', $_REQUEST["avatar"], '', '', '', '');
+    check_ticket('pick-avatar');
+    $userprefslib->set_user_avatar($userwatch, 'l', $_REQUEST["avatar"], '', '', '', '');
 }
 if (isset($_REQUEST["reset"])) {
-	check_ticket('pick-avatar');
-	$userprefslib->set_user_avatar($userwatch, '0', '', '', '', '', '');
-	$userprefslib->remove_file_gallery_image($userwatch);
+    check_ticket('pick-avatar');
+    $userprefslib->set_user_avatar($userwatch, '0', '', '', '', '', '');
+    $userprefslib->remove_file_gallery_image($userwatch);
 }
 $avatars = [];
 $h = opendir("img/avatars/");
 while ($file = readdir($h)) {
-	if ($file != '.' && $file != '..' && $file != 'index.php' && substr($file, 0, 1) != "." && $file != "CVS" && $file != "README") {
-		$avatars[] = 'img/avatars/' . $file;
-	}
+    if ($file != '.' && $file != '..' && $file != 'index.php' && substr($file, 0, 1) != "." && $file != "CVS" && $file != "README") {
+        $avatars[] = 'img/avatars/' . $file;
+    }
 }
 closedir($h);
 $smarty->assign_by_ref('avatars', $avatars);
@@ -88,7 +89,7 @@ $smarty->assign('avatar', $avatar);
 
 // Get full user picture if it is set
 if ($prefs["user_store_file_gallery_picture"] == 'y' && $user_picture_id = $userprefslib->get_user_picture_id($userwatch)) {
-	$smarty->assign('user_picture_id', $user_picture_id);
+    $smarty->assign('user_picture_id', $user_picture_id);
 }
 
 ask_ticket('pick-avatar');

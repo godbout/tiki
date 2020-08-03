@@ -14,17 +14,17 @@ $trklib = TikiLib::lib('trk');
 $access->check_feature('feature_trackers');
 
 if (! isset($_REQUEST["attId"])) {
-	$smarty->assign('msg', tra("No item indicated"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("No item indicated"));
+    $smarty->display("error.tpl");
+    die;
 }
 $info = $trklib->get_moreinfo($_REQUEST["attId"]);
 $trackerId = $info['trackerId'];
 unset($info['trackerId']);
 if (! $trackerId) {
-	$smarty->assign('msg', tra('That tracker does not use extras.'));
-	$smarty->display("error_simple.tpl");
-	die;
+    $smarty->assign('msg', tra('That tracker does not use extras.'));
+    $smarty->display("error_simple.tpl");
+    die;
 }
 $smarty->assign('trackerId', $trackerId);
 $tikilib->get_perm_object($trackerId, 'tracker');

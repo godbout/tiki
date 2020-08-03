@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,8 +10,8 @@
 
 //this script may only be included - so its better to die if called  directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 use Tiki\Sections as Sections;
@@ -19,222 +20,226 @@ $categlib = TikiLib::lib('categ');
 
 class AreasLib extends CategLib
 {
-	private $areas;
-	private $areasArray;
+    private $areas;
+    private $areasArray;
 
-	function __construct()
-	{
-		$this->areas = $this->table('tiki_areas');
-		$this->cacheAreas();
+    public function __construct()
+    {
+        $this->areas = $this->table('tiki_areas');
+        $this->cacheAreas();
 
-		parent::__construct();
-	}
+        parent::__construct();
+    }
 
-	public function getPerspectiveByObjectAndCategories($current_object, $objectCategoryIds)
-	{
-		global $prefs;
+    public function getPerspectiveByObjectAndCategories($current_object, $objectCategoryIds)
+    {
+        global $prefs;
 
-		if (! $current_object || empty($objectCategoryIds)) {    // only used on tiki objects
-			return;
-		}
+        if (! $current_object || empty($objectCategoryIds)) {    // only used on tiki objects
+            return;
+        }
 
-		$perspectivelib = TikiLib::lib('perspective');
-		$accesslib = TikiLib::lib('access');
+        $perspectivelib = TikiLib::lib('perspective');
+        $accesslib = TikiLib::lib('access');
 
-		$descendants = $this->get_category_descendants($prefs['areas_root']);
+        $descendants = $this->get_category_descendants($prefs['areas_root']);
 
-		$objectPerspective = 0;
-		if (! empty($objectCategoryIds)) {
-			foreach ($objectCategoryIds as $categId) {
-				// If category is inside $prefs['areas_root']
-				if (in_array($categId, $descendants)) {
-					$area = $this->getAreaByCategId($categId);
+        $objectPerspective = 0;
+        if (! empty($objectCategoryIds)) {
+            foreach ($objectCategoryIds as $categId) {
+                // If category is inside $prefs['areas_root']
+                if (in_array($categId, $descendants)) {
+                    $area = $this->getAreaByCategId($categId);
 
-					if ($area) {
-						$objectPerspective = $area['perspectives'][0]; // use 1st persp
-						break;
-					}
-				}
-			}
-		}
+                    if ($area) {
+                        $objectPerspective = $area['perspectives'][0]; // use 1st persp
 
-		return $objectPerspective;
-	}
+                        break;
+                    }
+                }
+            }
+        }
 
-	function HandleObjectCategories($objectCategoryIds)
-	{
-		global $prefs;
-		$perspectivelib = TikiLib::lib('perspective');
-		$accesslib = TikiLib::lib('access');
+        return $objectPerspective;
+    }
 
-		$current_object = Sections::currentObject();
+    public function HandleObjectCategories($objectCategoryIds)
+    {
+        global $prefs;
+        $perspectivelib = TikiLib::lib('perspective');
+        $accesslib = TikiLib::lib('access');
 
-		if (! $current_object) {	// only used on tiki objects
-			return;
-		}
+        $current_object = Sections::currentObject();
 
-		$descendants = $this->get_category_descendants($prefs['areas_root']);
+        if (! $current_object) {	// only used on tiki objects
+            return;
+        }
 
-		$objectPerspective = 0;
-		if (! empty($objectCategoryIds)) {
-			if (! isset($_SESSION['current_perspective'])) {
-				unset($_SESSION['current_perspective']);
-			}
-			foreach ($objectCategoryIds as $categId) {
-				// If category is inside $prefs['areas_root']
-				if (in_array($categId, $descendants)) {
-					$area = $this->getAreaByCategId($categId);
+        $descendants = $this->get_category_descendants($prefs['areas_root']);
 
-					if ($area) {
-						$objectPerspective = $area['perspectives'][0]; // use 1st persp
-						break;
-					}
-				}
-			}
-			if ($objectPerspective && $objectPerspective != $_SESSION['current_perspective']) {
-				$area = $this->getAreaByPerspId($_SESSION['current_perspective']);
-				$objectArea = $this->getAreaByPerspId($objectPerspective);
+        $objectPerspective = 0;
+        if (! empty($objectCategoryIds)) {
+            if (! isset($_SESSION['current_perspective'])) {
+                unset($_SESSION['current_perspective']);
+            }
+            foreach ($objectCategoryIds as $categId) {
+                // If category is inside $prefs['areas_root']
+                if (in_array($categId, $descendants)) {
+                    $area = $this->getAreaByCategId($categId);
 
-				if (($area && ! $area['share_common']) || ($objectArea && $objectArea['exclusive'])) {
-					$perspectivelib->set_perspective($objectPerspective, true);
-					$accesslib->redirect($accesslib->selfUrl(), '', 301);
-				}
-			}
-		}
-		if ($objectPerspective < 1 && ! empty($_SESSION['current_perspective'])) { // uncategorised objects
-			$area = $this->getAreaByPerspId($_SESSION['current_perspective']);
-			if ($area) {
-				if (! $area['share_common']) {
-					$perspectivelib->set_perspective($objectPerspective, true);
+                    if ($area) {
+                        $objectPerspective = $area['perspectives'][0]; // use 1st persp
 
-					if ($prefs['multidomain_switchdomain'] == 'y') {
-						// When running as multi-domain, with switch domain active, un categorized content (without one
-						// category inside the jail for the perspective) can only be displayed in the current domain if
-						// the perspective is marked as share_common.
-						// So we need to fall back to the default domain for multi domain or just fail - if we can't
-						// guess the domain, as we would end up in an endless redirect loop
-						foreach ($perspectivelib->get_domain_map() as $domain => $persp) {
-							if (isset($_SERVER['HTTP_HOST']) && $domain == $_SERVER['HTTP_HOST']) {
-								if (! empty($prefs['multidomain_default_not_categorized'])
-									&& ! in_array($prefs['multidomain_default_not_categorized'], array_keys($perspectivelib->get_domain_map()))
-								) {
-									$saveHttpHost = $_SERVER['HTTP_HOST'];
-									// selfUrl uses HTTP_HOST, and redirect will exit after redirect, so no problem on "tampering" with $_SERVER
-									$_SERVER['HTTP_HOST'] = $prefs['multidomain_default_not_categorized'];
-									$accesslib->redirect($accesslib->selfUrl(), '', 301);
-									$_SERVER['HTTP_HOST'] = $saveHttpHost; // this should never be reach
-								} else {
-									$accesslib->display_error(
-										$accesslib->selfUrl(),
-										tra("Perspective misconfiguration"),
-										500,
-										false,
-										tra('The resource you requested is not available in the current perspective, and the system administrator did not define a default domain to redirect to. Please contact your system administrator, or check the documentation in <a href="http://doc.tiki.org/Perspectives">http://doc.tiki.org/Perspectives</a> related with multi-domain configurations.')
-									);
-								}
-							}
-						}
-					}
+                        break;
+                    }
+                }
+            }
+            if ($objectPerspective && $objectPerspective != $_SESSION['current_perspective']) {
+                $area = $this->getAreaByPerspId($_SESSION['current_perspective']);
+                $objectArea = $this->getAreaByPerspId($objectPerspective);
 
-					$accesslib->redirect($accesslib->selfUrl(), '', 301);
-				}
-			}
-		}
-	}
+                if (($area && ! $area['share_common']) || ($objectArea && $objectArea['exclusive'])) {
+                    $perspectivelib->set_perspective($objectPerspective, true);
+                    $accesslib->redirect($accesslib->selfUrl(), '', 301);
+                }
+            }
+        }
+        if ($objectPerspective < 1 && ! empty($_SESSION['current_perspective'])) { // uncategorised objects
+            $area = $this->getAreaByPerspId($_SESSION['current_perspective']);
+            if ($area) {
+                if (! $area['share_common']) {
+                    $perspectivelib->set_perspective($objectPerspective, true);
 
-	public function getAreaByCategId($categId, $enabled = true)
-	{
-		foreach ($this->areasArray as $area) {
-			if ($area['enabled'] == $enabled && $categId == $area['categId']) {
-				return $area;
-			}
-		}
-		return [];
-	}
+                    if ($prefs['multidomain_switchdomain'] == 'y') {
+                        // When running as multi-domain, with switch domain active, un categorized content (without one
+                        // category inside the jail for the perspective) can only be displayed in the current domain if
+                        // the perspective is marked as share_common.
+                        // So we need to fall back to the default domain for multi domain or just fail - if we can't
+                        // guess the domain, as we would end up in an endless redirect loop
+                        foreach ($perspectivelib->get_domain_map() as $domain => $persp) {
+                            if (isset($_SERVER['HTTP_HOST']) && $domain == $_SERVER['HTTP_HOST']) {
+                                if (! empty($prefs['multidomain_default_not_categorized'])
+                                    && ! in_array($prefs['multidomain_default_not_categorized'], array_keys($perspectivelib->get_domain_map()))
+                                ) {
+                                    $saveHttpHost = $_SERVER['HTTP_HOST'];
+                                    // selfUrl uses HTTP_HOST, and redirect will exit after redirect, so no problem on "tampering" with $_SERVER
+                                    $_SERVER['HTTP_HOST'] = $prefs['multidomain_default_not_categorized'];
+                                    $accesslib->redirect($accesslib->selfUrl(), '', 301);
+                                    $_SERVER['HTTP_HOST'] = $saveHttpHost; // this should never be reach
+                                } else {
+                                    $accesslib->display_error(
+                                        $accesslib->selfUrl(),
+                                        tra("Perspective misconfiguration"),
+                                        500,
+                                        false,
+                                        tra('The resource you requested is not available in the current perspective, and the system administrator did not define a default domain to redirect to. Please contact your system administrator, or check the documentation in <a href="http://doc.tiki.org/Perspectives">http://doc.tiki.org/Perspectives</a> related with multi-domain configurations.')
+                                    );
+                                }
+                            }
+                        }
+                    }
 
-	public function getAreaByPerspId($perspid, $enabled = true)
-	{
-		foreach ($this->areasArray as $area) {
-			if ($area['enabled'] == $enabled && in_array($perspid, $area['perspectives'])) {
-				return $area;
-			}
-		}
-		return [];
-	}
+                    $accesslib->redirect($accesslib->selfUrl(), '', 301);
+                }
+            }
+        }
+    }
 
-	/**
-	 * @param bool $reload	force reload from database
-	 *
-	 * Sets up a cached version of the table with proper arrays and bools
-	 */
+    public function getAreaByCategId($categId, $enabled = true)
+    {
+        foreach ($this->areasArray as $area) {
+            if ($area['enabled'] == $enabled && $categId == $area['categId']) {
+                return $area;
+            }
+        }
 
-	private function cacheAreas($reload = false)
-	{
-		if ($reload || empty($this->areasArray)) {
-			$this->areasArray = [];
-			$res = $this->areas->fetchAll($this->areas->all());
-			foreach ($res as & $row) {
-				$row['perspectives'] = unserialize($row['perspectives']);
-				$row['enabled'] = ($row['enabled'] === 'y');
-				$row['exclusive'] = ($row['exclusive'] === 'y');
-				$row['share_common'] = ($row['share_common'] === 'y');
-			}
-			$this->areasArray = $res;
-		}
-	}
+        return [];
+    }
 
-	function update_areas()
-	{
-		global $prefs;
-		$this->areas->deleteMultiple([]);	// empty areas table before rebuilding
-		$areas = [];
-		$descendants = $this->get_category_descendants($prefs['areas_root']);
-		if (is_array($descendants)) {
-			foreach ($descendants as $item) { // it only should be just one perspective assigned
-				$areas[$item] = [];
-			}
-			$result = $this->fetchAll("SELECT `perspectiveId`, `pref`, `value` FROM tiki_perspective_preferences WHERE pref = 'category_jail'", []);
-			if (count($result) != 0) {
-				foreach ($result as $row) {
-					$categs = unserialize($row['value']);
-					foreach ($categs as $item) {
-						if (array_key_exists($item, $areas)) {
-							$areas[$item][] = $row['perspectiveId'];
-						}
-					}
-				}
+    public function getAreaByPerspId($perspid, $enabled = true)
+    {
+        foreach ($this->areasArray as $area) {
+            if ($area['enabled'] == $enabled && in_array($perspid, $area['perspectives'])) {
+                return $area;
+            }
+        }
 
-				foreach (array_filter($areas) as $key => $item) { // don't bother with categs with no perspectives
-					$data = [];
-					// update checkboxes from form
-					$data['enabled'] = ! empty($_REQUEST['enabled'][$key]) ? 'y' : 'n';
-					$data['exclusive'] = ! empty($_REQUEST['exclusive'][$key]) ? 'y' : 'n';
-					$data['share_common'] = ! empty($_REQUEST['share_common'][$key]) ? 'y' : 'n';
+        return [];
+    }
 
-					$this->bind_area($key, $item, $data);
-				}
-			} else {
-				return tra("No category jail set in any perspective.");
-			}
-			$this->cacheAreas(true); // recache the whole table
-			return true;
-		} else {
-			return tra("Areas root category ID") . " " . tra("is invalid.");
-		}
-	}
+    /**
+     * @param bool $reload	force reload from database
+     *
+     * Sets up a cached version of the table with proper arrays and bools
+     */
+    private function cacheAreas($reload = false)
+    {
+        if ($reload || empty($this->areasArray)) {
+            $this->areasArray = [];
+            $res = $this->areas->fetchAll($this->areas->all());
+            foreach ($res as & $row) {
+                $row['perspectives'] = unserialize($row['perspectives']);
+                $row['enabled'] = ($row['enabled'] === 'y');
+                $row['exclusive'] = ($row['exclusive'] === 'y');
+                $row['share_common'] = ($row['share_common'] === 'y');
+            }
+            $this->areasArray = $res;
+        }
+    }
 
-	function bind_area($categId, $perspectiveIds, $data = [])
-	{
-		$perspectiveIds = (array)$perspectiveIds;
-		$conditions = ['categId' => $categId];
-		$data['perspectives'] = serialize($perspectiveIds);
+    public function update_areas()
+    {
+        global $prefs;
+        $this->areas->deleteMultiple([]);	// empty areas table before rebuilding
+        $areas = [];
+        $descendants = $this->get_category_descendants($prefs['areas_root']);
+        if (is_array($descendants)) {
+            foreach ($descendants as $item) { // it only should be just one perspective assigned
+                $areas[$item] = [];
+            }
+            $result = $this->fetchAll("SELECT `perspectiveId`, `pref`, `value` FROM tiki_perspective_preferences WHERE pref = 'category_jail'", []);
+            if (count($result) != 0) {
+                foreach ($result as $row) {
+                    $categs = unserialize($row['value']);
+                    foreach ($categs as $item) {
+                        if (array_key_exists($item, $areas)) {
+                            $areas[$item][] = $row['perspectiveId'];
+                        }
+                    }
+                }
 
-		if ($this->areas->fetchCount($conditions)) {
-			$this->areas->update($data, $conditions);
-		} else {
-			$this->areas->insert(array_merge($data, $conditions));
-		}
-	}
+                foreach (array_filter($areas) as $key => $item) { // don't bother with categs with no perspectives
+                    $data = [];
+                    // update checkboxes from form
+                    $data['enabled'] = ! empty($_REQUEST['enabled'][$key]) ? 'y' : 'n';
+                    $data['exclusive'] = ! empty($_REQUEST['exclusive'][$key]) ? 'y' : 'n';
+                    $data['share_common'] = ! empty($_REQUEST['share_common'][$key]) ? 'y' : 'n';
+
+                    $this->bind_area($key, $item, $data);
+                }
+            } else {
+                return tra("No category jail set in any perspective.");
+            }
+            $this->cacheAreas(true); // recache the whole table
+
+            return true;
+        }
+
+        return tra("Areas root category ID") . " " . tra("is invalid.");
+    }
+
+    public function bind_area($categId, $perspectiveIds, $data = [])
+    {
+        $perspectiveIds = (array)$perspectiveIds;
+        $conditions = ['categId' => $categId];
+        $data['perspectives'] = serialize($perspectiveIds);
+
+        if ($this->areas->fetchCount($conditions)) {
+            $this->areas->update($data, $conditions);
+        } else {
+            $this->areas->insert(array_merge($data, $conditions));
+        }
+    }
 } // class end
 
 /*-----------------------------------------------

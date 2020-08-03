@@ -8,13 +8,13 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-use Sabre\DAV;
 use Sabre\CalDAV;
+use Sabre\DAV;
 use Sabre\DAVACL;
+use Tiki\SabreDav\AclPlugin;
 use Tiki\SabreDav\BasicAuth;
 use Tiki\SabreDav\CalDAVBackend;
 use Tiki\SabreDav\PrincipalBackend;
-use Tiki\SabreDav\AclPlugin;
 
 require_once 'tiki-setup.php';
 $access->check_feature('feature_calendar');
@@ -26,14 +26,14 @@ $principalBackend = new PrincipalBackend();
 $calendarBackend = new CalDAVBackend();
 
 // Directory tree
-$tree = array(
+$tree = [
     new DAVACL\PrincipalCollection($principalBackend),
     new CalDAV\CalendarRoot($principalBackend, $calendarBackend)
-);  
+];
 
 // The object tree needs in turn to be passed to the server class
 $server = new DAV\Server($tree);
-$server->setBaseUri($tikiroot.'tiki-caldav.php');
+$server->setBaseUri($tikiroot . 'tiki-caldav.php');
 
 // Authentication plugin
 $authPlugin = new DAV\Auth\Plugin($authBackend);

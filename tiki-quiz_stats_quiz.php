@@ -19,36 +19,36 @@ $tikilib->get_perm_object($_REQUEST["quizId"], 'quiz');
 $access->check_permission('tiki_p_view_quiz_stats');
 
 if (! isset($_REQUEST["quizId"])) {
-	$smarty->assign('msg', tra("No quiz indicated"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("No quiz indicated"));
+    $smarty->display("error.tpl");
+    die;
 }
 $smarty->assign('quizId', $_REQUEST["quizId"]);
 $quiz_info = $quizlib->get_quiz($_REQUEST["quizId"]);
 $smarty->assign('quiz_info', $quiz_info);
 if (isset($_REQUEST["remove"]) && $tiki_p_admin_quizzes == 'y') {
-	$access->check_authenticity();
-	$quizlib->remove_quiz_stat($_REQUEST["remove"]);
+    $access->check_authenticity();
+    $quizlib->remove_quiz_stat($_REQUEST["remove"]);
 }
 if (isset($_REQUEST["clear"]) && $tiki_p_admin_quizzes == 'y') {
-	$access->check_authenticity();
-	$quizlib->clear_quiz_stats($_REQUEST["clear"]);
+    $access->check_authenticity();
+    $quizlib->clear_quiz_stats($_REQUEST["clear"]);
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'timestamp_desc';
+    $sort_mode = 'timestamp_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $smarty->assign_by_ref('sort_mode', $sort_mode);

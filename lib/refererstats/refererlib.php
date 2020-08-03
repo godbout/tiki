@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -16,46 +17,46 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 class RefererLib extends TikiLib
 {
+    public function clear_referer_stats()
+    {
+        $query = "delete from tiki_referer_stats";
 
-	function clear_referer_stats()
-	{
-		$query = "delete from tiki_referer_stats";
+        $result = $this->query($query);
+    }
 
-		$result = $this->query($query);
-	}
+    /**
+     * @param $offset
+     * @param $maxRecords
+     * @param $sort_mode
+     * @param $find
+     * @return array
+     */
+    public function list_referer_stats($offset, $maxRecords, $sort_mode, $find)
+    {
+        $bindvars = [];
+        if ($find) {
+            $mid = " where (`referer` like ?)";
+            $bindvars[] = '%' . $find . '%';
+        } else {
+            $mid = "";
+        }
 
-	/**
-	 * @param $offset
-	 * @param $maxRecords
-	 * @param $sort_mode
-	 * @param $find
-	 * @return array
-	 */
-	function list_referer_stats($offset, $maxRecords, $sort_mode, $find)
-	{
-		$bindvars = [];
-		if ($find) {
-			$mid = " where (`referer` like ?)";
-			$bindvars[] = '%' . $find . '%';
-		} else {
-			$mid = "";
-		}
+        $query = "select * from `tiki_referer_stats` $mid order by " . $this->convertSortMode($sort_mode);
+        ;
+        $query_cant = "select count(*) from `tiki_referer_stats` $mid";
+        $result = $this->query($query, $bindvars, $maxRecords, $offset);
+        $cant = $this->getOne($query_cant, $bindvars);
+        $ret = [];
 
-		$query = "select * from `tiki_referer_stats` $mid order by " . $this->convertSortMode($sort_mode);
-		;
-		$query_cant = "select count(*) from `tiki_referer_stats` $mid";
-		$result = $this->query($query, $bindvars, $maxRecords, $offset);
-		$cant = $this->getOne($query_cant, $bindvars);
-		$ret = [];
+        while ($res = $result->fetchRow()) {
+            $ret[] = $res;
+        }
 
-		while ($res = $result->fetchRow()) {
-			$ret[] = $res;
-		}
+        $retval = [];
+        $retval["data"] = $ret;
+        $retval["cant"] = $cant;
 
-		$retval = [];
-		$retval["data"] = $ret;
-		$retval["cant"] = $cant;
-		return $retval;
-	}
+        return $retval;
+    }
 }
 $refererlib = new RefererLib;

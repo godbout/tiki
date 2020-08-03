@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -8,32 +9,32 @@
 
 class Multilingual_MachineTranslation_Cache implements Multilingual_MachineTranslation_Interface
 {
-	private $handler;
-	private $hash;
+    private $handler;
+    private $hash;
 
-	function __construct(Multilingual_MachineTranslation_Interface $handler, $hash)
-	{
-		$this->handler = $handler;
-		$this->hash = $hash;
-	}
+    public function __construct(Multilingual_MachineTranslation_Interface $handler, $hash)
+    {
+        $this->handler = $handler;
+        $this->hash = $hash;
+    }
 
-	function getSupportedLanguages()
-	{
-		return $this->handler->getSupportedLanguages();
-	}
+    public function getSupportedLanguages()
+    {
+        return $this->handler->getSupportedLanguages();
+    }
 
-	function translateText($text)
-	{
-		$cachelib = TikiLib::lib('cache');
+    public function translateText($text)
+    {
+        $cachelib = TikiLib::lib('cache');
 
-		if ($result = $cachelib->getCached($text . $this->hash, 'translation')) {
-			return $result;
-		}
+        if ($result = $cachelib->getCached($text . $this->hash, 'translation')) {
+            return $result;
+        }
 
-		$result = $this->handler->translateText($text);
+        $result = $this->handler->translateText($text);
 
-		$cachelib->cacheItem($text, $result, 'translation');
+        $cachelib->cacheItem($text, $result, 'translation');
 
-		return $result;
-	}
+        return $result;
+    }
 }

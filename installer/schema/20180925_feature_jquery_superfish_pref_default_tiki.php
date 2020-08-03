@@ -7,8 +7,8 @@
 // $Id$
 
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -18,5 +18,5 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_20180925_feature_jquery_superfish_pref_default_tiki($installer)
 {
-	$installer->preservePreferenceDefault('feature_jquery_superfish', 'y');
+    $installer->preservePreferenceDefault('feature_jquery_superfish', 'y');
 }

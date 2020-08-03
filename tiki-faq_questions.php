@@ -9,23 +9,23 @@
 // $Id$
 
 $inputConfiguration = [
-	['staticKeyFilters' => [
-		'faqId' => 'int',
-		'sort_mode' => 'text',
-		'find' => 'text',
-		'questionId' => 'int',
-		'remove' => 'int',
-		'filter' => 'text',
-		'useq' => 'word',
-		'usequestionId' => 'int',
-		'offset' => 'int',
-		'remove_suggested' => 'int',
-		'approve_suggested' => 'int',
-		'save' => 'word',
-		'question' => 'text',
-		'answer' => 'purifyer']
-	],
-	[ 'catchAllUnset' => null ],
+    ['staticKeyFilters' => [
+        'faqId' => 'int',
+        'sort_mode' => 'text',
+        'find' => 'text',
+        'questionId' => 'int',
+        'remove' => 'int',
+        'filter' => 'text',
+        'useq' => 'word',
+        'usequestionId' => 'int',
+        'offset' => 'int',
+        'remove_suggested' => 'int',
+        'approve_suggested' => 'int',
+        'save' => 'word',
+        'question' => 'text',
+        'answer' => 'purifyer']
+    ],
+    [ 'catchAllUnset' => null ],
 ];
 
 $section = 'faqs';
@@ -37,10 +37,10 @@ $access->check_feature('feature_faqs');
 $access->check_permission('tiki_p_admin_faqs');
 
 if (! isset($_REQUEST["faqId"])) {
-	$smarty->assign('msg', tra("No questions group indicated"));
+    $smarty->assign('msg', tra("No questions group indicated"));
 
-	$smarty->display("error.tpl");
-	die;
+    $smarty->display("error.tpl");
+    die;
 }
 
 $smarty->assign('faqId', $_REQUEST["faqId"]);
@@ -48,82 +48,82 @@ $faq_info = $faqlib->get_faq($_REQUEST["faqId"]);
 $smarty->assign('faq_info', $faq_info);
 
 if (! isset($_REQUEST["questionId"])) {
-	$_REQUEST["questionId"] = 0;
+    $_REQUEST["questionId"] = 0;
 }
 
 $smarty->assign('questionId', $_REQUEST["questionId"]);
 
 if ($_REQUEST["questionId"]) {
-	$info = $faqlib->get_faq_question($_REQUEST["questionId"]);
+    $info = $faqlib->get_faq_question($_REQUEST["questionId"]);
 } else {
-	$info = [];
+    $info = [];
 
-	$info["question"] = '';
-	$info["answer"] = '';
+    $info["question"] = '';
+    $info["answer"] = '';
 }
 // $smarty->assign('question',$info["question"]);  AWC moved this
 // $smarty->assign('answer',$info["answer"]);      AWC moved this
 if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$faqlib->remove_faq_question($_REQUEST["remove"]);
+    $access->check_authenticity();
+    $faqlib->remove_faq_question($_REQUEST["remove"]);
 }
 
 if (! isset($_REQUEST["filter"])) {
-	$_REQUEST["filter"] = '';
+    $_REQUEST["filter"] = '';
 }
 
 $smarty->assign('filter', $_REQUEST["filter"]);
 
 if (isset($_REQUEST["useq"])) {
-	check_ticket('faq-questions');
-	$quse = $faqlib->get_faq_question($_REQUEST["usequestionId"]);
+    check_ticket('faq-questions');
+    $quse = $faqlib->get_faq_question($_REQUEST["usequestionId"]);
 
-	$faqlib->replace_faq_question($_REQUEST["faqId"], 0, $quse["question"], $quse["answer"]);
-	$info = $faqlib->get_faq_question($_REQUEST["questionId"]); // AWC added
+    $faqlib->replace_faq_question($_REQUEST["faqId"], 0, $quse["question"], $quse["answer"]);
+    $info = $faqlib->get_faq_question($_REQUEST["questionId"]); // AWC added
 }
 
 if (isset($_REQUEST["save"])) {
-	check_ticket('faq-questions');
-	$faqlib->replace_faq_question($_REQUEST["faqId"], $_REQUEST["questionId"], $_REQUEST["question"], $_REQUEST["answer"]);
+    check_ticket('faq-questions');
+    $faqlib->replace_faq_question($_REQUEST["faqId"], $_REQUEST["questionId"], $_REQUEST["question"], $_REQUEST["answer"]);
 
-	$info["question"] = '';
-	$info["answer"] = '';
-	//$smarty->assign('question',$info["question"]);  AWC moved this
-	//$smarty->assign('answer',$info["answer"]);      AWC moved this
-	$smarty->assign('questionId', 0);
+    $info["question"] = '';
+    $info["answer"] = '';
+    //$smarty->assign('question',$info["question"]);  AWC moved this
+    //$smarty->assign('answer',$info["answer"]);      AWC moved this
+    $smarty->assign('questionId', 0);
 }
 
 $smarty->assign('question', $info["question"]); // moved from above
 $smarty->assign('answer', $info["answer"]);     // moved from above
 
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'position_asc,questionId_asc';
+    $sort_mode = 'position_asc,questionId_asc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 
 $smarty->assign_by_ref('offset', $offset);
 
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 
 $smarty->assign('find', $find);
 
 if (isset($_REQUEST["remove_suggested"])) {
-	$faqlib->remove_suggested_question($_REQUEST["remove_suggested"]);
+    $faqlib->remove_suggested_question($_REQUEST["remove_suggested"]);
 }
 
 if (isset($_REQUEST["approve_suggested"])) {
-	$faqlib->approve_suggested_question($_REQUEST["approve_suggested"]);
+    $faqlib->approve_suggested_question($_REQUEST["approve_suggested"]);
 }
 
 $smarty->assign_by_ref('sort_mode', $sort_mode);

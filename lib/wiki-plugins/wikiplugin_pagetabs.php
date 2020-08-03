@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -6,69 +7,69 @@
 // $Id$
 
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	die;
+    header("location: index.php");
+    die;
 }
 
 function wikiplugin_pagetabs_help()
 {
-		return "Cutom Tabs Engine";
+    return "Cutom Tabs Engine";
 }
 
 function wikiplugin_pagetabs_info()
 {
-	return [
-		'name' => tra('Page Tabs'),
-		'documentation' => tra('PluginPageTabs'),
-		'description' => tra('Display the content of a wiki page in a set of tabs.'),
-		'prefs' => [ 'wikiplugin_pagetabs' ],
-		'iconname' => 'copy',
-		'introduced' => 9,
-		'body' => null,
-		'params' => [
-			'pages' => [
-				'required' => false,
-				'name' => tra('Wiki page names'),
-				'description' => tr('The wiki pages you would like to use in this plugin, optional, separate with
+    return [
+        'name' => tra('Page Tabs'),
+        'documentation' => tra('PluginPageTabs'),
+        'description' => tra('Display the content of a wiki page in a set of tabs.'),
+        'prefs' => [ 'wikiplugin_pagetabs' ],
+        'iconname' => 'copy',
+        'introduced' => 9,
+        'body' => null,
+        'params' => [
+            'pages' => [
+                'required' => false,
+                'name' => tra('Wiki page names'),
+                'description' => tr('The wiki pages you would like to use in this plugin, optional, separate with
 					pipe %0|%1. Or a table with the class of "pagetabs" on the main page. On child pages use as a way
 					to redirect to the parent.', '<code>', '</code>'),
-				'since' => '9.0',
-				'default' => '',
-				'separator' => '|',
-				'filter' => 'pagename',
-				'profile_reference' => 'wiki_page',
-			],
-		],
-	];
+                'since' => '9.0',
+                'default' => '',
+                'separator' => '|',
+                'filter' => 'pagename',
+                'profile_reference' => 'wiki_page',
+            ],
+        ],
+    ];
 }
 
 function wikiplugin_pagetabs($data, $params)
 {
-	global $user;
-	$headerlib = TikiLib::lib('header');
-	$tikilib = TikiLib::lib('tiki');
-	$smarty = TikiLib::lib('smarty');
+    global $user;
+    $headerlib = TikiLib::lib('header');
+    $tikilib = TikiLib::lib('tiki');
+    $smarty = TikiLib::lib('smarty');
 
-	static $pagetabsindex = 0;
-	++$pagetabsindex;
-	extract($params, EXTR_SKIP);
+    static $pagetabsindex = 0;
+    ++$pagetabsindex;
+    extract($params, EXTR_SKIP);
 
-	$pages = json_encode($pages);
+    $pages = json_encode($pages);
 
-	$pageTabs = true;
+    $pageTabs = true;
 
-	foreach ($tikilib->get_user_groups($user) as $group) {
-		if ($group == "NoPageTabs") {
-			$pageTabs = false;
-		}
-	}
+    foreach ($tikilib->get_user_groups($user) as $group) {
+        if ($group == "NoPageTabs") {
+            $pageTabs = false;
+        }
+    }
 
 
 
-	if ($pageTabs == true) {
-		$headerlib
-			->add_jq_onready(
-				'
+    if ($pageTabs == true) {
+        $headerlib
+            ->add_jq_onready(
+                '
 				var tabPages = ' . $pages . ';
 
 				var tabsTable = $("table.pagetabs")
@@ -170,9 +171,9 @@ function wikiplugin_pagetabs($data, $params)
 					});
 				}
 		'
-			)
-		->add_css(
-			'
+            )
+            ->add_css(
+                '
 			#tabMenu {
 				width: 100% ! important;
 			}
@@ -186,8 +187,8 @@ function wikiplugin_pagetabs($data, $params)
 				padding: 0px ! important;
 			}
 		'
-		);
-	}
+            );
+    }
 
-	return "<span id='pagetabs$pagetabsindex' />";
+    return "<span id='pagetabs$pagetabsindex' />";
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,18 +13,19 @@ use Tiki\MailIn\Source\Message;
 
 class DirectFactory implements FactoryInterface
 {
-	private $class;
-	private $parameters;
+    private $class;
+    private $parameters;
 
-	function __construct($class, array $parameters = [])
-	{
-		$this->class = $class;
-		$this->parameters = $parameters;
-	}
+    public function __construct($class, array $parameters = [])
+    {
+        $this->class = $class;
+        $this->parameters = $parameters;
+    }
 
-	function createAction(Account $account, Message $message)
-	{
-		$class = $this->class;
-		return new $class($this->parameters);
-	}
+    public function createAction(Account $account, Message $message)
+    {
+        $class = $this->class;
+
+        return new $class($this->parameters);
+    }
 }

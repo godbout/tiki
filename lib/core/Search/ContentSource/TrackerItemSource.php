@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,239 +8,242 @@
 
 class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Interface, Tiki_Profile_Writer_ReferenceProvider, Search_FacetProvider_Interface
 {
-	private $db;
-	private $trklib;
-	private $mode;
+    private $db;
+    private $trklib;
+    private $mode;
 
-	function __construct($mode = '')
-	{
-		$this->db = TikiDb::get();
-		$this->trklib = TikiLib::lib('trk');
-		$this->mode = $mode;
-	}
+    public function __construct($mode = '')
+    {
+        $this->db = TikiDb::get();
+        $this->trklib = TikiLib::lib('trk');
+        $this->mode = $mode;
+    }
 
-	function getReferenceMap()
-	{
-		return [
-			'tracker_id' => 'tracker',
-		];
-	}
+    public function getReferenceMap()
+    {
+        return [
+            'tracker_id' => 'tracker',
+        ];
+    }
 
-	function getDocuments()
-	{
-		return $this->db->table('tiki_tracker_items')->fetchColumn('itemId', []);
-	}
+    public function getDocuments()
+    {
+        return $this->db->table('tiki_tracker_items')->fetchColumn('itemId', []);
+    }
 
-	function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
-	{
-		/*
-			If you wonder why this method uses straight SQL and not trklib, it's because
-			trklib performs no meaningful work when extracting the data and strips all
-			required semantics.
-		*/
+    public function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
+    {
+        /*
+            If you wonder why this method uses straight SQL and not trklib, it's because
+            trklib performs no meaningful work when extracting the data and strips all
+            required semantics.
+        */
 
-		$data = [];
+        $data = [];
 
-		$item = $this->trklib->get_tracker_item($objectId);
+        $item = $this->trklib->get_tracker_item($objectId);
 
-		if (empty($item)) {
-			return false;
-		}
+        if (empty($item)) {
+            return false;
+        }
 
-		$itemObject = Tracker_Item::fromInfo($item);
+        $itemObject = Tracker_Item::fromInfo($item);
 
-		if (empty($itemObject) || ! $itemObject->getDefinition()) {	// ignore corrupted items, e.g. where trackerId == 0
-			return false;
-		}
+        if (empty($itemObject) || ! $itemObject->getDefinition()) {	// ignore corrupted items, e.g. where trackerId == 0
+            return false;
+        }
 
-		$permNeeded = $itemObject->getViewPermission();
-		$specialUsers = $itemObject->getSpecialPermissionUsers($objectId, 'View');
+        $permNeeded = $itemObject->getViewPermission();
+        $specialUsers = $itemObject->getSpecialPermissionUsers($objectId, 'View');
 
-		$definition = Tracker_Definition::get($item['trackerId']);
+        $definition = Tracker_Definition::get($item['trackerId']);
 
-		if (! $definition) {
-			return $data;
-		}
+        if (! $definition) {
+            return $data;
+        }
 
-		$fieldPermissions = [];
+        $fieldPermissions = [];
 
-		foreach (self::getIndexableHandlers($definition, $item) as $handler) {
-			$documentPart = $handler->getDocumentPart($typeFactory, $this->mode);
-			$data = array_merge($data, $documentPart);
+        foreach (self::getIndexableHandlers($definition, $item) as $handler) {
+            $documentPart = $handler->getDocumentPart($typeFactory, $this->mode);
+            $data = array_merge($data, $documentPart);
 
-			$field = $handler->getFieldDefinition();
-			if ($field['isHidden'] != 'n') {
-				$fieldPermissions[$field['permName']] = array_merge(
-					$itemObject->getAllowedUserGroupsForField($field),
-					['perm_names' => array_keys($documentPart)]
-				);
-			}
-		}
+            $field = $handler->getFieldDefinition();
+            if ($field['isHidden'] != 'n') {
+                $fieldPermissions[$field['permName']] = array_merge(
+                    $itemObject->getAllowedUserGroupsForField($field),
+                    ['perm_names' => array_keys($documentPart)]
+                );
+            }
+        }
 
-		$ownerGroup = $itemObject->getOwnerGroup();
-		$data = array_merge(
-			[
-				'title' => $typeFactory->sortable($this->trklib->get_isMain_value($item['trackerId'], $objectId)),
-				'modification_date' => $typeFactory->timestamp($item['lastModif']),
-				'creation_date' => $typeFactory->timestamp($item['created']),
-				'contributors' => $typeFactory->multivalue(array_unique([$item['createdBy'], $item['lastModifBy']])),
-				'date' => $typeFactory->timestamp($item['created']),
+        $ownerGroup = $itemObject->getOwnerGroup();
+        $data = array_merge(
+            [
+                'title' => $typeFactory->sortable($this->trklib->get_isMain_value($item['trackerId'], $objectId)),
+                'modification_date' => $typeFactory->timestamp($item['lastModif']),
+                'creation_date' => $typeFactory->timestamp($item['created']),
+                'contributors' => $typeFactory->multivalue(array_unique([$item['createdBy'], $item['lastModifBy']])),
+                'date' => $typeFactory->timestamp($item['created']),
 
-				'tracker_status' => $typeFactory->identifier($item['status']),
-				'tracker_id' => $typeFactory->identifier($item['trackerId']),
+                'tracker_status' => $typeFactory->identifier($item['status']),
+                'tracker_id' => $typeFactory->identifier($item['trackerId']),
 
-				'view_permission' => $typeFactory->identifier($permNeeded),
+                'view_permission' => $typeFactory->identifier($permNeeded),
 
-				'parent_view_permission' => $typeFactory->identifier($permNeeded),
-				'parent_object_id' => $typeFactory->identifier($item['trackerId']),
-				'parent_object_type' => $typeFactory->identifier('tracker'),
+                'parent_view_permission' => $typeFactory->identifier($permNeeded),
+                'parent_object_id' => $typeFactory->identifier($item['trackerId']),
+                'parent_object_type' => $typeFactory->identifier('tracker'),
 
-				'field_permissions' => $typeFactory->json(json_encode($fieldPermissions)),
+                'field_permissions' => $typeFactory->json(json_encode($fieldPermissions)),
 
-				// Fake attributes, removed before indexing
-				'_extra_users' => $specialUsers,
-				'_permission_accessor' => $itemObject->getPerms(),
-				'_extra_groups' => $ownerGroup ? [$ownerGroup] : null,
-			],
-			$data
-		);
+                // Fake attributes, removed before indexing
+                '_extra_users' => $specialUsers,
+                '_permission_accessor' => $itemObject->getPerms(),
+                '_extra_groups' => $ownerGroup ? [$ownerGroup] : null,
+            ],
+            $data
+        );
 
-		if (empty($data['title'])) {
-			$data['title'] = $typeFactory->sortable(tr('Unknown'));
-		}
-		if (empty($data['language'])) {
-			$data['language'] = $typeFactory->identifier('unknown');
-		}
+        if (empty($data['title'])) {
+            $data['title'] = $typeFactory->sortable(tr('Unknown'));
+        }
+        if (empty($data['language'])) {
+            $data['language'] = $typeFactory->identifier('unknown');
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
-	function getProvidedFields()
-	{
-		static $data;
+    public function getProvidedFields()
+    {
+        static $data;
 
-		if (is_array($data)) {
-			return $data;
-		}
+        if (is_array($data)) {
+            return $data;
+        }
 
-		$data = [
-			'title',
-			'language',
-			'modification_date',
-			'creation_date',
-			'date',
-			'contributors',
+        $data = [
+            'title',
+            'language',
+            'modification_date',
+            'creation_date',
+            'date',
+            'contributors',
 
-			'tracker_status',
-			'tracker_id',
+            'tracker_status',
+            'tracker_id',
 
-			'parent_view_permission',
-			'parent_object_id',
-			'parent_object_type',
-		];
+            'parent_view_permission',
+            'parent_object_id',
+            'parent_object_type',
+        ];
 
-		foreach ($this->getAllIndexableHandlers() as $handler) {
-			$data = array_merge($data, $handler->getProvidedFields());
-		}
+        foreach ($this->getAllIndexableHandlers() as $handler) {
+            $data = array_merge($data, $handler->getProvidedFields());
+        }
 
-		return array_unique($data);
-	}
+        return array_unique($data);
+    }
 
-	function getGlobalFields()
-	{
-		static $data;
+    public function getGlobalFields()
+    {
+        static $data;
 
-		if (is_array($data)) {
-			return $data;
-		}
+        if (is_array($data)) {
+            return $data;
+        }
 
-		$data = [];
+        $data = [];
 
-		foreach ($this->getAllIndexableHandlers() as $handler) {
-			$data = array_merge($data, $handler->getGlobalFields());
-		}
+        foreach ($this->getAllIndexableHandlers() as $handler) {
+            $data = array_merge($data, $handler->getGlobalFields());
+        }
 
-		$data['title'] = true;
-		$data['date'] = true;
-		return $data;
-	}
+        $data['title'] = true;
+        $data['date'] = true;
 
-	public static function getIndexableHandlers($definition, $item = [])
-	{
-		return self::getHandlersMatching('Tracker_Field_Indexable', $definition, $item);
-	}
+        return $data;
+    }
 
-	private static function getHandlersMatching($interface, $definition, $item)
-	{
-		global $prefs;
+    public static function getIndexableHandlers($definition, $item = [])
+    {
+        return self::getHandlersMatching('Tracker_Field_Indexable', $definition, $item);
+    }
 
-		$factory = $definition->getFieldFactory();
+    private static function getHandlersMatching($interface, $definition, $item)
+    {
+        global $prefs;
 
-		$handlers = [];
-		foreach ($definition->getFields() as $field) {
-			if ($prefs['unified_trackerfield_keys'] === 'permName' && isset($field['permName']) && strlen($field['permName']) > Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE) {
-				continue;
-			}
-			if ($prefs['unified_exclude_nonsearchable_fields'] === 'y' && $field['isSearchable'] !== 'y') {
-				continue;
-			}
-			$handler = $factory->getHandler($field, $item);
+        $factory = $definition->getFieldFactory();
 
-			if ($handler instanceof $interface) {
-				$handlers[] = $handler;
-			}
-		}
+        $handlers = [];
+        foreach ($definition->getFields() as $field) {
+            if ($prefs['unified_trackerfield_keys'] === 'permName' && isset($field['permName']) && strlen($field['permName']) > Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE) {
+                continue;
+            }
+            if ($prefs['unified_exclude_nonsearchable_fields'] === 'y' && $field['isSearchable'] !== 'y') {
+                continue;
+            }
+            $handler = $factory->getHandler($field, $item);
 
-		return $handlers;
-	}
+            if ($handler instanceof $interface) {
+                $handlers[] = $handler;
+            }
+        }
 
-	private function getAllIndexableHandlers()
-	{
-		$trackers = $this->db->table('tiki_trackers')->fetchColumn('trackerId', []);
+        return $handlers;
+    }
 
-		$handlers = [];
-		foreach ($trackers as $trackerId) {
-			$definition = Tracker_Definition::get($trackerId);
-			$handlers = array_merge($handlers, self::getIndexableHandlers($definition));
-		}
+    private function getAllIndexableHandlers()
+    {
+        $trackers = $this->db->table('tiki_trackers')->fetchColumn('trackerId', []);
 
-		return $handlers;
-	}
+        $handlers = [];
+        foreach ($trackers as $trackerId) {
+            $definition = Tracker_Definition::get($trackerId);
+            $handlers = array_merge($handlers, self::getIndexableHandlers($definition));
+        }
 
-	public function getFacets()
-	{
-		$trackers = $this->db->table('tiki_trackers')->fetchColumn('trackerId', []);
+        return $handlers;
+    }
 
-		$handlers = [];
-		foreach ($trackers as $trackerId) {
-			$definition = Tracker_Definition::get($trackerId);
-			$handlers = array_merge($handlers, self::getHandlersMatching('Search_FacetProvider_Interface', $definition, []));
-		}
+    public function getFacets()
+    {
+        $trackers = $this->db->table('tiki_trackers')->fetchColumn('trackerId', []);
 
-		$source = new Search_FacetProvider;
-		$source->addFacets([
-			Search_Query_Facet_Term::fromField('tracker_id')
-				->setLabel(tr('Tracker'))
-				->setRenderCallback(function ($id) {
-					$lib = TikiLib::lib('object');
-					return $lib->get_title('tracker', $id);
-				}),
-			Search_Query_Facet_Term::fromField('tracker_status')
-				->setLabel(tr('Tracker Status'))
-				->setRenderCallback(function ($status) {
-					$statuses = [
-						'o' => 'Open',
-						'p' => 'Pending',
-						'c' => 'Closed'
-					];
-					return $statuses[$status];
-				})
-		]);
+        $handlers = [];
+        foreach ($trackers as $trackerId) {
+            $definition = Tracker_Definition::get($trackerId);
+            $handlers = array_merge($handlers, self::getHandlersMatching('Search_FacetProvider_Interface', $definition, []));
+        }
 
-		foreach ($handlers as $handler) {
-			$source->addProvider($handler);
-		}
+        $source = new Search_FacetProvider;
+        $source->addFacets([
+            Search_Query_Facet_Term::fromField('tracker_id')
+                ->setLabel(tr('Tracker'))
+                ->setRenderCallback(function ($id) {
+                    $lib = TikiLib::lib('object');
 
-		return $source->getFacets();
-	}
+                    return $lib->get_title('tracker', $id);
+                }),
+            Search_Query_Facet_Term::fromField('tracker_status')
+                ->setLabel(tr('Tracker Status'))
+                ->setRenderCallback(function ($status) {
+                    $statuses = [
+                        'o' => 'Open',
+                        'p' => 'Pending',
+                        'c' => 'Closed'
+                    ];
+
+                    return $statuses[$status];
+                })
+        ]);
+
+        foreach ($handlers as $handler) {
+            $source->addProvider($handler);
+        }
+
+        return $source->getFacets();
+    }
 }

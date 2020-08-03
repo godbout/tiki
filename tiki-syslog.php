@@ -15,56 +15,56 @@ $access->check_authenticity('', false);
 
 $auto_query_args = ['offset', 'numrows', 'maxRecords', 'find', 'sort_mode'];
 if (isset($_POST["actionId"]) && ! empty($_POST["page"])) {
-	$prefslib = TikiLib::lib('prefs');
-	$adminPage = $_POST["page"];
-	$logResult = $logslib->get_info_action($_POST["actionId"]);
-	if (! empty($logResult['log']) && ! empty($logResult['object'])) {
-		$logObject = $logResult['object'];
-		$_POST['pp'] = $logObject;
-		$revertInfo = unserialize($logResult['log']);
-		if (! isset($revertInfo['reverted'])) {
-			$_POST["revertInfo"] = $revertInfo;
-			$logslib->revert_action($_POST["actionId"], $logObject, $adminPage, $revertInfo);
-			if (file_exists("admin/include_$adminPage.php")) {
-				include_once("admin/include_$adminPage.php");
-			}
-			if (! empty($revertedActions)) {
-				Feedback::note(['mes' => $revertedActions, 'title' => tra('The following list of changes has been reverted:')]);
-			}
-		} else {
-			Feedback::error(['mes' => tr('Log already reverted')]);
-		}
-	} else {
-		Feedback::error(['mes' => tr('Invalid System Log ID')]);
-	}
+    $prefslib = TikiLib::lib('prefs');
+    $adminPage = $_POST["page"];
+    $logResult = $logslib->get_info_action($_POST["actionId"]);
+    if (! empty($logResult['log']) && ! empty($logResult['object'])) {
+        $logObject = $logResult['object'];
+        $_POST['pp'] = $logObject;
+        $revertInfo = unserialize($logResult['log']);
+        if (! isset($revertInfo['reverted'])) {
+            $_POST["revertInfo"] = $revertInfo;
+            $logslib->revert_action($_POST["actionId"], $logObject, $adminPage, $revertInfo);
+            if (file_exists("admin/include_$adminPage.php")) {
+                include_once("admin/include_$adminPage.php");
+            }
+            if (! empty($revertedActions)) {
+                Feedback::note(['mes' => $revertedActions, 'title' => tra('The following list of changes has been reverted:')]);
+            }
+        } else {
+            Feedback::error(['mes' => tr('Log already reverted')]);
+        }
+    } else {
+        Feedback::error(['mes' => tr('Invalid System Log ID')]);
+    }
 }
 
 if (isset($_REQUEST["clean"])) {
-	$access->check_authenticity();
-	$date = strtotime("-" . $_REQUEST["months"] . " months");
-	$logslib->clean_logs($date);
+    $access->check_authenticity();
+    $date = strtotime("-" . $_REQUEST["months"] . " months");
+    $logslib->clean_logs($date);
 }
 
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'actionid_desc';
+    $sort_mode = 'actionid_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["max"])) {
-	$maxRecords = $_REQUEST["max"];
+    $maxRecords = $_REQUEST["max"];
 }
 $smarty->assign_by_ref('maxRecords', $maxRecords);
 

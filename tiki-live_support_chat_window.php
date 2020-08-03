@@ -25,21 +25,21 @@ $access->check_feature('feature_live_support');
 $senderId = md5(uniqId('.'));
 $smarty->assign('senderId', $senderId);
 if ($_REQUEST['role'] == 'operator') {
-	$lslib->operator_accept($_REQUEST['reqId'], $user, $senderId);
-	$lslib->set_operator_id($_REQUEST['reqId'], $senderId);
+    $lslib->operator_accept($_REQUEST['reqId'], $user, $senderId);
+    $lslib->set_operator_id($_REQUEST['reqId'], $senderId);
 }
 if ($_REQUEST['role'] == 'user') {
-	$lslib->set_user_id($_REQUEST['reqId'], $senderId);
-	$lslib->set_request_status($_REQUEST['reqId'], 'op_accepted');
+    $lslib->set_user_id($_REQUEST['reqId'], $senderId);
+    $lslib->set_request_status($_REQUEST['reqId'], 'op_accepted');
 }
 $smarty->assign('role', $_REQUEST['role']);
 $smarty->assign('req_info', $lslib->get_request($_REQUEST['reqId']));
 $smarty->assign('reqId', $_REQUEST['reqId']);
 $smarty->assign('IP', $tikilib->get_ip_address());
 if (! isset($user)) {
-	$smarty->assign('username', 'anonymous');
+    $smarty->assign('username', 'anonymous');
 } else {
-	$smarty->assign('username', $user);
+    $smarty->assign('username', $user);
 }
 // Display the template
 $smarty->display("tiki-live_support_chat_window.tpl");

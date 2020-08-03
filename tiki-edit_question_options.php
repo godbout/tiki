@@ -15,10 +15,10 @@ $auto_query_args = ['sort_mode', 'offset', 'find', 'questionId', 'quizId', 'opti
 $access->check_feature('feature_quizzes');
 
 if (! isset($_REQUEST["questionId"])) {
-	$smarty->assign('msg', tra("No question indicated"));
+    $smarty->assign('msg', tra("No question indicated"));
 
-	$smarty->display("error.tpl");
-	die;
+    $smarty->display("error.tpl");
+    die;
 }
 
 $smarty->assign('questionId', $_REQUEST["questionId"]);
@@ -34,54 +34,54 @@ $tikilib->get_perm_object($_REQUEST["quizId"], 'quiz');
 $access->check_permission('tiki_p_admin_quizzes');
 
 if (! isset($_REQUEST["optionId"])) {
-	$_REQUEST["optionId"] = 0;
+    $_REQUEST["optionId"] = 0;
 }
 
 $smarty->assign('optionId', $_REQUEST["optionId"]);
 
 if ($_REQUEST["optionId"]) {
-	$info = $quizlib->get_quiz_question_option($_REQUEST["optionId"]);
+    $info = $quizlib->get_quiz_question_option($_REQUEST["optionId"]);
 } else {
-	$info = [];
+    $info = [];
 
-	$info["optionText"] = '';
-	$info["points"] = '';
+    $info["optionText"] = '';
+    $info["points"] = '';
 }
 
 $smarty->assign('optionText', $info["optionText"]);
 $smarty->assign('points', $info["points"]);
 
 if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$quizlib->remove_quiz_question_option($_REQUEST["remove"]);
+    $access->check_authenticity();
+    $quizlib->remove_quiz_question_option($_REQUEST["remove"]);
 }
 
 if (isset($_REQUEST["save"])) {
-	check_ticket('edit-question-options');
-	$quizlib->replace_question_option($_REQUEST["optionId"], $_REQUEST["optionText"], $_REQUEST["points"], $_REQUEST["questionId"]);
+    check_ticket('edit-question-options');
+    $quizlib->replace_question_option($_REQUEST["optionId"], $_REQUEST["optionText"], $_REQUEST["points"], $_REQUEST["questionId"]);
 
-	$smarty->assign('optionText', '');
-	$smarty->assign('optionId', 0);
+    $smarty->assign('optionText', '');
+    $smarty->assign('optionId', 0);
 }
 
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'optionText_asc';
+    $sort_mode = 'optionText_asc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 
 $smarty->assign_by_ref('offset', $offset);
 
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 
 $smarty->assign('find', $find);

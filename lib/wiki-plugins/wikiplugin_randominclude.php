@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,50 +8,51 @@
 
 function wikiplugin_randominclude_info()
 {
-	return [
-		'name' => tra('Random Include'),
-		'documentation' => 'PluginRandomInclude',
-		'description' => tra('Include a random page\'s content.'),
-		'prefs' => ['wikiplugin_randominclude'],
-		'iconname' => 'merge',
-		'introduced' => 6,
-		'params' => [],
-	];
+    return [
+        'name' => tra('Random Include'),
+        'documentation' => 'PluginRandomInclude',
+        'description' => tra('Include a random page\'s content.'),
+        'prefs' => ['wikiplugin_randominclude'],
+        'iconname' => 'merge',
+        'introduced' => 6,
+        'params' => [],
+    ];
 }
 
 function wikiplugin_randominclude($data, $params)
 {
-	global $user, $page;
-	$userlib = TikiLib::lib('user');
-	$tikilib = TikiLib::lib('tiki');
-	static $included_pages, $data;
+    global $user, $page;
+    $userlib = TikiLib::lib('user');
+    $tikilib = TikiLib::lib('tiki');
+    static $included_pages, $data;
 
-	$params = [$page];
-	$query = 'SELECT count(*) AS `max` FROM `tiki_pages` WHERE `pageName`!=?';
-	$cant = $tikilib->getOne($query, $params);
-	if ($cant) {
-		$pick = mt_rand(0, $cant - 1);
+    $params = [$page];
+    $query = 'SELECT count(*) AS `max` FROM `tiki_pages` WHERE `pageName`!=?';
+    $cant = $tikilib->getOne($query, $params);
+    if ($cant) {
+        $pick = mt_rand(0, $cant - 1);
 
-		$query = 'select `pageName` from `tiki_pages` WHERE `pageName`!=?';
-		$incpage = $tikilib->getOne($query, $params, 1, $pick);
-		if (isset($included_pages[$incpage])) {
-			return ''; //don't include random pages into random pages
-		}
-	} else {
-		return '';
-	}
+        $query = 'select `pageName` from `tiki_pages` WHERE `pageName`!=?';
+        $incpage = $tikilib->getOne($query, $params, 1, $pick);
+        if (isset($included_pages[$incpage])) {
+            return ''; //don't include random pages into random pages
+        }
+    } else {
+        return '';
+    }
 
-	$included_pages[$incpage] = 1;
-		// only evaluate permission the first time round
-		// evaluate if object or system permissions enables user to see the included page
-		$data = $tikilib->get_page_info($incpage);
-	$perms = $tikilib->get_perm_object($incpage, 'wiki page', $data, false);
-	if ($perms['tiki_p_view'] != 'y') {
-		return '';
-	}
-	$text = $data['data'];
+    $included_pages[$incpage] = 1;
+    // only evaluate permission the first time round
+    // evaluate if object or system permissions enables user to see the included page
+    $data = $tikilib->get_page_info($incpage);
+    $perms = $tikilib->get_perm_object($incpage, 'wiki page', $data, false);
+    if ($perms['tiki_p_view'] != 'y') {
+        return '';
+    }
+    $text = $data['data'];
 
-	$parserlib = TikiLib::lib('parser');
-	$parserlib->parse_wiki_argvariable($text);
-	return $text;
+    $parserlib = TikiLib::lib('parser');
+    $parserlib->parse_wiki_argvariable($text);
+
+    return $text;
 }

@@ -11,34 +11,34 @@
 require_once('tiki-setup.php');
 $access->check_permission('tiki_p_admin');
 if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$tikilib->remove_cache($_REQUEST["remove"]);
+    $access->check_authenticity();
+    $tikilib->remove_cache($_REQUEST["remove"]);
 }
 if (isset($_REQUEST["refresh"])) {
-	check_ticket('list-cache');
-	$tikilib->refresh_cache($_REQUEST["refresh"]);
+    check_ticket('list-cache');
+    $tikilib->refresh_cache($_REQUEST["refresh"]);
 }
 // This script can receive the threshold
 // for the information as the number of
 // days to get in the log 1,3,4,etc
 // it will default to 1 recovering information for today
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'url_desc';
+    $sort_mode = 'url_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (! isset($_REQUEST["find"])) {
-	$find = '';
+    $find = '';
 } else {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 }
 $smarty->assign('find', $find);
 // Get a list of last changes to the Wiki database

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
-	header('location: index.php');
-	exit;
+    header('location: index.php');
+    exit;
 }
 
 /**
@@ -17,136 +18,137 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 class UserMenuLib extends TikiLib
 {
 
-	/**
-	 * @param $user
-	 */
-	function add_bk($user)
-	{
-		$query = 'select tubu.`name`,`url`' .
-						' from `tiki_user_bookmarks_urls` tubu, `tiki_user_bookmarks_folders` tubf' .
-						' where tubu.`folderId`=tubf.`folderId` and tubf.`parentId`=? and tubu.`user`=?';
+    /**
+     * @param $user
+     */
+    public function add_bk($user)
+    {
+        $query = 'select tubu.`name`,`url`' .
+                        ' from `tiki_user_bookmarks_urls` tubu, `tiki_user_bookmarks_folders` tubf' .
+                        ' where tubu.`folderId`=tubf.`folderId` and tubf.`parentId`=? and tubu.`user`=?';
 
-		$result = $this->query($query, [0, $user]);
-		$start = $this->get_max_position($user) + 1;
+        $result = $this->query($query, [0, $user]);
+        $start = $this->get_max_position($user) + 1;
 
-		while ($res = $result->fetchRow()) {
-			// Check for duplicate URL
-			if (! $this->getOne('select count(*) from `tiki_user_menus` where `url`=?', [$res['url']])) {
-				$this->replace_usermenu($user, 0, $res['name'], $res['url'], $start, 'w');
+        while ($res = $result->fetchRow()) {
+            // Check for duplicate URL
+            if (! $this->getOne('select count(*) from `tiki_user_menus` where `url`=?', [$res['url']])) {
+                $this->replace_usermenu($user, 0, $res['name'], $res['url'], $start, 'w');
 
-				$start++;
-			}
-		}
+                $start++;
+            }
+        }
 
-		$query = 'select tubu.`name`,`url` from `tiki_user_bookmarks_urls` tubu where tubu.`folderId`=? and tubu.user=?';
-		$result = $this->query($query, [0, $user]);
-		$start = $this->get_max_position($user) + 1;
+        $query = 'select tubu.`name`,`url` from `tiki_user_bookmarks_urls` tubu where tubu.`folderId`=? and tubu.user=?';
+        $result = $this->query($query, [0, $user]);
+        $start = $this->get_max_position($user) + 1;
 
-		while ($res = $result->fetchRow()) {
-			// Check for duplicate URL
-			if (! $this->getOne('select count(*) from `tiki_user_menus` where `url`=?', [$res['url']])) {
-				$this->replace_usermenu($user, 0, $res['name'], $res['url'], $start, 'w');
+        while ($res = $result->fetchRow()) {
+            // Check for duplicate URL
+            if (! $this->getOne('select count(*) from `tiki_user_menus` where `url`=?', [$res['url']])) {
+                $this->replace_usermenu($user, 0, $res['name'], $res['url'], $start, 'w');
 
-				$start++;
-			}
-		}
-	}
+                $start++;
+            }
+        }
+    }
 
-	/**
-	 * @param $user
-	 * @param $offset
-	 * @param $maxRecords
-	 * @param $sort_mode
-	 * @param $find
-	 * @return array
-	 */
-	function list_usermenus($user, $offset, $maxRecords, $sort_mode, $find)
-	{
+    /**
+     * @param $user
+     * @param $offset
+     * @param $maxRecords
+     * @param $sort_mode
+     * @param $find
+     * @return array
+     */
+    public function list_usermenus($user, $offset, $maxRecords, $sort_mode, $find)
+    {
+        if ($find) {
+            $findesc = '%' . $find . '%';
 
-		if ($find) {
-			$findesc = '%' . $find . '%';
+            $mid = ' and (`name` like ? or url like ?)';
+            $bindvars = [$user, $findesc, $findesc];
+        } else {
+            $mid = ' ';
+            $bindvars = [$user];
+        }
 
-			$mid = ' and (`name` like ? or url like ?)';
-			$bindvars = [$user, $findesc, $findesc];
-		} else {
-			$mid = ' ';
-			$bindvars = [$user];
-		}
+        $query = "select * from `tiki_user_menus` where `user`=? $mid order by " . $this->convertSortMode($sort_mode);
+        $query_cant = "select count(*) from `tiki_user_menus` where `user`=? $mid";
+        $result = $this->query($query, $bindvars, $maxRecords, $offset);
+        $cant = $this->getOne($query_cant, $bindvars);
+        $ret = [];
 
-		$query = "select * from `tiki_user_menus` where `user`=? $mid order by " . $this->convertSortMode($sort_mode);
-		$query_cant = "select count(*) from `tiki_user_menus` where `user`=? $mid";
-		$result = $this->query($query, $bindvars, $maxRecords, $offset);
-		$cant = $this->getOne($query_cant, $bindvars);
-		$ret = [];
+        while ($res = $result->fetchRow()) {
+            $ret[] = $res;
+        }
 
-		while ($res = $result->fetchRow()) {
-			$ret[] = $res;
-		}
+        $retval = [];
+        $retval['data'] = $ret;
+        $retval['cant'] = $cant;
 
-		$retval = [];
-		$retval['data'] = $ret;
-		$retval['cant'] = $cant;
-		return $retval;
-	}
+        return $retval;
+    }
 
-	/**
-	 * @param $user
-	 * @param $menuId
-	 * @return mixed
-	 */
-	function get_usermenu($user, $menuId)
-	{
-		$query = 'select * from `tiki_user_menus` where `user`=? and `menuId`=?';
+    /**
+     * @param $user
+     * @param $menuId
+     * @return mixed
+     */
+    public function get_usermenu($user, $menuId)
+    {
+        $query = 'select * from `tiki_user_menus` where `user`=? and `menuId`=?';
 
-		$result = $this->query($query, [$user, $menuId]);
-		$res = $result->fetchRow();
-		return $res;
-	}
+        $result = $this->query($query, [$user, $menuId]);
+        $res = $result->fetchRow();
 
-	/**
-	 * @param $user
-	 * @return mixed
-	 */
-	function get_max_position($user)
-	{
-		return $this->getOne('select max(position) from `tiki_user_menus` where `user`=?', [$user]);
-	}
+        return $res;
+    }
 
-	/**
-	 * @param $user
-	 * @param $menuId
-	 * @param $name
-	 * @param $url
-	 * @param $position
-	 * @param $mode
-	 * @return mixed
-	 */
-	function replace_usermenu($user, $menuId, $name, $url, $position, $mode)
-	{
+    /**
+     * @param $user
+     * @return mixed
+     */
+    public function get_max_position($user)
+    {
+        return $this->getOne('select max(position) from `tiki_user_menus` where `user`=?', [$user]);
+    }
 
-		if ($menuId) {
-			$query = 'update `tiki_user_menus` set `name`=?, `position`=?, `url`=?, `mode`=? where `user`=? and `menuId`=?';
+    /**
+     * @param $user
+     * @param $menuId
+     * @param $name
+     * @param $url
+     * @param $position
+     * @param $mode
+     * @return mixed
+     */
+    public function replace_usermenu($user, $menuId, $name, $url, $position, $mode)
+    {
+        if ($menuId) {
+            $query = 'update `tiki_user_menus` set `name`=?, `position`=?, `url`=?, `mode`=? where `user`=? and `menuId`=?';
 
-			$this->query($query, [$name, $position, $url, $mode, $user, $menuId]);
-			return $menuId;
-		} else {
-			$query = 'insert into `tiki_user_menus`(`user`,`name`,`url`,`position`,`mode`) values(?,?,?,?,?)';
+            $this->query($query, [$name, $position, $url, $mode, $user, $menuId]);
 
-			$this->query($query, [$user, $name, $url, $position, $mode]);
-			$Id = $this->getOne('select max(`menuId`) from `tiki_user_menus` where `user`=? and `url`=? and `name`=?', [$user, $url, $name]);
-			return $Id;
-		}
-	}
+            return $menuId;
+        }
+        $query = 'insert into `tiki_user_menus`(`user`,`name`,`url`,`position`,`mode`) values(?,?,?,?,?)';
 
-	/**
-	 * @param $user
-	 * @param $menuId
-	 */
-	function remove_usermenu($user, $menuId)
-	{
-		$query = 'delete from `tiki_user_menus` where `user`=? and `menuId`=?';
+        $this->query($query, [$user, $name, $url, $position, $mode]);
+        $Id = $this->getOne('select max(`menuId`) from `tiki_user_menus` where `user`=? and `url`=? and `name`=?', [$user, $url, $name]);
 
-		$this->query($query, [$user,$menuId]);
-	}
+        return $Id;
+    }
+
+    /**
+     * @param $user
+     * @param $menuId
+     */
+    public function remove_usermenu($user, $menuId)
+    {
+        $query = 'delete from `tiki_user_menus` where `user`=? and `menuId`=?';
+
+        $this->query($query, [$user, $menuId]);
+    }
 }
 $usermenulib = new UserMenuLib;

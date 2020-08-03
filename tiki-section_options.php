@@ -9,15 +9,15 @@
 // $Id$
 global $prefs;
 if ($prefs['feature_theme_control'] == 'y' && (! isset($banningOnly) || ! $banningOnly)) {
-	include('tiki-tc.php');
+    include('tiki-tc.php');
 }
 if ($prefs['feature_banning'] == 'y') {
-	global $user;
-	if ($msg = TikiLib::lib('tiki')->check_rules($user, $section)) {
-		if (isset($ajaxRequest) && $ajaxRequest) {
-			Services_Utilities::modalException(tr('You are banned from %0', $section));
-		} else {
-			Feedback::errorPage($msg);
-		}
-	}
+    global $user;
+    if ($msg = TikiLib::lib('tiki')->check_rules($user, $section)) {
+        if (isset($ajaxRequest) && $ajaxRequest) {
+            Services_Utilities::modalException(tr('You are banned from %0', $section));
+        } else {
+            Feedback::errorPage($msg);
+        }
+    }
 }

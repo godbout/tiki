@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -16,12 +17,12 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function module_file_galleries_info()
 {
-	return [
-		'name' => tra('File Galleries'),
-		'description' => tra('Displays links to file galleries.'),
-		'prefs' => ['feature_file_galleries'],
-		'params' => [],
-	];
+    return [
+        'name' => tra('File Galleries'),
+        'description' => tra('Displays links to file galleries.'),
+        'prefs' => ['feature_file_galleries'],
+        'params' => [],
+    ];
 }
 
 /**
@@ -30,8 +31,8 @@ function module_file_galleries_info()
  */
 function module_file_galleries($mod_reference, $module_params)
 {
-	$filegallib = TikiLib::lib('filegal');
-	$smarty = TikiLib::lib('smarty');
+    $filegallib = TikiLib::lib('filegal');
+    $smarty = TikiLib::lib('smarty');
 
-	$smarty->assign('tree', $filegallib->getTreeHTML());
+    $smarty->assign('tree', $filegallib->getTreeHTML());
 }

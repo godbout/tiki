@@ -15,20 +15,20 @@ $access->check_feature('feature_surveys');
 $access->check_permission('tiki_p_take_survey');
 
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'created_desc';
+    $sort_mode = 'created_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $smarty->assign_by_ref('sort_mode', $sort_mode);
@@ -36,16 +36,16 @@ $channels = $srvlib->list_surveys($offset, $maxRecords, $sort_mode, $find);
 Perms::bulk([ 'type' => 'survey' ], 'object', $channels['data'], 'surveyId');
 $temp_max = count($channels["data"]);
 for ($i = 0; $i < $temp_max; $i++) {
-	$survperms = Perms::get([ 'type' => 'survey', 'object' => $channels['data'][$i]['surveyId'] ]);
-	$channels["data"][$i]["individual_tiki_p_take_survey"] = $survperms->take_survey ? 'y' : 'n';
-	$channels["data"][$i]["individual_tiki_p_view_survey_stats"] = $survperms->view_survey_stats ? 'y' : 'n';
-	$channels["data"][$i]["individual_tiki_p_admin_surveys"] = $survperms->admin_surveys ? 'y' : 'n';
+    $survperms = Perms::get([ 'type' => 'survey', 'object' => $channels['data'][$i]['surveyId'] ]);
+    $channels["data"][$i]["individual_tiki_p_take_survey"] = $survperms->take_survey ? 'y' : 'n';
+    $channels["data"][$i]["individual_tiki_p_view_survey_stats"] = $survperms->view_survey_stats ? 'y' : 'n';
+    $channels["data"][$i]["individual_tiki_p_admin_surveys"] = $survperms->admin_surveys ? 'y' : 'n';
 
-	if ($tikilib->user_has_voted($user, 'survey' . $channels["data"][$i]["surveyId"])) {
-		$channels["data"][$i]["taken_survey"] = 'y';
-	} else {
-		$channels["data"][$i]["taken_survey"] = 'n';
-	}
+    if ($tikilib->user_has_voted($user, 'survey' . $channels["data"][$i]["surveyId"])) {
+        $channels["data"][$i]["taken_survey"] = 'y';
+    } else {
+        $channels["data"][$i]["taken_survey"] = 'n';
+    }
 }
 $smarty->assign_by_ref('cant_pages', $channels["cant"]);
 $smarty->assign_by_ref('channels', $channels["data"]);

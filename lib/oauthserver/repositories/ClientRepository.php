@@ -1,176 +1,181 @@
 <?php
+
 include dirname(__DIR__) . '/entities/ClientEntity.php';
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 
 class ClientRepository implements ClientRepositoryInterface
 {
-	const TABLE = 'tiki_oauthserver_clients';
-	private $database;
+    const TABLE = 'tiki_oauthserver_clients';
+    private $database;
 
-	public function __construct($database)
-	{
-		$this->database = $database;
-	}
+    public function __construct($database)
+    {
+        $this->database = $database;
+    }
 
-	public static function build($data)
-	{
-		return new ClientEntity($data);
-	}
+    public static function build($data)
+    {
+        return new ClientEntity($data);
+    }
 
-	public function list()
-	{
-		$result = array();
-		$sql = $this->database->query('SELECT * FROM ' . self::TABLE);
+    public function list()
+    {
+        $result = [];
+        $sql = $this->database->query('SELECT * FROM ' . self::TABLE);
 
-		if ($sql && $sql->result) {
-			$result = array_map([ClientEntity, 'build'], $sql->result);
-		}
+        if ($sql && $sql->result) {
+            $result = array_map([ClientEntity, 'build'], $sql->result);
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 
-	public function get($value, $key = 'client_id')
-	{
-		$result = null;
-		$sql = 'SELECT * FROM `%s` WHERE %s=?';
-		$sql = sprintf($sql, self::TABLE, $key);
+    public function get($value, $key = 'client_id')
+    {
+        $result = null;
+        $sql = 'SELECT * FROM `%s` WHERE %s=?';
+        $sql = sprintf($sql, self::TABLE, $key);
 
-		$query = $this->database->query($sql, [$value]);
-		if ($query && $query->result) {
-			$result = new ClientEntity($query->result[0]);
-		}
+        $query = $this->database->query($sql, [$value]);
+        if ($query && $query->result) {
+            $result = new ClientEntity($query->result[0]);
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 
-	public function update($entity)
-	{
-		if (! empty($this->validate($entity))) {
-			throw new Exception(tra('Cannot save invalid client'));
-		}
+    public function update($entity)
+    {
+        if (! empty($this->validate($entity))) {
+            throw new Exception(tra('Cannot save invalid client'));
+        }
 
-		$sql = 'UPDATE `%s` SET name=?, client_id=?, client_secret=?, redirect_uri=? WHERE id=?';
-		$sql = sprintf($sql, self::TABLE);
+        $sql = 'UPDATE `%s` SET name=?, client_id=?, client_secret=?, redirect_uri=? WHERE id=?';
+        $sql = sprintf($sql, self::TABLE);
 
-		$query = $this->database->query($sql, [
-			$entity->getName(),
-			$entity->getClientId(),
-			$entity->getClientSecret(),
-			$entity->getRedirectUri(),
-			$entity->getId()
-		]);
+        $query = $this->database->query($sql, [
+            $entity->getName(),
+            $entity->getClientId(),
+            $entity->getClientSecret(),
+            $entity->getRedirectUri(),
+            $entity->getId()
+        ]);
 
-		return $query;
-	}
+        return $query;
+    }
 
-	public function create($entity)
-	{
-		if (! empty($this->validate($entity))) {
-			throw new Exception(tra('Cannot save invalid client'));
-		}
+    public function create($entity)
+    {
+        if (! empty($this->validate($entity))) {
+            throw new Exception(tra('Cannot save invalid client'));
+        }
 
-		$sql = 'INSERT INTO `%s`(name, client_id, client_secret, redirect_uri) VALUES(?, ?, ?, ?)';
-		$sql = sprintf($sql, self::TABLE);
+        $sql = 'INSERT INTO `%s`(name, client_id, client_secret, redirect_uri) VALUES(?, ?, ?, ?)';
+        $sql = sprintf($sql, self::TABLE);
 
-		$query = $this->database->query($sql, [
-			$entity->getName(),
-			$entity->getClientId(),
-			$entity->getClientSecret(),
-			$entity->getRedirectUri()
-		]);
+        $query = $this->database->query($sql, [
+            $entity->getName(),
+            $entity->getClientId(),
+            $entity->getClientSecret(),
+            $entity->getRedirectUri()
+        ]);
 
-		$id = (int) $this->database->lastInsertId();
-		$entity->setId($id);
+        $id = (int) $this->database->lastInsertId();
+        $entity->setId($id);
 
-		return $entity;
-	}
+        return $entity;
+    }
 
-	public function save($entity)
-	{
-		if ($entity->getId()) {
-			return $entity->update();
-		}
-		return $entity->create();
-	}
+    public function save($entity)
+    {
+        if ($entity->getId()) {
+            return $entity->update();
+        }
 
-	public function delete($entity)
-	{
-		$params = [];
-		$sql = sprintf('DELETE FROM `%s` WHERE ', self::TABLE);
+        return $entity->create();
+    }
 
-		if ($entity->getId()) {
-			$sql .= 'id=?';
-			$params[] = $entity->getId();
-		} elseif ($entity->getClientId()) {
-			$sql .= 'client_id=?';
-			$params[] = $entity->getClientId();
-		}
-		$sql .= ';';
+    public function delete($entity)
+    {
+        $params = [];
+        $sql = sprintf('DELETE FROM `%s` WHERE ', self::TABLE);
 
-		if (empty($params)) {
-			return false;
-		}
+        if ($entity->getId()) {
+            $sql .= 'id=?';
+            $params[] = $entity->getId();
+        } elseif ($entity->getClientId()) {
+            $sql .= 'client_id=?';
+            $params[] = $entity->getClientId();
+        }
+        $sql .= ';';
 
-		return $this->database->query($sql, $params);
-	}
+        if (empty($params)) {
+            return false;
+        }
 
-	public function exists($entity)
-	{
-		$params = [];
-		$sql = sprintf('SELECT COUNT(1) AS count FROM `%s` WHERE ', self::TABLE);
+        return $this->database->query($sql, $params);
+    }
 
-		if ($entity->getId()) {
-			$sql .= 'id=?';
-			$params[] = $entity->getId();
-		} elseif ($entity->getClientId()) {
-			$sql .= 'client_id=?';
-			$params[] = $entity->getClientId();
-		}
+    public function exists($entity)
+    {
+        $params = [];
+        $sql = sprintf('SELECT COUNT(1) AS count FROM `%s` WHERE ', self::TABLE);
 
-		$sql .= ';';
-		if (empty($params)) {
-			return false;
-		}
+        if ($entity->getId()) {
+            $sql .= 'id=?';
+            $params[] = $entity->getId();
+        } elseif ($entity->getClientId()) {
+            $sql .= 'client_id=?';
+            $params[] = $entity->getClientId();
+        }
 
-		$result = $this->database->getOne($sql, $params);
-		$result = (int)$result;
-		return $result > 0;
-	}
+        $sql .= ';';
+        if (empty($params)) {
+            return false;
+        }
 
-	public function validate($entity)
-	{
-		$errors = [];
+        $result = $this->database->getOne($sql, $params);
+        $result = (int)$result;
 
-		if (empty($entity->getName())) {
-			$errors['name'] = tra('Name cannot be empty');
-		}
+        return $result > 0;
+    }
 
-		if (empty($entity->getRedirectUri())) {
-			$errors['redirect_uri'] = tra('Redirect URI cannot be empty');
-		} else if (! filter_var($entity->getRedirectUri(), FILTER_VALIDATE_URL)) {
-			$errors['redirect_uri'] = tra('Invalid URL for redirect URI');
-		}
+    public function validate($entity)
+    {
+        $errors = [];
 
-		return $errors;
-	}
+        if (empty($entity->getName())) {
+            $errors['name'] = tra('Name cannot be empty');
+        }
 
-	public function getClientEntity($clientId, $grantType = null, $clientSecret = null, $mustValidateSecret = true)
-	{
-		$client = $this->get($clientId);
-		if (is_null($client)) {
-			return false;
-		}
-		if ($mustValidateSecret === true && $client->getClientSecret() !== $clientSecret) {
-			return false;
-		}
-		return $client;
-	}
+        if (empty($entity->getRedirectUri())) {
+            $errors['redirect_uri'] = tra('Redirect URI cannot be empty');
+        } elseif (! filter_var($entity->getRedirectUri(), FILTER_VALIDATE_URL)) {
+            $errors['redirect_uri'] = tra('Invalid URL for redirect URI');
+        }
 
-	public static function generateSecret($length = 32)
-	{
-		$random = \phpseclib\Crypt\Random::string(ceil($length / 2));
-		$random = bin2hex($random);
-		$random = substr($random, 0, $length);
-		return $random;
-	}
+        return $errors;
+    }
+
+    public function getClientEntity($clientId, $grantType = null, $clientSecret = null, $mustValidateSecret = true)
+    {
+        $client = $this->get($clientId);
+        if (is_null($client)) {
+            return false;
+        }
+        if ($mustValidateSecret === true && $client->getClientSecret() !== $clientSecret) {
+            return false;
+        }
+
+        return $client;
+    }
+
+    public static function generateSecret($length = 32)
+    {
+        $random = \phpseclib\Crypt\Random::string(ceil($length / 2));
+        $random = bin2hex($random);
+        $random = substr($random, 0, $length);
+
+        return $random;
+    }
 }

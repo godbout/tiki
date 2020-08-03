@@ -16,16 +16,20 @@ use Sabre\DAVACL;
  * Only uses principal exposure. Real ACL is done in backends.
  *
  */
-class AclPlugin extends DAVACL\Plugin {
+class AclPlugin extends DAVACL\Plugin
+{
     /**
      * Checks if the current user has the specified privilege(s).
      * Always return true as real ACL is done in corresponding backends.
      *
+     * @param mixed $uri
+     * @param mixed $privileges
+     * @param mixed $recursion
+     * @param mixed $throwExceptions
      * @return bool
      */
     public function checkPrivileges($uri, $privileges, $recursion = self::R_PARENT, $throwExceptions = true)
     {
-        
         return true;
     }
 }

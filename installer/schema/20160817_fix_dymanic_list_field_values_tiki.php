@@ -9,52 +9,51 @@
  *
  * @param $installer
  */
-
 function upgrade_20160817_fix_dymanic_list_field_values_tiki($installer)
 {
-	global $prefs;
-	$prefs['trackerfield_dynamiclist'] = 'y';	// needed for the fieldFactory when in the installer
-	require_once 'lib/init/tra.php';
+    global $prefs;
+    $prefs['trackerfield_dynamiclist'] = 'y';	// needed for the fieldFactory when in the installer
+    require_once 'lib/init/tra.php';
 
-	/** @var \TrackerLib $trklib */
-	$trklib = TikiLib::lib('trk');
+    /** @var \TrackerLib $trklib */
+    $trklib = TikiLib::lib('trk');
 
-	$trackerFields = $installer->table('tiki_tracker_fields');
-	$trackerItemFields = $installer->table('tiki_tracker_item_fields');
+    $trackerFields = $installer->table('tiki_tracker_fields');
+    $trackerItemFields = $installer->table('tiki_tracker_item_fields');
 
-	$fields = $trackerFields->fetchAll($trackerFields->all(), ['type' => $trackerFields->exactly('w')]);
+    $fields = $trackerFields->fetchAll($trackerFields->all(), ['type' => $trackerFields->exactly('w')]);
 
-	foreach ($fields as $field) {
-		$itemFields = $trackerItemFields->fetchAll(['itemId', 'value'], ['fieldId' => $field['fieldId']]);
-		$options = json_decode($field['options'], true);
-		$definition = Tracker_Definition::get($options['trackerId']);
-		if (! $definition) {
-			continue;	// linked tracker now missing, so just ignore
-		}
+    foreach ($fields as $field) {
+        $itemFields = $trackerItemFields->fetchAll(['itemId', 'value'], ['fieldId' => $field['fieldId']]);
+        $options = json_decode($field['options'], true);
+        $definition = Tracker_Definition::get($options['trackerId']);
+        if (! $definition) {
+            continue;	// linked tracker now missing, so just ignore
+        }
 
-		$fieldFactory = $definition->getFieldFactory();
+        $fieldFactory = $definition->getFieldFactory();
 
 
-		foreach ($itemFields as $itemField) {
-			$item_info = $trklib->get_tracker_item($itemField['itemId']);
-			$handler = $fieldFactory->getHandler($field, $item_info);
+        foreach ($itemFields as $itemField) {
+            $item_info = $trklib->get_tracker_item($itemField['itemId']);
+            $handler = $fieldFactory->getHandler($field, $item_info);
 
-			$trackerIdThere = $handler->getOption('trackerId');
-			$listFieldIdThere = $handler->getOption('listFieldIdThere');
+            $trackerIdThere = $handler->getOption('trackerId');
+            $listFieldIdThere = $handler->getOption('listFieldIdThere');
 
-			$remoteItemId = $trklib->get_item_id($trackerIdThere, $listFieldIdThere, $itemField['value']);
+            $remoteItemId = $trklib->get_item_id($trackerIdThere, $listFieldIdThere, $itemField['value']);
 
-			if ($remoteItemId) {
-				$trackerItemFields->update(
-					[
-						'value' => $remoteItemId
-					],
-					[
-						'fieldId' => $field['fieldId'],
-						'itemId' => $itemField['itemId'],
-					]
-				);
-			}
-		}
-	}
+            if ($remoteItemId) {
+                $trackerItemFields->update(
+                    [
+                        'value' => $remoteItemId
+                    ],
+                    [
+                        'fieldId' => $field['fieldId'],
+                        'itemId' => $itemField['itemId'],
+                    ]
+                );
+            }
+        }
+    }
 }

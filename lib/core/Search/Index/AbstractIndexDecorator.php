@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,74 +8,74 @@
 
 class Search_Index_AbstractIndexDecorator implements Search_Index_Interface
 {
-	protected $parent;
+    protected $parent;
 
-	function __construct(Search_Index_Interface $index)
-	{
-		$this->parent = $index;
-	}
+    public function __construct(Search_Index_Interface $index)
+    {
+        $this->parent = $index;
+    }
 
-	function addDocument(array $document)
-	{
-		return $this->parent->addDocument($document);
-	}
+    public function addDocument(array $document)
+    {
+        return $this->parent->addDocument($document);
+    }
 
-	function invalidateMultiple(array $query)
-	{
-		return $this->parent->invalidateMultiple($query);
-	}
+    public function invalidateMultiple(array $query)
+    {
+        return $this->parent->invalidateMultiple($query);
+    }
 
-	function endUpdate()
-	{
-		return $this->parent->endUpdate();
-	}
+    public function endUpdate()
+    {
+        return $this->parent->endUpdate();
+    }
 
-	function find(Search_Query_Interface $query, $resultStart, $resultCount)
-	{
-		return $this->parent->find($query, $resultStart, $resultCount);
-	}
+    public function find(Search_Query_Interface $query, $resultStart, $resultCount)
+    {
+        return $this->parent->find($query, $resultStart, $resultCount);
+    }
 
-	function getTypeFactory()
-	{
-		return $this->parent->getTypeFactory();
-	}
+    public function getTypeFactory()
+    {
+        return $this->parent->getTypeFactory();
+    }
 
-	function optimize()
-	{
-		return $this->parent->optimize();
-	}
+    public function optimize()
+    {
+        return $this->parent->optimize();
+    }
 
-	function destroy()
-	{
-		return $this->parent->destroy();
-	}
+    public function destroy()
+    {
+        return $this->parent->destroy();
+    }
 
-	function exists()
-	{
-		return $this->parent->exists();
-	}
+    public function exists()
+    {
+        return $this->parent->exists();
+    }
 
-	function getMatchingQueries(array $document)
-	{
-		return $this->parent->getMatchingQueries($document);
-	}
+    public function getMatchingQueries(array $document)
+    {
+        return $this->parent->getMatchingQueries($document);
+    }
 
-	function store($name, Search_Expr_Interface $expr)
-	{
-		return $this->parent->store($name, $expr);
-	}
+    public function store($name, Search_Expr_Interface $expr)
+    {
+        return $this->parent->store($name, $expr);
+    }
 
-	function unstore($name)
-	{
-		return $this->parent->unstore($name);
-	}
+    public function unstore($name)
+    {
+        return $this->parent->unstore($name);
+    }
 
-	function getRealIndex()
-	{
-		if ($this->parent instanceof self) {
-			return $this->parent->getRealIndex();
-		} else {
-			return $this->parent;
-		}
-	}
+    public function getRealIndex()
+    {
+        if ($this->parent instanceof self) {
+            return $this->parent->getRealIndex();
+        }
+
+        return $this->parent;
+    }
 }

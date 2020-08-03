@@ -16,26 +16,26 @@ $access->check_permission('tiki_p_edit_languages');
 
 // start interactive translation session
 if (! empty($_REQUEST['interactive_translation_mode'])) {
-	$_SESSION['interactive_translation_mode'] = $_REQUEST['interactive_translation_mode'];
-	if ($_REQUEST['interactive_translation_mode'] == 'off') {
-		$cachelib->empty_cache('templates_c');
-	}
+    $_SESSION['interactive_translation_mode'] = $_REQUEST['interactive_translation_mode'];
+    if ($_REQUEST['interactive_translation_mode'] == 'off') {
+        $cachelib->empty_cache('templates_c');
+    }
 
-	header('Location: index.php');
-	exit;
+    header('Location: index.php');
+    exit;
 }
 
 /* Called by the JQuery ajax request. No response expected.
  * Save strings translated using interactive translation to database.
  */
 if (isset($_REQUEST['source'], $_REQUEST['trans']) && count($_REQUEST['source']) == count($_REQUEST['trans'])) {
-	$translations = new LanguageTranslations;
+    $translations = new LanguageTranslations;
 
-	foreach ($_REQUEST['trans'] as $k => $translation) {
-		$source = $_REQUEST['source'][$k];
+    foreach ($_REQUEST['trans'] as $k => $translation) {
+        $source = $_REQUEST['source'][$k];
 
-		$translations->updateTrans($source, $translation);
-	}
+        $translations->updateTrans($source, $translation);
+    }
 
-	exit;
+    exit;
 }

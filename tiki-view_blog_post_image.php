@@ -14,7 +14,7 @@ $access->check_feature('feature_blogs');
 
 $bloglib = TikiLib::lib('blog');
 if (! isset($_REQUEST['imgId'])) {
-	die;
+    die;
 }
 $info = $bloglib->get_post_image($_REQUEST['imgId']);
 $type = & $info['filetype'];

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,58 +8,58 @@
 
 class Tiki_Profile_InstallHandler_Template extends Tiki_Profile_InstallHandler
 {
-	function getData()
-	{
-		if ($this->data) {
-			return $this->data;
-		}
+    public function getData()
+    {
+        if ($this->data) {
+            return $this->data;
+        }
 
-		$defaults = [
-			'sections' => [ 'wiki' ],
-			'type' => 'static',
-		];
+        $defaults = [
+            'sections' => [ 'wiki' ],
+            'type' => 'static',
+        ];
 
-		$data = array_merge($defaults, $this->obj->getData());
+        $data = array_merge($defaults, $this->obj->getData());
 
-		$data = Tiki_Profile::convertYesNo($data);
+        $data = Tiki_Profile::convertYesNo($data);
 
-		return $this->data = $data;
-	}
+        return $this->data = $data;
+    }
 
-	function canInstall()
-	{
-		$data = $this->getData();
-		if (! isset($data['name'])) {
-			return false;
-		}
-		if (! isset($data['content']) && ! isset($data['page'])) {
-			return false;
-		}
-		if (! isset($data['sections']) || ! is_array($data['sections'])) {
-			return false;
-		}
+    public function canInstall()
+    {
+        $data = $this->getData();
+        if (! isset($data['name'])) {
+            return false;
+        }
+        if (! isset($data['content']) && ! isset($data['page'])) {
+            return false;
+        }
+        if (! isset($data['sections']) || ! is_array($data['sections'])) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	function _install()
-	{
-		$templateslib = TikiLib::lib('template');
+    public function _install()
+    {
+        $templateslib = TikiLib::lib('template');
 
-		$data = $this->getData();
+        $data = $this->getData();
 
-		$this->replaceReferences($data);
+        $this->replaceReferences($data);
 
-		if (isset($data['page'])) {
-			$data['content'] = 'page:' . $data['page'];
-			$data['type'] = 'page';
-		}
+        if (isset($data['page'])) {
+            $data['content'] = 'page:' . $data['page'];
+            $data['type'] = 'page';
+        }
 
-		$templateId = $templateslib->replace_template(null, $data['name'], $data['content'], $data['type']);
-		foreach ($data['sections'] as $section) {
-			$templateslib->add_template_to_section($templateId, $section);
-		}
+        $templateId = $templateslib->replace_template(null, $data['name'], $data['content'], $data['type']);
+        foreach ($data['sections'] as $section) {
+            $templateslib->add_template_to_section($templateId, $section);
+        }
 
-		return $templateId;
-	}
+        return $templateId;
+    }
 }

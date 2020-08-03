@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -19,34 +20,35 @@ require_once('lib/debug/debugger.php');
  */
 class DbgCmd_DebugMessages extends DebuggerCommand
 {
-	/// Function to create interface part of command: return ["button name"] = <html code>
-	function draw_interface()
-	{
-		$smarty = TikiLib::lib('smarty');
+    /// Function to create interface part of command: return ["button name"] = <html code>
+    public function draw_interface()
+    {
+        $smarty = TikiLib::lib('smarty');
 
-		global $debugger;
-		$smarty->assign_by_ref('messages', $debugger->dmsgs);
-		return $smarty->fetch('debug/tiki-debug_dmsg_tab.tpl');
-	}
+        global $debugger;
+        $smarty->assign_by_ref('messages', $debugger->dmsgs);
 
-	/// Function to return caption string to draw plugable tab in interface
-	function caption()
-	{
-		return 'debug messages';
-	}
+        return $smarty->fetch('debug/tiki-debug_dmsg_tab.tpl');
+    }
 
-	/// Need to display button if we have smth to show
-	function have_interface()
-	{
-		global $debugger;
+    /// Function to return caption string to draw plugable tab in interface
+    public function caption()
+    {
+        return 'debug messages';
+    }
 
-		// At least one message is always exists ... It is debugger itself say that started :)
-		return count($debugger->dmsgs) > 1;
-	}
+    /// Need to display button if we have smth to show
+    public function have_interface()
+    {
+        global $debugger;
+
+        // At least one message is always exists ... It is debugger itself say that started :)
+        return count($debugger->dmsgs) > 1;
+    }
 }
 
 /// Class factory
 function dbg_command_factory_dmsg()
 {
-	return new DbgCmd_DebugMessages();
+    return new DbgCmd_DebugMessages();
 }

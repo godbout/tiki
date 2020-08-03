@@ -15,7 +15,7 @@ $filegalbatchlib = TikiLib::lib('filegalbatch');
 
 // We need a galleryId
 if (empty($_REQUEST['galleryId'])) {
-	$_REQUEST['galleryId'] = $prefs['fgal_root_id'];
+    $_REQUEST['galleryId'] = $prefs['fgal_root_id'];
 }
 
 // get gallery's perms
@@ -31,40 +31,40 @@ $auto_query_args = [ 'galleryId' ];
 
 // check directory path
 if (empty($prefs['fgal_batch_dir']) or ! is_dir($prefs['fgal_batch_dir'])) {
-	$msg = tra("Incorrect directory chosen for batch upload of files.") . "<br />";
-	if ($tiki_p_admin == 'y') {
-		$msg .= tra("Please setup that dir on ") . '<a href="tiki-admin.php?page=fgal">' . tra('File Galleries Configuration Panel') . '</a>.';
-	} else {
-		$msg .= tra("Please contact the website administrator.");
-	}
-	$smarty->assign('msg', $msg);
-	$smarty->display("error.tpl");
-	die;
+    $msg = tra("Incorrect directory chosen for batch upload of files.") . "<br />";
+    if ($tiki_p_admin == 'y') {
+        $msg .= tra("Please setup that dir on ") . '<a href="tiki-admin.php?page=fgal">' . tra('File Galleries Configuration Panel') . '</a>.';
+    } else {
+        $msg .= tra("Please contact the website administrator.");
+    }
+    $smarty->assign('msg', $msg);
+    $smarty->display("error.tpl");
+    die;
 }
 
 if (isset($_REQUEST['batch_upload']) and isset($_REQUEST['files']) and is_array($_REQUEST['files'])) {
-	@ini_set('max_execution_time', 0);
+    @ini_set('max_execution_time', 0);
 
-	// default is: file names from request
-	$feedback = $filegalbatchlib->processBatchUpload(
-		$_REQUEST['files'],
-		(int) $_REQUEST['galleryId'],
-		[
-				'subToDesc' => isset($_REQUEST['subToDesc']),
-				'subdirToSubgal' => isset($_REQUEST['subdirToSubgal']),
-				'createSubgals' => isset($_REQUEST['createSubgals']),
-				'subdirIntegerToSubgalId' => isset($_REQUEST['subdirIntegerToSubgalId']),
-			]
-	);
+    // default is: file names from request
+    $feedback = $filegalbatchlib->processBatchUpload(
+        $_REQUEST['files'],
+        (int) $_REQUEST['galleryId'],
+        [
+                'subToDesc' => isset($_REQUEST['subToDesc']),
+                'subdirToSubgal' => isset($_REQUEST['subdirToSubgal']),
+                'createSubgals' => isset($_REQUEST['createSubgals']),
+                'subdirIntegerToSubgalId' => isset($_REQUEST['subdirIntegerToSubgalId']),
+            ]
+    );
 } else {
-	$feedback = [];
+    $feedback = [];
 }
 
 try {
-	$filelist = $filegalbatchlib->batchUploadFileList();
-	$smarty->assign('filelist', $filelist);
+    $filelist = $filegalbatchlib->batchUploadFileList();
+    $smarty->assign('filelist', $filelist);
 } catch (Exception $e) {
-	Feedback::error($e->getMessage());
+    Feedback::error($e->getMessage());
 }
 
 $smarty->assign('feedback', $feedback);
@@ -74,15 +74,15 @@ $smarty->assign('galleryId', $_REQUEST["galleryId"]);
 $galleries = $filegallib->list_file_galleries(0, -1, 'name_asc', $user, '', $prefs['fgal_root_id']);
 $temp_max = count($galleries["data"]);
 for ($i = 0; $i < $temp_max; $i++) {
-	if ($userlib->object_has_one_permission($galleries["data"][$i]["galleryId"], 'file gallery')) {
-		$galleries["data"][$i]["individual"] = 'y';
-		$galleries["data"][$i]["individual_tiki_p_batch_upload_file_dir"] = 'n';
-		if ($tiki_p_admin == 'y' || $userlib->object_has_permission($user, $galleries["data"][$i]["galleryId"], 'file gallery', 'tiki_p_batch_upload_file_dir') || $userlib->object_has_permission($user, $galleries["data"][$i]["galleryId"], 'file gallery', 'tiki_p_admin_file_galleries')) {
-			$galleries["data"][$i]["individual_tiki_p_batch_upload_file_dir"] = 'y';
-		}
-	} else {
-		$galleries["data"][$i]["individual"] = 'n';
-	}
+    if ($userlib->object_has_one_permission($galleries["data"][$i]["galleryId"], 'file gallery')) {
+        $galleries["data"][$i]["individual"] = 'y';
+        $galleries["data"][$i]["individual_tiki_p_batch_upload_file_dir"] = 'n';
+        if ($tiki_p_admin == 'y' || $userlib->object_has_permission($user, $galleries["data"][$i]["galleryId"], 'file gallery', 'tiki_p_batch_upload_file_dir') || $userlib->object_has_permission($user, $galleries["data"][$i]["galleryId"], 'file gallery', 'tiki_p_admin_file_galleries')) {
+            $galleries["data"][$i]["individual_tiki_p_batch_upload_file_dir"] = 'y';
+        }
+    } else {
+        $galleries["data"][$i]["individual"] = 'n';
+    }
 }
 $smarty->assign_by_ref('galleries', $galleries["data"]);
 $smarty->assign('treeRootId', $prefs['fgal_root_id']);

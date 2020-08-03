@@ -15,10 +15,10 @@ $access->check_feature('feature_minical', '');
 $access->check_permission('tiki_p_minical');
 
 if (! $user) {
-	die;
+    die;
 }
 if (! isset($_REQUEST["topicId"])) {
-	die;
+    die;
 }
 $info = $minicallib->minical_get_topic($user, $_REQUEST["topicId"]);
 $type = & $info["filetype"];

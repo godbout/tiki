@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,17 +8,17 @@
 
 class TikiFilter_HtmlPurifier implements Laminas\Filter\FilterInterface
 {
-	private $cache;
+    private $cache;
 
-	function __construct($cacheFolder)
-	{
-		$this->cache = $cacheFolder;
-	}
+    public function __construct($cacheFolder)
+    {
+        $this->cache = $cacheFolder;
+    }
 
-	function filter($data)
-	{
-		require_once('lib/htmlpurifier_tiki/HTMLPurifier.tiki.php');
+    public function filter($data)
+    {
+        require_once('lib/htmlpurifier_tiki/HTMLPurifier.tiki.php');
 
-		return HTMLPurifier($data);
-	}
+        return HTMLPurifier($data);
+    }
 }

@@ -31,36 +31,36 @@ $tiki_zip_url["tiki-11.0"] = 'http://sourceforge.net/projects/tikiwiki/files/Tik
 
 function pagebottom()
 {
-	$LF = "\n";
-	$bottomtext = '<br /><hr>' .
-			  ' <p class="block">' . $LF .
-			  '	Enjoy <a href="https://tiki.org/" target="_blank">Tiki</a> and' . $LF .
-			  '        <a href="https://tiki.org/tiki-register.php" target="_blank">join the community</a>!' . $LF .
-			  ' </p>' . $LF .
-			  '</body>' . $LF .
-			  '</html>' . $LF;
-	echo $bottomtext;
+    $LF = "\n";
+    $bottomtext = '<br /><hr>' .
+              ' <p class="block">' . $LF .
+              '	Enjoy <a href="https://tiki.org/" target="_blank">Tiki</a> and' . $LF .
+              '        <a href="https://tiki.org/tiki-register.php" target="_blank">join the community</a>!' . $LF .
+              ' </p>' . $LF .
+              '</body>' . $LF .
+              '</html>' . $LF;
+    echo $bottomtext;
 }
 
 function checkmyfile_readable($filename)
 {
-	$read_permission = true;
-	$fileout = fopen($filename, 'r') or $read_permission = false;
-	if ($read_permission) {
-		echo 'testfile is readable';
-		fclose($fileout);
-	} else {
-		echo 'testfile is NOT readable';
-	}
+    $read_permission = true;
+    $fileout = fopen($filename, 'r') or $read_permission = false;
+    if ($read_permission) {
+        echo 'testfile is readable';
+        fclose($fileout);
+    } else {
+        echo 'testfile is NOT readable';
+    }
 }
 
 function checkmyfile_exists($filename)
 {
-	if (file_exists($filename)) {
-		echo 'testfile does exist';
-	} else {
-		echo 'testfile does NOT exist';
-	}
+    if (file_exists($filename)) {
+        echo 'testfile does exist';
+    } else {
+        echo 'testfile does NOT exist';
+    }
 }
 ?>
 <body>
@@ -81,8 +81,8 @@ function checkmyfile_exists($filename)
 	try reloading this page.
  </div>
  <p>PHP check: <?php
-				echo "PHP works";
-	?>
+                echo "PHP works";
+    ?>
  </p>
 
 <br /><hr>
@@ -90,47 +90,39 @@ function checkmyfile_exists($filename)
 
 <?php
 if (isset($_POST['check'])) {
-	$x = $_POST['check'];
-} else {
-	$x = 'no check';
-}
+        $x = $_POST['check'];
+    } else {
+        $x = 'no check';
+    }
 if ($x == 'readwritedelete') {
-	?>
+    ?>
 <p>PHP file check: <?php
-	$filename = 'test-php-write.txt';
-	checkmyfile_exists($filename);
-?></p>
+    $filename = 'test-php-write.txt';
+    checkmyfile_exists($filename); ?></p>
 <p>PHP read check: <?php
-	checkmyfile_readable($filename);
-?></p>
+    checkmyfile_readable($filename); ?></p>
 <p>PHP write check: <?php
-	$testcontent = 'foobar' . "\n";
-	$write_permission = true;
-	$fileout = fopen($filename, 'w') or $write_permission = false;
-if ($write_permission) {
-	fwrite($fileout, $testcontent);
-	fclose($fileout);
-	echo 'testfile is writable';
-} else {
-	echo 'testfile is NOT writable';
-}
-?> (should be writable)</p>
+    $testcontent = 'foobar' . "\n";
+    $write_permission = true;
+    $fileout = fopen($filename, 'w') or $write_permission = false;
+    if ($write_permission) {
+        fwrite($fileout, $testcontent);
+        fclose($fileout);
+        echo 'testfile is writable';
+    } else {
+        echo 'testfile is NOT writable';
+    } ?> (should be writable)</p>
 <p>PHP file check: <?php
-	checkmyfile_exists($filename);
-?> (should exist now)</p>
+    checkmyfile_exists($filename); ?> (should exist now)</p>
 <p>PHP read check: <?php
-	checkmyfile_readable($filename);
-?> (should be readable now)</p>
+    checkmyfile_readable($filename); ?> (should be readable now)</p>
 <p>PHP delete check: <?php
-	unlink($filename) or die('cannot delete testfile - ERROR');
-	echo 'testfile deleted';
-?> (should be deleted)</p>
+    unlink($filename) or die('cannot delete testfile - ERROR');
+    echo 'testfile deleted'; ?> (should be deleted)</p>
 <p>PHP file check: <?php
-	checkmyfile_exists($filename);
-?> (should not exist now)</p>
+    checkmyfile_exists($filename); ?> (should not exist now)</p>
 <p>PHP read check: <?php
-	checkmyfile_readable($filename);
-?> (should not be readable now)</p>
+    checkmyfile_readable($filename); ?> (should not be readable now)</p>
 	<?php
 }
 ?>
@@ -145,64 +137,64 @@ if ($write_permission) {
 <h3>Download Tiki Version</h3>
 
 <?php
-	$download = false;
+    $download = false;
 if (isset($_POST['choice'])) {
-	$x = $_POST['choice'];
-	$y = substr($x, 0, -4);
-	$download_name = $x;
-	$download_url = $tiki_zip_url[$y];
-	$download = true;
+    $x = $_POST['choice'];
+    $y = substr($x, 0, -4);
+    $download_name = $x;
+    $download_url = $tiki_zip_url[$y];
+    $download = true;
 } else {
-	$x = 'no choice';
-	$y = 'no choice';
-	//	echo "no choice\n";
+    $x = 'no choice';
+    $y = 'no choice';
+    //	echo "no choice\n";
 }
-	//echo "<p>Your Choice: $x</p>\n";
+    //echo "<p>Your Choice: $x</p>\n";
 
 /*
-	switch($x) {
-		case 'tiki-9.4.zip':
-			$download = true;
-			$download_url = $tiki_zip_url["tiki-9.4"];
-			$download_name = $x;
-			break;
-		case 'tiki-10.2.zip':
-			$download = true;
-			$download_url = $tiki_zip_url["tiki-10.2"];
-			$download_name = $x;
-			break;
-		case 'no choice':
-			$download = false;
-			break;
-		default:
-			$download = false;
-			break;
-	}
+    switch($x) {
+        case 'tiki-9.4.zip':
+            $download = true;
+            $download_url = $tiki_zip_url["tiki-9.4"];
+            $download_name = $x;
+            break;
+        case 'tiki-10.2.zip':
+            $download = true;
+            $download_url = $tiki_zip_url["tiki-10.2"];
+            $download_name = $x;
+            break;
+        case 'no choice':
+            $download = false;
+            break;
+        default:
+            $download = false;
+            break;
+    }
 */
 if ($download) {
-	if (function_exists(curl_exec)) {
-		echo "$x to be downloaded from Sourceforge to server\n";
-		$ch = curl_init($download_url);
-		$fp = fopen($download_name, "w");
-		curl_setopt($ch, CURLOPT_FILE, $fp);
-		curl_setopt($ch, CURLOPT_HEADER, 0);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		curl_exec($ch);
-		//	$info = curl_getinfo($ch);
-		//	echo $info."\n";
-		curl_close($ch);
-		fclose($fp);
-	} else {
-		echo 'PHP curl_exec not installed';
-	}
+    if (function_exists(curl_exec)) {
+        echo "$x to be downloaded from Sourceforge to server\n";
+        $ch = curl_init($download_url);
+        $fp = fopen($download_name, "w");
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_exec($ch);
+        //	$info = curl_getinfo($ch);
+        //	echo $info."\n";
+        curl_close($ch);
+        fclose($fp);
+    } else {
+        echo 'PHP curl_exec not installed';
+    }
 } else {
-	$dummy = 'foo';
+    $dummy = 'foo';
 }
 ?>
  <p><form method="post">
 <?php
 foreach ($tiki_zip_url as $version => $url) {
-	echo ' <input type="radio" name="choice" value="' . $version . '.zip"> ' . $version . '.zip<br />' . $LF ;
+    echo ' <input type="radio" name="choice" value="' . $version . '.zip"> ' . $version . '.zip<br />' . $LF ;
 }
 // <input type="radio" name="choice" value="tiki-9.4.zip"> tiki-9.4.zip<br />
 // <input type="radio" name="choice" value="tiki-10.2.zip"> tiki-10.2.zip<br />
@@ -211,59 +203,59 @@ foreach ($tiki_zip_url as $version => $url) {
  <input type="reset" value="RESET">
  <button name="choose" value="zipfile" type="submit">DOWNLOAD</button></form>
  <!--</p>-->
-	<?php //<p><input name="foo" value="caramba" type="submit">INPUT</p> ?>
+	<?php //<p><input name="foo" value="caramba" type="submit">INPUT</p>?>
 
 <br /><hr>
 <h3>Unzip Tiki Version</h3>
 
 <?php
-	$unzip = false;
+    $unzip = false;
 if (isset($_POST['unzip'])) {
-	$x = $_POST['unzip'];
-	$unzip_name = $x;
-	$unzip = true;
-/*
-	switch($x) {
-		case 'tiki-9.4.zip':
-			$unzip = true;
-			//$download_url = $tiki_zip_url["tiki-9.4"];
-			$unzip_name = $x;
-			break;
-		case 'tiki-10.2.zip':
-			$unzip = true;
-			//$download_url = $tiki_zip_url["tiki-10.2"];
-			$unzip_name = $x;
-			break;
-		case 'no unzip':
-			$unzip = false;
-			break;
-		default:
-			$unzip = false;
-			break;
-	}
-*/
-	if ($unzip and (file_exists($unzip_name))) {
-		//	system("unzip $unzip_name");
-		$zip = new ZipArchive;
-		$res = $zip->open("$unzip_name");
-		if ($res === true) {
-			$zip->extractTo('./');
-			$zip->close();
-			echo 'unzip ok';
-		} else {
-			echo 'unzip failed';
-		}
-	} else {
-		echo 'unzip not successful - does the file exist?';
-	}
+    $x = $_POST['unzip'];
+    $unzip_name = $x;
+    $unzip = true;
+    /*
+        switch($x) {
+            case 'tiki-9.4.zip':
+                $unzip = true;
+                //$download_url = $tiki_zip_url["tiki-9.4"];
+                $unzip_name = $x;
+                break;
+            case 'tiki-10.2.zip':
+                $unzip = true;
+                //$download_url = $tiki_zip_url["tiki-10.2"];
+                $unzip_name = $x;
+                break;
+            case 'no unzip':
+                $unzip = false;
+                break;
+            default:
+                $unzip = false;
+                break;
+        }
+    */
+    if ($unzip and (file_exists($unzip_name))) {
+        //	system("unzip $unzip_name");
+        $zip = new ZipArchive;
+        $res = $zip->open("$unzip_name");
+        if ($res === true) {
+            $zip->extractTo('./');
+            $zip->close();
+            echo 'unzip ok';
+        } else {
+            echo 'unzip failed';
+        }
+    } else {
+        echo 'unzip not successful - does the file exist?';
+    }
 } else {
-	$x = 'no unzip';
+    $x = 'no unzip';
 }
 ?>
  <p><form method="post">
 <?php
 foreach ($tiki_zip_url as $version => $url) {
-	echo ' <input type="radio" name="unzip" value="' . $version . '.zip"> ' . $version . '.zip<br />' . $LF ;
+    echo ' <input type="radio" name="unzip" value="' . $version . '.zip"> ' . $version . '.zip<br />' . $LF ;
 }
 // <input type="radio" name="unzip" value="tiki-9.3.zip"> tiki-9.3.zip<br />
 // <input type="radio" name="unzip" value="tiki-9.4.zip"> tiki-9.4.zip<br />

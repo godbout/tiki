@@ -17,24 +17,24 @@ $access->check_permission('tiki_p_view_poll_results');
 // days to get in the log 1,3,4,etc
 // it will default to 1 recovering information for today
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'publishDate_desc';
+    $sort_mode = 'publishDate_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 // If offset is set use it if not then use offset =0
 // use the maxRecords php variable to set the limit
 // if sortMode is not set then use lastModif_desc
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 // Get a list of last changes to the Wiki database

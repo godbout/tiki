@@ -9,7 +9,7 @@
 // $Id$
 
 if (basename($_SERVER['SCRIPT_NAME']) === basename(__FILE__)) {
-	die('This script may only be included.');
+    die('This script may only be included.');
 }
 require_once('tiki-setup.php');
 
@@ -26,40 +26,41 @@ clearstatcache();
 $modules = $modlib->get_modules_for_user($user);
 
 if (Perms::get()->admin) {
-	$smarty->assign('module_pref_errors', $modlib->pref_errors);
+    $smarty->assign('module_pref_errors', $modlib->pref_errors);
 }
 
 $show_columns = array_fill_keys(array_keys($modules), 'n');
 
 $modnames = [];
 foreach ($modules as $zone => & $moduleList) {
-	if ($prefs['feature_fullscreen'] != 'y' || empty($_SESSION['fullscreen']) || $_SESSION['fullscreen'] != 'y' ||
-			strpos($zone, 'page') === 0) {	// pagetop and pagebottom zones appear in fullscreen
-		foreach ($moduleList as & $mod_reference) {
-			$show_columns[$zone] = 'y';
+    if ($prefs['feature_fullscreen'] != 'y' || empty($_SESSION['fullscreen']) || $_SESSION['fullscreen'] != 'y' ||
+            strpos($zone, 'page') === 0) {	// pagetop and pagebottom zones appear in fullscreen
+        foreach ($moduleList as & $mod_reference) {
+            $show_columns[$zone] = 'y';
 
-			$ref = (array) $mod_reference;
-			$mod_reference['data'] = new Tiki_Render_Lazy(
-				function () use ($ref) {
-					$modlib = TikiLib::lib('mod');
-					return $modlib->execute_module($ref);
-				}
-			);
-			$modnames[$ref['name']] = '';
-		}
+            $ref = (array) $mod_reference;
+            $mod_reference['data'] = new Tiki_Render_Lazy(
+                function () use ($ref) {
+                    $modlib = TikiLib::lib('mod');
 
-		$smarty->assign($zone, $moduleList);
-	}
+                    return $modlib->execute_module($ref);
+                }
+            );
+            $modnames[$ref['name']] = '';
+        }
+
+        $smarty->assign($zone, $moduleList);
+    }
 }
 
 //add necessary css files to header as required for specific modules
 //TODO only add css when module will actually be showing
 $cssadd = array_intersect_key($modlib->cssfiles, $modnames);
 if (count($cssadd)) {
-	$headerlib = TikiLib::lib('header');
-	foreach ($cssadd as $add) {
-		$headerlib->add_cssfile($add['csspath'], $add['rank']);
-	}
+    $headerlib = TikiLib::lib('header');
+    foreach ($cssadd as $add) {
+        $headerlib->add_cssfile($add['csspath'], $add['rank']);
+    }
 }
 
 $smarty->assign('show_columns', $show_columns);

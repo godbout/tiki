@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,619 +8,632 @@
 
 class WikiParser_PluginMatcher implements Iterator, Countable
 {
-	private $starts = [];
-	private $ends = [];
-	private $level = 0;
+    private $starts = [];
+    private $ends = [];
+    private $level = 0;
 
-	private $ranges = [];
+    private $ranges = [];
 
-	private $text;
+    private $text;
 
-	private $scanPosition = -1;
+    private $scanPosition = -1;
 
-	private $leftOpen = 0;
+    private $leftOpen = 0;
 
-	/**
-	 * @param $text
-	 * @return WikiParser_PluginMatcher
-	 */
-	public static function match($text)
-	{
-		$matcher = new self;
-		$matcher->text = $text;
-		$matcher->findMatches(0, strlen($text));
+    /**
+     * @param $text
+     * @return WikiParser_PluginMatcher
+     */
+    public static function match($text)
+    {
+        $matcher = new self;
+        $matcher->text = $text;
+        $matcher->findMatches(0, strlen($text));
 
-		return $matcher;
-	}
+        return $matcher;
+    }
 
-	public function __clone()
-	{
-		$new = $this;
-		$this->starts = array_map(
-			function ($match) use ($new) {
-				$match->changeMatcher($new);
-				return clone $match;
-			},
-			$this->starts
-		);
+    public function __clone()
+    {
+        $new = $this;
+        $this->starts = array_map(
+            function ($match) use ($new) {
+                $match->changeMatcher($new);
 
-		$this->ends = array_map(
-			function ($match) use ($new) {
-				$match->changeMatcher($new);
-				return clone $match;
-			},
-			$this->ends
-		);
-	}
+                return clone $match;
+            },
+            $this->starts
+        );
 
-	private function getSubMatcher($start, $end)
-	{
-		$sub = new self;
-		$sub->level = $this->level + 1;
-		$sub->text = $this->text;
-		$sub->findMatches($start, $end);
+        $this->ends = array_map(
+            function ($match) use ($new) {
+                $match->changeMatcher($new);
 
-		return $sub;
-	}
+                return clone $match;
+            },
+            $this->ends
+        );
+    }
 
-	private function appendSubMatcher($matcher)
-	{
-		foreach ($matcher->starts as $match) {
-			$match->changeMatcher($this);
-			$this->recordMatch($match);
-		}
-	}
+    private function getSubMatcher($start, $end)
+    {
+        $sub = new self;
+        $sub->level = $this->level + 1;
+        $sub->text = $this->text;
+        $sub->findMatches($start, $end);
 
-	private function isComplete()
-	{
-		return $this->leftOpen == 0;
-	}
+        return $sub;
+    }
 
-	function findMatches($start, $end)
-	{
-		global $prefs;
+    private function appendSubMatcher($matcher)
+    {
+        foreach ($matcher->starts as $match) {
+            $match->changeMatcher($this);
+            $this->recordMatch($match);
+        }
+    }
 
-		static $passes;
+    private function isComplete()
+    {
+        return $this->leftOpen == 0;
+    }
 
-		if ($this->level === 0) {
-			$passes = 0;
-		}
+    public function findMatches($start, $end)
+    {
+        global $prefs;
 
-		if (++$passes > $prefs['wikiplugin_maximum_passes']) {
-			return;
-		}
+        static $passes;
 
-		$this->findNoParseRanges($start, $end);
+        if ($this->level === 0) {
+            $passes = 0;
+        }
 
-		$pos = $start;
-		while (false !== $pos = strpos($this->text, '{', $pos)) {
-			// Shortcut {$var} syntax
-			if (substr($this->text, $pos + 1, 1) === '$') {
-				++$pos;
-				continue;
-			}
+        if (++$passes > $prefs['wikiplugin_maximum_passes']) {
+            return;
+        }
 
-			if ($pos >= $end) {
-				return;
-			}
+        $this->findNoParseRanges($start, $end);
 
-			if (! $this->isParsedLocation($pos)) {
-				++$pos;
-				continue;
-			}
+        $pos = $start;
+        while (false !== $pos = strpos($this->text, '{', $pos)) {
+            // Shortcut {$var} syntax
+            if (substr($this->text, $pos + 1, 1) === '$') {
+                ++$pos;
 
-			$match = new WikiParser_PluginMatcher_Match($this, $pos);
-			++$pos;
+                continue;
+            }
 
-			if (! $match->findName($end)) {
-				continue;
-			}
+            if ($pos >= $end) {
+                return;
+            }
 
-			if (! $match->findArguments($end)) {
-				continue;
-			}
+            if (! $this->isParsedLocation($pos)) {
+                ++$pos;
 
-			if ($match->getEnd() !== false) {
-				// End already reached
-				$this->recordMatch($match);
-				$pos = $match->getEnd();
-			} else {
-				++$this->leftOpen;
+                continue;
+            }
 
-				$bodyStart = $match->getBodyStart();
-				$lookupStart = $bodyStart;
+            $match = new WikiParser_PluginMatcher_Match($this, $pos);
+            ++$pos;
 
-				while ($match->findEnd($lookupStart, $end)) {
-					$candidate = $match->getEnd();
-					$sub = $this->getSubMatcher($bodyStart, $candidate - 1);
+            if (! $match->findName($end)) {
+                continue;
+            }
 
-					if ($sub->isComplete()) {
-						$this->recordMatch($match);
-						$this->appendSubMatcher($sub);
-						$pos = $match->getEnd();
-						--$this->leftOpen;
-						if (empty($this->level)) {
-							$passes = 0;
-						}
-						break;
-					}
+            if (! $match->findArguments($end)) {
+                continue;
+            }
 
-					$lookupStart = $candidate;
-				}
-			}
-		}
-	}
+            if ($match->getEnd() !== false) {
+                // End already reached
+                $this->recordMatch($match);
+                $pos = $match->getEnd();
+            } else {
+                ++$this->leftOpen;
 
-	function getText()
-	{
-		return $this->text;
-	}
+                $bodyStart = $match->getBodyStart();
+                $lookupStart = $bodyStart;
 
-	private function recordMatch($match)
-	{
-		$this->starts[$match->getStart()] = $match;
-		$this->ends[$match->getEnd()] = $match;
-	}
+                while ($match->findEnd($lookupStart, $end)) {
+                    $candidate = $match->getEnd();
+                    $sub = $this->getSubMatcher($bodyStart, $candidate - 1);
 
-	private function findNoParseRanges($from, $to)
-	{
-		while (false !== $open = $this->findText('~np~', $from, $to)) {
-			if (false !== $close = $this->findText('~/np~', $open, $to)) {
-				$from = $close;
-				$this->ranges[] = [$open, $close];
-			} else {
-				return;
-			}
-		}
-	}
+                    if ($sub->isComplete()) {
+                        $this->recordMatch($match);
+                        $this->appendSubMatcher($sub);
+                        $pos = $match->getEnd();
+                        --$this->leftOpen;
+                        if (empty($this->level)) {
+                            $passes = 0;
+                        }
 
-	function isParsedLocation($pos)
-	{
-		foreach ($this->ranges as $range) {
-			list($open, $close ) = $range;
+                        break;
+                    }
 
-			if ($pos > $open && $pos < $close) {
-				return false;
-			}
-		}
+                    $lookupStart = $candidate;
+                }
+            }
+        }
+    }
 
-		return true;
-	}
+    public function getText()
+    {
+        return $this->text;
+    }
 
-	function count()
-	{
-		return count($this->starts);
-	}
+    private function recordMatch($match)
+    {
+        $this->starts[$match->getStart()] = $match;
+        $this->ends[$match->getEnd()] = $match;
+    }
 
-	/**
-	 * @return WikiParser_PluginMatcher_Match
-	 */
-	function current()
-	{
-		return $this->starts[ $this->scanPosition ];
-	}
+    private function findNoParseRanges($from, $to)
+    {
+        while (false !== $open = $this->findText('~np~', $from, $to)) {
+            if (false !== $close = $this->findText('~/np~', $open, $to)) {
+                $from = $close;
+                $this->ranges[] = [$open, $close];
+            } else {
+                return;
+            }
+        }
+    }
 
-	/**
-	 * @return WikiParser_PluginMatcher_Match
-	 */
-	function next()
-	{
-		foreach ($this->starts as $key => $m) {
-			if ($key > $this->scanPosition) {
-				$this->scanPosition = $key;
-				return $m;
-			}
-		}
+    public function isParsedLocation($pos)
+    {
+        foreach ($this->ranges as $range) {
+            list($open, $close) = $range;
 
-		$this->scanPosition = -1;
-	}
+            if ($pos > $open && $pos < $close) {
+                return false;
+            }
+        }
 
-	function key()
-	{
-		return $this->scanPosition;
-	}
+        return true;
+    }
 
-	function valid()
-	{
-		return isset($this->starts[$this->scanPosition]);
-	}
+    public function count()
+    {
+        return count($this->starts);
+    }
 
-	function rewind()
-	{
-		reset($this->starts);
-		$this->scanPosition = key($this->starts);
-	}
+    /**
+     * @return WikiParser_PluginMatcher_Match
+     */
+    public function current()
+    {
+        return $this->starts[ $this->scanPosition ];
+    }
 
-	function getChunkFrom($pos, $size)
-	{
-		return substr($this->text, $pos, $size);
-	}
+    /**
+     * @return WikiParser_PluginMatcher_Match
+     */
+    public function next()
+    {
+        foreach ($this->starts as $key => $m) {
+            if ($key > $this->scanPosition) {
+                $this->scanPosition = $key;
 
-	private function getFirstStart($lower)
-	{
-		foreach ($this->starts as $key => $match) {
-			if ($key >= $lower) {
-				return $key;
-			}
-		}
+                return $m;
+            }
+        }
 
-		return false;
-	}
+        $this->scanPosition = -1;
+    }
 
-	private function getLastEnd()
-	{
-		return end(array_keys($this->ends));
-	}
+    public function key()
+    {
+        return $this->scanPosition;
+    }
 
-	function findText($string, $from, $to)
-	{
-		if ($from >= strlen($this->text)) {
-			return false;
-		}
+    public function valid()
+    {
+        return isset($this->starts[$this->scanPosition]);
+    }
 
-		$pos = strpos($this->text, $string, $from);
+    public function rewind()
+    {
+        reset($this->starts);
+        $this->scanPosition = key($this->starts);
+    }
 
-		if ($pos === false || $pos + strlen($string) > $to) {
-			return false;
-		}
+    public function getChunkFrom($pos, $size)
+    {
+        return substr($this->text, $pos, $size);
+    }
 
-		return $pos;
-	}
+    private function getFirstStart($lower)
+    {
+        foreach ($this->starts as $key => $match) {
+            if ($key >= $lower) {
+                return $key;
+            }
+        }
 
-	function performReplace($match, $string)
-	{
-		$start = $match->getStart();
-		$end = $match->getEnd();
+        return false;
+    }
 
-		$sizeDiff = - ($end - $start - strlen($string));
-		$this->text = substr_replace($this->text, $string, $start, $end - $start);
+    private function getLastEnd()
+    {
+        return end(array_keys($this->ends));
+    }
 
-		$this->removeRanges($start, $end);
-		$this->offsetRanges($end, $sizeDiff);
-		$this->findNoParseRanges($start, $start + strlen($string));
+    public function findText($string, $from, $to)
+    {
+        if ($from >= strlen($this->text)) {
+            return false;
+        }
 
-		$matches = $this->ends;
-		$toRemove = [$match];
-		$toAdd = [];
+        $pos = strpos($this->text, $string, $from);
 
-		foreach ($matches as $key => $m) {
-			if ($m->inside($match)) {
-				$toRemove[] = $m;
-			} elseif ($match->inside($m)) {
-				// Boundaries should not be extended for wrapping plugins
-			} elseif ($key > $end) {
-				unset($this->ends[$m->getEnd()]);
-				unset($this->starts[$m->getStart()]);
-				$m->applyOffset($sizeDiff);
-				$toAdd[] = $m;
-			}
-		}
+        if ($pos === false || $pos + strlen($string) > $to) {
+            return false;
+        }
 
-		foreach ($toRemove as $m) {
-			unset($this->ends[$m->getEnd()]);
-			unset($this->starts[$m->getStart()]);
-			$m->invalidate();
-		}
+        return $pos;
+    }
 
-		foreach ($toAdd as $m) {
-			$this->ends[$m->getEnd()] = $m;
-			$this->starts[$m->getStart()] = $m;
-		}
+    public function performReplace($match, $string)
+    {
+        $start = $match->getStart();
+        $end = $match->getEnd();
 
-		$sub = $this->getSubMatcher($start, $start + strlen($string));
-		if ($sub->isComplete()) {
-			$this->appendSubMatcher($sub);
-		}
+        $sizeDiff = - ($end - $start - strlen($string));
+        $this->text = substr_replace($this->text, $string, $start, $end - $start);
 
-		ksort($this->ends);
-		ksort($this->starts);
+        $this->removeRanges($start, $end);
+        $this->offsetRanges($end, $sizeDiff);
+        $this->findNoParseRanges($start, $start + strlen($string));
 
-		if ($this->scanPosition == $start) {
-			$this->scanPosition = $start - 1;
-		}
-	}
+        $matches = $this->ends;
+        $toRemove = [$match];
+        $toAdd = [];
 
-	private function removeRanges($start, $end)
-	{
-		$toRemove = [];
-		foreach ($this->ranges as $key => $range) {
-			if ($start >= $range[0] && $start <= $range[1]) {
-				$toRemove[] = $key;
-			}
-		}
+        foreach ($matches as $key => $m) {
+            if ($m->inside($match)) {
+                $toRemove[] = $m;
+            } elseif ($match->inside($m)) {
+                // Boundaries should not be extended for wrapping plugins
+            } elseif ($key > $end) {
+                unset($this->ends[$m->getEnd()]);
+                unset($this->starts[$m->getStart()]);
+                $m->applyOffset($sizeDiff);
+                $toAdd[] = $m;
+            }
+        }
 
-		foreach ($toRemove as $key) {
-			unset($this->ranges[$key]);
-		}
-	}
+        foreach ($toRemove as $m) {
+            unset($this->ends[$m->getEnd()]);
+            unset($this->starts[$m->getStart()]);
+            $m->invalidate();
+        }
 
-	private function offsetRanges($end, $sizeDiff)
-	{
-		foreach ($this->ranges as & $range) {
-			if ($range[0] >= $end) {
-				$range[0] += $sizeDiff;
-				$range[1] += $sizeDiff;
-			}
-		}
-	}
+        foreach ($toAdd as $m) {
+            $this->ends[$m->getEnd()] = $m;
+            $this->starts[$m->getStart()] = $m;
+        }
+
+        $sub = $this->getSubMatcher($start, $start + strlen($string));
+        if ($sub->isComplete()) {
+            $this->appendSubMatcher($sub);
+        }
+
+        ksort($this->ends);
+        ksort($this->starts);
+
+        if ($this->scanPosition == $start) {
+            $this->scanPosition = $start - 1;
+        }
+    }
+
+    private function removeRanges($start, $end)
+    {
+        $toRemove = [];
+        foreach ($this->ranges as $key => $range) {
+            if ($start >= $range[0] && $start <= $range[1]) {
+                $toRemove[] = $key;
+            }
+        }
+
+        foreach ($toRemove as $key) {
+            unset($this->ranges[$key]);
+        }
+    }
+
+    private function offsetRanges($end, $sizeDiff)
+    {
+        foreach ($this->ranges as & $range) {
+            if ($range[0] >= $end) {
+                $range[0] += $sizeDiff;
+                $range[1] += $sizeDiff;
+            }
+        }
+    }
 }
 
 class WikiParser_PluginMatcher_Match
 {
-	const LONG = 1;
-	const SHORT = 2;
-	const LEGACY = 3;
-	const NAME_MAX_LENGTH = 50;
+    const LONG = 1;
+    const SHORT = 2;
+    const LEGACY = 3;
+    const NAME_MAX_LENGTH = 50;
 
-	private $matchType = false;
-	private $nameEnd = false;
-	private $bodyStart = false;
-	private $bodyEnd = false;
+    private $matchType = false;
+    private $nameEnd = false;
+    private $bodyStart = false;
+    private $bodyEnd = false;
 
-	/** @var WikiParser_PluginMatcher|bool */
-	private $matcher = false;
+    /** @var WikiParser_PluginMatcher|bool */
+    private $matcher = false;
 
-	private $start = false;
-	private $end = false;
-	private $initialstart = false;
-	private $arguments = false;
+    private $start = false;
+    private $end = false;
+    private $initialstart = false;
+    private $arguments = false;
 
-	function __construct($matcher, $start)
-	{
-		$this->matcher = $matcher;
-		$this->start = $start;
-		$this->initialstart = $start;
-	}
+    public function __construct($matcher, $start)
+    {
+        $this->matcher = $matcher;
+        $this->start = $start;
+        $this->initialstart = $start;
+    }
 
-	function findName($limit)
-	{
-		$candidate = $this->matcher->getChunkFrom($this->start + 1, self::NAME_MAX_LENGTH);
-		$name = strtok($candidate, " (}\n\r,");
+    public function findName($limit)
+    {
+        $candidate = $this->matcher->getChunkFrom($this->start + 1, self::NAME_MAX_LENGTH);
+        $name = strtok($candidate, " (}\n\r,");
 
-		if (empty($name) || ! ctype_alnum($name)) {
-			$this->invalidate();
-			return false;
-		}
+        if (empty($name) || ! ctype_alnum($name)) {
+            $this->invalidate();
 
-		// Upper case uses long syntax
-		if (strtoupper($name) == $name) {
-			$this->matchType = self::LONG;
+            return false;
+        }
 
-			// Parenthesis required when using long syntax
-			if ($candidate[strlen($name)] != '(') {
-				$this->invalidate();
-				return false;
-			}
-		} else {
-			$this->matchType = self::SHORT;
-		}
+        // Upper case uses long syntax
+        if (strtoupper($name) == $name) {
+            $this->matchType = self::LONG;
 
-		$nameEnd = $this->start + 1 + strlen($name);
+            // Parenthesis required when using long syntax
+            if ($candidate[strlen($name)] != '(') {
+                $this->invalidate();
 
-		if ($nameEnd > $limit) {
-			$this->invalidate();
-			return false;
-		}
+                return false;
+            }
+        } else {
+            $this->matchType = self::SHORT;
+        }
 
-		$this->name = strtolower($name);
-		$this->nameEnd = $nameEnd;
+        $nameEnd = $this->start + 1 + strlen($name);
 
-		return true;
-	}
+        if ($nameEnd > $limit) {
+            $this->invalidate();
 
-	function findArguments($limit)
-	{
-		if ($this->nameEnd === false) {
-			return false;
-		}
+            return false;
+        }
 
-		$pos = $this->matcher->findText('}', $this->nameEnd, $limit);
+        $this->name = strtolower($name);
+        $this->nameEnd = $nameEnd;
 
-		if (false === $pos) {
-			$this->invalidate();
-			return false;
-		}
+        return true;
+    }
 
-		$unescapedFound = $this->countUnescapedQuotes($this->nameEnd, $pos);
+    public function findArguments($limit)
+    {
+        if ($this->nameEnd === false) {
+            return false;
+        }
 
-		while (1 == ($unescapedFound % 2)) {
-			$old = $pos;
-			$pos = $this->matcher->findText('}', $pos + 1, $limit);
-			if (false === $pos) {
-				$this->invalidate();
-				return false;
-			}
+        $pos = $this->matcher->findText('}', $this->nameEnd, $limit);
 
-			$unescapedFound += $this->countUnescapedQuotes($old, $pos);
-		}
+        if (false === $pos) {
+            $this->invalidate();
 
-		if ($this->matchType == self::LONG && $this->matcher->findText('/', $pos - 1, $limit) === $pos - 1) {
-			$this->matchType = self::LEGACY;
-			--$pos;
-		}
+            return false;
+        }
 
-		$seek = $pos;
-		while (ctype_space($this->matcher->getChunkFrom($seek - 1, '1'))) {
-			$seek--;
-		}
+        $unescapedFound = $this->countUnescapedQuotes($this->nameEnd, $pos);
 
-		if (in_array($this->matchType, [self::LONG, self::LEGACY]) && $this->matcher->findText(')', $seek - 1, $limit) !== $seek - 1) {
-			$this->invalidate();
-			return false;
-		}
+        while (1 == ($unescapedFound % 2)) {
+            $old = $pos;
+            $pos = $this->matcher->findText('}', $pos + 1, $limit);
+            if (false === $pos) {
+                $this->invalidate();
 
-		// $arguments =    trim($this->matcher->getChunkFrom($this->nameEnd, $pos - $this->nameEnd), '() ');
-		$rawarguments = trim($this->matcher->getChunkFrom($this->nameEnd, $pos - $this->nameEnd), '() ');
-		// arguments can be html encoded. So, decode first
-		$arguments = html_entity_decode($rawarguments);
-		$this->arguments = trim($arguments);
+                return false;
+            }
 
-		if ($this->matchType == self::LEGACY) {
-			++$pos;
-		}
+            $unescapedFound += $this->countUnescapedQuotes($old, $pos);
+        }
 
-		$this->bodyStart = $pos + 1;
+        if ($this->matchType == self::LONG && $this->matcher->findText('/', $pos - 1, $limit) === $pos - 1) {
+            $this->matchType = self::LEGACY;
+            --$pos;
+        }
 
-		if ($this->matchType == self::SHORT || $this->matchType == self::LEGACY) {
-			$this->end = $this->bodyStart;
-			$this->bodyStart = false;
-		}
+        $seek = $pos;
+        while (ctype_space($this->matcher->getChunkFrom($seek - 1, '1'))) {
+            $seek--;
+        }
 
-		return true;
-	}
+        if (in_array($this->matchType, [self::LONG, self::LEGACY]) && $this->matcher->findText(')', $seek - 1, $limit) !== $seek - 1) {
+            $this->invalidate();
 
-	function findEnd($after, $limit)
-	{
-		if ($this->bodyStart === false) {
-			return false;
-		}
+            return false;
+        }
 
-		$endToken = '{' . strtoupper($this->name) . '}';
+        // $arguments =    trim($this->matcher->getChunkFrom($this->nameEnd, $pos - $this->nameEnd), '() ');
+        $rawarguments = trim($this->matcher->getChunkFrom($this->nameEnd, $pos - $this->nameEnd), '() ');
+        // arguments can be html encoded. So, decode first
+        $arguments = html_entity_decode($rawarguments);
+        $this->arguments = trim($arguments);
 
-		do {
-			if (isset($bodyEnd)) {
-				$after = $bodyEnd + 1;
-			}
+        if ($this->matchType == self::LEGACY) {
+            ++$pos;
+        }
 
-			if (false === $bodyEnd = $this->matcher->findText($endToken, $after, $limit)) {
-				$this->invalidate();
-				return false;
-			}
-		} while (! $this->matcher->isParsedLocation($bodyEnd));
+        $this->bodyStart = $pos + 1;
 
-		$this->bodyEnd = $bodyEnd;
-		$this->end = $bodyEnd + strlen($endToken);
+        if ($this->matchType == self::SHORT || $this->matchType == self::LEGACY) {
+            $this->end = $this->bodyStart;
+            $this->bodyStart = false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	function inside($match)
-	{
-		return $this->start > $match->start
-			&& $this->end < $match->end;
-	}
+    public function findEnd($after, $limit)
+    {
+        if ($this->bodyStart === false) {
+            return false;
+        }
 
-	function replaceWith($string)
-	{
-		$this->matcher->performReplace($this, $string);
-	}
+        $endToken = '{' . strtoupper($this->name) . '}';
 
-	function replaceWithPlugin($name, $params, $content)
-	{
-		$hasBody = ! empty($content) && ! ctype_space($content);
+        do {
+            if (isset($bodyEnd)) {
+                $after = $bodyEnd + 1;
+            }
 
-		if (is_array($params)) {
-			$parts = [];
-			foreach ($params as $key => $value) {
-				if ($value || $value === '0') {
-					$parts[] = "$key=\"" . str_replace('"', "\\\"", $value) . '"';
-				}
-			}
+            if (false === $bodyEnd = $this->matcher->findText($endToken, $after, $limit)) {
+                $this->invalidate();
 
-			$params = implode(' ', $parts);
-		}
+                return false;
+            }
+        } while (! $this->matcher->isParsedLocation($bodyEnd));
 
-		// Replace the content
-		if ($hasBody) {
-			$type = strtoupper($name);
-			$replacement = "{{$type}($params)}$content{{$type}}";
-		} else {
-			$plugin = strtolower($name);
-			$replacement = "{{$plugin} $params}";
-		}
+        $this->bodyEnd = $bodyEnd;
+        $this->end = $bodyEnd + strlen($endToken);
 
-		$this->replaceWith($replacement);
-	}
+        return true;
+    }
 
-	function getName()
-	{
-		return $this->name;
-	}
+    public function inside($match)
+    {
+        return $this->start > $match->start
+            && $this->end < $match->end;
+    }
 
-	function getArguments()
-	{
-		return $this->arguments;
-	}
+    public function replaceWith($string)
+    {
+        $this->matcher->performReplace($this, $string);
+    }
 
-	function getBody()
-	{
-		return $this->matcher->getChunkFrom($this->bodyStart, $this->bodyEnd - $this->bodyStart);
-	}
+    public function replaceWithPlugin($name, $params, $content)
+    {
+        $hasBody = ! empty($content) && ! ctype_space($content);
 
-	function getStart()
-	{
-		return $this->start;
-	}
+        if (is_array($params)) {
+            $parts = [];
+            foreach ($params as $key => $value) {
+                if ($value || $value === '0') {
+                    $parts[] = "$key=\"" . str_replace('"', "\\\"", $value) . '"';
+                }
+            }
 
-	function getEnd()
-	{
-		return $this->end;
-	}
+            $params = implode(' ', $parts);
+        }
 
-	function getInitialStart()
-	{
-		return $this->initialstart;
-	}
+        // Replace the content
+        if ($hasBody) {
+            $type = strtoupper($name);
+            $replacement = "{{$type}($params)}$content{{$type}}";
+        } else {
+            $plugin = strtolower($name);
+            $replacement = "{{$plugin} $params}";
+        }
 
-	function getBodyStart()
-	{
-		return $this->bodyStart;
-	}
+        $this->replaceWith($replacement);
+    }
 
-	function invalidate()
-	{
-		$this->matcher = false;
-		$this->start = false;
-		$this->end = false;
-	}
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	function applyOffset($offset)
-	{
-		$this->start += $offset;
-		$this->end += $offset;
+    public function getArguments()
+    {
+        return $this->arguments;
+    }
 
-		if ($this->nameEnd !== false) {
-			$this->nameEnd += $offset;
-		}
+    public function getBody()
+    {
+        return $this->matcher->getChunkFrom($this->bodyStart, $this->bodyEnd - $this->bodyStart);
+    }
 
-		if ($this->bodyStart !== false) {
-			$this->bodyStart += $offset;
-		}
+    public function getStart()
+    {
+        return $this->start;
+    }
 
-		if ($this->bodyEnd !== false) {
-			$this->bodyEnd += $offset;
-		}
-	}
+    public function getEnd()
+    {
+        return $this->end;
+    }
 
-	private function countUnescapedQuotes($from, $to)
-	{
-		$string = $this->matcher->getChunkFrom($from, $to - $from);
-		$count = 0;
+    public function getInitialStart()
+    {
+        return $this->initialstart;
+    }
 
-		$pos = -1;
-		while (false !== $pos = strpos($string, '"', $pos + 1)) {
-			++$count;
-			if ($pos > 0 && $string[$pos - 1] == "\\") {
-				--$count;
-			}
-		}
+    public function getBodyStart()
+    {
+        return $this->bodyStart;
+    }
 
-		return $count;
-	}
+    public function invalidate()
+    {
+        $this->matcher = false;
+        $this->start = false;
+        $this->end = false;
+    }
 
-	function changeMatcher($matcher)
-	{
-		$this->matcher = $matcher;
-	}
+    public function applyOffset($offset)
+    {
+        $this->start += $offset;
+        $this->end += $offset;
 
-	public function __toString()
-	{
-		return $this->matcher->getChunkFrom($this->start, $this->end - $this->start);
-	}
+        if ($this->nameEnd !== false) {
+            $this->nameEnd += $offset;
+        }
 
-	public function debug($level = 'X')
-	{
-		echo "\nMatch [$level] {$this->name} ({$this->arguments}) = {$this->getBody()}\n";
-		echo "{$this->bodyStart}-{$this->bodyEnd} {$this->nameEnd} ({$this->matchType})\n";
-	}
+        if ($this->bodyStart !== false) {
+            $this->bodyStart += $offset;
+        }
+
+        if ($this->bodyEnd !== false) {
+            $this->bodyEnd += $offset;
+        }
+    }
+
+    private function countUnescapedQuotes($from, $to)
+    {
+        $string = $this->matcher->getChunkFrom($from, $to - $from);
+        $count = 0;
+
+        $pos = -1;
+        while (false !== $pos = strpos($string, '"', $pos + 1)) {
+            ++$count;
+            if ($pos > 0 && $string[$pos - 1] == "\\") {
+                --$count;
+            }
+        }
+
+        return $count;
+    }
+
+    public function changeMatcher($matcher)
+    {
+        $this->matcher = $matcher;
+    }
+
+    public function __toString()
+    {
+        return $this->matcher->getChunkFrom($this->start, $this->end - $this->start);
+    }
+
+    public function debug($level = 'X')
+    {
+        echo "\nMatch [$level] {$this->name} ({$this->arguments}) = {$this->getBody()}\n";
+        echo "{$this->bodyStart}-{$this->bodyEnd} {$this->nameEnd} ({$this->matchType})\n";
+    }
 }

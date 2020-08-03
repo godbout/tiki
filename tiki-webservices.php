@@ -17,17 +17,17 @@ $access->check_feature('feature_webservices');
  */
 class Tiki_ComplexType
 {
-	/**
-	 * Param 1
-	 * @var string
-	 */
-	public $param1;
+    /**
+     * Param 1
+     * @var string
+     */
+    public $param1;
 
-	/**
-	 * Param 2
-	 * @var string
-	 */
-	public $param2;
+    /**
+     * Param 2
+     * @var string
+     */
+    public $param2;
 }
 
 /**
@@ -39,39 +39,39 @@ class Tiki_ComplexType
  */
 class Tiki_WebServices
 {
-	/**
-	 * Prints some test data.
-	 *
-	 * @param string $param2
-	 * @param string $param1
-	 * @param string $param3
-	 * @return string
-	 */
-	function test($param2, $param1, $param3)
-	{
-		return 'test1 ' . $param1 . ' test2 ' . $param2 . ' test3 ' . $param3;
-	}
+    /**
+     * Prints some test data.
+     *
+     * @param string $param2
+     * @param string $param1
+     * @param string $param3
+     * @return string
+     */
+    public function test($param2, $param1, $param3)
+    {
+        return 'test1 ' . $param1 . ' test2 ' . $param2 . ' test3 ' . $param3;
+    }
 
-	/**
-	 * Displays the Tiki_ComplexType data.
-	 *
-	 * @param Tiki_ComplexType $complex_param
-	 * @return string
-	 */
-	function test_complex(Tiki_ComplexType $complex_param)
-	{
-		return $complex_param->param1 . ' =====> ' . $complex_param->param2;
-	}
+    /**
+     * Displays the Tiki_ComplexType data.
+     *
+     * @param Tiki_ComplexType $complex_param
+     * @return string
+     */
+    public function test_complex(Tiki_ComplexType $complex_param)
+    {
+        return $complex_param->param1 . ' =====> ' . $complex_param->param2;
+    }
 }
 
 if (is_null($_GET['wsdl'])) {
-	$protocol = isset($_SERVER['HTTPS']) ? 'https' : 'http';
-	$server = new Laminas\Soap\Server($protocol . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'] . '?wsdl');
-	$server->setClass('Tiki_WebServices');
-	$server->handle();
+    $protocol = isset($_SERVER['HTTPS']) ? 'https' : 'http';
+    $server = new Laminas\Soap\Server($protocol . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'] . '?wsdl');
+    $server->setClass('Tiki_WebServices');
+    $server->handle();
 } else {
-	$wsdl = new Laminas\Soap\AutoDiscover();
-	$wsdl->setUri($_SERVER['SCRIPT_NAME']);
-	$wsdl->setClass('Tiki_WebServices');
-	$wsdl->handle();
+    $wsdl = new Laminas\Soap\AutoDiscover();
+    $wsdl->setUri($_SERVER['SCRIPT_NAME']);
+    $wsdl->setClass('Tiki_WebServices');
+    $wsdl->handle();
 }

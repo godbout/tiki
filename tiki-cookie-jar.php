@@ -24,7 +24,7 @@ $_SESSION['tiki_cookie_jar'][ $parameter_name ]
 require_once('tiki-setup.php');
 
 if (isset($_GET)) {
-	foreach ($_GET as $key => $value) {
-		$_SESSION['tiki_cookie_jar'][$key] = $value;
-	}
+    foreach ($_GET as $key => $value) {
+        $_SESSION['tiki_cookie_jar'][$key] = $value;
+    }
 }

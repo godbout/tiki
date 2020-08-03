@@ -1,5 +1,6 @@
 <?php
-$lang = array(
+
+$lang = [
 // "Bytecode Cache" => "Bytecode Cache",
 // "Configuration setting <em>xcache.admin.enable_auth</em> prevents from accessing statistics. This will also prevent the cache from being cleared when clearing template cache." => "Configuration setting <em>xcache.admin.enable_auth</em> prevents from accessing statistics. This will also prevent the cache from being cleared when clearing template cache.",
 "Used" => "Usado",
@@ -19,6 +20,6 @@ $lang = array(
 "Wiki" => "Wiki",
 // "Help on \$admintitle Config" => "Help on \$admintitle Config",
 // "Unused and untranslated" => "Unused and untranslated",
-"Unused and translated" => "Unused and translated", 
+"Unused and translated" => "Unused and translated",
 "Congratulations!\n\nYour server can send emails.\n\n" => "Gratulation!\n\nDein Server kann Emails senden.\n\n",
-);
+];

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -13,39 +14,39 @@ $auto_query_args = [];
 $tab = 1;
 
 if (! empty($_REQUEST['save']) && ! empty($_REQUEST['code'])) {
-	if (empty($_REQUEST['value']) && ! empty($_REQUEST['percent'])) {
-		$_REQUEST['percent'] = min(100, (int)$_REQUEST['percent']);
-		$_REQUEST['value'] = $_REQUEST['percent'] . '%';
-	} elseif (! empty($_REQUEST['value'])) {
-		$_REQUEST['value'] = (int)$_REQUEST['value'];
-	}
-	if (! empty($_REQUEST['value'])) {
-		$default = ['id' => 0];
-		$_REQUEST = array_merge($default, $_REQUEST);
-		if (! $discountlib->replace_discount($_REQUEST)) {
-			Feedback::error(tra('Discount code already exists'));
-			$smarty->assign_by_ref('info', $_REQUEST);
-			$tab = 2;
-		} else {
-			unset($_REQUEST['id']);
-			$tab = 1;
-		}
-	}
+    if (empty($_REQUEST['value']) && ! empty($_REQUEST['percent'])) {
+        $_REQUEST['percent'] = min(100, (int)$_REQUEST['percent']);
+        $_REQUEST['value'] = $_REQUEST['percent'] . '%';
+    } elseif (! empty($_REQUEST['value'])) {
+        $_REQUEST['value'] = (int)$_REQUEST['value'];
+    }
+    if (! empty($_REQUEST['value'])) {
+        $default = ['id' => 0];
+        $_REQUEST = array_merge($default, $_REQUEST);
+        if (! $discountlib->replace_discount($_REQUEST)) {
+            Feedback::error(tra('Discount code already exists'));
+            $smarty->assign_by_ref('info', $_REQUEST);
+            $tab = 2;
+        } else {
+            unset($_REQUEST['id']);
+            $tab = 1;
+        }
+    }
 }
 if (! empty($_REQUEST['del'])) {
-	check_ticket('discount');
-	$discountlib->del_discount($_REQUEST['del']);
-	$tab = 1;
+    check_ticket('discount');
+    $discountlib->del_discount($_REQUEST['del']);
+    $tab = 1;
 }
 
 if (! empty($_REQUEST['id'])) {
-	if ($info = $discountlib->get_discount($_REQUEST['id'])) {
-		if (strstr($info['value'], '%')) {
-			$info['percent'] = (int)$info['value'];
-		}
-		$smarty->assign_by_ref('info', $info);
-		$tab = 1;
-	}
+    if ($info = $discountlib->get_discount($_REQUEST['id'])) {
+        if (strstr($info['value'], '%')) {
+            $info['percent'] = (int)$info['value'];
+        }
+        $smarty->assign_by_ref('info', $info);
+        $tab = 1;
+    }
 }
 
 $offset = isset($_REQUEST['offset']) ? $_REQUEST['offset'] : 0;

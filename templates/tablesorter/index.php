@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -8,4 +9,3 @@
 // This redirects to the sites root to prevent directory browsing
 header("location: ../../index.php");
 die;
-

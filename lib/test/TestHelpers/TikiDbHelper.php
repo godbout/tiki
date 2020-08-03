@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -11,11 +12,11 @@ use TikiAcceptanceTestDBRestorerSQLDumps;
 
 class TikiDbHelper
 {
-	public const EMPTY_DB = 'emptyDb.sql';
+    public const EMPTY_DB = 'emptyDb.sql';
 
-	public static function refreshDb($database = self::EMPTY_DB): void
-	{
-		$dbRestorer = new TikiAcceptanceTestDBRestorerSQLDumps();
-		$dbRestorer->restoreDBDump($database);
-	}
+    public static function refreshDb($database = self::EMPTY_DB): void
+    {
+        $dbRestorer = new TikiAcceptanceTestDBRestorerSQLDumps();
+        $dbRestorer->restoreDBDump($database);
+    }
 }

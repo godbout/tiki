@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,11 +13,11 @@ use Symfony\Component\Yaml\Yaml;
  */
 interface OIntegrate_Converter
 {
-	/**
-	 * @param $content
-	 * @return mixed
-	 */
-	function convert($content);
+    /**
+     * @param $content
+     * @return mixed
+     */
+    public function convert($content);
 }
 
 /**
@@ -24,12 +25,12 @@ interface OIntegrate_Converter
  */
 interface OIntegrate_Engine
 {
-	/**
-	 * @param $data
-	 * @param $templateFile
-	 * @return mixed
-	 */
-	function process($data, $templateFile);
+    /**
+     * @param $data
+     * @param $templateFile
+     * @return mixed
+     */
+    public function process($data, $templateFile);
 }
 
 /**
@@ -37,225 +38,228 @@ interface OIntegrate_Engine
  */
 class OIntegrate
 {
-	private $schemaVersion = [];
-	private $acceptTemplates = [];
+    private $schemaVersion = [];
+    private $acceptTemplates = [];
 
-	/**
-	 * @param $name
-	 * @param $engineOutput
-	 * @return OIntegrate_Engine_JavaScript|OIntegrate_Engine_Smarty|OIntegrate_Engine_Index
-	 */
-	public static function getEngine($name, $engineOutput) // {{{
-	{
-		switch ($name) {
-			case 'javascript':
-				return new OIntegrate_Engine_JavaScript;
-			case 'smarty':
-				return new OIntegrate_Engine_Smarty($engineOutput == 'tikiwiki');
-			case 'index':
-				return new OIntegrate_Engine_Index;
-		}
-	} // }}}
+    /**
+     * @param $name
+     * @param $engineOutput
+     * @return OIntegrate_Engine_JavaScript|OIntegrate_Engine_Smarty|OIntegrate_Engine_Index
+     */
+    public static function getEngine($name, $engineOutput) // {{{
+    {
+        switch ($name) {
+            case 'javascript':
+                return new OIntegrate_Engine_JavaScript;
+            case 'smarty':
+                return new OIntegrate_Engine_Smarty($engineOutput == 'tikiwiki');
+            case 'index':
+                return new OIntegrate_Engine_Index;
+        }
+    } // }}}
 
-	/**
-	 * @param $from
-	 * @param $to
-	 * @return OIntegrate_Converter_Direct|OIntegrate_Converter_EncodeHtml|OIntegrate_Converter_HtmlToTiki|OIntegrate_Converter_TikiToHtml|OIntegrate_Converter_Indexer
-	 */
-	public static function getConverter($from, $to) // {{{
-	{
-		switch ($from) {
-			case 'html':
-				if ($to == 'tikiwiki') {
-					return new OIntegrate_Converter_HtmlToTiki;
-				} elseif ($to == 'html') {
-					return new OIntegrate_Converter_Direct;
-				}
-				break;
-			case 'tikiwiki':
-				if ($to == 'html') {
-					return new OIntegrate_Converter_TikiToHtml;
-				} elseif ($to == 'tikiwiki') {
-					return new OIntegrate_Converter_EncodeHtml;
-				}
-				break;
-			case 'index':
-			case 'mindex':
-				if ($to == 'index') {
-					return new OIntegrate_Converter_Indexer;
-				} elseif ($to == 'html') {
-					return new OIntegrate_Converter_Indexer('html');
-				} elseif ($to == 'tikiwiki') {
-					return new OIntegrate_Converter_Indexer('tikiwiki');
-				}
-				break;
-		}
-	} // }}}
+    /**
+     * @param $from
+     * @param $to
+     * @return OIntegrate_Converter_Direct|OIntegrate_Converter_EncodeHtml|OIntegrate_Converter_HtmlToTiki|OIntegrate_Converter_TikiToHtml|OIntegrate_Converter_Indexer
+     */
+    public static function getConverter($from, $to) // {{{
+    {
+        switch ($from) {
+            case 'html':
+                if ($to == 'tikiwiki') {
+                    return new OIntegrate_Converter_HtmlToTiki;
+                } elseif ($to == 'html') {
+                    return new OIntegrate_Converter_Direct;
+                }
 
-	/**
-	 * @param string $url
-	 * @param string $postBody url or json encoded post parameters
-	 * @param bool $clearCache
-	 * @return OIntegrate_Response
-	 */
-	function performRequest($url, $postBody = null, $clearCache = false) // {{{
-	{
-		$cachelib = TikiLib::lib('cache');
-		$tikilib = TikiLib::lib('tiki');
+                break;
+            case 'tikiwiki':
+                if ($to == 'html') {
+                    return new OIntegrate_Converter_TikiToHtml;
+                } elseif ($to == 'tikiwiki') {
+                    return new OIntegrate_Converter_EncodeHtml;
+                }
 
-		$cacheKey = $url . $postBody;
+                break;
+            case 'index':
+            case 'mindex':
+                if ($to == 'index') {
+                    return new OIntegrate_Converter_Indexer;
+                } elseif ($to == 'html') {
+                    return new OIntegrate_Converter_Indexer('html');
+                } elseif ($to == 'tikiwiki') {
+                    return new OIntegrate_Converter_Indexer('tikiwiki');
+                }
 
-		if ($cache = $cachelib->getSerialized($cacheKey)) {
-			if (time() < $cache['expires'] && ! $clearCache) {
-				return $cache['data'];
-			}
+                break;
+        }
+    } // }}}
 
-			$cachelib->invalidate($cacheKey);
-		}
+    /**
+     * @param string $url
+     * @param string $postBody url or json encoded post parameters
+     * @param bool $clearCache
+     * @return OIntegrate_Response
+     */
+    public function performRequest($url, $postBody = null, $clearCache = false) // {{{
+    {
+        $cachelib = TikiLib::lib('cache');
+        $tikilib = TikiLib::lib('tiki');
 
-		$client = $tikilib->get_http_client($url);
-		$method = null;
+        $cacheKey = $url . $postBody;
 
-		if (empty($postBody)) {
-			$method = 'GET';
-			$http_headers = [
-					'Accept' => 'application/json,text/x-yaml',
-					'OIntegrate-Version' => '1.0',
-				];
-		} else {
-			$method = 'POST';
-			if (json_decode($postBody)) {	// autodetect if the content type should be json
-				$requestContentType = 'application/json';
-			} else {
-				$requestContentType = 'application/x-www-form-urlencoded';
-			}
-			$http_headers = [
-					'Accept' => 'application/json,text/x-yaml',
-					'OIntegrate-Version' => '1.0',
-					'Content-Type' => $requestContentType,
-			];
-			$client->setRawBody($postBody);
-		}
+        if ($cache = $cachelib->getSerialized($cacheKey)) {
+            if (time() < $cache['expires'] && ! $clearCache) {
+                return $cache['data'];
+            }
 
-		if (count($this->schemaVersion)) {
-			$http_headers['OIntegrate-SchemaVersion'] = implode(', ', $this->schemaVersion);
-		}
-		if (count($this->acceptTemplates)) {
-			$http_headers['OIntegrate-AcceptTemplate'] = implode(', ', $this->acceptTemplates);
-		}
+            $cachelib->invalidate($cacheKey);
+        }
 
-		// merge with existing headers
-		$headers = $client->getRequest()->getHeaders();
-		$http_headers = array_merge($headers->toArray(), $http_headers);
+        $client = $tikilib->get_http_client($url);
+        $method = null;
 
-		$client->setHeaders($http_headers);
+        if (empty($postBody)) {
+            $method = 'GET';
+            $http_headers = [
+                    'Accept' => 'application/json,text/x-yaml',
+                    'OIntegrate-Version' => '1.0',
+                ];
+        } else {
+            $method = 'POST';
+            if (json_decode($postBody)) {	// autodetect if the content type should be json
+                $requestContentType = 'application/json';
+            } else {
+                $requestContentType = 'application/x-www-form-urlencoded';
+            }
+            $http_headers = [
+                    'Accept' => 'application/json,text/x-yaml',
+                    'OIntegrate-Version' => '1.0',
+                    'Content-Type' => $requestContentType,
+            ];
+            $client->setRawBody($postBody);
+        }
 
-		$client->setMethod($method);
-		$httpResponse = $client->send();
-		$content = $httpResponse->getBody();
+        if (count($this->schemaVersion)) {
+            $http_headers['OIntegrate-SchemaVersion'] = implode(', ', $this->schemaVersion);
+        }
+        if (count($this->acceptTemplates)) {
+            $http_headers['OIntegrate-AcceptTemplate'] = implode(', ', $this->acceptTemplates);
+        }
 
-		$requestContentType = $httpResponse->getHeaders()->get('Content-Type');
-		$cacheControl = $httpResponse->getHeaders()->get('Cache-Control');
+        // merge with existing headers
+        $headers = $client->getRequest()->getHeaders();
+        $http_headers = array_merge($headers->toArray(), $http_headers);
 
-		$response = new OIntegrate_Response;
-		$response->contentType = $requestContentType;
-		$response->cacheControl = $cacheControl;
-		if ($requestContentType) {
-			$mediaType = $requestContentType->getMediaType();
-		} else {
-			$mediaType = '';
-		}
-		$response->data = $this->unserialize($mediaType, $content);
+        $client->setHeaders($http_headers);
 
-		$filter = new DeclFilter;
-		$filter->addCatchAllFilter('xss');
+        $client->setMethod($method);
+        $httpResponse = $client->send();
+        $content = $httpResponse->getBody();
 
-		$response->data = $filter->filter($response->data);
-		$response->version = $httpResponse->getHeaders()->get('OIntegrate-Version');
-		$response->schemaVersion = $httpResponse->getHeaders()->get('OIntegrate-SchemaVersion');
-		if (! $response->schemaVersion && isset($response->data->_version)) {
-			$response->schemaVersion = $response->data->_version;
-		}
-		$response->schemaDocumentation = $httpResponse->getHeaders()->get('OIntegrate-SchemaDocumentation');
+        $requestContentType = $httpResponse->getHeaders()->get('Content-Type');
+        $cacheControl = $httpResponse->getHeaders()->get('Cache-Control');
 
-		global $prefs;
-		if (empty($cacheControl)) {
-			$maxage = 0;
-			$nocache = false;
-		} else {
-			// Respect cache duration and no-cache asked for
-			$maxage = $cacheControl->getDirective('max-age');
-			$nocache = $cacheControl->getDirective('no-cache');
-		}
-		if ($maxage) {
-			$expiry = time() + $maxage;
+        $response = new OIntegrate_Response;
+        $response->contentType = $requestContentType;
+        $response->cacheControl = $cacheControl;
+        if ($requestContentType) {
+            $mediaType = $requestContentType->getMediaType();
+        } else {
+            $mediaType = '';
+        }
+        $response->data = $this->unserialize($mediaType, $content);
 
-			$cachelib->cacheItem(
-				$cacheKey,
-				serialize(['expires' => $expiry, 'data' => $response])
-			);
-		// Unless service specifies not to cache result, apply a default cache
-		} elseif (empty($nocache) && $prefs['webservice_consume_defaultcache'] > 0) {
-			$expiry = time() + $prefs['webservice_consume_defaultcache'];
+        $filter = new DeclFilter;
+        $filter->addCatchAllFilter('xss');
 
-			$cachelib->cacheItem($cacheKey, serialize(['expires' => $expiry, 'data' => $response]));
-		}
+        $response->data = $filter->filter($response->data);
+        $response->version = $httpResponse->getHeaders()->get('OIntegrate-Version');
+        $response->schemaVersion = $httpResponse->getHeaders()->get('OIntegrate-SchemaVersion');
+        if (! $response->schemaVersion && isset($response->data->_version)) {
+            $response->schemaVersion = $response->data->_version;
+        }
+        $response->schemaDocumentation = $httpResponse->getHeaders()->get('OIntegrate-SchemaDocumentation');
 
-		return $response;
-	} // }}}
+        global $prefs;
+        if (empty($cacheControl)) {
+            $maxage = 0;
+            $nocache = false;
+        } else {
+            // Respect cache duration and no-cache asked for
+            $maxage = $cacheControl->getDirective('max-age');
+            $nocache = $cacheControl->getDirective('no-cache');
+        }
+        if ($maxage) {
+            $expiry = time() + $maxage;
 
-	/**
-	 * @param string $type
-	 * @param string $data
-	 * @return array|mixed|null
-	 */
-	function unserialize($type, $data) // {{{
-	{
+            $cachelib->cacheItem(
+                $cacheKey,
+                serialize(['expires' => $expiry, 'data' => $response])
+            );
+        // Unless service specifies not to cache result, apply a default cache
+        } elseif (empty($nocache) && $prefs['webservice_consume_defaultcache'] > 0) {
+            $expiry = time() + $prefs['webservice_consume_defaultcache'];
 
-		if (empty($data)) {
-			return null;
-		}
+            $cachelib->cacheItem($cacheKey, serialize(['expires' => $expiry, 'data' => $response]));
+        }
 
-		switch ($type) {
-			case 'application/json':
-			case 'text/javascript':
-				if ($out = json_decode($data, true)) {
-					return $out;
-				}
+        return $response;
+    } // }}}
 
-				// Handle invalid JSON too...
-				$fixed = preg_replace('/(\w+):/', '"$1":', $data);
-				$out = json_decode($fixed, true);
-				return $out;
-			case 'text/x-yaml':
-				return Yaml::parse($data);
-			default:
-				// Attempt anything...
-				if ($out = $this->unserialize('application/json', $data)) {
-					return $out;
-				}
-				if ($out = $this->unserialize('text/x-yaml', $data)) {
-					return $out;
-				}
-		}
-	} // }}}
+    /**
+     * @param string $type
+     * @param string $data
+     * @return array|mixed|null
+     */
+    public function unserialize($type, $data) // {{{
+    {
+        if (empty($data)) {
+            return null;
+        }
 
-	/**
-	 * @param $version
-	 */
-	function addSchemaVersion($version) // {{{
-	{
-		$this->schemaVersion[] = $version;
-	} // }}}
+        switch ($type) {
+            case 'application/json':
+            case 'text/javascript':
+                if ($out = json_decode($data, true)) {
+                    return $out;
+                }
 
-	/**
-	 * @param $engine
-	 * @param $output
-	 */
-	function addAcceptTemplate($engine, $output) // {{{
-	{
-		$this->acceptTemplate[] = "$engine/$output";
-	} // }}}
+                // Handle invalid JSON too...
+                $fixed = preg_replace('/(\w+):/', '"$1":', $data);
+                $out = json_decode($fixed, true);
+
+                return $out;
+            case 'text/x-yaml':
+                return Yaml::parse($data);
+            default:
+                // Attempt anything...
+                if ($out = $this->unserialize('application/json', $data)) {
+                    return $out;
+                }
+                if ($out = $this->unserialize('text/x-yaml', $data)) {
+                    return $out;
+                }
+        }
+    } // }}}
+
+    /**
+     * @param $version
+     */
+    public function addSchemaVersion($version) // {{{
+    {
+        $this->schemaVersion[] = $version;
+    } // }}}
+
+    /**
+     * @param $engine
+     * @param $output
+     */
+    public function addAcceptTemplate($engine, $output) // {{{
+    {
+        $this->acceptTemplate[] = "$engine/$output";
+    } // }}}
 }
 
 /**
@@ -263,140 +267,143 @@ class OIntegrate
  */
 class OIntegrate_Response
 {
-	public $version = null;
-	public $schemaVersion = null;
-	public $schemaDocumentation = null;
-	public $contentType = null;
-	public $cacheControl = null;
-	public $data;
-	public $errors = [];
+    public $version = null;
+    public $schemaVersion = null;
+    public $schemaDocumentation = null;
+    public $contentType = null;
+    public $cacheControl = null;
+    public $data;
+    public $errors = [];
 
-	/**
-	 * @param $data
-	 * @param $schemaVersion
-	 * @param int $cacheLength
-	 * @return OIntegrate_Response
-	 */
-	public static function create($data, $schemaVersion, $cacheLength = 300) // {{{
-	{
-		$response = new self;
-		$response->version = '1.0';
-		$response->data = $data;
-		$response->schemaVersion = $schemaVersion;
+    /**
+     * @param $data
+     * @param $schemaVersion
+     * @param int $cacheLength
+     * @return OIntegrate_Response
+     */
+    public static function create($data, $schemaVersion, $cacheLength = 300) // {{{
+    {
+        $response = new self;
+        $response->version = '1.0';
+        $response->data = $data;
+        $response->schemaVersion = $schemaVersion;
 
-		if ($cacheLength > 0) {
-			$response->cacheControl = "max-age=$cacheLength";
-		} else {
-			$response->cacheControl = "no-cache";
-		}
+        if ($cacheLength > 0) {
+            $response->cacheControl = "max-age=$cacheLength";
+        } else {
+            $response->cacheControl = "no-cache";
+        }
 
-		return $response;
-	} // }}}
+        return $response;
+    } // }}}
 
-	/**
-	 * @param $engine
-	 * @param $output
-	 * @param $templateLocation
-	 */
-	function addTemplate($engine, $output, $templateLocation) // {{{
-	{
-		if (! array_key_exists('_template', $this->data)) {
-			$this->data['_template'] = [];
-		}
-		if (! array_key_exists($engine, $this->data['_template'])) {
-			$this->data['_template'][$engine] = [];
-		}
-		if (! array_key_exists($output, $this->data['_template'][$engine])) {
-			$this->data['_template'][$engine][$output] = [];
-		}
+    /**
+     * @param $engine
+     * @param $output
+     * @param $templateLocation
+     */
+    public function addTemplate($engine, $output, $templateLocation) // {{{
+    {
+        if (! array_key_exists('_template', $this->data)) {
+            $this->data['_template'] = [];
+        }
+        if (! array_key_exists($engine, $this->data['_template'])) {
+            $this->data['_template'][$engine] = [];
+        }
+        if (! array_key_exists($output, $this->data['_template'][$engine])) {
+            $this->data['_template'][$engine][$output] = [];
+        }
 
-		if (0 !== strpos($templateLocation, 'http')) {
-			$host = $_SERVER['HTTP_HOST'];
-			$proto = 'http';
-			$path = dirname($_SERVER['SCRIPT_NAME']);
-			$templateLocation = ltrim($templateLocation, '/');
+        if (0 !== strpos($templateLocation, 'http')) {
+            $host = $_SERVER['HTTP_HOST'];
+            $proto = 'http';
+            $path = dirname($_SERVER['SCRIPT_NAME']);
+            $templateLocation = ltrim($templateLocation, '/');
 
-			$templateLocation = "$proto://$host$path/$templateLocation";
-		}
+            $templateLocation = "$proto://$host$path/$templateLocation";
+        }
 
-		$this->data['_template'][$engine][$output][] = $templateLocation;
-	} // }}}
+        $this->data['_template'][$engine][$output][] = $templateLocation;
+    } // }}}
 
-	function send() // {{{
-	{
-		header('OIntegrate-Version: 1.0');
-		header('OIntegrate-SchemaVersion: ' . $this->schemaVersion);
-		if ($this->schemaDocumentation) {
-			header('OIntegrate-SchemaDocumentation: ' . $this->schemaDocumentation);
-		}
-		header('Cache-Control: ' . $this->cacheControl);
+    public function send() // {{{
+    {
+        header('OIntegrate-Version: 1.0');
+        header('OIntegrate-SchemaVersion: ' . $this->schemaVersion);
+        if ($this->schemaDocumentation) {
+            header('OIntegrate-SchemaDocumentation: ' . $this->schemaDocumentation);
+        }
+        header('Cache-Control: ' . $this->cacheControl);
 
-		$data = $this->data;
-		$data['_version'] = $this->schemaVersion;
+        $data = $this->data;
+        $data['_version'] = $this->schemaVersion;
 
-		$access = TikiLib::lib('access');
-		$access->output_serialized($data);
-		exit;
-	} // }}}
+        $access = TikiLib::lib('access');
+        $access->output_serialized($data);
+        exit;
+    } // }}}
 
-	/**
-	 * @param $engine
-	 * @param $engineOutput
-	 * @param $outputContext
-	 * @param $templateFile
-	 * @return mixed|string
-	 */
-	function render($engine, $engineOutput, $outputContext, $templateFile) // {{{
-	{
-		$engine = OIntegrate::getEngine($engine, $engineOutput);
-		if (! $engine) {
-			$this->errors = [ 1000, tr('Engine "%0" not found.', $engineOutput) ];
-			return false;
-		}
+    /**
+     * @param $engine
+     * @param $engineOutput
+     * @param $outputContext
+     * @param $templateFile
+     * @return mixed|string
+     */
+    public function render($engine, $engineOutput, $outputContext, $templateFile) // {{{
+    {
+        $engine = OIntegrate::getEngine($engine, $engineOutput);
+        if (! $engine) {
+            $this->errors = [ 1000, tr('Engine "%0" not found.', $engineOutput) ];
 
-		if (! $output = OIntegrate::getConverter($engineOutput, $outputContext)) {
-			$this->errors = [ 1001, tr('Output converter "%0" not found.', $outputContext) ];
-			return false;
-		}
+            return false;
+        }
 
-		$raw = $engine->process($this->data, $templateFile);
-		return $output->convert($raw);
-	} // }}}
+        if (! $output = OIntegrate::getConverter($engineOutput, $outputContext)) {
+            $this->errors = [ 1001, tr('Output converter "%0" not found.', $outputContext) ];
 
-	/**
-	 * @param null $supportedPairs
-	 * @return array
-	 */
-	function getTemplates($supportedPairs = null) // {{{
-	{
-		if (! is_array($this->data) || ! isset($this->data['_template']) || ! is_array($this->data['_template'])) {
-			return [];
-		}
+            return false;
+        }
 
-		$templates = [];
+        $raw = $engine->process($this->data, $templateFile);
 
-		foreach ($this->data['_template'] as $engine => $outputs) {
-			foreach ($outputs as $output => $files) {
-				if (is_array($supportedPairs) && ! in_array("$engine/$output", $supportedPairs)) {
-					continue;
-				}
+        return $output->convert($raw);
+    } // }}}
 
-				$files = (array) $files;
+    /**
+     * @param null $supportedPairs
+     * @return array
+     */
+    public function getTemplates($supportedPairs = null) // {{{
+    {
+        if (! is_array($this->data) || ! isset($this->data['_template']) || ! is_array($this->data['_template'])) {
+            return [];
+        }
 
-				foreach ($files as $file) {
-					$content = TikiLib::lib('tiki')->httprequest($file);
+        $templates = [];
 
-					$templates[] = [
-						'engine' => $engine,
-						'output' => $output,
-						'content' => $content,
-					];
-				}
-			}
-		}
+        foreach ($this->data['_template'] as $engine => $outputs) {
+            foreach ($outputs as $output => $files) {
+                if (is_array($supportedPairs) && ! in_array("$engine/$output", $supportedPairs)) {
+                    continue;
+                }
 
-		return $templates;
-	} // }}}
+                $files = (array) $files;
+
+                foreach ($files as $file) {
+                    $content = TikiLib::lib('tiki')->httprequest($file);
+
+                    $templates[] = [
+                        'engine' => $engine,
+                        'output' => $output,
+                        'content' => $content,
+                    ];
+                }
+            }
+        }
+
+        return $templates;
+    } // }}}
 }
 
 /**
@@ -404,22 +411,22 @@ class OIntegrate_Response
  */
 class OIntegrate_Engine_JavaScript implements OIntegrate_Engine // {{{
 {
-	/**
-	 * @param $data
-	 * @param $templateFile
-	 * @return string
-	 */
-	function process($data, $templateFile)
-	{
-		$json = json_encode($data);
+    /**
+     * @param $data
+     * @param $templateFile
+     * @return string
+     */
+    public function process($data, $templateFile)
+    {
+        $json = json_encode($data);
 
-		return <<<EOC
+        return <<<EOC
 <script type="text/javascript">
 var response = $json;
 </script>
 EOC
-		. file_get_contents($templateFile);
-	}
+        . file_get_contents($templateFile);
+    }
 } // }}}
 
 /**
@@ -427,35 +434,36 @@ EOC
  */
 class OIntegrate_Engine_Smarty implements OIntegrate_Engine // {{{
 {
-	private $changeDelimiters;
+    private $changeDelimiters;
 
-	/**
-	 * @param bool $changeDelimiters
-	 */
-	function __construct($changeDelimiters = false)
-	{
-		$this->changeDelimiters = $changeDelimiters;
-	}
+    /**
+     * @param bool $changeDelimiters
+     */
+    public function __construct($changeDelimiters = false)
+    {
+        $this->changeDelimiters = $changeDelimiters;
+    }
 
-	/**
-	 * @param $data
-	 * @param $templateFile
-	 * @return mixed
-	 */
-	function process($data, $templateFile)
-	{
-		/** @var Smarty_Tiki $smarty */
-		$smarty = new Smarty_Tiki;
-		$smarty->setTemplateDir(dirname($templateFile));
+    /**
+     * @param $data
+     * @param $templateFile
+     * @return mixed
+     */
+    public function process($data, $templateFile)
+    {
+        /** @var Smarty_Tiki $smarty */
+        $smarty = new Smarty_Tiki;
+        $smarty->setTemplateDir(dirname($templateFile));
 
-		if ($this->changeDelimiters) {
-			$smarty->left_delimiter = '{{';
-			$smarty->right_delimiter = '}}';
-		}
+        if ($this->changeDelimiters) {
+            $smarty->left_delimiter = '{{';
+            $smarty->right_delimiter = '}}';
+        }
 
-		$smarty->assign('response', $data);
-		return $smarty->fetch($templateFile);
-	}
+        $smarty->assign('response', $data);
+
+        return $smarty->fetch($templateFile);
+    }
 } // }}}
 
 /**
@@ -463,25 +471,25 @@ class OIntegrate_Engine_Smarty implements OIntegrate_Engine // {{{
  */
 class OIntegrate_Engine_Index implements OIntegrate_Engine
 {
-	/**
-	 * @param array $data
-	 * @param string $templateFile
-	 * @return array
-	 */
-	function process($data, $templateFile)
-	{
-		$mappingString = file_get_contents($templateFile);
-		$mapping = json_decode($mappingString, true);
+    /**
+     * @param array $data
+     * @param string $templateFile
+     * @return array
+     */
+    public function process($data, $templateFile)
+    {
+        $mappingString = file_get_contents($templateFile);
+        $mapping = json_decode($mappingString, true);
 
-		if ($mappingString && ! $mapping) {
-			Feedback::error(tr('Could decode JSON webservice template for indexing, check the syntax'));
-		}
+        if ($mappingString && ! $mapping) {
+            Feedback::error(tr('Could decode JSON webservice template for indexing, check the syntax'));
+        }
 
-		return [
-			'data' => $data,
-			'mapping' => $mapping,
-		];
-	}
+        return [
+            'data' => $data,
+            'mapping' => $mapping,
+        ];
+    }
 }
 
 
@@ -490,14 +498,14 @@ class OIntegrate_Engine_Index implements OIntegrate_Engine
  */
 class OIntegrate_Converter_Direct implements OIntegrate_Converter // {{{
 {
-	/**
-	 * @param $content
-	 * @return mixed
-	 */
-	function convert($content)
-	{
-		return $content;
-	}
+    /**
+     * @param $content
+     * @return mixed
+     */
+    public function convert($content)
+    {
+        return $content;
+    }
 } // }}}
 
 /**
@@ -505,14 +513,14 @@ class OIntegrate_Converter_Direct implements OIntegrate_Converter // {{{
  */
 class OIntegrate_Converter_EncodeHtml implements OIntegrate_Converter // {{{
 {
-	/**
-	 * @param $content
-	 * @return string
-	 */
-	function convert($content)
-	{
-		return htmlentities($content, ENT_QUOTES, 'UTF-8');
-	}
+    /**
+     * @param $content
+     * @return string
+     */
+    public function convert($content)
+    {
+        return htmlentities($content, ENT_QUOTES, 'UTF-8');
+    }
 } // }}}
 
 /**
@@ -520,14 +528,14 @@ class OIntegrate_Converter_EncodeHtml implements OIntegrate_Converter // {{{
  */
 class OIntegrate_Converter_HtmlToTiki implements OIntegrate_Converter // {{{
 {
-	/**
-	 * @param $content
-	 * @return string
-	 */
-	function convert($content)
-	{
-		return '~np~' . $content . '~/np~';
-	}
+    /**
+     * @param $content
+     * @return string
+     */
+    public function convert($content)
+    {
+        return '~np~' . $content . '~/np~';
+    }
 } // }}}
 
 /**
@@ -535,14 +543,14 @@ class OIntegrate_Converter_HtmlToTiki implements OIntegrate_Converter // {{{
  */
 class OIntegrate_Converter_TikiToHtml implements OIntegrate_Converter // {{{
 {
-	/**
-	 * @param $content
-	 * @return mixed|string
-	 */
-	function convert($content)
-	{
-		return TikiLib::lib('parser')->parse_data(htmlentities($content, ENT_QUOTES, 'UTF-8'));
-	}
+    /**
+     * @param $content
+     * @return mixed|string
+     */
+    public function convert($content)
+    {
+        return TikiLib::lib('parser')->parse_data(htmlentities($content, ENT_QUOTES, 'UTF-8'));
+    }
 } // }}}
 
 /**
@@ -550,75 +558,75 @@ class OIntegrate_Converter_TikiToHtml implements OIntegrate_Converter // {{{
  */
 class OIntegrate_Converter_Indexer implements OIntegrate_Converter
 {
-	private $format;
+    private $format;
 
-	function __construct($format = 'none')
-	{
-		$this->format = $format;
-	}
+    public function __construct($format = 'none')
+    {
+        $this->format = $format;
+    }
 
-	/**
-	 * @param $content
-	 * @return mixed|string
-	 */
-	function convert($content)
-	{
-		if ($this->format === 'html' || $this->format === 'tikiwiki') {
-			if (! empty($_REQUEST['nt_name'])) {	// preview from admin/webservice page
-				$source = new Search_ContentSource_WebserviceSource();
-				$factory = new Search_Type_Factory_Direct();
+    /**
+     * @param $content
+     * @return mixed|string
+     */
+    public function convert($content)
+    {
+        if ($this->format === 'html' || $this->format === 'tikiwiki') {
+            if (! empty($_REQUEST['nt_name'])) {	// preview from admin/webservice page
+                $source = new Search_ContentSource_WebserviceSource();
+                $factory = new Search_Type_Factory_Direct();
 
-				if ($_REQUEST['nt_output'] === 'mindex') {
-					$documents = $source->getDocuments();
-					$data = [];
-					$count = 0;
-					foreach ($documents as $document) {
-						if (strpos($document, $_REQUEST['nt_name']) === 0) {
-							$data[$document] = $source->getDocument($document, $factory);
-							$count++;
-							if ($count > 100) {	// enough for a preview?
-								break;
-							}
-						}
-					}
-				} else {
-					$data = $source->getDocument($_REQUEST['nt_name'], $factory);
-				}
+                if ($_REQUEST['nt_output'] === 'mindex') {
+                    $documents = $source->getDocuments();
+                    $data = [];
+                    $count = 0;
+                    foreach ($documents as $document) {
+                        if (strpos($document, $_REQUEST['nt_name']) === 0) {
+                            $data[$document] = $source->getDocument($document, $factory);
+                            $count++;
+                            if ($count > 100) {	// enough for a preview?
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    $data = $source->getDocument($_REQUEST['nt_name'], $factory);
+                }
 
-				$output = '<h3>' . tr('Parsed Data') . '</h3>';
-				$output .= '<pre style="max-height: 40em; overflow: auto; white-space: pre-wrap">';
-				$output .= htmlentities(
-					print_r($data, true),
-					ENT_QUOTES,
-					'UTF-8'
-				);
-			} else {
-				$output = '<h3>' . tr('Data') . '</h3>';
-				$output .= '<pre style="max-height: 20em; overflow: auto; white-space: pre-wrap">';
-				$output .= htmlentities(
-					json_encode($content['data'], JSON_PRETTY_PRINT),
-					ENT_QUOTES,
-					'UTF-8'
-				);
-				$output .= '</pre>';
+                $output = '<h3>' . tr('Parsed Data') . '</h3>';
+                $output .= '<pre style="max-height: 40em; overflow: auto; white-space: pre-wrap">';
+                $output .= htmlentities(
+                    print_r($data, true),
+                    ENT_QUOTES,
+                    'UTF-8'
+                );
+            } else {
+                $output = '<h3>' . tr('Data') . '</h3>';
+                $output .= '<pre style="max-height: 20em; overflow: auto; white-space: pre-wrap">';
+                $output .= htmlentities(
+                    json_encode($content['data'], JSON_PRETTY_PRINT),
+                    ENT_QUOTES,
+                    'UTF-8'
+                );
+                $output .= '</pre>';
 
-				if ($this->format === 'html') {
-					$output .= '<h3>' . tr('Mapping') . '</h3>';
-					$output .= '<pre style="max-height: 20em; overflow: auto; white-space: pre-wrap">';
-					$output .= htmlentities(
-						json_encode($content['mapping'], JSON_PRETTY_PRINT),
-						ENT_QUOTES,
-						'UTF-8'
-					);
-					$output .= '</pre>';
-				} else {	// wiki mode from plugin
-					$output = "~np~{$output}~/np~";
-				}
-			}
+                if ($this->format === 'html') {
+                    $output .= '<h3>' . tr('Mapping') . '</h3>';
+                    $output .= '<pre style="max-height: 20em; overflow: auto; white-space: pre-wrap">';
+                    $output .= htmlentities(
+                        json_encode($content['mapping'], JSON_PRETTY_PRINT),
+                        ENT_QUOTES,
+                        'UTF-8'
+                    );
+                    $output .= '</pre>';
+                } else {	// wiki mode from plugin
+                    $output = "~np~{$output}~/np~";
+                }
+            }
 
-			return $output;
-		} else {
-			return $content;
-		}
-	}
+            return $output;
+        }
+
+        return $content;
+    }
 }

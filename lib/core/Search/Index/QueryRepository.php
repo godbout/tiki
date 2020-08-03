@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 interface Search_Index_QueryRepository
 {
-	function getMatchingQueries(array $document);
+    public function getMatchingQueries(array $document);
 
-	function store($name, Search_Expr_Interface $expr);
-	function unstore($name);
+    public function store($name, Search_Expr_Interface $expr);
+    public function unstore($name);
 }

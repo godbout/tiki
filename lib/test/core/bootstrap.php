@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -16,7 +17,7 @@ include_once('./include_non_autoload_compatible_classes.php');
 
 function tra($string)
 {
-	return $string;
+    return $string;
 }
 
 require __DIR__ . '/../../../vendor_bundled/vendor/autoload.php';
@@ -26,9 +27,9 @@ $api_tiki = null;
 require 'db/local.php';
 
 if ($api_tiki === 'pdo' && extension_loaded("pdo")) {
-	require_once('db/tiki-db-pdo.php');
+    require_once('db/tiki-db-pdo.php');
 } else {
-	require_once('db/tiki-db-adodb.php');
+    require_once('db/tiki-db-adodb.php');
 }
 
 $db = TikiDb::get();

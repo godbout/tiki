@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,87 +10,90 @@ namespace Tracker\Filter\Control;
 
 class MultiSelect implements Control
 {
-	protected $fieldName;
-	protected $options;
-	protected $extra;
-	protected $values = [];
+    protected $fieldName;
+    protected $options;
+    protected $extra;
+    protected $values = [];
 
-	function __construct($name, $options, callable $extra = null)
-	{
-		$this->fieldName = $name;
-		$this->options = $options;
-		$this->extra = $extra;
-	}
+    public function __construct($name, $options, callable $extra = null)
+    {
+        $this->fieldName = $name;
+        $this->options = $options;
+        $this->extra = $extra;
+    }
 
-	function applyInput(\JitFilter $input)
-	{
-		$input->replaceFilter($this->fieldName, 'text');
-		$this->values = $input->asArray($this->fieldName);
-	}
+    public function applyInput(\JitFilter $input)
+    {
+        $input->replaceFilter($this->fieldName, 'text');
+        $this->values = $input->asArray($this->fieldName);
+    }
 
-	function getQueryArguments()
-	{
-		return [$this->fieldName => $this->values];
-	}
+    public function getQueryArguments()
+    {
+        return [$this->fieldName => $this->values];
+    }
 
-	function getDescription()
-	{
-		$this->applyOptions();
-		return implode(', ', array_map(function ($val) {
-			return $this->options[$val];
-		}, $this->values)) ?: null;
-	}
+    public function getDescription()
+    {
+        $this->applyOptions();
 
-	function getId()
-	{
-		return $this->fieldName;
-	}
+        return implode(', ', array_map(function ($val) {
+            return $this->options[$val];
+        }, $this->values)) ?: null;
+    }
 
-	function isUsable()
-	{
-		$this->applyOptions();
-		return count($this->options) > 0;
-	}
+    public function getId()
+    {
+        return $this->fieldName;
+    }
 
-	function hasValue()
-	{
-		return count($this->values) > 0;
-	}
+    public function isUsable()
+    {
+        $this->applyOptions();
 
-	function getValues()
-	{
-		return $this->values;
-	}
+        return count($this->options) > 0;
+    }
 
-	protected function applyOptions()
-	{
-		if (is_callable($this->options)) {
-			$this->options = call_user_func($this->options);
-		}
+    public function hasValue()
+    {
+        return count($this->values) > 0;
+    }
 
-		if ($this->extra) {
-			// Include values selected, but not in the provided options,
-			// which can happen with dynamic filters
-			foreach ($this->values as $value) {
-				if (! isset($this->options[$value])) {
-					if ($label = call_user_func($this->extra, $value)) {
-						$this->options[$value] = $label;
-					}
-				}
-			}
-		}
-	}
+    public function getValues()
+    {
+        return $this->values;
+    }
 
-	function __toString()
-	{
-		$this->applyOptions();
+    protected function applyOptions()
+    {
+        if (is_callable($this->options)) {
+            $this->options = call_user_func($this->options);
+        }
 
-		$smarty = \TikiLib::lib('smarty');
-		$smarty->assign('control', [
-			'field' => $this->fieldName,
-			'options' => $this->options,
-			'values' => array_fill_keys($this->values, true),
-		]);
-		return $smarty->fetch('filter_control/multi_select.tpl');
-	}
+        if ($this->extra) {
+            // Include values selected, but not in the provided options,
+            // which can happen with dynamic filters
+            foreach ($this->values as $value) {
+                if (! isset($this->options[$value])) {
+                    if ($label = call_user_func($this->extra, $value)) {
+                        $this->options[$value] = $label;
+                    }
+                }
+            }
+        }
+    }
+
+    public function __toString()
+    {
+        $this->applyOptions();
+
+        $smarty = \TikiLib::lib('smarty');
+        $smarty->assign('control', [
+            'field' => $this->fieldName,
+            'options' => $this->options,
+            'values' => array_fill_keys($this->values, true),
+        ]);
+
+        return $smarty->fetch('filter_control/multi_select.tpl');
+    }
 }

@@ -7,8 +7,8 @@
 // $Id$
 
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -18,10 +18,10 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_20131117_unified_engine_default_change_tiki($installer)
 {
-	$value = $installer->getOne("SELECT `value` FROM `tiki_preferences` WHERE `name` = 'unified_engine'");
+    $value = $installer->getOne("SELECT `value` FROM `tiki_preferences` WHERE `name` = 'unified_engine'");
 
-	if (! $value) {	// default values can be empty
-		$preferences = $installer->table('tiki_preferences');
-		$preferences->insertOrUpdate(['value' => 'lucene'], ['name' => 'unified_engine']);
-	}
+    if (! $value) {	// default values can be empty
+        $preferences = $installer->table('tiki_preferences');
+        $preferences->insertOrUpdate(['value' => 'lucene'], ['name' => 'unified_engine']);
+    }
 }

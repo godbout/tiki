@@ -17,8 +17,8 @@ include_once('lib/mime/mimetypes.php');
 global $mimetypes;
 
 $auto_query_args = [
-	'fileId',
-	'edit'
+    'fileId',
+    'edit'
 ];
 
 $access->check_feature('feature_docs');
@@ -30,15 +30,15 @@ $fileId = (int)$_REQUEST['fileId'];
 $smarty->assign('fileId', $fileId);
 
 if ($fileId > 0) {
-	$fileInfo = $filegallib->get_file_info($fileId);
+    $fileInfo = $filegallib->get_file_info($fileId);
 } else {
-	$fileInfo = [];
+    $fileInfo = [];
 }
 
 //This allows the document to be edited, but only the most recent of that group if it is an archive
 if (! empty($fileInfo['archiveId']) && $fileInfo['archiveId'] > 0) {
-	$fileId = $fileInfo['archiveId'];
-	$fileInfo = $filegallib->get_file_info($fileId);
+    $fileId = $fileInfo['archiveId'];
+    $fileInfo = $filegallib->get_file_info($fileId);
 }
 
 $cat_type = 'file';
@@ -53,57 +53,57 @@ $fileType = reset(explode(';', $fileInfo['filetype']));
 $extension = end(explode('.', $fileInfo['filename']));
 $supportedExtensions = ['odt', 'ods', 'odp'];
 $supportedTypes = array_map(
-	function ($type) use ($mimetypes) {
-		return $mimetypes[$type];
-	},
-	$supportedExtensions
+    function ($type) use ($mimetypes) {
+        return $mimetypes[$type];
+    },
+    $supportedExtensions
 );
 
 if (! in_array($extension, $supportedExtensions) && ! in_array($fileType, $supportedTypes)) {
-	$smarty->assign('msg', tr('Wrong file type, expected one of %0', implode(', ', $supportedTypes)));
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tr('Wrong file type, expected one of %0', implode(', ', $supportedTypes)));
+    $smarty->display('error.tpl');
+    die;
 }
 
 $globalperms = Perms::get([ 'type' => 'file', 'object' => $fileInfo['fileId'] ]);
 
 //check permissions
 if (! ($globalperms->admin_file_galleries == 'y' || $globalperms->view_file_gallery == 'y')) {
-	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra('You do not have permission to view/edit this file'));
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('errortype', 401);
+    $smarty->assign('msg', tra('You do not have permission to view/edit this file'));
+    $smarty->display('error.tpl');
+    die;
 }
 
 if (! empty($_REQUEST['name']) || ! empty($fileInfo['name'])) {
-	$_REQUEST['name'] = (! empty($_REQUEST['name']) ? $_REQUEST['name'] : $fileInfo['name']);
+    $_REQUEST['name'] = (! empty($_REQUEST['name']) ? $_REQUEST['name'] : $fileInfo['name']);
 } else {
-	$_REQUEST['name'] = 'New Doc';
+    $_REQUEST['name'] = 'New Doc';
 }
 
 $_REQUEST['name'] = htmlspecialchars(str_replace('.odt', '', $_REQUEST['name']));
 
 //Upload to file gallery
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_REQUEST['data'])) {
-	$_REQUEST['galleryId'] = (int)$_REQUEST['galleryId'];
-	$_REQUEST['description'] = htmlspecialchars(isset($_REQUEST['description']) ? $_REQUEST['description'] : $_REQUEST['name']);
+    $_REQUEST['galleryId'] = (int)$_REQUEST['galleryId'];
+    $_REQUEST['description'] = htmlspecialchars(isset($_REQUEST['description']) ? $_REQUEST['description'] : $_REQUEST['name']);
 
-	//webodf has to send an encoded string so that all browsers can handle the post-back
-	$_REQUEST['data'] = base64_decode($_REQUEST['data']);
+    //webodf has to send an encoded string so that all browsers can handle the post-back
+    $_REQUEST['data'] = base64_decode($_REQUEST['data']);
 
-	$type = $mimetypes['odt'];
+    $type = $mimetypes['odt'];
 
-	$file = Tiki\FileGallery\File::id($fileId);
-	if (! $file->exists()) {
-		$file->init([
-			'galleryId' => $_REQUEST['galleryId'],
-			'description' => $_REQUEST['description'],
-			'user' => $user
-		]);
-	}
-	$file->replace($_REQUEST['data'], $type, $_REQUEST['name'], $_REQUEST['name'] . '.odt');
-	echo $fileId;
-	die;
+    $file = Tiki\FileGallery\File::id($fileId);
+    if (! $file->exists()) {
+        $file->init([
+            'galleryId' => $_REQUEST['galleryId'],
+            'description' => $_REQUEST['description'],
+            'user' => $user
+        ]);
+    }
+    $file->replace($_REQUEST['data'], $type, $_REQUEST['name'], $_REQUEST['name'] . '.odt');
+    echo $fileId;
+    die;
 }
 
 
@@ -114,16 +114,16 @@ $smarty->assign('fileId', $fileId);
 $vendorPath = VendorHelper::getAvailableVendorPath('webodf', 'bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js', false);
 
 if (! $vendorPath) {
-	$smarty->assign('missingPackage', true);
+    $smarty->assign('missingPackage', true);
 } else {
-	$smarty->assign('missingPackage', false);
+    $smarty->assign('missingPackage', false);
 
-	if (isset($_REQUEST['edit'])) {
-		$savingText = json_encode(tr('Saving...'));
-		$smarty->assign('edit', 'true');
+    if (isset($_REQUEST['edit'])) {
+        $savingText = json_encode(tr('Saving...'));
+        $smarty->assign('edit', 'true');
 
-		$headerlib->add_jsfile($vendorPath . '/bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js');
-		$headerlib->add_jq_onready("
+        $headerlib->add_jsfile($vendorPath . '/bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js');
+        $headerlib->add_jq_onready("
 Wodo.createTextEditor('tiki_doc', {
 	allFeaturesEnabled: true
 }, function (err, editor) {
@@ -167,15 +167,15 @@ Wodo.createTextEditor('tiki_doc', {
 	});
 });
 ");
-	} else {
-		$smarty->assign('edit', 'false');
+    } else {
+        $smarty->assign('edit', 'false');
 
-		$headerlib->add_jsfile($vendorPath . '/bower-asset/wodo.texteditor/wodotexteditor/webodf.js');
-		$headerlib->add_jq_onready("
+        $headerlib->add_jsfile($vendorPath . '/bower-asset/wodo.texteditor/wodotexteditor/webodf.js');
+        $headerlib->add_jq_onready("
 window.odfcanvas = new odf.OdfCanvas($('#tiki_doc')[0]);
 odfcanvas.load('tiki-download_file.php?fileId=' + $('#fileId').val());
 ");
-	}
+    }
 }
 
 

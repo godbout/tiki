@@ -19,20 +19,20 @@ $refresh = 1000 * $_REQUEST["refresh"];
 		<script language = 'Javascript' type = 'text/javascript'>
 
 		<?php
-		$zones = $htmlpageslib->list_html_page_content($_REQUEST["pageName"], 0, -1, 'zone_asc', '');
-		$cmds = [];
-		$temp_max = count($zones["data"]);
-		for ($i = 0; $i < $temp_max; $i++) {
-			$cmd = 'top.document.getElementById("' . $zones["data"][$i]["zone"] . '").innerHTML="' . $zones["data"][$i]["content"] . '";';
-			echo $cmd;
-		}
+        $zones = $htmlpageslib->list_html_page_content($_REQUEST["pageName"], 0, -1, 'zone_asc', '');
+        $cmds = [];
+        $temp_max = count($zones["data"]);
+        for ($i = 0; $i < $temp_max; $i++) {
+            $cmd = 'top.document.getElementById("' . $zones["data"][$i]["zone"] . '").innerHTML="' . $zones["data"][$i]["content"] . '";';
+            echo $cmd;
+        }
 ?>
 
 		</script>
 	</head>
 
 	<body onload = "window.setInterval('location.reload()','<?php
-	echo $refresh ?>');">
+    echo $refresh ?>');">
 
 	</body>
 </html>

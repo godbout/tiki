@@ -15,10 +15,10 @@ $auto_query_args = ['quizId', 'questionId', 'sort_mode', 'offset', 'find'];
 $access->check_feature('feature_quizzes');
 
 if (! isset($_REQUEST['quizId'])) {
-	$smarty->assign('msg', tra('No quiz indicated'));
+    $smarty->assign('msg', tra('No quiz indicated'));
 
-	$smarty->display('error.tpl');
-	die;
+    $smarty->display('error.tpl');
+    die;
 }
 
 $tikilib->get_perm_object($_REQUEST['quizId'], 'quiz');
@@ -33,19 +33,19 @@ $quiz_info = $quizlib->get_quiz($_REQUEST['quizId']);
 $smarty->assign('quiz_info', $quiz_info);
 
 if (! isset($_REQUEST['questionId'])) {
-	$_REQUEST['questionId'] = 0;
+    $_REQUEST['questionId'] = 0;
 }
 
 $smarty->assign('questionId', $_REQUEST['questionId']);
 
 if ($_REQUEST['questionId']) {
-	$info = $quizlib->get_quiz_question($_REQUEST['questionId']);
+    $info = $quizlib->get_quiz_question($_REQUEST['questionId']);
 } else {
-	$info = [];
+    $info = [];
 
-	$info['question'] = '';
-	$info['type'] = '';
-	$info['position'] = '';
+    $info['question'] = '';
+    $info['type'] = '';
+    $info['position'] = '';
 }
 
 $smarty->assign('question', $info['question']);
@@ -53,75 +53,75 @@ $smarty->assign('type', $info['type']);
 $smarty->assign('position', $info['position']);
 
 if (isset($_REQUEST['remove'])) {
-	$access->check_authenticity();
-	$quizlib->remove_quiz_question($_REQUEST['remove']);
+    $access->check_authenticity();
+    $quizlib->remove_quiz_question($_REQUEST['remove']);
 }
 
 if (isset($_REQUEST['save'])) {
-	check_ticket('edit-quiz-question');
+    check_ticket('edit-quiz-question');
 
-	$quizlib->replace_quiz_question(
-		$_REQUEST['questionId'],
-		$_REQUEST['question'],
-		$_REQUEST['questionType'],
-		$_REQUEST['quizId'],
-		$_REQUEST['position']
-	);
+    $quizlib->replace_quiz_question(
+        $_REQUEST['questionId'],
+        $_REQUEST['question'],
+        $_REQUEST['questionType'],
+        $_REQUEST['quizId'],
+        $_REQUEST['position']
+    );
 
-	$smarty->assign('question', '');
-	$smarty->assign('questionId', 0);
+    $smarty->assign('question', '');
+    $smarty->assign('questionId', 0);
 }
 
 if (isset($_REQUEST['import'])) {
-	check_ticket('edit-quiz-question');
+    check_ticket('edit-quiz-question');
 
-	$questions = TextToQuestions($_REQUEST['input_data']);
+    $questions = TextToQuestions($_REQUEST['input_data']);
 
-	foreach ($questions as $question) {
-		$question_text = $question->getQuestion();
-		$id = $quizlib->replace_quiz_question(0, $question_text, 'o', $_REQUEST['quizId'], 0);
-		$temp_max = $question->getChoiceCount();
-		for ($i = 0; $i < $temp_max; $i++) {
-			$a = $question->GetChoice($i);
-			$b = $question->GetCorrect($i);
-			$quizlib->replace_question_option(0, $a, $b, $id);
-		}
-	}
+    foreach ($questions as $question) {
+        $question_text = $question->getQuestion();
+        $id = $quizlib->replace_quiz_question(0, $question_text, 'o', $_REQUEST['quizId'], 0);
+        $temp_max = $question->getChoiceCount();
+        for ($i = 0; $i < $temp_max; $i++) {
+            $a = $question->GetChoice($i);
+            $b = $question->GetCorrect($i);
+            $quizlib->replace_question_option(0, $a, $b, $id);
+        }
+    }
 
-	$smarty->assign('question', '');
-	$smarty->assign('questionId', 0);
+    $smarty->assign('question', '');
+    $smarty->assign('questionId', 0);
 }
 
 if (isset($_REQUEST['useQuestion'])) {
-	check_ticket('edit-quiz-question');
-	$info = $quizlib->get_quiz_question($_REQUEST['usequestionid']);
+    check_ticket('edit-quiz-question');
+    $info = $quizlib->get_quiz_question($_REQUEST['usequestionid']);
 
-	$qid = $quizlib->replace_quiz_question(0, $info['question'], $info['type'], $_REQUEST['quizId'], $_REQUEST['position']);
-	$options = $quizlib->list_quiz_question_options($info['questionId'], 0, -1, 'points_desc', '');
+    $qid = $quizlib->replace_quiz_question(0, $info['question'], $info['type'], $_REQUEST['quizId'], $_REQUEST['position']);
+    $options = $quizlib->list_quiz_question_options($info['questionId'], 0, -1, 'points_desc', '');
 
-	foreach ($options['data'] as $opt) {
-		$quizlib->replace_question_option(0, $opt['optionText'], $opt['points'], $qid);
-	}
+    foreach ($options['data'] as $opt) {
+        $quizlib->replace_question_option(0, $opt['optionText'], $opt['points'], $qid);
+    }
 }
 
 if (! isset($_REQUEST['sort_mode'])) {
-	$sort_mode = 'position_asc';
+    $sort_mode = 'position_asc';
 } else {
-	$sort_mode = $_REQUEST['sort_mode'];
+    $sort_mode = $_REQUEST['sort_mode'];
 }
 
 if (! isset($_REQUEST['offset'])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST['offset'];
+    $offset = $_REQUEST['offset'];
 }
 
 $smarty->assign_by_ref('offset', $offset);
 
 if (isset($_REQUEST['find'])) {
-	$find = $_REQUEST['find'];
+    $find = $_REQUEST['find'];
 } else {
-	$find = '';
+    $find = '';
 }
 
 $smarty->assign('find', $find);
@@ -140,7 +140,7 @@ $smarty->assign_by_ref('channels', $channels['data']);
 $positions = [];
 
 for ($i = 1; $i < 100; $i++) {
-	$positions[] = $i;
+    $positions[] = $i;
 }
 
 $smarty->assign('positions', $positions);

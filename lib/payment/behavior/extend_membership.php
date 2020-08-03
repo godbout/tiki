@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,20 +8,20 @@
 
 function payment_behavior_extend_membership($users, $group, $periods = 1, $groupId = 0)
 {
-	$userlib = TikiLib::lib('user');
+    $userlib = TikiLib::lib('user');
 
-	$users = (array) $users;
+    $users = (array) $users;
 
-	foreach ($users as $u) {
-		$userlib->extend_membership($u, $group, $periods);
-		$attributelib = TikiLib::lib('attribute');
-		$attributes = $attributelib->get_attributes('user', $u);
+    foreach ($users as $u) {
+        $userlib->extend_membership($u, $group, $periods);
+        $attributelib = TikiLib::lib('attribute');
+        $attributes = $attributelib->get_attributes('user', $u);
 
-		foreach ($attributes as $a) {
-			$attname = 'tiki.memberextend.' . $groupId;
-			if (isset($attributes[$attname])) {
-				$attributelib->set_attribute('user', $u, $attname, '');
-			}
-		}
-	}
+        foreach ($attributes as $a) {
+            $attname = 'tiki.memberextend.' . $groupId;
+            if (isset($attributes[$attname])) {
+                $attributelib->set_attribute('user', $u, $attname, '');
+            }
+        }
+    }
 }

@@ -9,6 +9,6 @@
 // $Id$
 
 if ($prefs['feature_messages'] == 'y' && $tiki_p_messages == 'y') {
-	$unread = $tikilib->user_unread_messages($user);
-	$smarty->assign('unread', $unread);
+    $unread = $tikilib->user_unread_messages($user);
+    $smarty->assign('unread', $unread);
 }

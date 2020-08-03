@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -14,38 +15,38 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class IndexCatchUpCommand extends Command
 {
-	protected function configure()
-	{
-		$this
-			->setName('index:catch-up')
-			->setDescription('Catch-up on incremental indexing.')
-			->addArgument(
-				'amount',
-				InputArgument::OPTIONAL,
-				'Amount of queue entries to catch-up on',
-				10
-			);
-	}
+    protected function configure()
+    {
+        $this
+            ->setName('index:catch-up')
+            ->setDescription('Catch-up on incremental indexing.')
+            ->addArgument(
+                'amount',
+                InputArgument::OPTIONAL,
+                'Amount of queue entries to catch-up on',
+                10
+            );
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output)
-	{
-		$amount = (int) $input->getArgument('amount');
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $amount = (int) $input->getArgument('amount');
 
-		$unifiedsearchlib = \TikiLib::lib('unifiedsearch');
+        $unifiedsearchlib = \TikiLib::lib('unifiedsearch');
 
-		try {
-			$output->writeln('Started processing queue...');
+        try {
+            $output->writeln('Started processing queue...');
 
-			$result = $unifiedsearchlib->processUpdateQueue($amount);
+            $result = $unifiedsearchlib->processUpdateQueue($amount);
 
-			$count = $unifiedsearchlib->getQueueCount();
+            $count = $unifiedsearchlib->getQueueCount();
 
-			$output->writeln('Processing completed. Amount remaining: ' . $count);
-		} catch (ZendSearch\Lucene\Exception\ExceptionInterface $e) {
-			$msg = tr('Search index could not be updated: %0', $e->getMessage());
-			\Feedback::error($msg);
-		}
+            $output->writeln('Processing completed. Amount remaining: ' . $count);
+        } catch (ZendSearch\Lucene\Exception\ExceptionInterface $e) {
+            $msg = tr('Search index could not be updated: %0', $e->getMessage());
+            \Feedback::error($msg);
+        }
 
-		\Feedback::printToConsole($output);
-	}
+        \Feedback::printToConsole($output);
+    }
 }

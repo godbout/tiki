@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -16,36 +17,36 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function module_forums_last_posts_info()
 {
-	return [
-		'name' => tra('Newest Forum Posts'),
-		'description' => tra('Displays the latest forum posts.'),
-		'prefs' => ['feature_forums'],
-		'params' => [
-			'topics' => [
-				'name' => tra('Topics only'),
-				'description' => tra('If set to "y", only displays topics.') . " " . tr('Not set by default.'),
-				],
-			'forumId' => [
-				'name' => tra('List of forum identifiers'),
-				'description' => tra('If set to a list of forum identifiers, restricts the posts to those in the identified forums. Identifiers are separated by colons (":").') . " " . tra('Example values:') . '"13", "31:49". ' . tra('Not set by default.'),
-				'separator' => ':',
-				'profile_reference' => 'forum',
-			],
-			'date' => [
-				'name' => tra('Show date'),
-				'description' => tra('If set to "y", show post date directly instead of as tooltip.') . ' ' . tra('Default:') . ' n',
-			],
-			'time' => [
-				'name' => tra('Show time'),
-				'description' => tra('Show times after dates.') . ' ' . tra('Default:') . ' y',
-			],
-			'author' => [
-				'name' => tra('Show author'),
-				'description' => tra('If set to "y", show post author directly instead of as tooltip.') . ' ' . tra('Default:') . ' n',
-			],
-		],
-		'common_params' => ['nonums', 'rows']
-	];
+    return [
+        'name' => tra('Newest Forum Posts'),
+        'description' => tra('Displays the latest forum posts.'),
+        'prefs' => ['feature_forums'],
+        'params' => [
+            'topics' => [
+                'name' => tra('Topics only'),
+                'description' => tra('If set to "y", only displays topics.') . " " . tr('Not set by default.'),
+                ],
+            'forumId' => [
+                'name' => tra('List of forum identifiers'),
+                'description' => tra('If set to a list of forum identifiers, restricts the posts to those in the identified forums. Identifiers are separated by colons (":").') . " " . tra('Example values:') . '"13", "31:49". ' . tra('Not set by default.'),
+                'separator' => ':',
+                'profile_reference' => 'forum',
+            ],
+            'date' => [
+                'name' => tra('Show date'),
+                'description' => tra('If set to "y", show post date directly instead of as tooltip.') . ' ' . tra('Default:') . ' n',
+            ],
+            'time' => [
+                'name' => tra('Show time'),
+                'description' => tra('Show times after dates.') . ' ' . tra('Default:') . ' y',
+            ],
+            'author' => [
+                'name' => tra('Show author'),
+                'description' => tra('If set to "y", show post author directly instead of as tooltip.') . ' ' . tra('Default:') . ' n',
+            ],
+        ],
+        'common_params' => ['nonums', 'rows']
+    ];
 }
 
 /**
@@ -54,16 +55,16 @@ function module_forums_last_posts_info()
  */
 function module_forums_last_posts($mod_reference, $module_params)
 {
-	$smarty = TikiLib::lib('smarty');
-	global $ranklib;
-	include_once('lib/rankings/ranklib.php');
-	$default = ['forumId' => '', 'topics' => false];
-	$module_params = array_merge($default, $module_params);
-	$ranking = $ranklib->forums_ranking_last_posts($mod_reference['rows'], $module_params['topics'], $module_params['forumId']);
+    $smarty = TikiLib::lib('smarty');
+    global $ranklib;
+    include_once('lib/rankings/ranklib.php');
+    $default = ['forumId' => '', 'topics' => false];
+    $module_params = array_merge($default, $module_params);
+    $ranking = $ranklib->forums_ranking_last_posts($mod_reference['rows'], $module_params['topics'], $module_params['forumId']);
 
-	$replyprefix = tra("Re:");
+    $replyprefix = tra("Re:");
 
-	$smarty->assign('modForumsLastPosts', $ranking["data"]);
-	$smarty->assign('date', isset($module_params['date']) ? $module_params['date'] : 'n');
-	$smarty->assign('author', isset($module_params['author']) ? $module_params['author'] : 'n');
+    $smarty->assign('modForumsLastPosts', $ranking["data"]);
+    $smarty->assign('date', isset($module_params['date']) ? $module_params['date'] : 'n');
+    $smarty->assign('author', isset($module_params['author']) ? $module_params['author'] : 'n');
 }

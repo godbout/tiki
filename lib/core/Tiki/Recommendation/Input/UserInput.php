@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,15 +10,15 @@ namespace Tiki\Recommendation\Input;
 
 class UserInput
 {
-	private $user;
+    private $user;
 
-	function __construct($username)
-	{
-		$this->user = $username;
-	}
+    public function __construct($username)
+    {
+        $this->user = $username;
+    }
 
-	function getUser()
-	{
-		return $this->user;
-	}
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

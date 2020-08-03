@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -11,26 +12,27 @@ use Tiki\MailIn\Action;
 
 class FilePutProvider implements ProviderInterface
 {
-	function isEnabled()
-	{
-		global $prefs;
-		return $prefs['feature_file_galleries'] == 'y';
-	}
+    public function isEnabled()
+    {
+        global $prefs;
 
-	function getType()
-	{
-		return 'file-put';
-	}
+        return $prefs['feature_file_galleries'] == 'y';
+    }
 
-	function getLabel()
-	{
-		return tr('Save email as a file');
-	}
+    public function getType()
+    {
+        return 'file-put';
+    }
 
-	function getActionFactory(array $acc)
-	{
-		return new Action\DirectFactory('Tiki\MailIn\Action\FilePut', [
-			'galleryId' => $acc['galleryId'],
-		]);
-	}
+    public function getLabel()
+    {
+        return tr('Save email as a file');
+    }
+
+    public function getActionFactory(array $acc)
+    {
+        return new Action\DirectFactory('Tiki\MailIn\Action\FilePut', [
+            'galleryId' => $acc['galleryId'],
+        ]);
+    }
 }

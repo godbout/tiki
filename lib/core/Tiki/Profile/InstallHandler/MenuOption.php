@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,53 +8,55 @@
 
 class Tiki_Profile_InstallHandler_MenuOption extends Tiki_Profile_InstallHandler
 {
-	function getData()
-	{
-		if ($this->data) {
-			return $this->data;
-		}
+    public function getData()
+    {
+        if ($this->data) {
+            return $this->data;
+        }
 
-		$defaults = [
-			'type' => 'o',
-			'optionId' => 0,
-			'position' => 1,
-			'section' => '',
-			'perm' => '',
-			'groups' => [],
-			'level' => 0,
-			'icon' => '',
-			'menuId' => 0
-		];
+        $defaults = [
+            'type' => 'o',
+            'optionId' => 0,
+            'position' => 1,
+            'section' => '',
+            'perm' => '',
+            'groups' => [],
+            'level' => 0,
+            'icon' => '',
+            'menuId' => 0
+        ];
 
 
-		$data = $this->obj->getData();
+        $data = $this->obj->getData();
 
-		$data = array_merge($defaults, $data);
+        $data = array_merge($defaults, $data);
 
-		$this->replaceReferences($data);
+        $this->replaceReferences($data);
 
-		if (! empty($data['menuId']) && ! empty($data['url'])) {
-			$menulib = TikiLib::lib('menu');
-			$data['optionId'] = $menulib->get_option($data['menuId'], $data['url']);
-		}
-		return $this->data = $data;
-	}
+        if (! empty($data['menuId']) && ! empty($data['url'])) {
+            $menulib = TikiLib::lib('menu');
+            $data['optionId'] = $menulib->get_option($data['menuId'], $data['url']);
+        }
 
-	function canInstall()
-	{
-		$data = $this->getData();
+        return $this->data = $data;
+    }
 
-		if (! isset($data['url']) || ! isset($data['menuId'])) {
-			return false;
-		}
-		return true;
-	}
-	function _install()
-	{
-		$menulib = TikiLib::lib('menu');
+    public function canInstall()
+    {
+        $data = $this->getData();
 
-		$data = $this->getData();
+        if (! isset($data['url']) || ! isset($data['menuId'])) {
+            return false;
+        }
 
-		return $menulib->replace_menu_option($data['menuId'], $data['optionId'], $data['name'], $data['url'], $data['type'], $data['position'], $data['section'], $data['perm'], implode(',', $data['groups']), $data['level'], $data['icon']);
-	}
+        return true;
+    }
+    public function _install()
+    {
+        $menulib = TikiLib::lib('menu');
+
+        $data = $this->getData();
+
+        return $menulib->replace_menu_option($data['menuId'], $data['optionId'], $data['name'], $data['url'], $data['type'], $data['position'], $data['section'], $data['perm'], implode(',', $data['groups']), $data['level'], $data['icon']);
+    }
 }

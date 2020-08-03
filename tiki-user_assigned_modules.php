@@ -18,88 +18,88 @@ $access->check_permission('tiki_p_configure_modules');
 $usermoduleslib = TikiLib::lib('usermodules');
 
 if (isset($_REQUEST["recreate"]) && $access->checkCsrf()) {
-	$result = $usermoduleslib->create_user_assigned_modules($user);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('Default user modules restored'));
-	} else {
-		Feedback::error(tr('Default user modules not restored'));
-	}
+    $result = $usermoduleslib->create_user_assigned_modules($user);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('Default user modules restored'));
+    } else {
+        Feedback::error(tr('Default user modules not restored'));
+    }
 }
 
 // Initial setup of default modules - no ticket required even though this changes the database. Origin is checked.
 if (! $usermoduleslib->user_has_assigned_modules($user) && $access->checkCsrf(tr('As the first step in assigning user modules, click "Confirm action" to create the default module assignments'))) {
-	$result = $usermoduleslib->create_user_assigned_modules($user);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('Default user modules assigned'));
-	} else {
-		Feedback::error(tr('Default user modules not assigned'));
-	}
+    $result = $usermoduleslib->create_user_assigned_modules($user);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('Default user modules assigned'));
+    } else {
+        Feedback::error(tr('Default user modules not assigned'));
+    }
 }
 
 if (isset($_REQUEST["unassign"]) && $access->checkCsrf()) {
-	$result = $usermoduleslib->unassign_user_module($_REQUEST["unassign"], $user);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('User module unassigned'));
-	} else {
-		Feedback::error(tr('User module not unassigned'));
-	}
+    $result = $usermoduleslib->unassign_user_module($_REQUEST["unassign"], $user);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('User module unassigned'));
+    } else {
+        Feedback::error(tr('User module not unassigned'));
+    }
 }
 
 if (isset($_REQUEST["assign"]) && $access->checkCsrf()) {
-	$result = $usermoduleslib->assign_user_module($_REQUEST["module"], $_REQUEST["position"], $_REQUEST["order"], $user);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('User module assigned'));
-	} else {
-		Feedback::error(tr('User module not assigned'));
-	}
+    $result = $usermoduleslib->assign_user_module($_REQUEST["module"], $_REQUEST["position"], $_REQUEST["order"], $user);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('User module assigned'));
+    } else {
+        Feedback::error(tr('User module not assigned'));
+    }
 }
 
 if (isset($_REQUEST["up"]) && $access->checkCsrf()) {
-	$result = $usermoduleslib->up_user_module($_REQUEST["up"], $user);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('User module display order moved up. Displayed order may not change if other modules now have the same order rank.'));
-	} else {
-		Feedback::error(tr('User module display order not moved up'));
-	}
+    $result = $usermoduleslib->up_user_module($_REQUEST["up"], $user);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('User module display order moved up. Displayed order may not change if other modules now have the same order rank.'));
+    } else {
+        Feedback::error(tr('User module display order not moved up'));
+    }
 }
 
 if (isset($_REQUEST["down"]) && $access->checkCsrf()) {
-	$result = $usermoduleslib->down_user_module($_REQUEST["down"], $user);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('User module display order moved down. Displayed order may not change if other modules now have the same order rank.'));
-	} else {
-		Feedback::error(tr('User module display order not moved down'));
-	}
+    $result = $usermoduleslib->down_user_module($_REQUEST["down"], $user);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('User module display order moved down. Displayed order may not change if other modules now have the same order rank.'));
+    } else {
+        Feedback::error(tr('User module display order not moved down'));
+    }
 }
 
 if (isset($_REQUEST["left"]) && $access->checkCsrf()) {
-	$result = $usermoduleslib->set_column_user_module($_REQUEST["left"], $user, 'left');
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('User module moved to left column'));
-	} else {
-		Feedback::error(tr('User module not moved to left column'));
-	}
+    $result = $usermoduleslib->set_column_user_module($_REQUEST["left"], $user, 'left');
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('User module moved to left column'));
+    } else {
+        Feedback::error(tr('User module not moved to left column'));
+    }
 }
 
 if (isset($_REQUEST["right"]) && $access->checkCsrf()) {
-	$result = $usermoduleslib->set_column_user_module($_REQUEST["right"], $user, 'right');
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('User module moved to right column'));
-	} else {
-		Feedback::error(tr('User module not moved to right column'));
-	}
+    $result = $usermoduleslib->set_column_user_module($_REQUEST["right"], $user, 'right');
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('User module moved to right column'));
+    } else {
+        Feedback::error(tr('User module not moved to right column'));
+    }
 }
 
 $orders = [];
 for ($i = 1; $i < 50; $i++) {
-	$orders[] = $i;
+    $orders[] = $i;
 }
 $smarty->assign_by_ref('orders', $orders);
 $assignables = $usermoduleslib->get_user_assignable_modules($user);
 if (count($assignables) > 0) {
-	$smarty->assign('canassign', 'y');
+    $smarty->assign('canassign', 'y');
 } else {
-	$smarty->assign('canassign', 'n');
+    $smarty->assign('canassign', 'n');
 }
 $modules = $usermoduleslib->get_user_assigned_modules($user);
 $smarty->assign('modules_l', $usermoduleslib->get_user_assigned_modules_pos($user, 'left'));

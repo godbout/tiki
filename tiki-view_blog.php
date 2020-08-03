@@ -13,29 +13,29 @@ require_once('tiki-setup.php');
 $bloglib = TikiLib::lib('blog');
 
 $auto_query_args = [
-	'blogId'
+    'blogId'
 ];
 
 if ($prefs['feature_freetags'] == 'y') {
-	$freetaglib = TikiLib::lib('freetag');
+    $freetaglib = TikiLib::lib('freetag');
 }
 
 if ($prefs['feature_categories'] == 'y') {
-	$categlib = TikiLib::lib('categ');
+    $categlib = TikiLib::lib('categ');
 }
 
 $access->check_feature('feature_blogs');
 
 if (isset($_REQUEST["blogTitle"])) {
-	$blog_data = $bloglib->get_blog_by_title(trim(trim($_REQUEST["blogTitle"]), "\x22\x27"));
-	if ((! empty($blog_data)) && (! empty($blog_data["blogId"]))) {
-		$_REQUEST["blogId"] = $blog_data["blogId"];
-	}
+    $blog_data = $bloglib->get_blog_by_title(trim(trim($_REQUEST["blogTitle"]), "\x22\x27"));
+    if ((! empty($blog_data)) && (! empty($blog_data["blogId"]))) {
+        $_REQUEST["blogId"] = $blog_data["blogId"];
+    }
 }
 if (! isset($_REQUEST["blogId"])) {
-	$smarty->assign('msg', tra("No blog indicated"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("No blog indicated"));
+    $smarty->display("error.tpl");
+    die;
 }
 $tikilib->get_perm_object($_REQUEST["blogId"], 'blog');
 
@@ -45,22 +45,22 @@ $access->check_permission('tiki_p_read_blog', '', 'blog', $_REQUEST["blogId"]);
 $blog_data = $bloglib->get_blog($_REQUEST["blogId"]);
 $ownsblog = 'n';
 if ($user && $user == $blog_data["user"]) {
-	$ownsblog = 'y';
+    $ownsblog = 'y';
 }
 $smarty->assign('ownsblog', $ownsblog);
 if (! $blog_data) {
-	$smarty->assign('msg', tra("Blog not found"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("Blog not found"));
+    $smarty->display("error.tpl");
+    die;
 }
 
 // We need to figure out in which section and theme we are before any call to tiki-modules.php
 // which needs $tc_theme for deciding on the visible modules everywhere in the page
 include_once('tiki-section_options.php');
 if ($prefs['feature_theme_control'] == 'y') {
-	$cat_type = 'blog';
-	$cat_objid = $_REQUEST['blogId'];
-	include('tiki-tc.php');
+    $cat_type = 'blog';
+    $cat_objid = $_REQUEST['blogId'];
+    include('tiki-tc.php');
 }
 
 $bloglib->add_blog_hit($_REQUEST["blogId"]);
@@ -86,40 +86,40 @@ $smarty->assign('activity', $blog_data["activity"]);
 $smarty->assign('use_excerpt', $blog_data["use_excerpt"]);
 $smarty->assign('blog_data', $blog_data);
 if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
-	$data = $bloglib->get_post($_POST["remove"]);
-	if ($user && $blog_data['public'] == 'y' && $tikilib->user_has_perm_on_object($user, $_POST['blogId'], 'blog', 'tiki_p_blog_post')) {
-		$data["user"] = $user;
-	}
-	if ($ownsblog == 'n') {
-		if (! $user || $data["user"] != $user) {
-			$access->check_permission('tiki_p_blog_admin');
-		}
-	}
-	$bloglib->remove_post($_POST["remove"]);
+    $data = $bloglib->get_post($_POST["remove"]);
+    if ($user && $blog_data['public'] == 'y' && $tikilib->user_has_perm_on_object($user, $_POST['blogId'], 'blog', 'tiki_p_blog_post')) {
+        $data["user"] = $user;
+    }
+    if ($ownsblog == 'n') {
+        if (! $user || $data["user"] != $user) {
+            $access->check_permission('tiki_p_blog_admin');
+        }
+    }
+    $bloglib->remove_post($_POST["remove"]);
 }
 // This script can receive the threshold
 // for the information as the number of
 // days to get in the log 1,3,4,etc
 // it will default to 1 recovering information for today
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'created_desc';
+    $sort_mode = 'created_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 // If offset is set use it if not then use offset =0
 // use the maxRecords php variable to set the limit
 // if sortMode is not set then use lastModif_desc
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 // Get a list of last changes to the blog database
@@ -135,41 +135,41 @@ $smarty->assign('maxRecords', $maxRecords);
 $smarty->assign_by_ref('listpages', $listpages["data"]);
 $smarty->assign_by_ref('cant', $listpages["cant"]);
 if ($user && $prefs['feature_notepad'] == 'y' && $tiki_p_notepad == 'y' && isset($_REQUEST['savenotepad']) && $access->checkCsrf(true)) {
-	$post_info = $bloglib->get_post($_POST['savenotepad']);
-	$tikilib->replace_note($user, 0, $post_info['title'] ? $post_info['title'] : $tikilib->date_format("%d/%m/%Y [%H:%M]", $post_info['created']), $post_info['data']);
+    $post_info = $bloglib->get_post($_POST['savenotepad']);
+    $tikilib->replace_note($user, 0, $post_info['title'] ? $post_info['title'] : $tikilib->date_format("%d/%m/%Y [%H:%M]", $post_info['created']), $post_info['data']);
 }
 if ($prefs['feature_user_watches'] == 'y') {
-if ($user && isset($_REQUEST['watch_event']) && $access->checkCsrf(true)) {
-		if ($_POST['watch_action'] == 'add') {
-			$tikilib->add_user_watch($user, $_POST['watch_event'], $_POST['watch_object'], 'blog', $blog_data['title'], "tiki-view_blog.php?blogId=" . $_POST['blogId']);
-		} else {
-			$tikilib->remove_user_watch($user, $_POST['watch_event'], $_POST['watch_object'], 'blog');
-		}
-	}
-	$smarty->assign('user_watching_blog', 'n');
-	if ($user && $tikilib->user_watches($user, 'blog_post', $_REQUEST['blogId'], 'blog')) {
-		$smarty->assign('user_watching_blog', 'y');
-	}
-	// Check, if the user is watching this blog by a category.
-	if ($prefs['feature_categories'] == 'y') {
-		$watching_categories_temp = $categlib->get_watching_categories($_REQUEST['blogId'], 'blog', $user);
-		$smarty->assign('category_watched', 'n');
-		if (count($watching_categories_temp) > 0) {
-			$smarty->assign('category_watched', 'y');
-			$watching_categories = [];
-			foreach ($watching_categories_temp as $wct) {
-				$watching_categories[] = [
-					"categId" => $wct,
-					"name" => $categlib->get_category_name($wct)
-				];
-			}
-			$smarty->assign('watching_categories', $watching_categories);
-		}
-	}
+    if ($user && isset($_REQUEST['watch_event']) && $access->checkCsrf(true)) {
+        if ($_POST['watch_action'] == 'add') {
+            $tikilib->add_user_watch($user, $_POST['watch_event'], $_POST['watch_object'], 'blog', $blog_data['title'], "tiki-view_blog.php?blogId=" . $_POST['blogId']);
+        } else {
+            $tikilib->remove_user_watch($user, $_POST['watch_event'], $_POST['watch_object'], 'blog');
+        }
+    }
+    $smarty->assign('user_watching_blog', 'n');
+    if ($user && $tikilib->user_watches($user, 'blog_post', $_REQUEST['blogId'], 'blog')) {
+        $smarty->assign('user_watching_blog', 'y');
+    }
+    // Check, if the user is watching this blog by a category.
+    if ($prefs['feature_categories'] == 'y') {
+        $watching_categories_temp = $categlib->get_watching_categories($_REQUEST['blogId'], 'blog', $user);
+        $smarty->assign('category_watched', 'n');
+        if (count($watching_categories_temp) > 0) {
+            $smarty->assign('category_watched', 'y');
+            $watching_categories = [];
+            foreach ($watching_categories_temp as $wct) {
+                $watching_categories[] = [
+                    "categId" => $wct,
+                    "name" => $categlib->get_category_name($wct)
+                ];
+            }
+            $smarty->assign('watching_categories', $watching_categories);
+        }
+    }
 }
 
 if ($prefs['feature_actionlog'] == 'y') {
-	$logslib->add_action('Viewed', $_REQUEST['blogId'], 'blog', '');
+    $logslib->add_action('Viewed', $_REQUEST['blogId'], 'blog', '');
 }
 // Display the template
 $smarty->assign('mid', 'tiki-view_blog.tpl');

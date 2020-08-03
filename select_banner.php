@@ -9,7 +9,7 @@
 // $Id$
 
 if (! isset($_REQUEST["zone"])) {
-	die;
+    die;
 }
 
 require_once('tiki-setup.php');
@@ -20,4 +20,4 @@ $bannerlib = TikiLib::lib('banner');
 $access->check_feature('feature_banners');
 
 $banner = $bannerlib->select_banner($_REQUEST["zone"]);
-print ($banner);
+print($banner);

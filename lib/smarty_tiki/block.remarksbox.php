@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -38,110 +39,116 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 {
-	global $prefs;
+    global $prefs;
 
-	if ($repeat) {
-		return '';
-	}
+    if ($repeat) {
+        return '';
+    }
 
-	static $remarksboxInstance = 0;
-	$remarksboxInstance++;
+    static $remarksboxInstance = 0;
+    $remarksboxInstance++;
 
-	$params = array_merge([	// default params
-		'type' => 'tip',
-		'title' => '',
-		'highlight' => '',
+    $params = array_merge([	// default params
+        'type' => 'tip',
+        'title' => '',
+        'highlight' => '',
 //		'icon' => '',	// can be empty
-		'close' => 'y',
-		'width' => '',
-		'store_cookie' => 'y',
-		'id' => 'rbox_' . $remarksboxInstance,
-		'version' => '',
-		'title_tag' => 'div',
-		'title_class' => 'alert-heading h4',
-	], $params);
+        'close' => 'y',
+        'width' => '',
+        'store_cookie' => 'y',
+        'id' => 'rbox_' . $remarksboxInstance,
+        'version' => '',
+        'title_tag' => 'div',
+        'title_class' => 'alert-heading h4',
+    ], $params);
 
-	if ($params['close'] != 'y' || $prefs['remember_closed_rboxes'] === 'n') {
-		$params['store_cookie'] = 'n';
-	}
+    if ($params['close'] != 'y' || $prefs['remember_closed_rboxes'] === 'n') {
+        $params['store_cookie'] = 'n';
+    }
 
-	if (isset($params['highlight']) && $params['highlight'] == 'y') {
-		$highlightClass = ' highlight';
-	} else {
-		$highlightClass = '';
-	}
+    if (isset($params['highlight']) && $params['highlight'] == 'y') {
+        $highlightClass = ' highlight';
+    } else {
+        $highlightClass = '';
+    }
 
-	switch ($params['type']) {
-		case 'error':
-		case 'errors':
-		case 'danger':
-			$class = 'alert-danger';
-			$icon = 'error';
-			break;
-		case 'warning':
-			$class = 'alert-warning';
-			$icon = 'warning';
-			break;
-		case 'success':
-		case 'confirm':
-		case 'feedback': // Deprecated
-			$class = 'alert-success';
-			$icon = 'success';
-			break;
-		case 'comment':
-			$class = 'alert-info';
-			$icon = 'comment';
-			break;
-		case 'info':
-		case 'note':
-		case 'tip':
-		default:
-			$class = 'alert-info';
-			$icon = 'information';
-			break;
-	}
+    switch ($params['type']) {
+        case 'error':
+        case 'errors':
+        case 'danger':
+            $class = 'alert-danger';
+            $icon = 'error';
 
-	// If a custom icon is part of the paramters we assign it to the $custom_icon
-	if (isset($params['icon'])) {
-		$icon = $params['icon'];
-	};
+            break;
+        case 'warning':
+            $class = 'alert-warning';
+            $icon = 'warning';
 
-	if (isset($prefs['javascript_enabled']) && $prefs['javascript_enabled'] != 'y') {
-		$params['close'] = false;
-		$params['store_cookie'] = false;
-		$cookie_hash = '';
-		$hidden = false;
-	} elseif ($params['store_cookie'] === 'y' && function_exists('getCookie')) {
-		$params['close'] = $params['close'] !== 'n';
-		$params['store_cookie'] = $params['store_cookie'] !== 'n';
-		$cookie_hash = md5($params['title'] . $params['version'] . $content);
-		$hidden = getCookie($cookie_hash, "rbox", false);
-	} else {
-		$params['close'] = $params['close'] !== 'n';
-		$params['store_cookie'] = false;
-		$cookie_hash = '';
-		$hidden = false;
-	}
+            break;
+        case 'success':
+        case 'confirm':
+        case 'feedback': // Deprecated
+            $class = 'alert-success';
+            $icon = 'success';
 
-	$smarty->assign('remarksbox_cookiehash', $cookie_hash);
-	$smarty->assign('remarksbox_cookie', $params['store_cookie']);
-	$smarty->assign('remarksbox_hidden', $hidden);
-	$smarty->assign('remarksbox_id', $params['id']);
-	$smarty->assign('remarksbox_title', $params['title']);
-	$smarty->assign('remarksbox_type', $params['type']);
-	$smarty->assign('remarksbox_icon', $icon);
-	$smarty->assign('remarksbox_class', $class);
-	$smarty->assign('remarksbox_highlight', $highlightClass);
-	$smarty->assign('remarksbox_close', $params['close']);
-	$smarty->assign('remarksbox_width', $params['width']);
-	$smarty->assign('remarksbox_title_tag', $params['title_tag']);
-	$smarty->assign('remarksbox_title_class', $params['title_class']);
-	$smarty->assignByRef('remarksbox_content', $content);
-	return $smarty->fetch('remarksbox.tpl');
+            break;
+        case 'comment':
+            $class = 'alert-info';
+            $icon = 'comment';
+
+            break;
+        case 'info':
+        case 'note':
+        case 'tip':
+        default:
+            $class = 'alert-info';
+            $icon = 'information';
+
+            break;
+    }
+
+    // If a custom icon is part of the paramters we assign it to the $custom_icon
+    if (isset($params['icon'])) {
+        $icon = $params['icon'];
+    };
+
+    if (isset($prefs['javascript_enabled']) && $prefs['javascript_enabled'] != 'y') {
+        $params['close'] = false;
+        $params['store_cookie'] = false;
+        $cookie_hash = '';
+        $hidden = false;
+    } elseif ($params['store_cookie'] === 'y' && function_exists('getCookie')) {
+        $params['close'] = $params['close'] !== 'n';
+        $params['store_cookie'] = $params['store_cookie'] !== 'n';
+        $cookie_hash = md5($params['title'] . $params['version'] . $content);
+        $hidden = getCookie($cookie_hash, "rbox", false);
+    } else {
+        $params['close'] = $params['close'] !== 'n';
+        $params['store_cookie'] = false;
+        $cookie_hash = '';
+        $hidden = false;
+    }
+
+    $smarty->assign('remarksbox_cookiehash', $cookie_hash);
+    $smarty->assign('remarksbox_cookie', $params['store_cookie']);
+    $smarty->assign('remarksbox_hidden', $hidden);
+    $smarty->assign('remarksbox_id', $params['id']);
+    $smarty->assign('remarksbox_title', $params['title']);
+    $smarty->assign('remarksbox_type', $params['type']);
+    $smarty->assign('remarksbox_icon', $icon);
+    $smarty->assign('remarksbox_class', $class);
+    $smarty->assign('remarksbox_highlight', $highlightClass);
+    $smarty->assign('remarksbox_close', $params['close']);
+    $smarty->assign('remarksbox_width', $params['width']);
+    $smarty->assign('remarksbox_title_tag', $params['title_tag']);
+    $smarty->assign('remarksbox_title_class', $params['title_class']);
+    $smarty->assignByRef('remarksbox_content', $content);
+
+    return $smarty->fetch('remarksbox.tpl');
 }

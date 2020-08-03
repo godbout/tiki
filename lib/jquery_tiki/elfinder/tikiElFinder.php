@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,34 +10,34 @@
 
 class tikiElFinder extends elFinder
 {
-	function __construct($opts)
-	{
-		parent::__construct($opts);
-		/* Adding new command */
-		$this->commands['info'] = ['target' => true, 'content' => false];
-	}
+    public function __construct($opts)
+    {
+        parent::__construct($opts);
+        /* Adding new command */
+        $this->commands['info'] = ['target' => true, 'content' => false];
+    }
 
-	protected function info($args)
-	{
-		$target = $args['target'];
-		$newDesc = $args['content'];
-		$error = [self::ERROR_UNKNOWN, '#' . $target];
+    protected function info($args)
+    {
+        $target = $args['target'];
+        $newDesc = $args['content'];
+        $error = [self::ERROR_UNKNOWN, '#' . $target];
 
-		if (($volume = $this->volume($target)) == false
-			|| ($file = $volume->file($target)) == false) {
-			return ['error' => $this->error($error, self::ERROR_FILE_NOT_FOUND)];
-		}
+        if (($volume = $this->volume($target)) == false
+            || ($file = $volume->file($target)) == false) {
+            return ['error' => $this->error($error, self::ERROR_FILE_NOT_FOUND)];
+        }
 
-		$error[1] = $file['name'];
+        $error[1] = $file['name'];
 
-		if ($volume->commandDisabled('info')) {
-			return ['error' => $this->error($error, self::ERROR_ACCESS_DENIED)];
-		}
+        if ($volume->commandDisabled('info')) {
+            return ['error' => $this->error($error, self::ERROR_ACCESS_DENIED)];
+        }
 
-		if (($info = $volume->info($target, $newDesc)) == -1) {
-			return ['error' => $this->error($error, $volume->error())];
-		}
+        if (($info = $volume->info($target, $newDesc)) == -1) {
+            return ['error' => $this->error($error, $volume->error())];
+        }
 
-		return ['info' => $info];
-	}
+        return ['info' => $info];
+    }
 }

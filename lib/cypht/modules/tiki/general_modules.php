@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -10,25 +11,28 @@
  * @package modules
  * @subpackage tiki
  */
-
-if (!defined('DEBUG_MODE')) { die(); }
+if (!defined('DEBUG_MODE')) {
+    die();
+}
 
 /**
  * Load Tiki contacts into the Cypht contact store
  * @subpackage tiki/handler
  */
-class Hm_Handler_load_tiki_contacts extends Hm_Handler_Module {
-    public function process() {
+class Hm_Handler_load_tiki_contacts extends Hm_Handler_Module
+{
+    public function process()
+    {
         global $user;
         $contactlib = TikiLib::lib('contact');
         $contacts = $this->get('contact_store');
         $tiki_contacts = $contactlib->list_contacts($user);
         foreach ($tiki_contacts as $contact) {
-            $contacts->add_contact(array(
+            $contacts->add_contact([
                 'source' => 'tiki',
                 'email_address' => $contact['email'],
-                'display_name' => $contact['firstName'].($contact['lastName'] ? ' '.$contact['lastName'] : '')
-            ));
+                'display_name' => $contact['firstName'] . ($contact['lastName'] ? ' ' . $contact['lastName'] : '')
+            ]);
         }
         $this->append('contact_sources', 'tiki');
         $this->out('contact_store', $contacts, false);
@@ -39,8 +43,10 @@ class Hm_Handler_load_tiki_contacts extends Hm_Handler_Module {
  * Check for Tiki redirect and instruct Cypht to redirect after compose finished successfully
  * @subpackage tiki/handler
  */
-Class Hm_Handler_check_for_tiki_redirect extends Hm_Handler_Module {
-    public function process() {
+class Hm_Handler_check_for_tiki_redirect extends Hm_Handler_Module
+{
+    public function process()
+    {
         if ($this->get('msg_sent') && $this->session->get('pageaftersend')) {
             $this->out('redirect_url', $this->session->get('pageaftersend'));
             $this->session->del('pageaftersend');
@@ -52,8 +58,10 @@ Class Hm_Handler_check_for_tiki_redirect extends Hm_Handler_Module {
  * Add optional Tiki File attachment to compose page
  * @subpackage tiki/handler
  */
-Class Hm_Handler_add_file_attachment extends Hm_Handler_Module {
-    public function process() {
+class Hm_Handler_add_file_attachment extends Hm_Handler_Module
+{
+    public function process()
+    {
         $draft_id = $this->request->get['draft_id'] ?? -1;
         $draft = get_draft($draft_id, $this->session);
         if ($draft && $draft['draft_fattId']) {
@@ -75,13 +83,15 @@ Class Hm_Handler_add_file_attachment extends Hm_Handler_Module {
  * Output the Tiki Contacts menu item
  * @subpackage tiki/output
  */
-class Hm_Output_tiki_contacts_page_link extends Hm_Output_Module {
-    protected function output() {
+class Hm_Output_tiki_contacts_page_link extends Hm_Output_Module
+{
+    protected function output()
+    {
         $res = '<li class="menu_contacts"><a class="unread_link" href="tiki-contacts.php">';
         if (!$this->get('hide_folder_icons')) {
-            $res .= '<img class="account_icon" src="'.$this->html_safe(Hm_Image_Sources::$people).'" alt="" width="16" height="16" /> ';
+            $res .= '<img class="account_icon" src="' . $this->html_safe(Hm_Image_Sources::$people) . '" alt="" width="16" height="16" /> ';
         }
-        $res .= $this->trans('Contacts').'</a></li>';
+        $res .= $this->trans('Contacts') . '</a></li>';
         if ($this->format == 'HTML5') {
             return $res;
         }
@@ -93,9 +103,14 @@ class Hm_Output_tiki_contacts_page_link extends Hm_Output_Module {
  * Save debug setting
  * @subpackage tiki/handler
  */
-class Hm_Handler_process_debug_mode extends Hm_Handler_Module {
-    public function process() {
-        function debug_mode_callback($val) { return $val; }
+class Hm_Handler_process_debug_mode extends Hm_Handler_Module
+{
+    public function process()
+    {
+        function debug_mode_callback($val)
+        {
+            return $val;
+        }
         process_site_setting('debug_mode', $this, 'debug_mode_callback', false, true);
     }
 }
@@ -104,13 +119,16 @@ class Hm_Handler_process_debug_mode extends Hm_Handler_Module {
  * Expose debug setting
  * @subpackage tiki/output
  */
-class Hm_Output_debug_mode_setting extends Hm_Output_Module {
-    protected function output() {
+class Hm_Output_debug_mode_setting extends Hm_Output_Module
+{
+    protected function output()
+    {
         $debug_mode = false;
-        $settings = $this->get('user_settings', array());
+        $settings = $this->get('user_settings', []);
         if (array_key_exists('debug_mode', $settings)) {
             $debug_mode = $settings['debug_mode'];
         }
-        return '<tr class="general_setting"><td>'.tr('Debug mode messages to Tiki Log (caution: this may flood the logs if used extensively)').'</td><td><input type="checkbox" name="debug_mode" value="1" '.($debug_mode ? 'checked' : '').'></td></tr>';
+
+        return '<tr class="general_setting"><td>' . tr('Debug mode messages to Tiki Log (caution: this may flood the logs if used extensively)') . '</td><td><input type="checkbox" name="debug_mode" value="1" ' . ($debug_mode ? 'checked' : '') . '></td></tr>';
     }
 }

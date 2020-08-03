@@ -11,17 +11,17 @@
 $section = 'directory';
 
 $inputConfiguration = [
-	[ 'staticKeyFilters' =>
-		[
-			'offset' => 'digits',
-			'parent' => 'digits',
-			'find' => 'striptags',
-			'where' => 'word',
-			'how' => 'word',
-			'words' => 'striptags',
-			'sort_mode' => 'word',
-		]
-	]
+    [ 'staticKeyFilters' =>
+        [
+            'offset' => 'digits',
+            'parent' => 'digits',
+            'find' => 'striptags',
+            'where' => 'word',
+            'how' => 'word',
+            'words' => 'striptags',
+            'sort_mode' => 'word',
+        ]
+    ]
 ];
 require_once('tiki-setup.php');
 include_once('lib/directory/dirlib.php');
@@ -36,27 +36,27 @@ $smarty->assign('words', $_REQUEST['words']);
 $smarty->assign('where', $_REQUEST['where']);
 $smarty->assign('how', $_REQUEST['how']);
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'hits_desc';
+    $sort_mode = 'hits_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign_by_ref('offset', $offset);
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 $smarty->assign('find', $find);
 if (isset($_REQUEST['where']) && $_REQUEST['where'] == 'all') {
-	$items = $dirlib->dir_search($_REQUEST['words'], $_REQUEST['how'], $offset, $maxRecords, $sort_mode);
+    $items = $dirlib->dir_search($_REQUEST['words'], $_REQUEST['how'], $offset, $maxRecords, $sort_mode);
 } else {
-	$items = $dirlib->dir_search_cat($_REQUEST['parent'], $_REQUEST['words'], $_REQUEST['how'], $offset, $maxRecords, $sort_mode);
+    $items = $dirlib->dir_search_cat($_REQUEST['parent'], $_REQUEST['words'], $_REQUEST['how'], $offset, $maxRecords, $sort_mode);
 }
 $smarty->assign_by_ref('cant_pages', $items["cant"]);
 $smarty->assign_by_ref('items', $items["data"]);

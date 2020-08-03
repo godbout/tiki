@@ -15,31 +15,31 @@ $access->check_feature(['feature_articles', 'feature_cms_rankings']);
 $access->check_permission('tiki_p_read_article');
 
 $allrankings = [
-	[
-	'name' => tra('Top Articles'),
-	'value' => 'cms_ranking_top_articles'
-	],
-	[
-	'name' => tra('Top authors'),
-	'value' => 'cms_ranking_top_authors'
-	]
+    [
+    'name' => tra('Top Articles'),
+    'value' => 'cms_ranking_top_articles'
+    ],
+    [
+    'name' => tra('Top authors'),
+    'value' => 'cms_ranking_top_authors'
+    ]
 ];
 
 $smarty->assign('allrankings', $allrankings);
 
 if (! isset($_REQUEST["which"])) {
-	$which = 'cms_ranking_top_articles';
+    $which = 'cms_ranking_top_articles';
 } else {
-	$which = $_REQUEST["which"];
+    $which = $_REQUEST["which"];
 }
 
 $smarty->assign('which', $which);
 
 // Get the page from the request var or default it to HomePage
 if (! isset($_REQUEST["limit"])) {
-	$limit = 10;
+    $limit = 10;
 } else {
-	$limit = $_REQUEST["limit"];
+    $limit = $_REQUEST["limit"];
 }
 
 $smarty->assign_by_ref('limit', $limit);

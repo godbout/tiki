@@ -14,18 +14,18 @@ require_once("lib/phpseclib_tiki/tikisecure.php");
 global $prefs;
 
 if ($prefs['feature_futurelinkprotocol'] == "y") {
-	$requester = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+    $requester = gethostbyaddr($_SERVER['REMOTE_ADDR']);
 
-	if (isset($requester)) {
-		if (isset($_REQUEST['hash'], $_REQUEST["clienttime"])) {
-			$timestamp = TikiSecure::timestamp($_REQUEST["hash"], $_REQUEST["clienttime"], $requester);
-		} elseif ($_REQUEST['timestamp']) {
-			$timestamp = TikiSecure::openTimestamp(json_decode(urldecode($_REQUEST['timestamp'])), $requester);
-		}
+    if (isset($requester)) {
+        if (isset($_REQUEST['hash'], $_REQUEST["clienttime"])) {
+            $timestamp = TikiSecure::timestamp($_REQUEST["hash"], $_REQUEST["clienttime"], $requester);
+        } elseif ($_REQUEST['timestamp']) {
+            $timestamp = TikiSecure::openTimestamp(json_decode(urldecode($_REQUEST['timestamp'])), $requester);
+        }
 
-		echo json_encode($timestamp);
-		exit();
-	}
+        echo json_encode($timestamp);
+        exit();
+    }
 
-	//We list all public keys here
+    //We list all public keys here
 }

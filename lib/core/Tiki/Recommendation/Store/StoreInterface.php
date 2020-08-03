@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,11 +13,11 @@ use Tiki\Recommendation\RecommendationSet;
 
 interface StoreInterface
 {
-	function isReceived($input, Recommendation $recommendation);
+    public function isReceived($input, Recommendation $recommendation);
 
-	function store($input, RecommendationSet $recommendation);
+    public function store($input, RecommendationSet $recommendation);
 
-	function getInputs();
+    public function getInputs();
 
-	function terminate();
+    public function terminate();
 }

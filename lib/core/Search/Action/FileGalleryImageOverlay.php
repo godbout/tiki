@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,331 +10,329 @@ use Tiki\Lib\Image\Image;
 
 class Search_Action_FileGalleryImageOverlay implements Search_Action_Action
 {
+    protected $replaceKeys = [
+      '%file_name%' => 'file.filename',
+      '%file_id%' => 'file.fileId',
+      '%parts_filename%' => 'parts.filename',
+      '%parts_extension%' => 'parts.extension',
+      '%gallery_name%' => 'gallery.name',
+      '%gallery_id%' => 'gallery.galleryId',
+      '%tracker_id%' => 'item.trackerId',
+      '%item_id%' => 'item.itemId',
+      '%field_id%' => 'field.fieldId',
+      '%field_perm_name%' => 'field.permName',
+      '%field_name%' => 'field.name',
+      '%exif_date%' => 'exif.datetime',
+      '%exif_gps%' => 'exif.gps',
+      '%exif_gps_lat%' => 'exif.gps_lat',
+      '%exif_gps_lon%' => 'exif.gps_lon',
+      '%exif_gps_dms%' => 'exif.gps_dms',
+      '%exif_gps_dms_lat%' => 'exif.gps_dms_lat',
+      '%exif_gps_dms_lon%' => 'exif.gps_dms_lon',
+    ];
 
-	protected $replaceKeys = [
-	  '%file_name%' => 'file.filename',
-	  '%file_id%' => 'file.fileId',
-	  '%parts_filename%' => 'parts.filename',
-	  '%parts_extension%' => 'parts.extension',
-	  '%gallery_name%' => 'gallery.name',
-	  '%gallery_id%' => 'gallery.galleryId',
-	  '%tracker_id%' => 'item.trackerId',
-	  '%item_id%' => 'item.itemId',
-	  '%field_id%' => 'field.fieldId',
-	  '%field_perm_name%' => 'field.permName',
-	  '%field_name%' => 'field.name',
-	  '%exif_date%' => 'exif.datetime',
-	  '%exif_gps%' => 'exif.gps',
-	  '%exif_gps_lat%' => 'exif.gps_lat',
-	  '%exif_gps_lon%' => 'exif.gps_lon',
-	  '%exif_gps_dms%' => 'exif.gps_dms',
-	  '%exif_gps_dms_lat%' => 'exif.gps_dms_lat',
-	  '%exif_gps_dms_lon%' => 'exif.gps_dms_lon',
-	];
+    public function getValues()
+    {
+        return [
+          'object_type' => true,
+          'object_id' => true,
+          'field' => true,
+          'value' => true,
+          'error_if_missing' => false,
+        ];
+    }
 
-	function getValues()
-	{
-		return [
-		  'object_type' => true,
-		  'object_id' => true,
-		  'field' => true,
-		  'value' => true,
-		  'error_if_missing' => false,
-		];
-	}
+    public function validate(JitFilter $data)
+    {
+        $object_type = $data->object_type->text();
+        $object_id = $data->object_id->int();
+        $field = $data->field->word();
+        $value = $data->value->text();
 
-	function validate(JitFilter $data)
-	{
+        if ('tracker_field_' === substr($field, 0, 14)) {
+            $field = substr($field, 14);
+        }
 
-		$object_type = $data->object_type->text();
-		$object_id = $data->object_id->int();
-		$field = $data->field->word();
-		$value = $data->value->text();
+        if ($object_type != 'trackeritem') {
+            throw new Search_Action_Exception(tr('Cannot apply filegal_image_overlay action to an object type %0.', $object_type));
+        }
 
-		if ('tracker_field_' === substr($field, 0, 14)) {
-			$field = substr($field, 14);
-		}
+        $trklib = TikiLib::lib('trk');
+        $info = $trklib->get_item_info($object_id);
 
-		if ($object_type != 'trackeritem') {
-			throw new Search_Action_Exception(tr('Cannot apply filegal_image_overlay action to an object type %0.', $object_type));
-		}
+        if (! $info) {
+            throw new Search_Action_Exception(tr('Tracker item %0 not found.', $object_id));
+        }
 
-		$trklib = TikiLib::lib('trk');
-		$info = $trklib->get_item_info($object_id);
+        $definition = Tracker_Definition::get($info['trackerId']);
 
-		if (! $info) {
-			throw new Search_Action_Exception(tr('Tracker item %0 not found.', $object_id));
-		}
+        $fieldDefinition = $definition->getFieldFromPermName($field);
+        if (! $fieldDefinition) {
+            throw new Search_Action_Exception(tr('Tracker field %0 not found for tracker %1.', $field, $info['trackerId']));
+        }
 
-		$definition = Tracker_Definition::get($info['trackerId']);
+        if ($fieldDefinition['type'] != 'FG') {
+            throw new Search_Action_Exception(tr('Tracker field %0 is not a Files field type.', $field));
+        }
 
-		$fieldDefinition = $definition->getFieldFromPermName($field);
-		if (! $fieldDefinition) {
-			throw new Search_Action_Exception(tr('Tracker field %0 not found for tracker %1.', $field, $info['trackerId']));
-		}
+        if (empty($value)) {
+            throw new Search_Action_Exception(tr('filegal_image_overlay action missing value parameter.'));
+        }
 
-		if ($fieldDefinition['type'] != 'FG') {
-			throw new Search_Action_Exception(tr('Tracker field %0 is not a Files field type.', $field));
-		}
+        return true;
+    }
 
-		if (empty($value)) {
-			throw new Search_Action_Exception(tr('filegal_image_overlay action missing value parameter.'));
-		}
+    public function execute(JitFilter $data)
+    {
+        global $user, $prefs;
 
-		return true;
-	}
+        $object_type = $data->object_type->text();
+        $object_id = $data->object_id->int();
+        $field = $data->field->word();
+        $value = $data->value->text();
+        $error_if_missing = $data->error_if_missing->text();
 
-	function execute(JitFilter $data)
-	{
+        if ('tracker_field_' === substr($field, 0, 14)) {
+            $field = substr($field, 14);
+        }
 
-		global $user, $prefs;
+        $trklib = TikiLib::lib('trk');
+        $info = $trklib->get_tracker_item($object_id);
 
-		$object_type = $data->object_type->text();
-		$object_id = $data->object_id->int();
-		$field = $data->field->word();
-		$value = $data->value->text();
-		$error_if_missing = $data->error_if_missing->text();
+        /** @var Tracker_Definition $definition */
+        $definition = Tracker_Definition::get($info['trackerId']);
+        $fieldDefinition = $definition->getFieldFromPermName($field);
 
-		if ('tracker_field_' === substr($field, 0, 14)) {
-			$field = substr($field, 14);
-		}
+        /** @var FileGalLib $fileGal */
+        $fileGal = TikiLib::lib('filegal');
 
-		$trklib = TikiLib::lib('trk');
-		$info = $trklib->get_tracker_item($object_id);
+        $fileList = $info[$fieldDefinition['fieldId']];
 
-		/** @var Tracker_Definition $definition */
-		$definition = Tracker_Definition::get($info['trackerId']);
-		$fieldDefinition = $definition->getFieldFromPermName($field);
+        if (empty($fileList)) {
+            return true;
+        }
 
-		/** @var FileGalLib $fileGal */
-		$fileGal = TikiLib::lib('filegal');
+        if ($error_if_missing == 'y') {
+            $error_if_missing = true;
+        } else {
+            $error_if_missing = false;
+        }
 
-		$fileList = $info[$fieldDefinition['fieldId']];
+        $newFileList = [];
+        foreach (explode(',', $fileList) as $fileId) {
+            $file = $fileGal->get_file($fileId);
+            if (substr($file['filetype'], 0, 6) != 'image/') {
+                $newFileList[] = $fileId;
 
-		if (empty($fileList)) {
-			return true;
-		}
+                continue;
+            }
+            $galInfo = $fileGal->get_file_gallery_info($file['galleryId']);
+            $newUser = $user ?: $file['user'];
+            $overlayString = $this->generateString(
+                $value,
+                $file,
+                $galInfo,
+                $info,
+                $fieldDefinition,
+                $error_if_missing,
+                $missingKeys
+            );
+            if ($overlayString === false) {
+                throw new Search_Action_Exception(tr(
+                    'filegal_image_overlay: Problem processing image "%0", the following values form the template are empty: %1',
+                    $file['filename'],
+                    implode(', ', $missingKeys)
+                ));
+            }
+            $newImage = $this->addTextToImage($file['data'], $overlayString);
+            if ($newImage) {
+                $newFileList[] = $fileGal->update_single_file(
+                    $galInfo,
+                    $file['filename'],
+                    $file['filesize'],
+                    $file['filetype'],
+                    $newImage,
+                    $fileId,
+                    $newUser
+                );
+            } else {
+                $newFileList[] = $fileId;
+            }
+        }
 
-		if ($error_if_missing == 'y') {
-			$error_if_missing = true;
-		} else {
-			$error_if_missing = false;
-		}
+        if ($prefs['fgal_keep_fileId'] == 'n') {
+            // new IDs are generated to for the last version we updated
+            $utilities = new Services_Tracker_Utilities;
+            $utilities->updateItem(
+                $definition,
+                [
+                'itemId' => $object_id,
+                'status' => $info['status'],
+                'fields' => [
+                  $field => implode(',', $newFileList),
+                ],
+                ]
+            );
+        }
 
-		$newFileList = [];
-		foreach (explode(',', $fileList) as $fileId) {
-			$file = $fileGal->get_file($fileId);
-			if (substr($file['filetype'], 0, 6) != 'image/') {
-				$newFileList[] = $fileId;
-				continue;
-			}
-			$galInfo = $fileGal->get_file_gallery_info($file['galleryId']);
-			$newUser = $user ?: $file['user'];
-			$overlayString = $this->generateString(
-				$value,
-				$file,
-				$galInfo,
-				$info,
-				$fieldDefinition,
-				$error_if_missing,
-				$missingKeys
-			);
-			if ($overlayString === false) {
-				throw new Search_Action_Exception(tr(
-					'filegal_image_overlay: Problem processing image "%0", the following values form the template are empty: %1',
-					$file['filename'],
-					implode(', ', $missingKeys)
-				));
-			}
-			$newImage = $this->addTextToImage($file['data'], $overlayString);
-			if ($newImage) {
-				$newFileList[] = $fileGal->update_single_file(
-					$galInfo,
-					$file['filename'],
-					$file['filesize'],
-					$file['filetype'],
-					$newImage,
-					$fileId,
-					$newUser
-				);
-			} else {
-				$newFileList[] = $fileId;
-			}
-		}
+        return true;
+    }
 
-		if ($prefs['fgal_keep_fileId'] == 'n') {
-			// new IDs are generated to for the last version we updated
-			$utilities = new Services_Tracker_Utilities;
-			$utilities->updateItem(
-				$definition,
-				[
-				'itemId' => $object_id,
-				'status' => $info['status'],
-				'fields' => [
-				  $field => implode(',', $newFileList),
-				],
-				]
-			);
-		}
+    public function requiresInput(JitFilter $data)
+    {
+        return false;
+    }
 
-		return true;
-	}
+    /**
+     * Generate a string based on the template provided
+     *
+     * @param string $template The template (see $replaceKeys)
+     * @param array $fileData File Details
+     * @param array $galleryData Gallery Details
+     * @param array $itemData Item Details
+     * @param array $fieldData Field Details
+     * @param boolean $checkMissing If enable function will return false if some element of the template has a empty value
+     * @param array $missingTemplateKeys The keys missing
+     *
+     * @return string|false
+     */
+    protected function generateString(
+        $template,
+        $fileData,
+        $galleryData,
+        $itemData,
+        $fieldData,
+        $checkMissing = false,
+        &$missingTemplateKeys = []
+    ) {
+        $dataValues = [
+          'file' => $fileData,
+          'gallery' => $galleryData,
+          'item' => $itemData,
+          'field' => $fieldData,
+          'parts' => pathinfo($fileData['filename']),
+          'exif' => $this->getExifArray($fileData),
+        ];
 
-	function requiresInput(JitFilter $data)
-	{
-		return false;
-	}
+        $values = [];
+        foreach ($this->replaceKeys as $search => $dataKey) {
+            list($data, $key) = explode('.', $dataKey);
+            $values[$search] = (isset($dataValues[$data]) && isset($dataValues[$data][$key])) ? $dataValues[$data][$key] : '';
+        }
 
-	/**
-	 * Generate a string based on the template provided
-	 *
-	 * @param string $template The template (see $replaceKeys)
-	 * @param array $fileData File Details
-	 * @param array $galleryData Gallery Details
-	 * @param array $itemData Item Details
-	 * @param array $fieldData Field Details
-	 * @param boolean $checkMissing If enable function will return false if some element of the template has a empty value
-	 * @param array $missingTemplateKeys The keys missing
-	 *
-	 * @return string|false
-	 */
-	protected function generateString(
-		$template,
-		$fileData,
-		$galleryData,
-		$itemData,
-		$fieldData,
-		$checkMissing = false,
-		&$missingTemplateKeys = []
-	) {
-		$dataValues = [
-		  'file' => $fileData,
-		  'gallery' => $galleryData,
-		  'item' => $itemData,
-		  'field' => $fieldData,
-		  'parts' => pathinfo($fileData['filename']),
-		  'exif' => $this->getExifArray($fileData),
-		];
+        if ($checkMissing) {
+            foreach ($values as $key => $value) {
+                if (strpos($template, $key) !== false) {
+                    if (empty($value)) {
+                        $missingTemplateKeys[] = $key;
+                    }
+                }
+            }
+            if (count($missingTemplateKeys)) {
+                return false;
+            }
+        }
 
-		$values = [];
-		foreach ($this->replaceKeys as $search => $dataKey) {
-			list($data, $key) = explode('.', $dataKey);
-			$values[$search] = (isset($dataValues[$data]) && isset($dataValues[$data][$key])) ? $dataValues[$data][$key] : '';
-		}
+        return str_replace(array_keys($values), array_values($values), $template);
+    }
 
-		if ($checkMissing) {
-			foreach ($values as $key => $value) {
-				if (strpos($template, $key) !== false) {
-					if (empty($value)) {
-						$missingTemplateKeys[] = $key;
-					}
-				}
-			}
-			if (count($missingTemplateKeys)) {
-				return false;
-			}
-		}
+    /**
+     * Allow adding text as overlay to a image
+     * @param $imageString
+     * @param $text
+     * @return string
+     */
+    public function addTextToImage($imageString, $text)
+    {
+        $image = Image::create($imageString);
 
-		return str_replace(array_keys($values), array_values($values), $template);
-	}
+        $image->addTextToImage($text);
 
-	/**
-	 * Allow adding text as overlay to a image
-	 * @param $imageString
-	 * @param $text
-	 * @return string
-	 */
-	public function addTextToImage($imageString, $text)
-	{
-		$image = Image::create($imageString);
+        return $image->display();
+    }
 
-		$image->addTextToImage($text);
+    /**
+     * Get some selected Exif information from a image
+     * @param $fileData
+     * @return array
+     */
+    public function getExifArray($fileData)
+    {
+        $exif = [];
+        if ($fileData['filetype'] != 'image/jpeg' || ! function_exists('exif_read_data')) {
+            return $exif;
+        }
+        $exifData = exif_read_data('data://image/jpeg;base64,' . base64_encode($fileData['data']));
 
-		return $image->display();
-	}
+        $exif['datetime'] = isset($exifData['DateTimeOriginal']) ? $exifData['DateTimeOriginal'] : '';
 
-	/**
-	 * Get some selected Exif information from a image
-	 * @param $fileData
-	 * @return array
-	 */
-	function getExifArray($fileData)
-	{
-		$exif = [];
-		if ($fileData['filetype'] != 'image/jpeg' || ! function_exists('exif_read_data')) {
-			return $exif;
-		}
-		$exifData = exif_read_data('data://image/jpeg;base64,' . base64_encode($fileData['data']));
+        if (isset($exifData['GPSLongitude']) && isset($exifData['GPSLatitude'])) {
+            $latitude = $this->gpsCoordinates($exifData["GPSLatitude"], $exifData['GPSLatitudeRef']);
+            $longitude = $this->gpsCoordinates($exifData["GPSLongitude"], $exifData['GPSLongitudeRef']);
+            $exif['gps'] = $latitude['dd'] . ', ' . $longitude['dd'];
+            $exif['gps_lat'] = $latitude['dd'];
+            $exif['gps_lon'] = $longitude['dd'];
+            $exif['gps_dms'] = $latitude['dms'] . ' ' . $longitude['dms'];
+            $exif['gps_dms_lat'] = $latitude['dms'];
+            $exif['gps_dms_lon'] = $longitude['dms'];
+        } else {
+            $exif['gps'] = '';
+            $exif['gps_lat'] = '';
+            $exif['gps_lon'] = '';
+            $exif['gps_dms'] = '';
+            $exif['gps_dms_lat'] = '';
+            $exif['gps_dms_lon'] = '';
+        }
 
-		$exif['datetime'] = isset($exifData['DateTimeOriginal']) ? $exifData['DateTimeOriginal'] : '';
+        return ($exif);
+    }
 
-		if (isset($exifData['GPSLongitude']) && isset($exifData['GPSLatitude'])) {
-			$latitude = $this->gpsCoordinates($exifData["GPSLatitude"], $exifData['GPSLatitudeRef']);
-			$longitude = $this->gpsCoordinates($exifData["GPSLongitude"], $exifData['GPSLongitudeRef']);
-			$exif['gps'] = $latitude['dd'] . ', ' . $longitude['dd'];
-			$exif['gps_lat'] = $latitude['dd'];
-			$exif['gps_lon'] = $longitude['dd'];
-			$exif['gps_dms'] = $latitude['dms'] . ' ' . $longitude['dms'];
-			$exif['gps_dms_lat'] = $latitude['dms'];
-			$exif['gps_dms_lon'] = $longitude['dms'];
-		} else {
-			$exif['gps'] = '';
-			$exif['gps_lat'] = '';
-			$exif['gps_lon'] = '';
-			$exif['gps_dms'] = '';
-			$exif['gps_dms_lat'] = '';
-			$exif['gps_dms_lon'] = '';
-		}
+    /**
+     * Conver Exif coordinate information into DD and DMS GPS coordinates
+     * @param $coordinate
+     * @param $hemisphere
+     * @return array
+     */
+    protected function gpsCoordinates($coordinate, $hemisphere)
+    {
+        for ($i = 0; $i < 3; $i++) {
+            $part = explode('/', $coordinate[$i]);
+            if (count($part) == 1) {
+                $coordinate[$i] = $part[0];
+            } else {
+                if (count($part) == 2) {
+                    $coordinate[$i] = (float)$part[0] / (float)$part[1];
+                } else {
+                    $coordinate[$i] = 0;
+                }
+            }
+        }
+        list($degrees, $minutes, $seconds) = $coordinate;
 
-		return ($exif);
-	}
+        $sign = ($hemisphere == 'W' || $hemisphere == 'S') ? -1 : 1;
+        $coordinateDD = sprintf("%.4f", $sign * ($degrees + $minutes / 60 + $seconds / 3600));
 
-	/**
-	 * Conver Exif coordinate information into DD and DMS GPS coordinates
-	 * @param $coordinate
-	 * @param $hemisphere
-	 * @return array
-	 */
-	protected function gpsCoordinates($coordinate, $hemisphere)
-	{
-		for ($i = 0; $i < 3; $i++) {
-			$part = explode('/', $coordinate[$i]);
-			if (count($part) == 1) {
-				$coordinate[$i] = $part[0];
-			} else {
-				if (count($part) == 2) {
-					$coordinate[$i] = (float)$part[0] / (float)$part[1];
-				} else {
-					$coordinate[$i] = 0;
-				}
-			}
-		}
-		list($degrees, $minutes, $seconds) = $coordinate;
+        //normalize
+        $minutes += 60 * ($degrees - floor($degrees));
+        $degrees = floor($degrees);
+        $seconds += 60 * ($minutes - floor($minutes));
+        $minutes = floor($minutes);
 
-		$sign = ($hemisphere == 'W' || $hemisphere == 'S') ? -1 : 1;
-		$coordinateDD = sprintf("%.4f", $sign * ($degrees + $minutes / 60 + $seconds / 3600));
+        //extra normalization, probably not necessary unless you get weird data
+        if ($seconds >= 60) {
+            $minutes += floor($seconds / 60.0);
+            $seconds -= 60 * floor($seconds / 60.0);
+        }
+        if ($minutes >= 60) {
+            $degrees += floor($minutes / 60.0);
+            $minutes -= 60 * floor($minutes / 60.0);
+        }
 
-		//normalize
-		$minutes += 60 * ($degrees - floor($degrees));
-		$degrees = floor($degrees);
-		$seconds += 60 * ($minutes - floor($minutes));
-		$minutes = floor($minutes);
+        $coordinateDMS = sprintf("%d° %d' %.3f'' %s", $degrees, $minutes, $seconds, $hemisphere);
 
-		//extra normalization, probably not necessary unless you get weird data
-		if ($seconds >= 60) {
-			$minutes += floor($seconds / 60.0);
-			$seconds -= 60 * floor($seconds / 60.0);
-		}
-		if ($minutes >= 60) {
-			$degrees += floor($minutes / 60.0);
-			$minutes -= 60 * floor($minutes / 60.0);
-		}
-
-		$coordinateDMS = sprintf("%d° %d' %.3f'' %s", $degrees, $minutes, $seconds, $hemisphere);
-
-		return [
-		  'dd' => $coordinateDD,
-		  'dms' => $coordinateDMS,
-		];
-	}
+        return [
+          'dd' => $coordinateDD,
+          'dms' => $coordinateDMS,
+        ];
+    }
 }

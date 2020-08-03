@@ -11,7 +11,7 @@
 require_once('tiki-setup.php');
 
 if (php_sapi_name() != 'cli') {
-	$access->check_permission('tiki_p_admin');
+    $access->check_permission('tiki_p_admin');
 }
 
 echo("This script is deprecated and does not work in Multitiki installations.\nPlease use 'console.php daily-report:send' instead.");

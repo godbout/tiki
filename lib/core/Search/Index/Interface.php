@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,19 +8,19 @@
 
 interface Search_Index_Interface
 {
-	function addDocument(array $document);
+    public function addDocument(array $document);
 
-	function invalidateMultiple(array $query);
+    public function invalidateMultiple(array $query);
 
-	function endUpdate();
+    public function endUpdate();
 
-	function find(Search_Query_Interface $query, $resultStart, $resultCount);
+    public function find(Search_Query_Interface $query, $resultStart, $resultCount);
 
-	function getTypeFactory();
+    public function getTypeFactory();
 
-	function optimize();
+    public function optimize();
 
-	function destroy();
+    public function destroy();
 
-	function exists();
+    public function exists();
 }

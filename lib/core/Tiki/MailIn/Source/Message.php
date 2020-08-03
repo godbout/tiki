@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,163 +10,163 @@ namespace Tiki\MailIn\Source;
 
 class Message
 {
-	const EXTRACT_EMAIL_REGEX = '/<?([-!#$%&\'*+\.\/0-9=?A-Z^_`a-z{|}~]+@[-!#$%&\'*+\/0-9=?A-Z^_`a-z{|}~]+\.[-!#$%&\'*+\.\/0-9=?A-Z^_`a-z{|}~]+)>?/';
+    const EXTRACT_EMAIL_REGEX = '/<?([-!#$%&\'*+\.\/0-9=?A-Z^_`a-z{|}~]+@[-!#$%&\'*+\/0-9=?A-Z^_`a-z{|}~]+\.[-!#$%&\'*+\.\/0-9=?A-Z^_`a-z{|}~]+)>?/';
 
-	private $id;
-	private $deleteCallback;
+    private $id;
+    private $deleteCallback;
 
-	private $messageId;
-	private $from;
-	private $recipient;
-	private $subject;
-	private $body;
-	private $htmlBody;
-	private $content;
-	private $attachments = [];
+    private $messageId;
+    private $from;
+    private $recipient;
+    private $subject;
+    private $body;
+    private $htmlBody;
+    private $content;
+    private $attachments = [];
 
-	private $associatedUser;
+    private $associatedUser;
 
-	function __construct($id, $deleteCallback)
-	{
-		$this->id = $id;
-		$this->deleteCallback = $deleteCallback;
-	}
+    public function __construct($id, $deleteCallback)
+    {
+        $this->id = $id;
+        $this->deleteCallback = $deleteCallback;
+    }
 
-	function getMessageId()
-	{
-		return $this->messageId;
-	}
+    public function getMessageId()
+    {
+        return $this->messageId;
+    }
 
-	function setMessageId($messageId)
-	{
-		$this->messageId = $messageId;
-	}
+    public function setMessageId($messageId)
+    {
+        $this->messageId = $messageId;
+    }
 
-	function setRawFrom($from)
-	{
-		$this->from = $from;
+    public function setRawFrom($from)
+    {
+        $this->from = $from;
 
-		if ($email = $this->getFromAddress()) {
-			$userlib = \TikiLib::lib('user');
-			$this->associatedUser = $userlib->get_user_by_email($email);
-		}
-	}
+        if ($email = $this->getFromAddress()) {
+            $userlib = \TikiLib::lib('user');
+            $this->associatedUser = $userlib->get_user_by_email($email);
+        }
+    }
 
-	function getFromAddress()
-	{
-		preg_match(self::EXTRACT_EMAIL_REGEX, $this->from, $mail);
+    public function getFromAddress()
+    {
+        preg_match(self::EXTRACT_EMAIL_REGEX, $this->from, $mail);
 
-		return $mail[1];
-	}
+        return $mail[1];
+    }
 
-	function setAssociatedUser($user)
-	{
-		$this->associatedUser = $user;
-	}
+    public function setAssociatedUser($user)
+    {
+        $this->associatedUser = $user;
+    }
 
-	function getAssociatedUser()
-	{
-		return $this->associatedUser;
-	}
+    public function getAssociatedUser()
+    {
+        return $this->associatedUser;
+    }
 
-	function delete()
-	{
-		if ($this->deleteCallback) {
-			$callback = $this->deleteCallback;
-			$callback();
-			$this->deleteCallback = null;
-		}
-	}
+    public function delete()
+    {
+        if ($this->deleteCallback) {
+            $callback = $this->deleteCallback;
+            $callback();
+            $this->deleteCallback = null;
+        }
+    }
 
-	function setSubject($subject)
-	{
-		$this->subject = $subject;
-	}
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
 
-	function getSubject()
-	{
-		return $this->subject;
-	}
+    public function getSubject()
+    {
+        return $this->subject;
+    }
 
-	function setBody($body)
-	{
-		$this->body = $body;
-	}
+    public function setBody($body)
+    {
+        $this->body = $body;
+    }
 
-	function getBody()
-	{
-		return $this->body;
-	}
+    public function getBody()
+    {
+        return $this->body;
+    }
 
-	function setHtmlBody($body)
-	{
-		$this->htmlBody = $body;
-	}
+    public function setHtmlBody($body)
+    {
+        $this->htmlBody = $body;
+    }
 
-	function getHtmlBody($fallback = true)
-	{
-		if ($fallback) {
-			return $this->htmlBody ?: $this->body;
-		} else {
-			return $this->htmlBody;
-		}
-	}
+    public function getHtmlBody($fallback = true)
+    {
+        if ($fallback) {
+            return $this->htmlBody ?: $this->body;
+        }
 
-	function setContent($content)
-	{
-		$this->content = $content;
-	}
+        return $this->htmlBody;
+    }
 
-	function getContent()
-	{
-		return $this->content;
-	}
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
 
-	function addAttachment($contentId, $name, $type, $size, $data)
-	{
-		$this->attachments[$contentId] = [
-			'contentId' => $contentId,
-			'name' => $name,
-			'type' => $type,
-			'size' => $size,
-			'data' => $data,
-			'link' => null,
-		];
-	}
+    public function getContent()
+    {
+        return $this->content;
+    }
 
-	function setLink($contentId, $link)
-	{
-		if (isset($this->attachments[$contentId])) {
-			$this->attachments[$contentId]['link'] = $link;
-		}
-	}
+    public function addAttachment($contentId, $name, $type, $size, $data)
+    {
+        $this->attachments[$contentId] = [
+            'contentId' => $contentId,
+            'name' => $name,
+            'type' => $type,
+            'size' => $size,
+            'data' => $data,
+            'link' => null,
+        ];
+    }
 
-	function getAttachments()
-	{
-		return array_values($this->attachments);
-	}
+    public function setLink($contentId, $link)
+    {
+        if (isset($this->attachments[$contentId])) {
+            $this->attachments[$contentId]['link'] = $link;
+        }
+    }
 
-	function getAttachment($contentId)
-	{
-		if (isset($this->attachments[$contentId])) {
-			return $this->attachments[$contentId];
-		}
-	}
+    public function getAttachments()
+    {
+        return array_values($this->attachments);
+    }
 
-	function getRecipient()
-	{
-		return $this->recipient;
-	}
+    public function getAttachment($contentId)
+    {
+        if (isset($this->attachments[$contentId])) {
+            return $this->attachments[$contentId];
+        }
+    }
 
-	function setRecipient($recipient)
-	{
-		$this->recipient = $recipient;
-	}
+    public function getRecipient()
+    {
+        return $this->recipient;
+    }
 
-	function getRecipientAddress()
-	{
-		preg_match(self::EXTRACT_EMAIL_REGEX, $this->recipient, $mail);
+    public function setRecipient($recipient)
+    {
+        $this->recipient = $recipient;
+    }
 
-		return $mail[1];
-	}
+    public function getRecipientAddress()
+    {
+        preg_match(self::EXTRACT_EMAIL_REGEX, $this->recipient, $mail);
+
+        return $mail[1];
+    }
 }

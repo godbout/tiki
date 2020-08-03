@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,142 +8,143 @@
 
 class TikiDb_MasterSlaveDispatch extends TikiDb
 {
-	private $master;
-	private $slave;
+    private $master;
+    private $slave;
 
-	private $lastUsed;
+    private $lastUsed;
 
-	function __construct(TikiDb $master, TikiDb $slave)
-	{
-		$this->master = $master;
-		$this->slave = $slave;
-		$this->lastUsed = $slave;
-	}
+    public function __construct(TikiDb $master, TikiDb $slave)
+    {
+        $this->master = $master;
+        $this->slave = $slave;
+        $this->lastUsed = $slave;
+    }
 
-	function getReal()
-	{
-		return $this->slave;
-	}
+    public function getReal()
+    {
+        return $this->slave;
+    }
 
-	function startTimer() // {{{
-	{
-		$this->getApplicable()->startTimer();
-	} // }}}
+    public function startTimer() // {{{
+    {
+        $this->getApplicable()->startTimer();
+    } // }}}
 
-	function stopTimer($starttime) // {{{
-	{
-		$this->getApplicable()->stopTimer($starttime);
-	} // }}}
+    public function stopTimer($starttime) // {{{
+    {
+        $this->getApplicable()->stopTimer($starttime);
+    } // }}}
 
-	function qstr($str) // {{{
-	{
-		return $this->getApplicable()->qstr($str);
-	} // }}}
+    public function qstr($str) // {{{
+    {
+        return $this->getApplicable()->qstr($str);
+    } // }}}
 
-	function query($query = null, $values = null, $numrows = -1, $offset = -1, $reporterrors = true) // {{{
-	{
-		return $this->getApplicable($query)->query($query, $values, $numrows, $offset, $reporterrors);
-	} // }}}
+    public function query($query = null, $values = null, $numrows = -1, $offset = -1, $reporterrors = true) // {{{
+    {
+        return $this->getApplicable($query)->query($query, $values, $numrows, $offset, $reporterrors);
+    } // }}}
 
-	function queryError($query, &$error, $values = null, $numrows = -1, $offset = -1) // {{{
-	{
-		return $this->getApplicable($query)->queryError($query, $error, $values, $numrows, $offset);
-	} // }}}
+    public function queryError($query, &$error, $values = null, $numrows = -1, $offset = -1) // {{{
+    {
+        return $this->getApplicable($query)->queryError($query, $error, $values, $numrows, $offset);
+    } // }}}
 
-	function getOne($query, $values = null, $reporterrors = true, $offset = 0) // {{{
-	{
-		return $this->getApplicable($query)->getOne($query, $values, $reporterrors, $offset);
-	} // }}}
+    public function getOne($query, $values = null, $reporterrors = true, $offset = 0) // {{{
+    {
+        return $this->getApplicable($query)->getOne($query, $values, $reporterrors, $offset);
+    } // }}}
 
-	function setErrorHandler(TikiDb_ErrorHandler $handler) // {{{
-	{
-		$this->getApplicable()->setErrorHandler($handler);
-	} // }}}
+    public function setErrorHandler(TikiDb_ErrorHandler $handler) // {{{
+    {
+        $this->getApplicable()->setErrorHandler($handler);
+    } // }}}
 
-	function setTablePrefix($prefix) // {{{
-	{
-		$this->getApplicable()->setTablePrefix($prefix);
-	} // }}}
+    public function setTablePrefix($prefix) // {{{
+    {
+        $this->getApplicable()->setTablePrefix($prefix);
+    } // }}}
 
-	function setUsersTablePrefix($prefix) // {{{
-	{
-		$this->getApplicable()->setUsersTablePrefix($prefix);
-	} // }}}
+    public function setUsersTablePrefix($prefix) // {{{
+    {
+        $this->getApplicable()->setUsersTablePrefix($prefix);
+    } // }}}
 
-	function getServerType() // {{{
-	{
-		return $this->getApplicable()->getServerType();
-	} // }}}
+    public function getServerType() // {{{
+    {
+        return $this->getApplicable()->getServerType();
+    } // }}}
 
-	function setServerType($type) // {{{
-	{
-		$this->getApplicable()->setServerType($type);
-	} // }}}
+    public function setServerType($type) // {{{
+    {
+        $this->getApplicable()->setServerType($type);
+    } // }}}
 
-	function getErrorMessage() // {{{
-	{
-		return $this->lastUsed->getErrorMessage();
-	} // }}}
+    public function getErrorMessage() // {{{
+    {
+        return $this->lastUsed->getErrorMessage();
+    } // }}}
 
-	protected function setErrorMessage($message) // {{{
-	{
-		$this->getApplicable()->setErrorMessage($message);
-	} // }}}
+    protected function setErrorMessage($message) // {{{
+    {
+        $this->getApplicable()->setErrorMessage($message);
+    } // }}}
 
-	protected function handleQueryError($query, $values, $result) // {{{
-	{
-		$this->getApplicable()->handleQueryError($query, $values, $result);
-	} // }}}
+    protected function handleQueryError($query, $values, $result) // {{{
+    {
+        $this->getApplicable()->handleQueryError($query, $values, $result);
+    } // }}}
 
-	protected function convertQueryTablePrefixes(&$query) // {{{
-	{
-		$this->getApplicable($query)->convertQueryTablePrefixes($query);
-	} // }}}
+    protected function convertQueryTablePrefixes(&$query) // {{{
+    {
+        $this->getApplicable($query)->convertQueryTablePrefixes($query);
+    } // }}}
 
-	function convertSortMode($sort_mode) // {{{
-	{
-		return $this->getApplicable()->convertSortMode($sort_mode);
-	} // }}}
+    public function convertSortMode($sort_mode) // {{{
+    {
+        return $this->getApplicable()->convertSortMode($sort_mode);
+    } // }}}
 
-	function getQuery() // {{{
-	{
-		return $this->getApplicable()->getQuery();
-	} // }}}
+    public function getQuery() // {{{
+    {
+        return $this->getApplicable()->getQuery();
+    } // }}}
 
-	function setQuery($sql) // {{{
-	{
-		return $this->getApplicable()->setQuery($sql);
-	} // }}}
+    public function setQuery($sql) // {{{
+    {
+        return $this->getApplicable()->setQuery($sql);
+    } // }}}
 
-	function ifNull($field, $ifNull) // {{{
-	{
-		return $this->getApplicable()->ifNull($field, $ifNull);
-	} // }}}
+    public function ifNull($field, $ifNull) // {{{
+    {
+        return $this->getApplicable()->ifNull($field, $ifNull);
+    } // }}}
 
-	function in($field, $values, &$bindvars) // {{{
-	{
-		return $this->getApplicable()->in($field, $values, $bindvars);
-	} // }}}
+    public function in($field, $values, &$bindvars) // {{{
+    {
+        return $this->getApplicable()->in($field, $values, $bindvars);
+    } // }}}
 
-	function concat() // {{{
-	{
-		$arr = func_get_args();
-		return call_user_func_array([ $this->getApplicable(), 'concat' ], $arr);
-	} // }}}
+    public function concat() // {{{
+    {
+        $arr = func_get_args();
 
-	private function getApplicable($query = '')
-	{
-		if (empty($query)) {
-			return $this->lastUsed = $this->slave;
-		}
+        return call_user_func_array([ $this->getApplicable(), 'concat' ], $arr);
+    } // }}}
 
-		// If it's a write
-		// regex is for things starting with select in any case with potential
-		// whitespace in front of it
-		if (! preg_match('/^\s*select/i', $query)) {
-			return $this->lastUsed = $this->master;
-		}
+    private function getApplicable($query = '')
+    {
+        if (empty($query)) {
+            return $this->lastUsed = $this->slave;
+        }
 
-		return $this->lastUsed = $this->slave;
-	}
+        // If it's a write
+        // regex is for things starting with select in any case with potential
+        // whitespace in front of it
+        if (! preg_match('/^\s*select/i', $query)) {
+            return $this->lastUsed = $this->master;
+        }
+
+        return $this->lastUsed = $this->slave;
+    }
 }

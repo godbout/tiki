@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,101 +8,102 @@
 
 class Math_Formula_Element implements ArrayAccess, Iterator, Countable
 {
-	private $type;
-	private $children;
+    private $type;
+    private $children;
 
-	function __construct($type, array $children = [])
-	{
-		$this->type = $type;
-		$this->children = $children;
-	}
+    public function __construct($type, array $children = [])
+    {
+        $this->type = $type;
+        $this->children = $children;
+    }
 
-	function addChild($child)
-	{
-		$this->children[] = $child;
-	}
+    public function addChild($child)
+    {
+        $this->children[] = $child;
+    }
 
-	function offsetExists($offset)
-	{
-		return is_int($offset) && isset($this->children[$offset]);
-	}
+    public function offsetExists($offset)
+    {
+        return is_int($offset) && isset($this->children[$offset]);
+    }
 
-	function offsetGet($offset)
-	{
-		if (isset($this->children[$offset])) {
-			return $this->children[$offset];
-		}
-	}
+    public function offsetGet($offset)
+    {
+        if (isset($this->children[$offset])) {
+            return $this->children[$offset];
+        }
+    }
 
-	function offsetSet($offset, $value)
-	{
-	}
+    public function offsetSet($offset, $value)
+    {
+    }
 
-	function offsetUnset($offset)
-	{
-	}
+    public function offsetUnset($offset)
+    {
+    }
 
-	function __get($name)
-	{
-		foreach ($this->children as $child) {
-			if ($child instanceof Math_Formula_Element && $child->type == $name) {
-				return $child;
-			}
-		}
-	}
+    public function __get($name)
+    {
+        foreach ($this->children as $child) {
+            if ($child instanceof Math_Formula_Element && $child->type == $name) {
+                return $child;
+            }
+        }
+    }
 
-	function getType()
-	{
-		return $this->type;
-	}
+    public function getType()
+    {
+        return $this->type;
+    }
 
-	function current()
-	{
-		$key = key($this->children);
-		return $this->children[$key];
-	}
+    public function current()
+    {
+        $key = key($this->children);
 
-	function next()
-	{
-		next($this->children);
-	}
+        return $this->children[$key];
+    }
 
-	function rewind()
-	{
-		reset($this->children);
-	}
+    public function next()
+    {
+        next($this->children);
+    }
 
-	function key()
-	{
-		return key($this->children);
-	}
+    public function rewind()
+    {
+        reset($this->children);
+    }
 
-	function valid()
-	{
-		return false !== current($this->children);
-	}
+    public function key()
+    {
+        return key($this->children);
+    }
 
-	function count()
-	{
-		return count($this->children);
-	}
+    public function valid()
+    {
+        return false !== current($this->children);
+    }
 
-	function getExtraValues(array $allowedKeys)
-	{
-		$extra = [];
+    public function count()
+    {
+        return count($this->children);
+    }
 
-		foreach ($this->children as $child) {
-			if ($child instanceof self) {
-				if (! in_array($child->type, $allowedKeys)) {
-					$extra[] = "({$child->type} ...)";
-				}
-			} else {
-				$extra[] = $child;
-			}
-		}
+    public function getExtraValues(array $allowedKeys)
+    {
+        $extra = [];
 
-		if (count($extra)) {
-			return $extra;
-		}
-	}
+        foreach ($this->children as $child) {
+            if ($child instanceof self) {
+                if (! in_array($child->type, $allowedKeys)) {
+                    $extra[] = "({$child->type} ...)";
+                }
+            } else {
+                $extra[] = $child;
+            }
+        }
+
+        if (count($extra)) {
+            return $extra;
+        }
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,12 +8,14 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /** \file
  * \author zaufi <zaufi@sendmail.ru>
+ * @param mixed $params
+ * @param mixed $smarty
  */
 
 /**
@@ -23,26 +26,27 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function smarty_function_var_dump($params, $smarty)
 {
-	global $debugger;
-	require_once('lib/debug/debugger.php');
-	$smarty = TikiLib::lib('smarty');
-	$v = $params['var'];
-	if (! empty($v)) {
-		$tmp = $smarty->getTemplateVars();
-		if (is_array($tmp) && isset($tmp["$v"])) {
-			if (is_string($tmp[$v])) {
-				$debugger->msg("Smarty var_dump(" . $v . ') = ' . print_r($tmp[$v], true));
-			} else {
-				ob_start();
-				var_dump($tmp[$v]);
-				$d = ob_get_clean();
-				$debugger->msg("Smarty var_dump(" . $v . ') = ' . $d);
-			}
-		} else {
-			$debugger->msg("Smarty var_dump(" . $v . "): Variable not found");
-		}
-	} else {
-		$debugger->msg("Smarty var_dump: Parameter 'var' not specified");
-	}
-	return '<!-- var_dump(' . $v . ') -->';
+    global $debugger;
+    require_once('lib/debug/debugger.php');
+    $smarty = TikiLib::lib('smarty');
+    $v = $params['var'];
+    if (! empty($v)) {
+        $tmp = $smarty->getTemplateVars();
+        if (is_array($tmp) && isset($tmp["$v"])) {
+            if (is_string($tmp[$v])) {
+                $debugger->msg("Smarty var_dump(" . $v . ') = ' . print_r($tmp[$v], true));
+            } else {
+                ob_start();
+                var_dump($tmp[$v]);
+                $d = ob_get_clean();
+                $debugger->msg("Smarty var_dump(" . $v . ') = ' . $d);
+            }
+        } else {
+            $debugger->msg("Smarty var_dump(" . $v . "): Variable not found");
+        }
+    } else {
+        $debugger->msg("Smarty var_dump: Parameter 'var' not specified");
+    }
+
+    return '<!-- var_dump(' . $v . ') -->';
 }

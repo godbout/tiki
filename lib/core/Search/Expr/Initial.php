@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,67 +8,68 @@
 
 class Search_Expr_Initial implements Search_Expr_Interface
 {
-	private $string;
-	private $type;
-	private $field;
-	private $weight;
+    private $string;
+    private $type;
+    private $field;
+    private $weight;
 
-	function __construct($string, $type = null, $field = null, $weight = 1.0)
-	{
-		$this->string = $string;
-		$this->type = $type;
-		$this->field = $field;
-		$this->setWeight($weight);
-	}
+    public function __construct($string, $type = null, $field = null, $weight = 1.0)
+    {
+        $this->string = $string;
+        $this->type = $type;
+        $this->field = $field;
+        $this->setWeight($weight);
+    }
 
-	function setType($type)
-	{
-		$this->type = $type;
-	}
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 
-	function getType()
-	{
-		return $this->type;
-	}
+    public function getType()
+    {
+        return $this->type;
+    }
 
-	function setField($field = 'global')
-	{
-		$this->field = $field;
-	}
+    public function setField($field = 'global')
+    {
+        $this->field = $field;
+    }
 
-	function setWeight($weight)
-	{
-		$this->weight = (float) $weight;
-	}
+    public function setWeight($weight)
+    {
+        $this->weight = (float) $weight;
+    }
 
-	function getWeight()
-	{
-		return $this->weight;
-	}
+    public function getWeight()
+    {
+        return $this->weight;
+    }
 
-	function walk($callback)
-	{
-		return call_user_func($callback, $this, []);
-	}
+    public function walk($callback)
+    {
+        return call_user_func($callback, $this, []);
+    }
 
-	function getContent()
-	{
-		return $this->string;
-	}
+    public function getContent()
+    {
+        return $this->string;
+    }
 
-	function getValue(Search_Type_Factory_Interface $typeFactory)
-	{
-		$type = $this->type;
-		return $typeFactory->$type($this->string);
-	}
+    public function getValue(Search_Type_Factory_Interface $typeFactory)
+    {
+        $type = $this->type;
 
-	function getField()
-	{
-		return $this->field;
-	}
+        return $typeFactory->$type($this->string);
+    }
 
-	function traverse($callback)
-	{
-		return call_user_func($callback, $callback, $this, []);
-	}
+    public function getField()
+    {
+        return $this->field;
+    }
+
+    public function traverse($callback)
+    {
+        return call_user_func($callback, $callback, $this, []);
+    }
 }

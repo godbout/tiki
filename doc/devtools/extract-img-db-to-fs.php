@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -6,16 +7,16 @@
 // $Id$
 
 /**
-	Script to extract images from a Tiki database and create them as files
-	Damian Parker
-	SF: damosoft
-	tikigod.org
+    Script to extract images from a Tiki database and create them as files
+    Damian Parker
+    SF: damosoft
+    tikigod.org
 
-	This script is MySQL only!
+    This script is MySQL only!
 
-	v0.1
+    v0.1
 
-	you can run this from cmd line with: php extract-img-db-to-fs.php
+    you can run this from cmd line with: php extract-img-db-to-fs.php
 
 */
 
@@ -37,16 +38,16 @@ $query = "select * from tiki_images_data where type = 'o'";
 $results = mysqli_query($db, $query);
 
 while ($r = mysqli_fetch_array($db, $results)) {
-	extract($r, EXTR_PREFIX_ALL, 'r');
+    extract($r, EXTR_PREFIX_ALL, 'r');
 
-	echo "$r_filename ";
-	if (file_exists($extract_to . $r_filename)) {
-		$r_filename .= '001';
-		echo "exists going to: $r_filename";
-	}
+    echo "$r_filename ";
+    if (file_exists($extract_to . $r_filename)) {
+        $r_filename .= '001';
+        echo "exists going to: $r_filename";
+    }
 
-	$img = fopen($extract_to . $r_filename, 'w');
-	fwrite($img, $r_data);
-	fclose($img);
-	echo "Done!\n";
+    $img = fopen($extract_to . $r_filename, 'w');
+    fwrite($img, $r_data);
+    fclose($img);
+    echo "Done!\n";
 }

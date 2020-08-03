@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -15,128 +16,128 @@ use SitemapPHP\Sitemap;
  */
 class Generator
 {
-	/**
-	 * The prefix to be added when scanning the sub folder for valid type handlers
-	 */
-	const NAMESPACE_PREFIX = '\\Tiki\\Sitemap\\Type\\';
+    /**
+     * The prefix to be added when scanning the sub folder for valid type handlers
+     */
+    const NAMESPACE_PREFIX = '\\Tiki\\Sitemap\\Type\\';
 
-	/**
-	 * The base class the type handlers must extend
-	 */
-	const BASE_CLASS = '\\Tiki\\Sitemap\\AbstractType';
+    /**
+     * The base class the type handlers must extend
+     */
+    const BASE_CLASS = '\\Tiki\\Sitemap\\AbstractType';
 
-	/**
-	 * The base of the sitemap file name
-	 */
-	const BASE_FILE_NAME = 'sitemap';
+    /**
+     * The base of the sitemap file name
+     */
+    const BASE_FILE_NAME = 'sitemap';
 
-	protected $basePath;
+    protected $basePath;
 
-	public function __construct($basePath = null)
-	{
-		global $tikipath;
-		if (is_null($basePath)) {
-			$basePath = $tikipath;
-		}
+    public function __construct($basePath = null)
+    {
+        global $tikipath;
+        if (is_null($basePath)) {
+            $basePath = $tikipath;
+        }
 
-		$this->basePath = $basePath;
+        $this->basePath = $basePath;
 
-		if (! function_exists('filter_our_sefurl') && file_exists($basePath . 'tiki-sefurl.php')) {
-			include_once($basePath . 'tiki-sefurl.php');
-		}
-	}
+        if (! function_exists('filter_our_sefurl') && file_exists($basePath . 'tiki-sefurl.php')) {
+            include_once($basePath . 'tiki-sefurl.php');
+        }
+    }
 
-	/**
-	 * Function for generate sitemap XML
-	 * @param string $baseUrl
-	 */
-	public function generate($baseUrl)
-	{
-		global $user;
+    /**
+     * Function for generate sitemap XML
+     * @param string $baseUrl
+     */
+    public function generate($baseUrl)
+    {
+        global $user;
 
-		/** @var \Perms $perms */
-		$perms = Perms::getInstance();
-		$oldGroups = $perms->getGroups();
-		$loggedUser = $user;
+        /** @var \Perms $perms */
+        $perms = Perms::getInstance();
+        $oldGroups = $perms->getGroups();
+        $loggedUser = $user;
 
-		$perms->setGroups(['Anonymous']); // ensure that permissions are processed as Anonymous
-		$user = null;
+        $perms->setGroups(['Anonymous']); // ensure that permissions are processed as Anonymous
+        $user = null;
 
-		$baseUrl = rtrim($baseUrl, '/');
-		$sitemap = new Sitemap($baseUrl);
-		$relativePath = $this->getRelativePath();
-		$sitemap->setPath($this->basePath . $relativePath);
-		$sitemap->setFilename(self::BASE_FILE_NAME);
+        $baseUrl = rtrim($baseUrl, '/');
+        $sitemap = new Sitemap($baseUrl);
+        $relativePath = $this->getRelativePath();
+        $sitemap->setPath($this->basePath . $relativePath);
+        $sitemap->setFilename(self::BASE_FILE_NAME);
 
-		// Add the website root
-		$sitemap->addItem('/', '1.0', 'daily', date('Y-m-d'));
+        // Add the website root
+        $sitemap->addItem('/', '1.0', 'daily', date('Y-m-d'));
 
-		// Execute all other handlers, for the different type of content
-		$directoryFiles = new \GlobIterator(__DIR__ . '/Type/*.php');
-		/** @var \SplFileInfo $file */
-		foreach ($directoryFiles as $file) {
-			if ($file->getFilename() === 'index.php') {
-				continue; // file to prevent directory browsing
-			}
+        // Execute all other handlers, for the different type of content
+        $directoryFiles = new \GlobIterator(__DIR__ . '/Type/*.php');
+        /** @var \SplFileInfo $file */
+        foreach ($directoryFiles as $file) {
+            if ($file->getFilename() === 'index.php') {
+                continue; // file to prevent directory browsing
+            }
 
-			$name = $file->getBasename('.php');
-			$class = self::NAMESPACE_PREFIX . $name;
+            $name = $file->getBasename('.php');
+            $class = self::NAMESPACE_PREFIX . $name;
 
-			if (! class_exists($class)) {
-				continue;
-			}
+            if (! class_exists($class)) {
+                continue;
+            }
 
-			/** @var AbstractType $typeHandler */
-			$typeHandler = new $class($sitemap);
-			if (is_subclass_of($typeHandler, self::BASE_CLASS)) {
-				$typeHandler->generate();
-			}
-		}
+            /** @var AbstractType $typeHandler */
+            $typeHandler = new $class($sitemap);
+            if (is_subclass_of($typeHandler, self::BASE_CLASS)) {
+                $typeHandler->generate();
+            }
+        }
 
-		$sitemap->createSitemapIndex($baseUrl . '/' . $relativePath, date('Y-m-d'));
+        $sitemap->createSitemapIndex($baseUrl . '/' . $relativePath, date('Y-m-d'));
 
-		$user = $loggedUser; // restore the configuration for permissions
-		$perms->setGroups($oldGroups);
-	}
+        $user = $loggedUser; // restore the configuration for permissions
+        $perms->setGroups($oldGroups);
+    }
 
-	/**
-	 * Return the path to the sitemap
-	 *
-	 * @param bool $relative if it should return only the relative path (default true)
-	 * @return string
-	 */
-	public function getSitemapPath($relative = true)
-	{
-		$path = $this->getRelativePath() . self::BASE_FILE_NAME . '-index.xml';
+    /**
+     * Return the path to the sitemap
+     *
+     * @param bool $relative if it should return only the relative path (default true)
+     * @return string
+     */
+    public function getSitemapPath($relative = true)
+    {
+        $path = $this->getRelativePath() . self::BASE_FILE_NAME . '-index.xml';
 
-		if (! $relative) {
-			$path = $this->basePath . $path;
-		}
+        if (! $relative) {
+            $path = $this->basePath . $path;
+        }
 
-		return $path;
-	}
+        return $path;
+    }
 
-	/**
-	 * Return the sitemap file name
-	 *
-	 * @return string
-	 */
-	public function getSitemapFilename()
-	{
-		return self::BASE_FILE_NAME . '-index.xml';
-	}
+    /**
+     * Return the sitemap file name
+     *
+     * @return string
+     */
+    public function getSitemapFilename()
+    {
+        return self::BASE_FILE_NAME . '-index.xml';
+    }
 
-	/**
-	 * Get relative path based on our current domain
-	 *
-	 * @return mixed|string
-	 */
-	public function getRelativePath()
-	{
-		global $tikidomain;
+    /**
+     * Get relative path based on our current domain
+     *
+     * @return mixed|string
+     */
+    public function getRelativePath()
+    {
+        global $tikidomain;
 
-		$base = 'storage/public/';
+        $base = 'storage/public/';
 
-		return ! empty($tikidomain) ? $base . $tikidomain . '/' : $base;
-	}
+        return ! empty($tikidomain) ? $base . $tikidomain . '/' : $base;
+    }
 }

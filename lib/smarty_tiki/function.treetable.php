@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -68,8 +69,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -79,151 +80,151 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function smarty_function_treetable($params, $smarty)
 {
-	global $tree_table_id, $prefs;
-	$headerlib = TikiLib::lib('header');
+    global $tree_table_id, $prefs;
+    $headerlib = TikiLib::lib('header');
 
-	extract($params);
+    extract($params);
 
-	$_emptyDataMessage = empty($_emptyDataMessage) ? tra('No rows found') : $_emptyDataMessage;
-	if (empty($_data)) {
-		return $_emptyDataMessage;
-	}
+    $_emptyDataMessage = empty($_emptyDataMessage) ? tra('No rows found') : $_emptyDataMessage;
+    if (empty($_data)) {
+        return $_emptyDataMessage;
+    }
 
-	$_checkbox = empty($_checkbox) ? '' : $_checkbox;
-	$_checkboxTitles = empty($_checkboxTitles) ? '' : $_checkboxTitles;
-	$_openall = isset($_openall) ? $_openall : 'n';
-	$_showSelected = isset($_showSelected) ? $_showSelected : 'n';
-	$_selectAllHiddenToo = isset($_selectAllHiddenToo) ? $_selectAllHiddenToo : 'n';
+    $_checkbox = empty($_checkbox) ? '' : $_checkbox;
+    $_checkboxTitles = empty($_checkboxTitles) ? '' : $_checkboxTitles;
+    $_openall = isset($_openall) ? $_openall : 'n';
+    $_showSelected = isset($_showSelected) ? $_showSelected : 'n';
+    $_selectAllHiddenToo = isset($_selectAllHiddenToo) ? $_selectAllHiddenToo : 'n';
 
-	if (is_string($_checkbox) && strpos($_checkbox, ',') !== false) {
-		$_checkbox = preg_split('/,/', trim($_checkbox));
-	}
-	if (! empty($_checkboxColumnIndex)) {
-		if (is_string($_checkboxColumnIndex) && strpos($_checkboxColumnIndex, ',') !== false) {
-			$_checkboxColumnIndex = preg_split('/,/', trim($_checkboxColumnIndex));
-		}
-		if (count($_checkbox) != count($_checkboxColumnIndex)) {
-			return 'Number of items in _checkboxColumnIndex doesn not match items in _checkbox';
-		}
-	}
-	if (! empty($_checkboxTitles)) {
-		if (is_string($_checkboxTitles)) {
-			if (strpos($_checkboxTitles, ',') !== false) {
-				$_checkboxTitles = preg_split('/,/', trim($_checkboxTitles));
-			} else {
-				$_checkboxTitles = [trim($_checkboxTitles)];
-			}
-		}
-		if (count($_checkbox) != count($_checkboxTitles)) {
-			return 'Number of items in _checkboxTitles doesn not match items in _checkbox';
-		}
-	}
-	$_checkboxColumnIndex = empty($_checkboxColumnIndex) ? 0 : $_checkboxColumnIndex;
-	$_valueColumnIndex = empty($_valueColumnIndex) ? 0 : $_valueColumnIndex;
+    if (is_string($_checkbox) && strpos($_checkbox, ',') !== false) {
+        $_checkbox = preg_split('/,/', trim($_checkbox));
+    }
+    if (! empty($_checkboxColumnIndex)) {
+        if (is_string($_checkboxColumnIndex) && strpos($_checkboxColumnIndex, ',') !== false) {
+            $_checkboxColumnIndex = preg_split('/,/', trim($_checkboxColumnIndex));
+        }
+        if (count($_checkbox) != count($_checkboxColumnIndex)) {
+            return 'Number of items in _checkboxColumnIndex doesn not match items in _checkbox';
+        }
+    }
+    if (! empty($_checkboxTitles)) {
+        if (is_string($_checkboxTitles)) {
+            if (strpos($_checkboxTitles, ',') !== false) {
+                $_checkboxTitles = preg_split('/,/', trim($_checkboxTitles));
+            } else {
+                $_checkboxTitles = [trim($_checkboxTitles)];
+            }
+        }
+        if (count($_checkbox) != count($_checkboxTitles)) {
+            return 'Number of items in _checkboxTitles doesn not match items in _checkbox';
+        }
+    }
+    $_checkboxColumnIndex = empty($_checkboxColumnIndex) ? 0 : $_checkboxColumnIndex;
+    $_valueColumnIndex = empty($_valueColumnIndex) ? 0 : $_valueColumnIndex;
 
-	if (! empty($_checkbox) && ! is_array($_checkbox)) {
-			$_checkbox = [$_checkbox];
-			$_checkboxColumnIndex = [$_checkboxColumnIndex];
-	}
+    if (! empty($_checkbox) && ! is_array($_checkbox)) {
+        $_checkbox = [$_checkbox];
+        $_checkboxColumnIndex = [$_checkboxColumnIndex];
+    }
 
-	$_columnsContainHtml = isset($_columnsContainHtml) ? $_columnsContainHtml : 'n';
+    $_columnsContainHtml = isset($_columnsContainHtml) ? $_columnsContainHtml : 'n';
 
-	$html = '';
-	$nl = "\n";
+    $html = '';
+    $nl = "\n";
 
-	// some defaults
-	$_listFilter = empty($_listFilter) ? 'y' : $_listFilter;
-	$_filterMinRows = empty($_filterMinRows) ? 12 : $_filterMinRows;
-	$_collapseMaxSections = empty($_collapseMaxSections) ? 4 : $_collapseMaxSections;
+    // some defaults
+    $_listFilter = empty($_listFilter) ? 'y' : $_listFilter;
+    $_filterMinRows = empty($_filterMinRows) ? 12 : $_filterMinRows;
+    $_collapseMaxSections = empty($_collapseMaxSections) ? 4 : $_collapseMaxSections;
 
-	$_rowClasses = ! isset($_rowClasses) ? ['odd', 'even'] :
-		(is_array($_rowClasses) ? $_rowClasses : [$_rowClasses]);
+    $_rowClasses = ! isset($_rowClasses) ? ['odd', 'even'] :
+        (is_array($_rowClasses) ? $_rowClasses : [$_rowClasses]);
 
-	if (! empty($_rowClasses)) {
-		$oddEvenCounter = 0;
-	} else {
-		$oddEvenCounter = -1;
-	}
+    if (! empty($_rowClasses)) {
+        $oddEvenCounter = 0;
+    } else {
+        $oddEvenCounter = -1;
+    }
 
-	// auto-increment val for unique id's etc
-	if (empty($id)) {
-		if (! isset($tree_table_id)) {
-			$tree_table_id = 1;
-		} else {
-			$tree_table_id++;
-		}
-		$id = 'treetable_' . $tree_table_id;
-	}
-	// TODO - check this? add key/val pairs?
-	if (empty($_columns)) {
-		$keys = array_keys($_data[0]);
-		$_columns = [];
-		foreach ($keys as $key) {
-			if (! is_numeric($key)) {
-				$_columns[$key] = htmlspecialchars($key);
-			}
-		}
-	} elseif (is_string($_columns)) {
-		$ar = preg_split('/,/', $_columns);
-		$_columns = [];
-		foreach ($ar as $str) {
-			$ar2 = preg_split('/=/', trim($str));
-			$_columns[trim($ar2[0], ' "')] = trim($ar2[1], ' "');
-		}
-		unset($ar, $ar2);
-	}
+    // auto-increment val for unique id's etc
+    if (empty($id)) {
+        if (! isset($tree_table_id)) {
+            $tree_table_id = 1;
+        } else {
+            $tree_table_id++;
+        }
+        $id = 'treetable_' . $tree_table_id;
+    }
+    // TODO - check this? add key/val pairs?
+    if (empty($_columns)) {
+        $keys = array_keys($_data[0]);
+        $_columns = [];
+        foreach ($keys as $key) {
+            if (! is_numeric($key)) {
+                $_columns[$key] = htmlspecialchars($key);
+            }
+        }
+    } elseif (is_string($_columns)) {
+        $ar = preg_split('/,/', $_columns);
+        $_columns = [];
+        foreach ($ar as $str) {
+            $ar2 = preg_split('/=/', trim($str));
+            $_columns[trim($ar2[0], ' "')] = trim($ar2[1], ' "');
+        }
+        unset($ar, $ar2);
+    }
 
-	$_sortColumn = empty($_sortColumn) ? '' : $_sortColumn;
-	$_groupColumn = empty($_groupColumn) ? '' : $_groupColumn;
+    $_sortColumn = empty($_sortColumn) ? '' : $_sortColumn;
+    $_groupColumn = empty($_groupColumn) ? '' : $_groupColumn;
 
-	if ($_sortColumn) {
-		sort2d($_data, $_sortColumn);
-	} elseif ($_groupColumn) {
-		sort2d($_data, $_groupColumn, false);
-		$_sortColumn = $_groupColumn;
-	}
+    if ($_sortColumn) {
+        sort2d($_data, $_sortColumn);
+    } elseif ($_groupColumn) {
+        sort2d($_data, $_groupColumn, false);
+        $_sortColumn = $_groupColumn;
+    }
 
-	$class = empty($class) ? 'table table-striped' : $class;	// treetable
+    $class = empty($class) ? 'table table-striped' : $class;	// treetable
 
-/*
-	if ($prefs['feature_jquery_tablesorter'] == 'y' && strpos($class, 'sortable') === false) {
-		 //$class .= ' sortable';
-	}
-*/
+    /*
+        if ($prefs['feature_jquery_tablesorter'] == 'y' && strpos($class, 'sortable') === false) {
+             //$class .= ' sortable';
+        }
+    */
 
-	if ($_listFilter == 'y' && count($_data) > $_filterMinRows) {
-		$smarty->loadPlugin('smarty_function_listfilter');
-		$html .= smarty_function_listfilter(
-			[
-				'id' => $id . '_filter',
-				'selectors' => "#$id tbody tr",
-				'parentSelector' => "#$id .collapsed:not(\".leaf\"), #$id .expanded:not(\".leaf\")",
-				'exclude' => ""
-			],
-			$smarty
-		);
-	}
+    if ($_listFilter == 'y' && count($_data) > $_filterMinRows) {
+        $smarty->loadPlugin('smarty_function_listfilter');
+        $html .= smarty_function_listfilter(
+            [
+                'id' => $id . '_filter',
+                'selectors' => "#$id tbody tr",
+                'parentSelector' => "#$id .collapsed:not(\".leaf\"), #$id .expanded:not(\".leaf\")",
+                'exclude' => ""
+            ],
+            $smarty
+        );
+    }
 
-	if ($_openall == 'y') {
-		$smarty->loadPlugin('smarty_function_icon');
-		$html .= '&nbsp;<label id="' . $id . '_openall" style="cursor:pointer">'
-			. smarty_function_icon(
-				[
-					'name' => 'file-archive',
-				],
-				$smarty
-			)
-			. smarty_function_icon(
-				[
-					'name' => 'file-archive-open',
-					'istyle' => 'display:none'
-				],
-				$smarty
-			)
-			. ' ' . tra('Toggle sections') . '</label>';
+    if ($_openall == 'y') {
+        $smarty->loadPlugin('smarty_function_icon');
+        $html .= '&nbsp;<label id="' . $id . '_openall" style="cursor:pointer">'
+            . smarty_function_icon(
+                [
+                    'name' => 'file-archive',
+                ],
+                $smarty
+            )
+            . smarty_function_icon(
+                [
+                    'name' => 'file-archive-open',
+                    'istyle' => 'display:none'
+                ],
+                $smarty
+            )
+            . ' ' . tra('Toggle sections') . '</label>';
 
-		$headerlib->add_jq_onready(
-			'
+        $headerlib->add_jq_onready(
+            '
 $("#' . $id . '_openall").click( function () {
 	$this = $(this).tikiModal(" ");
 	var visible = $(this).find(".icon:visible")
@@ -257,16 +258,16 @@ $("#' . $id . '_openall").click( function () {
 	}
 	return false;
 });'
-		);
-	}
+        );
+    }
 
-	if ($_showSelected == 'y') {
-		$smarty->loadPlugin('smarty_function_icon');
-		$html .= ' <input type="checkbox" id="' . $id . '_showSelected" title="' . tra('Show only selected') . '" />';
-		$html .= ' <label for="' . $id . '_showSelected">' . tra('Show only selected') . '</label>';
+    if ($_showSelected == 'y') {
+        $smarty->loadPlugin('smarty_function_icon');
+        $html .= ' <input type="checkbox" id="' . $id . '_showSelected" title="' . tra('Show only selected') . '" />';
+        $html .= ' <label for="' . $id . '_showSelected">' . tra('Show only selected') . '</label>';
 
-		$headerlib->add_jq_onready(
-			'
+        $headerlib->add_jq_onready(
+            '
 $("#' . $id . '_showSelected").click( function () {
 	if (!$(this).prop("checked")) {
 		$("#treetable_1 tr td.checkBoxCell input:checkbox").parent().parent().show()
@@ -275,184 +276,184 @@ $("#' . $id . '_showSelected").click( function () {
 		$("#treetable_1 tr td.checkBoxCell input:checked").parent().parent().show()
 	}
 });'
-		);
-	}
+        );
+    }
 
-	// start writing the table
-	$html .= $nl . '<table id="' . $id . '" class="' . $class . '">' . $nl;
+    // start writing the table
+    $html .= $nl . '<table id="' . $id . '" class="' . $class . '">' . $nl;
 
-	// write the table header
-	$html .= '<thead><tr>';
-	if (! empty($_checkbox)) {
-		$smarty->loadPlugin('smarty_function_select_all');
-		for ($i = 0, $icount_checkbox = count($_checkbox); $i < $icount_checkbox; $i++) {
-			$html .= '<th class="checkBoxHeader">';
-			$html .= smarty_function_select_all(
-				[
-					'checkbox_names' => [$_checkbox[$i] . '[]'],
-					'label' => empty($_checkboxTitles) ? '' : htmlspecialchars(tra($_checkboxTitles[$i])),
-					'hidden_too' => $_selectAllHiddenToo,
-				],
-				$smarty
-			);
-			$html .= '</th>';
-		}
-	}
+    // write the table header
+    $html .= '<thead><tr>';
+    if (! empty($_checkbox)) {
+        $smarty->loadPlugin('smarty_function_select_all');
+        for ($i = 0, $icount_checkbox = count($_checkbox); $i < $icount_checkbox; $i++) {
+            $html .= '<th class="checkBoxHeader">';
+            $html .= smarty_function_select_all(
+                [
+                    'checkbox_names' => [$_checkbox[$i] . '[]'],
+                    'label' => empty($_checkboxTitles) ? '' : htmlspecialchars(tra($_checkboxTitles[$i])),
+                    'hidden_too' => $_selectAllHiddenToo,
+                ],
+                $smarty
+            );
+            $html .= '</th>';
+        }
+    }
 
-	foreach ($_columns as $column => $columnName) {
-		$html .= '<th>';
-		$html .= htmlspecialchars($columnName);
-		$html .= '</th>';
-	}
-	$html .= '</tr></thead>' . $nl;
-	$html .= '<tbody>' . $nl;
+    foreach ($_columns as $column => $columnName) {
+        $html .= '<th>';
+        $html .= htmlspecialchars($columnName);
+        $html .= '</th>';
+    }
+    $html .= '</tr></thead>' . $nl;
+    $html .= '<tbody>' . $nl;
 
-	$treeSectionsAdded = [];
-	$rowCounter = 1;
+    $treeSectionsAdded = [];
+    $rowCounter = 1;
 
-		// for each row
-	foreach ($_data as &$row) {
-		// set up tree hierarchy
-		if ($_sortColumn) {
-			$treeType = htmlspecialchars(trim($row[$_sortColumn]));
-			$childRowClass = '';
+    // for each row
+    foreach ($_data as &$row) {
+        // set up tree hierarchy
+        if ($_sortColumn) {
+            $treeType = htmlspecialchars(trim($row[$_sortColumn]));
+            $childRowClass = '';
 
-			if (! empty($_sortColumnDelimiter)) {	// nested
-				$parts = array_reverse(explode($_sortColumnDelimiter, $treeType));
+            if (! empty($_sortColumnDelimiter)) {	// nested
+                $parts = array_reverse(explode($_sortColumnDelimiter, $treeType));
 
-				for ($i = 0, $icount_parts = count($parts); $i < $icount_parts; $i++) {
-					$part = preg_replace('/\s+/', '_', $parts[$i]);
-					if (in_array($part, $treeSectionsAdded) && $i > 0) {
-						$treeParentId = preg_replace('/\s+/', '_', $parts[$i]);
-						$tt_parent_id = $id . '_' . $treeParentId;
-						break;
-					} else {
-						$tt_parent_id = '';
-					}
-				}
+                for ($i = 0, $icount_parts = count($parts); $i < $icount_parts; $i++) {
+                    $part = preg_replace('/\s+/', '_', $parts[$i]);
+                    if (in_array($part, $treeSectionsAdded) && $i > 0) {
+                        $treeParentId = preg_replace('/\s+/', '_', $parts[$i]);
+                        $tt_parent_id = $id . '_' . $treeParentId;
 
-				$treeTypeId = preg_replace('/\s+/', '_', $parts[0]);
-				$tt_id = $id . '_' . $treeTypeId;
+                        break;
+                    }
+                    $tt_parent_id = '';
+                }
 
-				$treeSectionsAdded[] = $treeTypeId;
-			} else {
-				$treeTypeId = preg_replace('/\s+/', '_', $treeType);
-				$tt_parent_id = $id . '_' . $treeTypeId;
-				$tt_id = 'child_of_' . $id . '_' . $treeTypeId . '_' . $oddEvenCounter;
+                $treeTypeId = preg_replace('/\s+/', '_', $parts[0]);
+                $tt_id = $id . '_' . $treeTypeId;
 
-				if (! empty($treeType) && ! in_array($treeTypeId, $treeSectionsAdded)) {
-					$html .= '<tr data-tt-id="' . $tt_parent_id . '"><td colspan="' . (count($_columns) + count($_checkbox)) . '">';
-					$html .= $treeType . '</td></tr>' . $nl;
+                $treeSectionsAdded[] = $treeTypeId;
+            } else {
+                $treeTypeId = preg_replace('/\s+/', '_', $treeType);
+                $tt_parent_id = $id . '_' . $treeTypeId;
+                $tt_id = 'child_of_' . $id . '_' . $treeTypeId . '_' . $oddEvenCounter;
 
-					// Courtesy message to help category perms configurators
-					if ($treeType == 'category') {
-						$html .= '<tr class="' . $childRowClass . '" data-tt-parent-id="' . $tt_parent_id . '" data-tt-id="cat_subHeader_' . $rowCounter . '">' .
-							'<td colspan="' . (count($_columns) + count($_checkbox)) . '">';
-						$html .= '<em>' . tra('You might want to also set the tiki_p_modify_object_categories permission under the tiki section') . '</em></td></tr>' . $nl;
-					}
-					$treeSectionsAdded[] = $treeTypeId;
+                if (! empty($treeType) && ! in_array($treeTypeId, $treeSectionsAdded)) {
+                    $html .= '<tr data-tt-id="' . $tt_parent_id . '"><td colspan="' . (count($_columns) + count($_checkbox)) . '">';
+                    $html .= $treeType . '</td></tr>' . $nl;
 
-					// write a sub-header
-					$html .= '<tr data-tt-id="subHeader_' . $rowCounter . '" data-tt-parent-id="' . $tt_parent_id . '" class="subHeader' . $childRowClass . '">';
-					if (! empty($_checkbox)) {
-						for ($i = 0, $icount_checkbox = count($_checkbox); $i < $icount_checkbox; $i++) {
-							$html .= '<td class="checkBoxHeader"><span class="checkBoxLabel tips" title=":' . htmlspecialchars(tra($_checkboxTitles[$i])). '">';
-							$html .= empty($_checkboxTitles) ? '' : htmlspecialchars(tra($_checkboxTitles[$i]));
-							$html .= '</span></td>';
-						}
-					}
-					foreach ($_columns as $column => $columnName) {
-						$html .= '<td>';
-						$html .= htmlspecialchars($columnName);
-						$html .= '</td>';
-					}
-					$html .= '</tr>' . $nl;
-				}
-			}
-		} else {
-			$childRowClass = '';
-			$tt_parent_id = '';
-			$tt_id = '';
-		}
+                    // Courtesy message to help category perms configurators
+                    if ($treeType == 'category') {
+                        $html .= '<tr class="' . $childRowClass . '" data-tt-parent-id="' . $tt_parent_id . '" data-tt-id="cat_subHeader_' . $rowCounter . '">' .
+                            '<td colspan="' . (count($_columns) + count($_checkbox)) . '">';
+                        $html .= '<em>' . tra('You might want to also set the tiki_p_modify_object_categories permission under the tiki section') . '</em></td></tr>' . $nl;
+                    }
+                    $treeSectionsAdded[] = $treeTypeId;
 
-		// work out row class (odd/even etc)
-		if ($oddEvenCounter > -1) {
-			$rowClass = $_rowClasses[$oddEvenCounter % 2] . $childRowClass;
-			$oddEvenCounter++;
-		} else {
-			$rowClass = $childRowClass;
-		}
+                    // write a sub-header
+                    $html .= '<tr data-tt-id="subHeader_' . $rowCounter . '" data-tt-parent-id="' . $tt_parent_id . '" class="subHeader' . $childRowClass . '">';
+                    if (! empty($_checkbox)) {
+                        for ($i = 0, $icount_checkbox = count($_checkbox); $i < $icount_checkbox; $i++) {
+                            $html .= '<td class="checkBoxHeader"><span class="checkBoxLabel tips" title=":' . htmlspecialchars(tra($_checkboxTitles[$i])) . '">';
+                            $html .= empty($_checkboxTitles) ? '' : htmlspecialchars(tra($_checkboxTitles[$i]));
+                            $html .= '</span></td>';
+                        }
+                    }
+                    foreach ($_columns as $column => $columnName) {
+                        $html .= '<td>';
+                        $html .= htmlspecialchars($columnName);
+                        $html .= '</td>';
+                    }
+                    $html .= '</tr>' . $nl;
+                }
+            }
+        } else {
+            $childRowClass = '';
+            $tt_parent_id = '';
+            $tt_id = '';
+        }
 
-		$html .= '<tr data-tt-id="' . $tt_id . '"' .
-			(! empty($tt_parent_id) ? ' data-tt-parent-id="' . $tt_parent_id . '"' : '') .
-			' class="' . $rowClass . '">';
-		// add the checkbox
-		if (! empty($_checkbox)) {
-			for ($i = 0, $icount_checkbox = count($_checkbox); $i < $icount_checkbox; $i++) {
-				// get checkbox's "value"
-				$cbxVal = htmlspecialchars($row[$_checkboxColumnIndex[$i]]);
-				$rowVal = htmlspecialchars($row[$_valueColumnIndex]);
+        // work out row class (odd/even etc)
+        if ($oddEvenCounter > -1) {
+            $rowClass = $_rowClasses[$oddEvenCounter % 2] . $childRowClass;
+            $oddEvenCounter++;
+        } else {
+            $rowClass = $childRowClass;
+        }
 
-				if (empty($_checkboxTooltips)) {
-					$cbxTit = empty($_checkboxTitles) ? $cbxVal : htmlspecialchars($_checkboxTitles[$i]);
-				} else {
-					$cbxTit = [];
-					foreach ($_checkboxTooltips as $col) {
-						if (isset($row[$col])) {
-							$cbxTit[] = tra($row[$col]);
-						} elseif ($col = '_checkboxTitles') {
-							$cbxTit[] = tra($_checkboxTitles[$i]);
-						}
-					}
-					if (empty($_checkboxTooltipFormat)) {
-						$cbxTit = htmlspecialchars(implode(' ', $cbxTit));
-					} else {
-						$cbxTit = htmlspecialchars(tra($_checkboxTooltipFormat, '', false, $cbxTit));
-					}
-				}
+        $html .= '<tr data-tt-id="' . $tt_id . '"' .
+            (! empty($tt_parent_id) ? ' data-tt-parent-id="' . $tt_parent_id . '"' : '') .
+            ' class="' . $rowClass . '">';
+        // add the checkbox
+        if (! empty($_checkbox)) {
+            for ($i = 0, $icount_checkbox = count($_checkbox); $i < $icount_checkbox; $i++) {
+                // get checkbox's "value"
+                $cbxVal = htmlspecialchars($row[$_checkboxColumnIndex[$i]]);
+                $rowVal = htmlspecialchars($row[$_valueColumnIndex]);
 
-				$html .= '<td class="checkBoxCell" style="white-space: nowrap;">';
-				$html .= '<input type="checkbox" name="' . htmlspecialchars($_checkbox[$i]) . '[]" value="' . $rowVal . '"' .
-									($cbxVal == 'y' ? ' checked="checked"' : '') . ' title="' . $cbxTit . '" />';
-				if ($cbxVal == 'y') {
-					$html .= '<input type="hidden" name="old_' . htmlspecialchars($_checkbox[$i]) . '[]" value="' . $rowVal . '" />';
-				}
-				$html .= '</td>';
-			}
-		}
+                if (empty($_checkboxTooltips)) {
+                    $cbxTit = empty($_checkboxTitles) ? $cbxVal : htmlspecialchars($_checkboxTitles[$i]);
+                } else {
+                    $cbxTit = [];
+                    foreach ($_checkboxTooltips as $col) {
+                        if (isset($row[$col])) {
+                            $cbxTit[] = tra($row[$col]);
+                        } elseif ($col = '_checkboxTitles') {
+                            $cbxTit[] = tra($_checkboxTitles[$i]);
+                        }
+                    }
+                    if (empty($_checkboxTooltipFormat)) {
+                        $cbxTit = htmlspecialchars(implode(' ', $cbxTit));
+                    } else {
+                        $cbxTit = htmlspecialchars(tra($_checkboxTooltipFormat, '', false, $cbxTit));
+                    }
+                }
 
-		foreach ($_columns as $column => $columnName) {
-			$html .= '<td>';
-			if ($_columnsContainHtml != 'y') {
-				$html .= htmlspecialchars($row[$column]);
-			} else {
-				$html .= $row[$column];
-			}
-			$html .= '</td>' . $nl;
-		}
-		$html .= '</tr>' . $nl;
-		$rowCounter++;
-	}
-	$html .= '</tbody></table>' . $nl;
+                $html .= '<td class="checkBoxCell" style="white-space: nowrap;">';
+                $html .= '<input type="checkbox" name="' . htmlspecialchars($_checkbox[$i]) . '[]" value="' . $rowVal . '"' .
+                                    ($cbxVal == 'y' ? ' checked="checked"' : '') . ' title="' . $cbxTit . '" />';
+                if ($cbxVal == 'y') {
+                    $html .= '<input type="hidden" name="old_' . htmlspecialchars($_checkbox[$i]) . '[]" value="' . $rowVal . '" />';
+                }
+                $html .= '</td>';
+            }
+        }
 
-	// add jq code to initial treetable
-	$expanable = empty($_sortColumnDelimiter) ? 'true' : 'false';	// when nested, clickableNodeNames is really annoying
-	if (count($treeSectionsAdded) < $_collapseMaxSections) {
-		$headerlib->add_jq_onready('$("#' . $id . '").treetable({clickableNodeNames:' . $expanable . ',initialState: "expanded", expandable:true});');
-	} else {
-		$headerlib->add_jq_onready('$("#' . $id . '").treetable({clickableNodeNames:' . $expanable . ',initialState: "collapsed", expandable:true});');
-	}
-	// TODO refilter when .parent is opened - seems to prevent the click propagating
-//		$headerlib->add_jq_onready('$("tr.parent").click(function(event) {
-//if ($("#'.$id.'_filter").val()) {
-//	$("#'.$id.'_filter").trigger("keyup");
-//	if (event.isPropagationStopped() || event.isImmediatePropagationStopped()) {
-//		$(this).trigger("click");
-//	}
-//}
-//		});');
+        foreach ($_columns as $column => $columnName) {
+            $html .= '<td>';
+            if ($_columnsContainHtml != 'y') {
+                $html .= htmlspecialchars($row[$column]);
+            } else {
+                $html .= $row[$column];
+            }
+            $html .= '</td>' . $nl;
+        }
+        $html .= '</tr>' . $nl;
+        $rowCounter++;
+    }
+    $html .= '</tbody></table>' . $nl;
 
-	return $html;
+    // add jq code to initial treetable
+    $expanable = empty($_sortColumnDelimiter) ? 'true' : 'false';	// when nested, clickableNodeNames is really annoying
+    if (count($treeSectionsAdded) < $_collapseMaxSections) {
+        $headerlib->add_jq_onready('$("#' . $id . '").treetable({clickableNodeNames:' . $expanable . ',initialState: "expanded", expandable:true});');
+    } else {
+        $headerlib->add_jq_onready('$("#' . $id . '").treetable({clickableNodeNames:' . $expanable . ',initialState: "collapsed", expandable:true});');
+    }
+    // TODO refilter when .parent is opened - seems to prevent the click propagating
+    //		$headerlib->add_jq_onready('$("tr.parent").click(function(event) {
+    //if ($("#'.$id.'_filter").val()) {
+    //	$("#'.$id.'_filter").trigger("keyup");
+    //	if (event.isPropagationStopped() || event.isImmediatePropagationStopped()) {
+    //		$(this).trigger("click");
+    //	}
+    //}
+    //		});');
+
+    return $html;
 }
 
 
@@ -463,22 +464,22 @@ $("#' . $id . '_showSelected").click( function () {
 // WARNING: $sort must be associative
 function sort2d(&$arrIn, $index = null, $sort = 'asort')
 {
-	// pseudo-secure--never allow user input into $sort
-	$arrTemp = [];
-	$arrOut = [];
-	foreach ($arrIn as $key => $value) {
-		$arrTemp[$key] = is_null($index) ? reset($value) : $value[$index];
-	}
+    // pseudo-secure--never allow user input into $sort
+    $arrTemp = [];
+    $arrOut = [];
+    foreach ($arrIn as $key => $value) {
+        $arrTemp[$key] = is_null($index) ? reset($value) : $value[$index];
+    }
 
-	if ($sort) {
-		if (strpos($sort, 'sort') === false) {
-			$sort = 'asort';
-		}
-		$sort($arrTemp);
-	}
+    if ($sort) {
+        if (strpos($sort, 'sort') === false) {
+            $sort = 'asort';
+        }
+        $sort($arrTemp);
+    }
 
-	foreach ($arrTemp as $key => $value) {
-		$arrOut[$key] = $arrIn[$key];
-	}
-	$arrIn = $arrOut;
+    foreach ($arrTemp as $key => $value) {
+        $arrOut[$key] = $arrIn[$key];
+    }
+    $arrIn = $arrOut;
 }

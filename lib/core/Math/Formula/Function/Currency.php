@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -15,43 +16,44 @@
  */
 class Math_Formula_Function_Currency extends Math_Formula_Function
 {
-	function evaluate($element)
-	{
-		$amount = $this->evaluateChild($element[0]);
-		$currency = $this->evaluateChild($element[1]);
-		$currencyField = $element[2];
+    public function evaluate($element)
+    {
+        $amount = $this->evaluateChild($element[0]);
+        $currency = $this->evaluateChild($element[1]);
+        $currencyField = $element[2];
 
-		$field = TikiLib::lib('trk')->get_field_by_perm_name($currencyField);
+        $field = TikiLib::lib('trk')->get_field_by_perm_name($currencyField);
 
-		if (empty($field)) {
-			$this->error(tra('Missing currency field.'));
-		}
+        if (empty($field)) {
+            $this->error(tra('Missing currency field.'));
+        }
 
-		$factory = new Tracker_Field_Factory;
-		$options = Tracker_Options::fromSerialized($field['options'], $factory->getFieldInfo($field['type']));
+        $factory = new Tracker_Field_Factory;
+        $options = Tracker_Options::fromSerialized($field['options'], $factory->getFieldInfo($field['type']));
 
-		if (! empty($element[3])) {
-			$date = $this->evaluateChild($element[3]);
-		} else {
-			$date = null;
-		}
+        if (! empty($element[3])) {
+            $date = $this->evaluateChild($element[3]);
+        } else {
+            $date = null;
+        }
 
-		$smarty = TikiLib::lib('smarty');
-		$smarty->loadPlugin('smarty_function_currency');
-		return smarty_function_currency(
-			[
-				'amount' => $amount,
-				'sourceCurrency' => $currency,
-				'exchangeRatesTrackerId' => $options->getParam('currencyTracker'),
-				'date' => $date,
-				'prepend' => $options->getParam('prepend'),
-				'append' => $options->getParam('append'),
-				'locale' => $options->getParam('locale'),
-				'defaultCurrency' => $options->getParam('currency'),
-				'symbol' => $options->getParam('symbol'),
-				'allSymbol' => $options->getParam('all_symbol'),
-			],
-			$smarty->getEmptyInternalTemplate()
-		);
-	}
+        $smarty = TikiLib::lib('smarty');
+        $smarty->loadPlugin('smarty_function_currency');
+
+        return smarty_function_currency(
+            [
+                'amount' => $amount,
+                'sourceCurrency' => $currency,
+                'exchangeRatesTrackerId' => $options->getParam('currencyTracker'),
+                'date' => $date,
+                'prepend' => $options->getParam('prepend'),
+                'append' => $options->getParam('append'),
+                'locale' => $options->getParam('locale'),
+                'defaultCurrency' => $options->getParam('currency'),
+                'symbol' => $options->getParam('symbol'),
+                'allSymbol' => $options->getParam('all_symbol'),
+            ],
+            $smarty->getEmptyInternalTemplate()
+        );
+    }
 }

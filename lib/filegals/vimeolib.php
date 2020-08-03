@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,99 +8,105 @@
 
 class VimeoLib
 {
-	private $oauth;
+    private $oauth;
 
-	/**
-	 * VimeoLib constructor.
-	 * @param OAuthLib $oauthlib
-	 */
-	function __construct($oauthlib)
-	{
-		$this->oauth = $oauthlib;
-	}
+    /**
+     * VimeoLib constructor.
+     * @param OAuthLib $oauthlib
+     */
+    public function __construct($oauthlib)
+    {
+        $this->oauth = $oauthlib;
+    }
 
-	function isAuthorized()
-	{
-		return $this->oauth->is_authorized('vimeo');
-	}
+    public function isAuthorized()
+    {
+        return $this->oauth->is_authorized('vimeo');
+    }
 
-	/**
-	 * Gets array of space and uploads left for the Vimeo account
-	 *
-	 * @return array
-	 */
-	function getQuota()
-	{
-		$data = $this->callMethod('/me');
-		return $data['upload_quota'];
-	}
+    /**
+     * Gets array of space and uploads left for the Vimeo account
+     *
+     * @return array
+     */
+    public function getQuota()
+    {
+        $data = $this->callMethod('/me');
 
-	/**
-	 * Gets an upload ticket
-	 *
-	 * @return array
-	 */
-	function getTicket()
-	{
-		$data = $this->callMethod(
-			'/me/videos',
-			['type' => 'streaming'],
-			'post'
-		);
-		return $data;
-	}
+        return $data['upload_quota'];
+    }
 
-	function complete($completeUri)
-	{
-		$data = $this->callMethod(
-			$completeUri,
-			[],
-			'delete'
-		);
-		return $data;
-	}
+    /**
+     * Gets an upload ticket
+     *
+     * @return array
+     */
+    public function getTicket()
+    {
+        $data = $this->callMethod(
+            '/me/videos',
+            ['type' => 'streaming'],
+            'post'
+        );
 
-	function setTitle($videoId, $title)
-	{
-		$data = $this->callMethod(
-			'/videos/' . $videoId,
-			[
-				'name' => $title,
-			],
-			'patch'
-		);
-		return $data;
-	}
+        return $data;
+    }
 
-	function deleteVideo($videoId)
-	{
-		$data = $this->callMethod(
-			'/videos/' . $videoId,
-			[],
-			'delete'
-		);
-		return $data;
-	}
+    public function complete($completeUri)
+    {
+        $data = $this->callMethod(
+            $completeUri,
+            [],
+            'delete'
+        );
 
-	private function callMethod($method, array $arguments = [], $httpmethod = 'get')
-	{
-		$oldVal = ini_get('arg_separator.output');
-		ini_set('arg_separator.output', '&');
-		$response = $this->oauth->do_request(
-			'vimeo',
-			[
-				'url' => 'https://api.vimeo.com' . $method,
-				$httpmethod => $arguments,
-			]
-		);
+        return $data;
+    }
 
-		ini_set('arg_separator.output', $oldVal);
+    public function setTitle($videoId, $title)
+    {
+        $data = $this->callMethod(
+            '/videos/' . $videoId,
+            [
+                'name' => $title,
+            ],
+            'patch'
+        );
 
-		if ($httpmethod == 'delete' || $httpmethod == 'patch') {
-			$headers = $response->getHeaders();
-			return $headers->toArray();
-		} else {
-			return json_decode($response->getBody(), true);
-		}
-	}
+        return $data;
+    }
+
+    public function deleteVideo($videoId)
+    {
+        $data = $this->callMethod(
+            '/videos/' . $videoId,
+            [],
+            'delete'
+        );
+
+        return $data;
+    }
+
+    private function callMethod($method, array $arguments = [], $httpmethod = 'get')
+    {
+        $oldVal = ini_get('arg_separator.output');
+        ini_set('arg_separator.output', '&');
+        $response = $this->oauth->do_request(
+            'vimeo',
+            [
+                'url' => 'https://api.vimeo.com' . $method,
+                $httpmethod => $arguments,
+            ]
+        );
+
+        ini_set('arg_separator.output', $oldVal);
+
+        if ($httpmethod == 'delete' || $httpmethod == 'patch') {
+            $headers = $response->getHeaders();
+
+            return $headers->toArray();
+        }
+
+        return json_decode($response->getBody(), true);
+    }
 }

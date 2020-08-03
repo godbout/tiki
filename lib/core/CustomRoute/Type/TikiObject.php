@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -15,92 +16,94 @@ use Tiki\CustomRoute\Type;
  */
 class TikiObject extends Type
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function getParams()
-	{
-		return [
-			'type' => [
-				'name' => tr('Type'),
-				'type' => 'select',
-				'required' => true,
-				'options' => [
-					'' => '',
-					'article' => tr('Article'),
-					'blog' => tr('Blog'),
-					'forum' => tr('Forum'),
-					'gallery' => tr('Image Gallery'),
-					'wiki page' => tr('Wiki Page'),
-				],
-			],
-			'object' => [
-				'name' => tr('Object'),
-				'type' => 'select',
-				'required' => true,
-				'function' => 'getObjectsByType',
-				'args' => ['type'],
-			],
-		];
-	}
+    /**
+     * @inheritdoc
+     */
+    public function getParams()
+    {
+        return [
+            'type' => [
+                'name' => tr('Type'),
+                'type' => 'select',
+                'required' => true,
+                'options' => [
+                    '' => '',
+                    'article' => tr('Article'),
+                    'blog' => tr('Blog'),
+                    'forum' => tr('Forum'),
+                    'gallery' => tr('Image Gallery'),
+                    'wiki page' => tr('Wiki Page'),
+                ],
+            ],
+            'object' => [
+                'name' => tr('Object'),
+                'type' => 'select',
+                'required' => true,
+                'function' => 'getObjectsByType',
+                'args' => ['type'],
+            ],
+        ];
+    }
 
-	/**
-	 * Retrieve the list the available objects for a specific type
-	 *
-	 * @param $type
-	 * @return array
-	 */
-	public function getObjectsByType($type)
-	{
+    /**
+     * Retrieve the list the available objects for a specific type
+     *
+     * @param $type
+     * @return array
+     */
+    public function getObjectsByType($type)
+    {
+        $tikilib = new TikiLib;
 
-		$tikilib = new TikiLib;
+        $objects = [];
 
-		$objects = [];
+        switch ($type) {
+            case 'article':
+                $articles = TikiLib::lib('art')->list_articles(0, -1, 'title_asc');
 
-		switch ($type) {
-			case 'article':
-				$articles = TikiLib::lib('art')->list_articles(0, -1, 'title_asc');
+                foreach ($articles['data'] as $article) {
+                    $objects[$article['articleId']] = $article['title'];
+                }
 
-				foreach ($articles['data'] as $article) {
-					$objects[$article['articleId']] = $article['title'];
-				}
-				break;
+                break;
 
-			case 'blog':
-				$blogs = TikiLib::lib('blog')->list_blogs(0, -1, 'title_asc');
+            case 'blog':
+                $blogs = TikiLib::lib('blog')->list_blogs(0, -1, 'title_asc');
 
-				foreach ($blogs['data'] as $blog) {
-					$objects[$blog['blogId']] = $blog['title'];
-				}
-				break;
+                foreach ($blogs['data'] as $blog) {
+                    $objects[$blog['blogId']] = $blog['title'];
+                }
 
-			case 'forum':
-				$forums = TikiLib::lib('comments')->list_forums(0, -1, 'name_asc');
+                break;
 
-				foreach ($forums['data'] as $forum) {
-					$objects[$forum['forumId']] = $forum['name'];
-				}
-				break;
+            case 'forum':
+                $forums = TikiLib::lib('comments')->list_forums(0, -1, 'name_asc');
 
-			case 'gallery':
-				$galleries = $tikilib->list_galleries(0, -1, 'name_desc');
+                foreach ($forums['data'] as $forum) {
+                    $objects[$forum['forumId']] = $forum['name'];
+                }
 
-				foreach ($galleries['data'] as $gallery) {
-					$objects[$gallery['galleryId']] = $gallery['name'];
-				}
+                break;
 
-				break;
+            case 'gallery':
+                $galleries = $tikilib->list_galleries(0, -1, 'name_desc');
 
-			case 'wiki page':
-				$pages = $tikilib->list_pages(0, -1, 'pageName_asc');
+                foreach ($galleries['data'] as $gallery) {
+                    $objects[$gallery['galleryId']] = $gallery['name'];
+                }
 
-				foreach ($pages['data'] as $page) {
-					$objects[$page['page_id']] = $page['pageName'];
-				}
+                break;
 
-				break;
-		}
+            case 'wiki page':
+                $pages = $tikilib->list_pages(0, -1, 'pageName_asc');
 
-		return $objects;
-	}
+                foreach ($pages['data'] as $page) {
+                    $objects[$page['page_id']] = $page['pageName'];
+                }
+
+                break;
+        }
+
+        return $objects;
+    }
 }

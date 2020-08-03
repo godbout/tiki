@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -37,68 +38,69 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 function smarty_block_tikimodule($params, $content, $smarty, &$repeat)
 {
-	if ($repeat) {
-		return;
-	}
+    if ($repeat) {
+        return;
+    }
 
-	extract($params);
-	if (! isset($content)) {
-		return "";
-	}
-	if (! isset($error)) {
-		$error = '';
-	}
-	if (! isset($overflow)) {
-		$overflow = false;
-	}
-	if (! isset($title)) {
-		$title = substr(strip_tags($content), 0, 12) . (strlen(strip_tags($content)) > 12 ? "..." : "");
-	}
-	if (! isset($name)) {
-		$name  = $title;
-	} else {
-		$name  = $name;
-	}
-	$name = urlencode($name);
-	if (! isset($flip) || ($flip != 'y' && $flip != 'yc')) {
-		$flip = 'n';
-	}
-	if (! isset($nobox)) {
-		$nobox = 'n';
-	}
-	if (! isset($notitle)) {
-		$notitle = 'n';
-	}
-	if ($flip == 'yc') {
-		// can be switched but initially closed
-		$flip = 'y';
-		$dstate = 'c';
-	} else {
-		$dstate = 'o';
-	}
-	if (! isset($decorations) || $decorations != 'n') {
-		$decorations = 'y';
-	}
+    extract($params);
+    if (! isset($content)) {
+        return "";
+    }
+    if (! isset($error)) {
+        $error = '';
+    }
+    if (! isset($overflow)) {
+        $overflow = false;
+    }
+    if (! isset($title)) {
+        $title = substr(strip_tags($content), 0, 12) . (strlen(strip_tags($content)) > 12 ? "..." : "");
+    }
+    if (! isset($name)) {
+        $name = $title;
+    } else {
+        $name = $name;
+    }
+    $name = urlencode($name);
+    if (! isset($flip) || ($flip != 'y' && $flip != 'yc')) {
+        $flip = 'n';
+    }
+    if (! isset($nobox)) {
+        $nobox = 'n';
+    }
+    if (! isset($notitle)) {
+        $notitle = 'n';
+    }
+    if ($flip == 'yc') {
+        // can be switched but initially closed
+        $flip = 'y';
+        $dstate = 'c';
+    } else {
+        $dstate = 'o';
+    }
+    if (! isset($decorations) || $decorations != 'n') {
+        $decorations = 'y';
+    }
 
-	$smarty->assign('module_error', $error);
-	$smarty->assign('module_overflow', $overflow);
-	$smarty->assign('module_title', $title);
-	$smarty->assign('module_name', $name);
-	$smarty->assign('module_flip', $flip);
-	$smarty->assign('module_dstate', $dstate);
-	$smarty->assign('module_nobox', $nobox);
-	$smarty->assign('module_notitle', $notitle);
-	$smarty->assign('module_decorations', $decorations);
-	if (empty($type)) {
-		$type = "module";
-	}
-	$smarty->assign('module_type', $type);
-	$smarty->assignByRef('module_content', $content);
-	return $smarty->fetch('module.tpl');
+    $smarty->assign('module_error', $error);
+    $smarty->assign('module_overflow', $overflow);
+    $smarty->assign('module_title', $title);
+    $smarty->assign('module_name', $name);
+    $smarty->assign('module_flip', $flip);
+    $smarty->assign('module_dstate', $dstate);
+    $smarty->assign('module_nobox', $nobox);
+    $smarty->assign('module_notitle', $notitle);
+    $smarty->assign('module_decorations', $decorations);
+    if (empty($type)) {
+        $type = "module";
+    }
+    $smarty->assign('module_type', $type);
+    $smarty->assignByRef('module_content', $content);
+
+    return $smarty->fetch('module.tpl');
 }

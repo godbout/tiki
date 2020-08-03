@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -15,45 +16,46 @@
  *  - count_only - default 'false' - sets whether to only show the count.
  *
  * @param $smarty
- * @return string|void
  * @throws Exception
+ * @return string|void
  */
 function smarty_function_like($params, $smarty)
 {
-	global $prefs, $user;
+    global $prefs, $user;
 
-	$smarty = TikiLib::lib('smarty');
+    $smarty = TikiLib::lib('smarty');
 
-	// unregistered user, do nothing
-	if (empty($user) || $prefs['user_likes'] != 'y') {
-		return;
-	}
-	if (empty($params['count_label'])) {
-		$count_label = "Likes";
-	} else {
-		$count_label = $params['count_label'];
-	}
-	if (empty($params['count_only'])) {
-		$count_only = false;
-	} else {
-		$count_only = $params['count_only'];
-	}
+    // unregistered user, do nothing
+    if (empty($user) || $prefs['user_likes'] != 'y') {
+        return;
+    }
+    if (empty($params['count_label'])) {
+        $count_label = "Likes";
+    } else {
+        $count_label = $params['count_label'];
+    }
+    if (empty($params['count_only'])) {
+        $count_only = false;
+    } else {
+        $count_only = $params['count_only'];
+    }
 
-	$relation = "tiki.user.like";
-	$relationlib = TikiLib::lib("relation");
-	//if relation exists
-	$relation_id = $relationlib->get_relation_id($relation, "user", $user, $params['type'], $params['object']);
-	if ($relation_id) {
-		$smarty->assign('has_relation', true);
-	} else {
-		$smarty->assign('has_relation', false);
-	}
-	$count = $relationlib->get_relation_count("tiki.user.like", $params['type'], $params['object']);
+    $relation = "tiki.user.like";
+    $relationlib = TikiLib::lib("relation");
+    //if relation exists
+    $relation_id = $relationlib->get_relation_id($relation, "user", $user, $params['type'], $params['object']);
+    if ($relation_id) {
+        $smarty->assign('has_relation', true);
+    } else {
+        $smarty->assign('has_relation', false);
+    }
+    $count = $relationlib->get_relation_count("tiki.user.like", $params['type'], $params['object']);
 
-	$smarty->assign('type', $params['type']);
-	$smarty->assign('object', $params['object']);
-	$smarty->assign('count', $count);
-	$smarty->assign('count_label', $count_label);
-	$smarty->assign('count_only', $count_only);
-	return $smarty->fetch('like.tpl');
+    $smarty->assign('type', $params['type']);
+    $smarty->assign('object', $params['object']);
+    $smarty->assign('count', $count);
+    $smarty->assign('count_label', $count_label);
+    $smarty->assign('count_only', $count_only);
+
+    return $smarty->fetch('like.tpl');
 }

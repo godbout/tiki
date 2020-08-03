@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -10,160 +11,161 @@
  */
 class ZoteroLib extends TikiDb_Bridge
 {
-	/**
-	 * @return bool
-	 */
-	function is_authorized()
-	{
-		$oauthlib = TikiLib::lib('oauth');
-		return $oauthlib->is_authorized('zotero');
-	}
+    /**
+     * @return bool
+     */
+    public function is_authorized()
+    {
+        $oauthlib = TikiLib::lib('oauth');
 
-	/**
-	 * @param $tag
-	 * @param int $limit
-	 * @return array|bool
-	 */
-	function get_references($tag, $limit = 25)
-	{
-		global $prefs;
+        return $oauthlib->is_authorized('zotero');
+    }
 
-		$subset = null;
-		if ($tag) {
-			$subset = '/tags/' . rawurlencode($tag);
-		}
+    /**
+     * @param $tag
+     * @param int $limit
+     * @return array|bool
+     */
+    public function get_references($tag, $limit = 25)
+    {
+        global $prefs;
 
-		$arguments = [
-			'content' => 'bib',
-			'limit' => $limit,
-		];
+        $subset = null;
+        if ($tag) {
+            $subset = '/tags/' . rawurlencode($tag);
+        }
 
-		if (! empty($prefs['zotero_style'])) {
-			$arguments['style'] = $prefs['zotero_style'];
-		}
+        $arguments = [
+            'content' => 'bib',
+            'limit' => $limit,
+        ];
 
-		$oauthlib = TikiLib::lib('oauth');
-		$response = $oauthlib->do_request(
-			'zotero',
-			[
-				'url' => "https://api.zotero.org/groups/{$prefs['zotero_group_id']}$subset/items",
-				'get' => $arguments,
-			]
-		);
+        if (! empty($prefs['zotero_style'])) {
+            $arguments['style'] = $prefs['zotero_style'];
+        }
 
-		if ($response && $response->isSuccessful()) {
-			$feed = Laminas\Feed\Reader\Reader::importString($response->getBody());
+        $oauthlib = TikiLib::lib('oauth');
+        $response = $oauthlib->do_request(
+            'zotero',
+            [
+                'url' => "https://api.zotero.org/groups/{$prefs['zotero_group_id']}$subset/items",
+                'get' => $arguments,
+            ]
+        );
 
-			$data = [];
-			foreach ($feed as $entry) {
-				$data[] = [
-					'key' => basename($entry->getLink()),
-					'url' => $entry->getLink(),
-					'title' => $entry->getTitle(),
-					'content' => $entry->getDescription(),
-				];
-			}
+        if ($response && $response->isSuccessful()) {
+            $feed = Laminas\Feed\Reader\Reader::importString($response->getBody());
 
-			return $data;
-		}
+            $data = [];
+            foreach ($feed as $entry) {
+                $data[] = [
+                    'key' => basename($entry->getLink()),
+                    'url' => $entry->getLink(),
+                    'title' => $entry->getTitle(),
+                    'content' => $entry->getDescription(),
+                ];
+            }
 
-		return false;
-	}
+            return $data;
+        }
 
-	/**
-	 * @param $tag
-	 * @return bool|mixed
-	 */
-	function get_first_entry($tag)
-	{
-		if ($references = $this->get_references($tag, 1)) {
-			return reset($references);
-		}
+        return false;
+    }
 
-		return false;
-	}
+    /**
+     * @param $tag
+     * @return bool|mixed
+     */
+    public function get_first_entry($tag)
+    {
+        if ($references = $this->get_references($tag, 1)) {
+            return reset($references);
+        }
 
-	/**
-	 * @param $itemId
-	 * @return array|bool
-	 */
-	function get_entry($itemId)
-	{
-		global $prefs;
+        return false;
+    }
 
-		$arguments = [
-			'content' => 'bib',
-		];
+    /**
+     * @param $itemId
+     * @return array|bool
+     */
+    public function get_entry($itemId)
+    {
+        global $prefs;
 
-		if (! empty($prefs['zotero_style'])) {
-			$arguments['style'] = $prefs['zotero_style'];
-		}
+        $arguments = [
+            'content' => 'bib',
+        ];
 
-		$oauthlib = TikiLib::lib('oauth');
-		$response = $oauthlib->do_request(
-			'zotero',
-			[
-				'url' => "https://api.zotero.org/groups/{$prefs['zotero_group_id']}/items/" . urlencode($itemId),
-				'get' => $arguments,
-			]
-		);
+        if (! empty($prefs['zotero_style'])) {
+            $arguments['style'] = $prefs['zotero_style'];
+        }
 
-		if ($response->isSuccessful()) {
-			$entry = $response->getBody();
-			$entry = str_replace('<entry ', '<feed xmlns="http://www.w3.org/2005/Atom"><entry ', $entry) . '</feed>';
-			$feed = Laminas\Feed\Reader\Reader::importString($entry);
+        $oauthlib = TikiLib::lib('oauth');
+        $response = $oauthlib->do_request(
+            'zotero',
+            [
+                'url' => "https://api.zotero.org/groups/{$prefs['zotero_group_id']}/items/" . urlencode($itemId),
+                'get' => $arguments,
+            ]
+        );
 
-			foreach ($feed as $entry) {
-				return [
-					'key' => basename($entry->getLink()),
-					'url' => $entry->getLink(),
-					'title' => $entry->getTitle(),
-					'content' => $entry->getDescription(),
-				];
-			}
-		}
+        if ($response->isSuccessful()) {
+            $entry = $response->getBody();
+            $entry = str_replace('<entry ', '<feed xmlns="http://www.w3.org/2005/Atom"><entry ', $entry) . '</feed>';
+            $feed = Laminas\Feed\Reader\Reader::importString($entry);
 
-		return false;
-	}
+            foreach ($feed as $entry) {
+                return [
+                    'key' => basename($entry->getLink()),
+                    'url' => $entry->getLink(),
+                    'title' => $entry->getTitle(),
+                    'content' => $entry->getDescription(),
+                ];
+            }
+        }
 
-	/**
-	 * @param $tag
-	 * @return bool
-	 */
-	function get_formatted_references($tag)
-	{
-		global $prefs;
+        return false;
+    }
 
-		$subset = null;
-		if ($tag) {
-			$subset = '/tags/' . rawurlencode($tag);
-		}
+    /**
+     * @param $tag
+     * @return bool
+     */
+    public function get_formatted_references($tag)
+    {
+        global $prefs;
 
-		$arguments = [
-			'content' => 'bib',
-			'format' => 'bib',
-			'limit' => 500,
-		];
+        $subset = null;
+        if ($tag) {
+            $subset = '/tags/' . rawurlencode($tag);
+        }
 
-		if (! empty($prefs['zotero_style'])) {
-			$arguments['style'] = $prefs['zotero_style'];
-		}
+        $arguments = [
+            'content' => 'bib',
+            'format' => 'bib',
+            'limit' => 500,
+        ];
 
-		$oauthlib = TikiLib::lib('oauth');
-		$response = $oauthlib->do_request(
-			'zotero',
-			[
-				'url' => "https://api.zotero.org/groups/{$prefs['zotero_group_id']}$subset/items",
-				'get' => $arguments,
-			]
-		);
+        if (! empty($prefs['zotero_style'])) {
+            $arguments['style'] = $prefs['zotero_style'];
+        }
 
-		if ($response->isSuccessful()) {
-			$entry = $response->getBody();
+        $oauthlib = TikiLib::lib('oauth');
+        $response = $oauthlib->do_request(
+            'zotero',
+            [
+                'url' => "https://api.zotero.org/groups/{$prefs['zotero_group_id']}$subset/items",
+                'get' => $arguments,
+            ]
+        );
 
-			return $entry;
-		}
+        if ($response->isSuccessful()) {
+            $entry = $response->getBody();
 
-		return false;
-	}
+            return $entry;
+        }
+
+        return false;
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,32 +8,32 @@
 
 class Search_GlobalSource_VisitsSource implements Search_GlobalSource_Interface
 {
-	private $statslib;
+    private $statslib;
 
-	function __construct()
-	{
-		$this->statslib = TikiLib::lib('stats');
-	}
+    public function __construct()
+    {
+        $this->statslib = TikiLib::lib('stats');
+    }
 
-	function getProvidedFields()
-	{
-		return ['visits'];
-	}
+    public function getProvidedFields()
+    {
+        return ['visits'];
+    }
 
-	function getGlobalFields()
-	{
-		return [];
-	}
+    public function getGlobalFields()
+    {
+        return [];
+    }
 
-	function getData($objectType, $objectId, Search_Type_Factory_Interface $typeFactory, array $data = [])
-	{
-		if ($objectType === 'wiki page') {
-			$objectType = 'wiki';
-		}
-		$visits = $this->statslib->object_hits($objectId, $objectType);
+    public function getData($objectType, $objectId, Search_Type_Factory_Interface $typeFactory, array $data = [])
+    {
+        if ($objectType === 'wiki page') {
+            $objectType = 'wiki';
+        }
+        $visits = $this->statslib->object_hits($objectId, $objectType);
 
-		return [
-			'visits' => $typeFactory->sortable($visits)
-		];
-	}
+        return [
+            'visits' => $typeFactory->sortable($visits)
+        ];
+    }
 }

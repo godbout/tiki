@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -25,47 +26,47 @@ define('TPL_RESULT', 3);
  */
 class ResultType
 {
-	/// Type of result (see consts defined above)
-	var $result_type;
+    /// Type of result (see consts defined above)
+    public $result_type;
 
-	/// Template name if $result_type == TPL_RESULT
-	var $result_tpl;
+    /// Template name if $result_type == TPL_RESULT
+    public $result_tpl;
 
-	/// Constructor init all
-	function __construct()
-	{
-		$this->reset();
-	}
+    /// Constructor init all
+    public function __construct()
+    {
+        $this->reset();
+    }
 
-	/// Init all vars to default state
-	function reset()
-	{
-		$this->result_tpl = '';
+    /// Init all vars to default state
+    public function reset()
+    {
+        $this->result_tpl = '';
 
-		$this->result_type = NO_RESULT;
-	}
+        $this->result_type = NO_RESULT;
+    }
 
-	/// Accessor for result_type
-	function result_type()
-	{
-		return $this->result_type;
-	}
+    /// Accessor for result_type
+    public function result_type()
+    {
+        return $this->result_type;
+    }
 
-	function set_result_type($type)
-	{
-		$this->result_tpl = '';
+    public function set_result_type($type)
+    {
+        $this->result_tpl = '';
 
-		$this->result_type = ($type == TEXT_RESULT || $type == HTML_RESULT || $type == TPL_RESULT) ? $type : NO_RESULT;
-	}
+        $this->result_type = ($type == TEXT_RESULT || $type == HTML_RESULT || $type == TPL_RESULT) ? $type : NO_RESULT;
+    }
 
-	/// Accessor for result_tpl
-	function result_tpl()
-	{
-		return $this->result_tpl;
-	}
+    /// Accessor for result_tpl
+    public function result_tpl()
+    {
+        return $this->result_tpl;
+    }
 
-	function set_result_tpl($tpl)
-	{
-		$this->result_tpl = $tpl;
-	}
+    public function set_result_tpl($tpl)
+    {
+        $this->result_tpl = $tpl;
+    }
 }

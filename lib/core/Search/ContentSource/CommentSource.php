@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,102 +8,102 @@
 
 class Search_ContentSource_CommentSource implements Search_ContentSource_Interface
 {
-	private $types;
-	private $db;
-	private $permissionMap;
+    private $types;
+    private $db;
+    private $permissionMap;
 
-	function __construct($types)
-	{
-		$this->types = $types;
+    public function __construct($types)
+    {
+        $this->types = $types;
 
-		$this->db = TikiDb::get();
+        $this->db = TikiDb::get();
 
-		$this->permissionMap = TikiLib::lib('object')->map_object_type_to_permission(true);
-	}
+        $this->permissionMap = TikiLib::lib('object')->map_object_type_to_permission(true);
+    }
 
-	function getDocuments()
-	{
-		$comments = $this->db->table('tiki_comments');
+    public function getDocuments()
+    {
+        $comments = $this->db->table('tiki_comments');
 
-		return $comments->fetchColumn(
-			'threadId',
-			[
-				'objectType' => $comments->in($this->types),
-			]
-		);
-	}
+        return $comments->fetchColumn(
+            'threadId',
+            [
+                'objectType' => $comments->in($this->types),
+            ]
+        );
+    }
 
-	function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
-	{
-		$commentslib = TikiLib::lib('comments');
-		$comment = $commentslib->get_comment($objectId);
+    public function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
+    {
+        $commentslib = TikiLib::lib('comments');
+        $comment = $commentslib->get_comment($objectId);
 
-		if (! $comment) {
-			return false;
-		}
+        if (! $comment) {
+            return false;
+        }
 
-		$url = $commentslib->getHref($comment['objectType'], $comment['object'], $objectId);
-		$url = str_replace('&amp;', '&', $url);
+        $url = $commentslib->getHref($comment['objectType'], $comment['object'], $objectId);
+        $url = str_replace('&amp;', '&', $url);
 
-		$data = [
-			'title' => $typeFactory->sortable($comment['title']),
-			'language' => $typeFactory->identifier('unknown'),
-			'creation_date' => $typeFactory->timestamp($comment['commentDate']),
-			'modification_date' => $typeFactory->timestamp($comment['commentDate']),
-			'date' => $typeFactory->timestamp($comment['commentDate']),
-			'contributors' => $typeFactory->multivalue([$comment['userName']]),
+        $data = [
+            'title' => $typeFactory->sortable($comment['title']),
+            'language' => $typeFactory->identifier('unknown'),
+            'creation_date' => $typeFactory->timestamp($comment['commentDate']),
+            'modification_date' => $typeFactory->timestamp($comment['commentDate']),
+            'date' => $typeFactory->timestamp($comment['commentDate']),
+            'contributors' => $typeFactory->multivalue([$comment['userName']]),
 
-			'comment_content' => $typeFactory->wikitext($comment['data']),
-			'parent_thread_id' => $typeFactory->identifier($comment['parentId']),
+            'comment_content' => $typeFactory->wikitext($comment['data']),
+            'parent_thread_id' => $typeFactory->identifier($comment['parentId']),
 
-			'parent_object_type' => $typeFactory->identifier($comment['objectType']),
-			'parent_object_id' => $typeFactory->identifier($comment['object']),
-			'parent_view_permission' => $typeFactory->identifier($this->getParentPermissionForType($comment['objectType'])),
+            'parent_object_type' => $typeFactory->identifier($comment['objectType']),
+            'parent_object_id' => $typeFactory->identifier($comment['object']),
+            'parent_view_permission' => $typeFactory->identifier($this->getParentPermissionForType($comment['objectType'])),
 
-			'global_view_permission' => $typeFactory->identifier('tiki_p_read_comments'),
+            'global_view_permission' => $typeFactory->identifier('tiki_p_read_comments'),
 
-			'url' => $typeFactory->identifier($url),
-		];
+            'url' => $typeFactory->identifier($url),
+        ];
 
-		return $data;
-	}
+        return $data;
+    }
 
-	function getProvidedFields()
-	{
-		return [
-			'title',
-			'language',
-			'creation_date',
-			'modification_date',
-			'date',
-			'contributors',
-			'url',
+    public function getProvidedFields()
+    {
+        return [
+            'title',
+            'language',
+            'creation_date',
+            'modification_date',
+            'date',
+            'contributors',
+            'url',
 
-			'comment_content',
-			'parent_thread_id',
+            'comment_content',
+            'parent_thread_id',
 
-			'parent_view_permission',
-			'parent_object_id',
-			'parent_object_type',
+            'parent_view_permission',
+            'parent_object_id',
+            'parent_object_type',
 
-			'global_view_permission',
-		];
-	}
+            'global_view_permission',
+        ];
+    }
 
-	function getGlobalFields()
-	{
-		return [
-			'title' => true,
-			'date' => true,
+    public function getGlobalFields()
+    {
+        return [
+            'title' => true,
+            'date' => true,
 
-			'comment_content' => false,
-		];
-	}
+            'comment_content' => false,
+        ];
+    }
 
-	private function getParentPermissionForType($type)
-	{
-		if (isset($this->permissionMap[$type])) {
-			return $this->permissionMap[$type];
-		}
-	}
+    private function getParentPermissionForType($type)
+    {
+        if (isset($this->permissionMap[$type])) {
+            return $this->permissionMap[$type];
+        }
+    }
 }

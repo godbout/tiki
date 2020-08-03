@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -16,17 +17,17 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function module_adminbar_info()
 {
-	return [
-		'name' => tra('Quick Admin Bar'),
-		'description' => tra('Consolidated admin bar with an easy access to quick admin links, recent changes, and important admin features'),
-		'prefs' => [],
-		'params' => [
-			'mode' => [
-				'name' => tra('Mode'),
-				'description' => tra('Display mode: module or header. Leave empty for module mode'),
-			],
-		]
-	];
+    return [
+        'name' => tra('Quick Admin Bar'),
+        'description' => tra('Consolidated admin bar with an easy access to quick admin links, recent changes, and important admin features'),
+        'prefs' => [],
+        'params' => [
+            'mode' => [
+                'name' => tra('Mode'),
+                'description' => tra('Display mode: module or header. Leave empty for module mode'),
+            ],
+        ]
+    ];
 }
 
 /**
@@ -35,15 +36,15 @@ function module_adminbar_info()
  */
 function module_adminbar($mod_reference, $module_params)
 {
-	global $tiki_p_admin;
-	if ($tiki_p_admin != 'y') {
-		return;
-	}
-	$headerlib = TikiLib::lib("header");
-	$headerlib->add_css('div.contributors div br {clear: both;}');
+    global $tiki_p_admin;
+    if ($tiki_p_admin != 'y') {
+        return;
+    }
+    $headerlib = TikiLib::lib("header");
+    $headerlib->add_css('div.contributors div br {clear: both;}');
 
 
-	$headerlib->add_js('$(document).ready(function() {
+    $headerlib->add_js('$(document).ready(function() {
 			$(function() {
 				$(".js-admin-bar").click(function() {
 					$(\'.js-sliding-panel-admin-bar\').toggleClass("open");
@@ -94,5 +95,5 @@ function module_adminbar($mod_reference, $module_params)
 			});
 		});
 ');
-	TikiLib::lib('smarty')->assign('recent_prefs', TikiLib::lib('prefs')->getRecent());
+    TikiLib::lib('smarty')->assign('recent_prefs', TikiLib::lib('prefs')->getRecent());
 }

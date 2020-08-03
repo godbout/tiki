@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,38 +13,39 @@ require_once('lib/wizard/wizard.php');
  */
 class AdminWizardAdvanced extends Wizard
 {
-	function pageTitle()
-	{
-		return tra('Set up some advanced options');
-	}
-	function isEditable()
-	{
-		return true;
-	}
+    public function pageTitle()
+    {
+        return tra('Set up some advanced options');
+    }
+    public function isEditable()
+    {
+        return true;
+    }
 
-	public function onSetupPage($homepageUrl)
-	{
-		global $prefs;
-		$smarty = TikiLib::lib('smarty');
-		// Run the parent first
-		parent::onSetupPage($homepageUrl);
+    public function onSetupPage($homepageUrl)
+    {
+        global $prefs;
+        $smarty = TikiLib::lib('smarty');
+        // Run the parent first
+        parent::onSetupPage($homepageUrl);
 
-		return true;
-	}
+        return true;
+    }
 
-	function getTemplate()
-	{
-		$wizardTemplate = 'wizard/admin_advanced.tpl';
-		return $wizardTemplate;
-	}
+    public function getTemplate()
+    {
+        $wizardTemplate = 'wizard/admin_advanced.tpl';
 
-	public function onContinue($homepageUrl)
-	{
-		global $tikilib;
+        return $wizardTemplate;
+    }
 
-		// Run the parent first
-		parent::onContinue($homepageUrl);
+    public function onContinue($homepageUrl)
+    {
+        global $tikilib;
 
-		// Configure detail preferences in own page
-	}
+        // Run the parent first
+        parent::onContinue($homepageUrl);
+
+        // Configure detail preferences in own page
+    }
 }

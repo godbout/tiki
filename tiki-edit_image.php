@@ -13,17 +13,17 @@ require_once('tiki-setup.php');
 $imagegallib = TikiLib::lib('imagegal');
 
 if ($prefs['feature_categories'] == 'y') {
-	$categlib = TikiLib::lib('categ');
+    $categlib = TikiLib::lib('categ');
 }
 
 $access->check_feature('feature_galleries');
 
 // Sanity anyone?
 if (! $_REQUEST['edit'] or ! $_REQUEST['galleryId']) {
-	$smarty->assign('msg', tra('Invalid request to edit an image'));
+    $smarty->assign('msg', tra('Invalid request to edit an image'));
 
-	$smarty->display('error.tpl');
-	die;
+    $smarty->display('error.tpl');
+    die;
 }
 
 $tikilib->get_perm_object($_REQUEST['galleryId'], 'image gallery');
@@ -40,69 +40,69 @@ $smarty->assign('url_show', $tikilib->httpPrefix() . $foo2);
 $gal_info = $imagegallib->get_gallery($_REQUEST['galleryId']);
 
 if (! isset($_REQUEST['sort_mode'])) {
-	$sort_mode = $gal_info['sortorder'] . '_' . $gal_info['sortdirection'];
+    $sort_mode = $gal_info['sortorder'] . '_' . $gal_info['sortdirection'];
 } else {
-	$sort_mode = $_REQUEST['sort_mode'];
+    $sort_mode = $_REQUEST['sort_mode'];
 }
 $smarty->assign('sort_mode', $sort_mode);
 
 if (isset($_REQUEST['editimage']) || isset($_REQUEST['editimage_andgonext'])) {
-	check_ticket('edit-image');
+    check_ticket('edit-image');
 
-	$access->check_permission('tiki_p_upload_images');
+    $access->check_permission('tiki_p_upload_images');
 
-	if ($gal_info['thumbSizeX'] == 0) {
-		$gal_info['thumbSizeX'] = 80;
-	}
+    if ($gal_info['thumbSizeX'] == 0) {
+        $gal_info['thumbSizeX'] = 80;
+    }
 
-	if ($gal_info['thumbSizeY'] == 0) {
-		$gal_info['thumbSizeY'] = 80;
-	}
+    if ($gal_info['thumbSizeY'] == 0) {
+        $gal_info['thumbSizeY'] = 80;
+    }
 
-	// Check the user to be admin or owner or the gallery is public
-	if ($tiki_p_admin_galleries != 'y' && (! $user || $user != $gal_info['user']) && $gal_info['public'] != 'y') {
-		$smarty->assign('errortype', 401);
-		$smarty->assign('msg', tra('You have permission to edit images but not in this gallery'));
+    // Check the user to be admin or owner or the gallery is public
+    if ($tiki_p_admin_galleries != 'y' && (! $user || $user != $gal_info['user']) && $gal_info['public'] != 'y') {
+        $smarty->assign('errortype', 401);
+        $smarty->assign('msg', tra('You have permission to edit images but not in this gallery'));
 
-		$smarty->display('error.tpl');
-		die;
-	}
+        $smarty->display('error.tpl');
+        die;
+    }
 
-	$error_msg = '';
+    $error_msg = '';
 
-	if (! empty($_FILES['userfile']) && ! empty($_FILES['userfile']['name'])) {
-		if ((! empty($prefs['gal_match_regex']) && ! preg_match('/' . $prefs['gal_match_regex'] . '/', $_FILES['userfile']['name'], $reqs))
-			|| (! empty($prefs['gal_nmatch_regex']) && preg_match('/' . $prefs['gal_nmatch_regex'] . '/', $_FILES['userfile']['name'], $reqs))
-		) {
-			$smarty->assign('msg', tra('Invalid imagename (using filters for filenames)'));
-			$smarty->display('error.tpl');
-			die;
-		}
-	}
+    if (! empty($_FILES['userfile']) && ! empty($_FILES['userfile']['name'])) {
+        if ((! empty($prefs['gal_match_regex']) && ! preg_match('/' . $prefs['gal_match_regex'] . '/', $_FILES['userfile']['name'], $reqs))
+            || (! empty($prefs['gal_nmatch_regex']) && preg_match('/' . $prefs['gal_nmatch_regex'] . '/', $_FILES['userfile']['name'], $reqs))
+        ) {
+            $smarty->assign('msg', tra('Invalid imagename (using filters for filenames)'));
+            $smarty->display('error.tpl');
+            die;
+        }
+    }
 
-	if ($imagegallib->edit_image($imageId, $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['lat'], $_REQUEST['lon'], $_FILES['userfile'])) {
-		$smarty->assign('show', 'y');
-		$cat_type = 'image';
-		$cat_objid = $imageId;
-		$cat_desc = $_REQUEST['description'];
-		$cat_lat = $_REQUEST['lat'];
-		$cat_lon = $_REQUEST['lon'];
-		$cat_name = $_REQUEST['name'];
-		$cat_href = 'tiki-browse_image.php?imageId=' . $cat_objid;
-		include_once('categorize.php');
+    if ($imagegallib->edit_image($imageId, $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['lat'], $_REQUEST['lon'], $_FILES['userfile'])) {
+        $smarty->assign('show', 'y');
+        $cat_type = 'image';
+        $cat_objid = $imageId;
+        $cat_desc = $_REQUEST['description'];
+        $cat_lat = $_REQUEST['lat'];
+        $cat_lon = $_REQUEST['lon'];
+        $cat_name = $_REQUEST['name'];
+        $cat_href = 'tiki-browse_image.php?imageId=' . $cat_objid;
+        include_once('categorize.php');
 
-		if (isset($_REQUEST['editimage_andgonext'])) {
-			$prevnext = $imagegallib->get_prev_and_next_image($sort_mode, null, $imageId, $_REQUEST['galleryId']);
-			if ($prevnext['next']) {
-				$imageId = $prevnext['next'];
-			}
-		}
-	} else {
-		$smarty->assign('msg', tra('Failed to edit the image'));
+        if (isset($_REQUEST['editimage_andgonext'])) {
+            $prevnext = $imagegallib->get_prev_and_next_image($sort_mode, null, $imageId, $_REQUEST['galleryId']);
+            if ($prevnext['next']) {
+                $imageId = $prevnext['next'];
+            }
+        }
+    } else {
+        $smarty->assign('msg', tra('Failed to edit the image'));
 
-		$smarty->display('error.tpl');
-		die;
-	}
+        $smarty->display('error.tpl');
+        die;
+    }
 }
 
 $info = $imagegallib->get_image($imageId);

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,35 +13,36 @@ require_once('lib/wizard/wizard.php');
  */
 class ChangesWizardDocPageIframe extends Wizard
 {
-	function pageTitle()
-	{
-		return tra('Related doc.tiki.org pages');
-	}
+    public function pageTitle()
+    {
+        return tra('Related doc.tiki.org pages');
+    }
 
-	function isEditable()
-	{
-		return false;
-	}
+    public function isEditable()
+    {
+        return false;
+    }
 
-	function onSetupPage($homepageUrl)
-	{
-		// Run the parent first
-		parent::onSetupPage($homepageUrl);
+    public function onSetupPage($homepageUrl)
+    {
+        // Run the parent first
+        parent::onSetupPage($homepageUrl);
 
-		$showPage = true;
+        $showPage = true;
 
-		return $showPage;
-	}
+        return $showPage;
+    }
 
-	function getTemplate()
-	{
-		$wizardTemplate = 'wizard/changes_doc_page_iframe.tpl';
-		return $wizardTemplate;
-	}
+    public function getTemplate()
+    {
+        $wizardTemplate = 'wizard/changes_doc_page_iframe.tpl';
 
-	function onContinue($homepageUrl)
-	{
-		// Run the parent first
-		parent::onContinue($homepageUrl);
-	}
+        return $wizardTemplate;
+    }
+
+    public function onContinue($homepageUrl)
+    {
+        // Run the parent first
+        parent::onContinue($homepageUrl);
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -11,20 +12,22 @@ use Tiki\FileGallery\FileWrapper\PreloadedContent;
 
 class Preloaded implements HandlerInterface
 {
-	function getFileWrapper($file)
-	{
-		return new PreloadedContent($file->data);
-	}
+    public function getFileWrapper($file)
+    {
+        return new PreloadedContent($file->data);
+    }
 
-	function delete($file)
-	{
-	}
+    public function delete($file)
+    {
+    }
 
-  function uniquePath($file) {
-    return $file->path;
-  }
+    public function uniquePath($file)
+    {
+        return $file->path;
+    }
 
-  function isWritable() {
-    return true;
-  }
+    public function isWritable()
+    {
+        return true;
+    }
 }

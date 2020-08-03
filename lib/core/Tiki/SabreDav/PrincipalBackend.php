@@ -23,7 +23,8 @@ use TikiLib;
  * is 'principals/', but this can be overridden.
  *
  */
-class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implements DAVACL\PrincipalBackend\CreatePrincipalSupport {
+class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implements DAVACL\PrincipalBackend\CreatePrincipalSupport
+{
 
     /**
      * A list of additional fields to support
@@ -59,7 +60,8 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @param string $prefixPath
      * @return array
      */
-    function getPrincipalsByPrefix($prefixPath) {
+    public function getPrincipalsByPrefix($prefixPath)
+    {
         global $prefs;
 
         $principals = [];
@@ -82,7 +84,6 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
         }
 
         return $principals;
-
     }
 
     /**
@@ -93,7 +94,8 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @param string $path
      * @return array
      */
-    function getPrincipalByPath($path) {
+    public function getPrincipalByPath($path)
+    {
         global $prefs;
 
         $user = null;
@@ -108,14 +110,13 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
         }
 
         $principal = [
-            'id'  => $user['userId'],
+            'id' => $user['userId'],
             'uri' => self::mapUserToUri($user),
             $this->fieldMap['name'] => TikiLib::lib('tiki')->get_user_preference($user, 'realName'),
             $this->fieldMap['email'] => TikiLib::lib('user')->get_user_email($user),
         ];
 
         return $principal;
-
     }
 
     /**
@@ -133,7 +134,8 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @param string $path
      * @param DAV\PropPatch $propPatch
      */
-    function updatePrincipal($path, DAV\PropPatch $propPatch) {
+    public function updatePrincipal($path, DAV\PropPatch $propPatch)
+    {
         // noop - we don't allow Tiki user update for now
     }
 
@@ -166,7 +168,8 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @param string $test
      * @return array
      */
-    function searchPrincipals($prefixPath, array $searchProperties, $test = 'allof') {
+    public function searchPrincipals($prefixPath, array $searchProperties, $test = 'allof')
+    {
         if (count($searchProperties) == 0) {
             return [];    //No criteria
         }
@@ -180,22 +183,24 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
         $values = [];
         foreach ($searchProperties as $property => $value) {
             switch ($property) {
-                case '{DAV:}displayname' :
+                case '{DAV:}displayname':
                     $results['by_name'] = TikiLib::lib('user')->get_users(0, -1, 'login_asc', $value);
                     $results['by_name'] = array_column($results['by_name'], 'login');
+
                     break;
-                case '{http://sabredav.org/ns}email-address' :
+                case '{http://sabredav.org/ns}email-address':
                     $results['by_email'] = TikiLib::lib('user')->get_users(0, -1, 'login_asc', '', '', false, '', $value);
                     $results['by_email'] = array_column($results['by_email'], 'login');
+
                     break;
-                default :
+                default:
                     // Unsupported property
                     return [];
             }
         }
 
         if ($test == 'anyof') {
-            $results = array_unique($results['by_name']+$results['by_email']);
+            $results = array_unique($results['by_name'] + $results['by_email']);
         } else {
             $results = array_intersect($results['by_name'], $results['by_email']);
         }
@@ -210,6 +215,7 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
             }
             $principals[] = $uri;
         }
+
         return $principals;
     }
 
@@ -230,7 +236,8 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @param string $principalPrefix
      * @return string
      */
-    function findByUri($uri, $principalPrefix) {
+    public function findByUri($uri, $principalPrefix)
+    {
         $value = null;
         $scheme = null;
         list($scheme, $value) = explode(":", $uri, 2);
@@ -239,7 +246,7 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
         }
 
         $uri = null;
-        switch ($scheme){
+        switch ($scheme) {
             case "mailto":
                 $user = TikiLib::lib('user')->get_user_by_email($value);
                 if ($user) {
@@ -250,11 +257,13 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
                         $uri = null;
                     }
                 }
+
                 break;
             default:
                 //unsupported uri scheme
                 return null;
         }
+
         return $uri;
     }
 
@@ -264,7 +273,8 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @param string $principal
      * @return array
      */
-    function getGroupMemberSet($principal) {
+    public function getGroupMemberSet($principal)
+    {
         // noop - ignore groups for now
     }
 
@@ -274,7 +284,8 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @param string $principal
      * @return array
      */
-    function getGroupMembership($principal) {
+    public function getGroupMembership($principal)
+    {
         // noop - ignore groups for now
     }
 
@@ -287,7 +298,8 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @param array $members
      * @return void
      */
-    function setGroupMemberSet($principal, array $members) {
+    public function setGroupMemberSet($principal, array $members)
+    {
         // noop - ignore groups for now
     }
 
@@ -302,25 +314,28 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
      * @param MkCol $mkCol
      * @return void
      */
-    function createPrincipal($path, MkCol $mkCol) {
+    public function createPrincipal($path, MkCol $mkCol)
+    {
         // noop - ignore user creation for now
     }
 
 
-    public static function mapUriToUser($principalUri) {
+    public static function mapUriToUser($principalUri)
+    {
         if (preg_match('#principals/(.*)$#', $principalUri, $m)) {
             $user = $m[1];
             if (TikiLib::lib('user')->user_exists($user)) {
                 return $user;
-            } else {
-                throw new DAV\Exception('Principaluri does not exist in Tiki user database.');
             }
-        } else {
-            throw new DAV\Exception('Principaluri is in invalid format.');
+
+            throw new DAV\Exception('Principaluri does not exist in Tiki user database.');
         }
+
+        throw new DAV\Exception('Principaluri is in invalid format.');
     }
 
-    public static function mapUserToUri($user) {
-        return 'principals/'.$user;
+    public static function mapUserToUri($user)
+    {
+        return 'principals/' . $user;
     }
 }

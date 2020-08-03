@@ -14,24 +14,24 @@ $access->check_feature('feature_referer_stats');
 $access->check_permission('tiki_p_view_referer_stats');
 
 if (isset($_REQUEST["clear"])) {
-	$access->check_authenticity();
-	$refererlib->clear_referer_stats();
+    $access->check_authenticity();
+    $refererlib->clear_referer_stats();
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'hits_desc';
+    $sort_mode = 'hits_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $smarty->assign_by_ref('sort_mode', $sort_mode);

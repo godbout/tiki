@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,13 +8,13 @@
 
 abstract class Search_Formatter_ValueFormatter_Abstract implements Search_Formatter_ValueFormatter_Interface
 {
-	function render($name, $value, array $entry)
-	{
-		return $value;
-	}
+    public function render($name, $value, array $entry)
+    {
+        return $value;
+    }
 
-	function canCache()
-	{
-		return true;
-	}
+    public function canCache()
+    {
+        return true;
+    }
 }

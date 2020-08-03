@@ -15,29 +15,29 @@ $access->check_feature('feature_notepad');
 $access->check_user($user);
 $access->check_permission('tiki_p_notepad');
 if (isset($_REQUEST["remove"])) {
-	check_ticket('notepad-write');
-	$notepadlib->remove_note($user, $_REQUEST['remove']);
+    check_ticket('notepad-write');
+    $notepadlib->remove_note($user, $_REQUEST['remove']);
 }
 include 'lib/setup/editmode.php';
 if (isset($_REQUEST["noteId"])) {
-	$info = $notepadlib->get_note($user, $_REQUEST["noteId"]);
-	if ($info['parse_mode'] == 'raw') {
-		$info['parsed'] = nl2br(htmlspecialchars($info['data']));
-		$smarty->assign('wysiwyg', 'n');
-	} else {
-		$info['parsed'] = TikiLib::lib('parser')->parse_data($info['data'], ['is_html' => $is_html]);
-	}
+    $info = $notepadlib->get_note($user, $_REQUEST["noteId"]);
+    if ($info['parse_mode'] == 'raw') {
+        $info['parsed'] = nl2br(htmlspecialchars($info['data']));
+        $smarty->assign('wysiwyg', 'n');
+    } else {
+        $info['parsed'] = TikiLib::lib('parser')->parse_data($info['data'], ['is_html' => $is_html]);
+    }
 } else {
-	$info = [];
-	$info['name'] = '';
-	$info['data'] = '';
-	$info['parse_mode'] = 'wiki';
+    $info = [];
+    $info['name'] = '';
+    $info['data'] = '';
+    $info['parse_mode'] = 'wiki';
 }
 if (isset($_REQUEST['save'])) {
-	check_ticket('notepad-write');
-	$noteId = $notepadlib->replace_note($user, isset($_REQUEST["noteId"]) ? $_REQUEST["noteId"] : 0, $_REQUEST["name"], $_REQUEST["data"], $_REQUEST["parse_mode"]);
-	header('location: tiki-notepad_read.php?noteId=' . $noteId);
-	die;
+    check_ticket('notepad-write');
+    $noteId = $notepadlib->replace_note($user, isset($_REQUEST["noteId"]) ? $_REQUEST["noteId"] : 0, $_REQUEST["name"], $_REQUEST["data"], $_REQUEST["parse_mode"]);
+    header('location: tiki-notepad_read.php?noteId=' . $noteId);
+    die;
 }
 $smarty->assign('noteId', $_REQUEST["noteId"]);
 $smarty->assign('info', $info);

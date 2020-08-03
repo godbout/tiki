@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 // This script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
-	header('location: index.php');
-	exit;
+    header('location: index.php');
+    exit;
 }
 
 // The plugins tab of tiki-admin.php?page=textarea tends to take a lot of memory, so this will avoid errors
@@ -18,22 +19,22 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 $parserlib = TikiLib::lib('parser');
 
 if ($prefs['unified_search_textarea_admin'] === 'n' || $prefs['javascript_enabled'] === 'n') {
-	$plugins = [];
-	foreach ($parserlib->plugin_get_list() as $name) {
-		$info = $parserlib->plugin_info($name);
-		if (isset($info['prefs']) && is_array($info['prefs']) && count($info['prefs']) > 0) {
-			$plugins[$name] = $info;
-		}
-	}
-	$smarty->assign('plugins', $plugins);
+    $plugins = [];
+    foreach ($parserlib->plugin_get_list() as $name) {
+        $info = $parserlib->plugin_info($name);
+        if (isset($info['prefs']) && is_array($info['prefs']) && count($info['prefs']) > 0) {
+            $plugins[$name] = $info;
+        }
+    }
+    $smarty->assign('plugins', $plugins);
 }
 // TODO don't see where textareasetup is used anywhere
 if (isset($_REQUEST['textareasetup']) && (getCookie('admin_textarea', 'tabs') != '#contentadmin_textarea-3')
-	&& $access->checkCsrf()) {
-	// tab=3 is plugins alias tab (TODO improve)
-	foreach (glob('temp/cache/wikiplugin_*') as $file) {
-		unlink($file);
-	}
+    && $access->checkCsrf()) {
+    // tab=3 is plugins alias tab (TODO improve)
+    foreach (glob('temp/cache/wikiplugin_*') as $file) {
+        unlink($file);
+    }
 }
 
 $cookietab = 1;
@@ -43,225 +44,225 @@ global $tikilib;
 $pluginsAlias = WikiPlugin_Negotiator_Wiki_Alias::getList();
 $pluginsReal = $parserlib->plugin_get_list(true, false);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$cachelib = TikiLib::lib('cache');
-	$languages = TikiLib::lib('language')->list_languages();
+    $cachelib = TikiLib::lib('cache');
+    $languages = TikiLib::lib('language')->list_languages();
 
-	foreach ($languages as $tlang) {
-		$cachetag = 'plugindesc' . $tlang['value'] . '_js=' . $prefs['javascript_enabled'];
-		$cachelib->invalidate($cachetag);
-	}
-	if (isset($_POST['enable']) && $access->checkCsrf()) {
-		if (! is_array($_POST['enabled'])) {
-			$_POST['enabled'] = [];
-		}
-		foreach ($pluginsAlias as $name) {
-			$tikilib->set_preference("wikiplugin_$name", in_array($name, $_POST['enabled']) ? 'y' : 'n');
-		}
-		foreach (glob('temp/cache/wikiplugin_*') as $file) {
-			unlink($file);
-		}
-	}
-	if (! empty($_POST['alias_delete']) && $access->checkCsrf()) {
-		// TODO add confirmation
-		WikiPlugin_Negotiator_Wiki_Alias::delete($_POST['alias_delete']);
-		$pluginsAlias = WikiPlugin_Negotiator_Wiki_Alias::getList();
-	}
-	if (! empty($_REQUEST['plugin_alias'] && $access->checkCsrf())
-		&& ! in_array($_POST['plugin_alias'], $pluginsReal)
-		&& (getCookie('admin_textarea', 'tabs') == '#contentadmin_textarea-plugin_alias')
-	) {
-		// tab=3 is plugins alias tab (TODO improve)
-		$info = [
-			'implementation' => $_POST['implementation'],
-			'description' => [
-				'name' => $_POST['name'],
-				'description' => $_POST['description'],
-				'prefs' => [] ,
-				'validate' => $_POST['validate'],
-				'filter' => $_POST['filter'],
-				'inline' => isset($_POST['inline']) ,
-				'params' => [] ,
-			] ,
-			'body' => [
-				'input' => isset($_POST['ignorebody']) ? 'ignore' : 'use',
-				'default' => $_POST['defaultbody'],
-				'params' => [] ,
-			] ,
-			'params' => [] ,
-		];
+    foreach ($languages as $tlang) {
+        $cachetag = 'plugindesc' . $tlang['value'] . '_js=' . $prefs['javascript_enabled'];
+        $cachelib->invalidate($cachetag);
+    }
+    if (isset($_POST['enable']) && $access->checkCsrf()) {
+        if (! is_array($_POST['enabled'])) {
+            $_POST['enabled'] = [];
+        }
+        foreach ($pluginsAlias as $name) {
+            $tikilib->set_preference("wikiplugin_$name", in_array($name, $_POST['enabled']) ? 'y' : 'n');
+        }
+        foreach (glob('temp/cache/wikiplugin_*') as $file) {
+            unlink($file);
+        }
+    }
+    if (! empty($_POST['alias_delete']) && $access->checkCsrf()) {
+        // TODO add confirmation
+        WikiPlugin_Negotiator_Wiki_Alias::delete($_POST['alias_delete']);
+        $pluginsAlias = WikiPlugin_Negotiator_Wiki_Alias::getList();
+    }
+    if (! empty($_REQUEST['plugin_alias'] && $access->checkCsrf())
+        && ! in_array($_POST['plugin_alias'], $pluginsReal)
+        && (getCookie('admin_textarea', 'tabs') == '#contentadmin_textarea-plugin_alias')
+    ) {
+        // tab=3 is plugins alias tab (TODO improve)
+        $info = [
+            'implementation' => $_POST['implementation'],
+            'description' => [
+                'name' => $_POST['name'],
+                'description' => $_POST['description'],
+                'prefs' => [] ,
+                'validate' => $_POST['validate'],
+                'filter' => $_POST['filter'],
+                'inline' => isset($_POST['inline']) ,
+                'params' => [] ,
+            ] ,
+            'body' => [
+                'input' => isset($_POST['ignorebody']) ? 'ignore' : 'use',
+                'default' => $_POST['defaultbody'],
+                'params' => [] ,
+            ] ,
+            'params' => [] ,
+        ];
 
-		if (! empty($_POST['body'])) {
-			$info['description']['body'] = $_POST['body'];
-		}
+        if (! empty($_POST['body'])) {
+            $info['description']['body'] = $_POST['body'];
+        }
 
-		if ($_POST['validate'] == 'none') {
-			unset($info['description']['validate']);
-		}
+        if ($_POST['validate'] == 'none') {
+            unset($info['description']['validate']);
+        }
 
-		if (empty($_POST['prefs'])) {
-			$temp = ["wikiplugin_{$_POST['plugin_alias']}"];
-		} else {
-			$temp = explode(',', $_POST['prefs']);
-		}
-		$info['description']['prefs'] = $temp;
+        if (empty($_POST['prefs'])) {
+            $temp = ["wikiplugin_{$_POST['plugin_alias']}"];
+        } else {
+            $temp = explode(',', $_POST['prefs']);
+        }
+        $info['description']['prefs'] = $temp;
 
-		if (isset($_POST['input'])) {
-			foreach ($_POST['input'] as $param) {
-				if (! empty($param['token']) && ! empty($param['name'])) {
-					$info['description']['params'][$param['token']] = [
-						'required' => isset($param['required']) ,
-						'safe' => isset($param['safe']) ,
-						'name' => $param['name'],
-						'description' => $param['description'],
-						'filter' => $param['filter'],
-					];
-				}
-			}
-		}
+        if (isset($_POST['input'])) {
+            foreach ($_POST['input'] as $param) {
+                if (! empty($param['token']) && ! empty($param['name'])) {
+                    $info['description']['params'][$param['token']] = [
+                        'required' => isset($param['required']) ,
+                        'safe' => isset($param['safe']) ,
+                        'name' => $param['name'],
+                        'description' => $param['description'],
+                        'filter' => $param['filter'],
+                    ];
+                }
+            }
+        }
 
-		if (isset($_POST['bodyparam'])) {
-			foreach ($_POST['bodyparam'] as $param) {
-				if (! empty($param['token'])) {
-					$info['body']['params'][$param['token']] = [
-						'input' => $param['input'],
-						'encoding' => $param['encoding'],
-						'default' => $param['default'],
-					];
-				}
-			}
-		}
+        if (isset($_POST['bodyparam'])) {
+            foreach ($_POST['bodyparam'] as $param) {
+                if (! empty($param['token'])) {
+                    $info['body']['params'][$param['token']] = [
+                        'input' => $param['input'],
+                        'encoding' => $param['encoding'],
+                        'default' => $param['default'],
+                    ];
+                }
+            }
+        }
 
-		if (isset($_POST['sparams'])) {
-			foreach ($_POST['sparams'] as $detail) {
-				if (! empty($detail['token'])) {
-					$info['params'][$detail['token']] = $detail['default'];
-				}
-			}
-		}
+        if (isset($_POST['sparams'])) {
+            foreach ($_POST['sparams'] as $detail) {
+                if (! empty($detail['token'])) {
+                    $info['params'][$detail['token']] = $detail['default'];
+                }
+            }
+        }
 
-		if (isset($_POST['cparams'])) {
-			foreach ($_POST['cparams'] as $detail) {
-				if (! empty($detail['token'])) {
-					$info['params'][$detail['token']] = [
-						'pattern' => $detail['pattern'],
-						'params' => [] ,
-					];
-					foreach ($detail['params'] as $param) {
-						if (! empty($param['token'])) {
-							$info['params'][$detail['token']]['params'][$param['token']] = [
-								'input' => $param['input'],
-								'encoding' => $param['encoding'],
-								'default' => $param['default'],
-							];
-						}
-					}
-				}
-			}
-		}
+        if (isset($_POST['cparams'])) {
+            foreach ($_POST['cparams'] as $detail) {
+                if (! empty($detail['token'])) {
+                    $info['params'][$detail['token']] = [
+                        'pattern' => $detail['pattern'],
+                        'params' => [] ,
+                    ];
+                    foreach ($detail['params'] as $param) {
+                        if (! empty($param['token'])) {
+                            $info['params'][$detail['token']]['params'][$param['token']] = [
+                                'input' => $param['input'],
+                                'encoding' => $param['encoding'],
+                                'default' => $param['default'],
+                            ];
+                        }
+                    }
+                }
+            }
+        }
 
-		WikiPlugin_Negotiator_Wiki_Alias::store($_POST['plugin_alias'], $info);
+        WikiPlugin_Negotiator_Wiki_Alias::store($_POST['plugin_alias'], $info);
 
-		if (! in_array($_POST['plugin_alias'], $pluginsAlias)) {
-			$pluginAlias[] = $_POST['plugins'];
-		}
+        if (! in_array($_POST['plugin_alias'], $pluginsAlias)) {
+            $pluginAlias[] = $_POST['plugins'];
+        }
 
-		foreach (glob('temp/cache/wikiplugin_*') as $file) {
-			unlink($file);
-		}
+        foreach (glob('temp/cache/wikiplugin_*') as $file) {
+            unlink($file);
+        }
 
-		$pluginsAlias = WikiPlugin_Negotiator_Wiki_Alias::getList();
-	}
+        $pluginsAlias = WikiPlugin_Negotiator_Wiki_Alias::getList();
+    }
 }
 
 if (isset($_REQUEST['plugin_alias'])
-	&& $pluginInfo = WikiPlugin_Negotiator_Wiki_Alias::info($_REQUEST['plugin_alias'])
+    && $pluginInfo = WikiPlugin_Negotiator_Wiki_Alias::info($_REQUEST['plugin_alias'])
 ) {
-	// Add an extra empty parameter to create new ones
-	$pluginInfo['description']['params']['__NEW__'] = [
-		'name' => '',
-		'description' => '',
-		'required' => '',
-		'safe' => '',
-	];
+    // Add an extra empty parameter to create new ones
+    $pluginInfo['description']['params']['__NEW__'] = [
+        'name' => '',
+        'description' => '',
+        'required' => '',
+        'safe' => '',
+    ];
 
-	$pluginInfo['body']['params']['__NEW__'] = [
-		'encoding' => '',
-		'input' => '',
-		'default' => '',
-	];
+    $pluginInfo['body']['params']['__NEW__'] = [
+        'encoding' => '',
+        'input' => '',
+        'default' => '',
+    ];
 
-	$pluginInfo['params']['__NEW__'] = [
-		'pattern' => '',
-		'params' => [] ,
-	];
+    $pluginInfo['params']['__NEW__'] = [
+        'pattern' => '',
+        'params' => [] ,
+    ];
 
-	foreach ($pluginInfo['params'] as & $p) {
-		if (is_array($p)) {
-			$p['params']['__NEW__'] = [
-				'encoding' => '',
-				'input' => '',
-				'default' => '',
-			];
-		}
-	}
+    foreach ($pluginInfo['params'] as & $p) {
+        if (is_array($p)) {
+            $p['params']['__NEW__'] = [
+                'encoding' => '',
+                'input' => '',
+                'default' => '',
+            ];
+        }
+    }
 
-	$smarty->assign('plugin_admin', $pluginInfo);
-	$cookietab = 3;
+    $smarty->assign('plugin_admin', $pluginInfo);
+    $cookietab = 3;
 } else {
-	$emptyPluginInfo = [];
-	$emptyPluginInfo['description']['params']['__NEW__'] = [
-		'name' => '',
-		'description' => '',
-		'required' => '',
-		'safe' => '',
-	];
+    $emptyPluginInfo = [];
+    $emptyPluginInfo['description']['params']['__NEW__'] = [
+        'name' => '',
+        'description' => '',
+        'required' => '',
+        'safe' => '',
+    ];
 
-	$emptyPluginInfo['body']['params']['__NEW__'] = [
-		'encoding' => '',
-		'input' => '',
-		'default' => '',
-	];
+    $emptyPluginInfo['body']['params']['__NEW__'] = [
+        'encoding' => '',
+        'input' => '',
+        'default' => '',
+    ];
 
-	$emptyPluginInfo['params']['__NEW__'] = [
-		'pattern' => '',
-		'params'  => [
-			'__NEW__' => [
-				'encoding' => '',
-				'input'    => '',
-				'default'  => '',
-			],
-		],
-	];
+    $emptyPluginInfo['params']['__NEW__'] = [
+        'pattern' => '',
+        'params' => [
+            '__NEW__' => [
+                'encoding' => '',
+                'input' => '',
+                'default' => '',
+            ],
+        ],
+    ];
 
-	$smarty->assign('plugin_admin', $emptyPluginInfo);
+    $smarty->assign('plugin_admin', $emptyPluginInfo);
 }
 $smarty->assign('plugins_alias', $pluginsAlias);
 $smarty->assign('plugins_real', $pluginsReal);
 
 if (isset($_REQUEST['disabled']) && $tiki_p_admin == 'y') {
-	$offset = 0;
-	$disabled = [];
-	foreach ($parserlib->plugin_get_list() as $name) {
-		if ($prefs["wikiplugin_$name"] == 'n') {
-			$allDisabled[] = $name;
-		}
-	}
-	do {
-		$pages = $tikilib->list_pages($offset, $prefs['maxRecords'], 'pageName_asc');
-		if (empty($pages['data'])) {
-			break;
-		}
-		$offset += $prefs['maxRecords'];
-		foreach ($pages['data'] as $page) {
-			$plugins = $parserlib->getPlugins($page['data'], $allDisabled);
-			if (! empty($plugins)) {
-				foreach ($plugins as $plugin) {
-					if (! in_array($plugin[1], $disabled)) {
-						$disabled[] = $plugin[1];
-					}
-				}
-			}
-		}
-	} while (true);
-	$smarty->assign_by_ref('disabled', $disabled);
+    $offset = 0;
+    $disabled = [];
+    foreach ($parserlib->plugin_get_list() as $name) {
+        if ($prefs["wikiplugin_$name"] == 'n') {
+            $allDisabled[] = $name;
+        }
+    }
+    do {
+        $pages = $tikilib->list_pages($offset, $prefs['maxRecords'], 'pageName_asc');
+        if (empty($pages['data'])) {
+            break;
+        }
+        $offset += $prefs['maxRecords'];
+        foreach ($pages['data'] as $page) {
+            $plugins = $parserlib->getPlugins($page['data'], $allDisabled);
+            if (! empty($plugins)) {
+                foreach ($plugins as $plugin) {
+                    if (! in_array($plugin[1], $disabled)) {
+                        $disabled[] = $plugin[1];
+                    }
+                }
+            }
+        }
+    } while (true);
+    $smarty->assign_by_ref('disabled', $disabled);
 }

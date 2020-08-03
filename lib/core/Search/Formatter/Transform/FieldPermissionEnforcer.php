@@ -15,47 +15,47 @@
  * Once ResultSet is populated after search results are retrieved, this transformer
  * makes sure only visible fields are left in the search result.
  */
-
 class Search_Formatter_Transform_FieldPermissionEnforcer
 {
-	private $user;
-	private $groups;
+    private $user;
+    private $groups;
 
-	function __construct()
-	{
-		global $user;
+    public function __construct()
+    {
+        global $user;
 
-		$this->user = $user;
-		$this->groups = Perms::get()->getGroups();
-	}
+        $this->user = $user;
+        $this->groups = Perms::get()->getGroups();
+    }
 
-	function __invoke($entry)
-	{
-		if (Perms::get()->admin) {
-			return $entry;
-		}
+    public function __invoke($entry)
+    {
+        if (Perms::get()->admin) {
+            return $entry;
+        }
 
-		if (! empty($entry['tracker_id'])) {
-			$perms = Perms::get(['type' => 'tracker', 'object' => $entry['trackerId']]);
-			if ($perms->admin_trackers) {
-				return $entry;
-			}
-		}
+        if (! empty($entry['tracker_id'])) {
+            $perms = Perms::get(['type' => 'tracker', 'object' => $entry['trackerId']]);
+            if ($perms->admin_trackers) {
+                return $entry;
+            }
+        }
 
-		if (!empty($entry['field_permissions'])) {
-			$fieldPermissions = json_decode($entry['field_permissions'], true);
-			if (empty($fieldPermissions)) {
-				return $entry;
-			}
-			foreach ($fieldPermissions as $permName => $allowed) {
-				if (! in_array($this->user, $allowed['allowed_users']) && ! array_intersect($this->groups, $allowed['allowed_groups'])) {
-					foreach ($allowed['perm_names'] as $permName) {
-						unset($entry[$permName]);
-						$entry['ignored_fields'][] = $permName;
-					}
-				}
-			}
-		}
-		return $entry;
-	}
+        if (!empty($entry['field_permissions'])) {
+            $fieldPermissions = json_decode($entry['field_permissions'], true);
+            if (empty($fieldPermissions)) {
+                return $entry;
+            }
+            foreach ($fieldPermissions as $permName => $allowed) {
+                if (! in_array($this->user, $allowed['allowed_users']) && ! array_intersect($this->groups, $allowed['allowed_groups'])) {
+                    foreach ($allowed['perm_names'] as $permName) {
+                        unset($entry[$permName]);
+                        $entry['ignored_fields'][] = $permName;
+                    }
+                }
+            }
+        }
+
+        return $entry;
+    }
 }

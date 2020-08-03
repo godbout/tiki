@@ -1,7 +1,8 @@
 <?php
+
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -12,22 +13,22 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_20171016_no_homepage_specificed_tiki($installer)
 {
-	$tiki_pages = $installer->table('tiki_pages');
+    $tiki_pages = $installer->table('tiki_pages');
 
-	$namelessPages = $tiki_pages->fetchAll(['page_id'], ['pageName' => '']);
+    $namelessPages = $tiki_pages->fetchAll(['page_id'], ['pageName' => '']);
 
-	foreach ($namelessPages as $page) {
-		$tiki_pages->update(
-			[
-				'pageName' => "Page id #{$page['page_id']}",
-				'comment' => 'Renamed by installer 20171016_no_homepage_specificed_tiki (pageName was empty)',
-			],
-			[
-				'page_id' => $page['page_id'],
-			]
-		);
-	}
+    foreach ($namelessPages as $page) {
+        $tiki_pages->update(
+            [
+                'pageName' => "Page id #{$page['page_id']}",
+                'comment' => 'Renamed by installer 20171016_no_homepage_specificed_tiki (pageName was empty)',
+            ],
+            [
+                'page_id' => $page['page_id'],
+            ]
+        );
+    }
 
-	// null value prefs (e.g. wikiHomePage) count as being set but have no value, so cause errors.
-	$installer->query('DELETE FROM `tiki_preferences` WHERE ISNULL(`value`);');
+    // null value prefs (e.g. wikiHomePage) count as being set but have no value, so cause errors.
+    $installer->query('DELETE FROM `tiki_preferences` WHERE ISNULL(`value`);');
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -14,19 +15,19 @@ use Tiki\Sitemap\AbstractType;
  */
 class Page extends AbstractType
 {
-	/**
-	 * Generate Sitemap
-	 */
-	public function generate()
-	{
-		global $tikilib;
+    /**
+     * Generate Sitemap
+     */
+    public function generate()
+    {
+        global $tikilib;
 
-		if (! $this->checkFeatureAndPermissions('feature_wiki')) {
-			return;
-		}
+        if (! $this->checkFeatureAndPermissions('feature_wiki')) {
+            return;
+        }
 
-		/** @var \TikiLib $tikilib */
-		$listPages = $tikilib->list_pages();
-		$this->addEntriesToSitemap($listPages, '/tiki-index.php?page=%s', 'pageSlug', null, '', 'lastModif');
-	}
+        /** @var \TikiLib $tikilib */
+        $listPages = $tikilib->list_pages();
+        $this->addEntriesToSitemap($listPages, '/tiki-index.php?page=%s', 'pageSlug', null, '', 'lastModif');
+    }
 }

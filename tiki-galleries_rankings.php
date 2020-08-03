@@ -11,39 +11,39 @@
 $section = 'galleries';
 require_once('tiki-setup.php');
 include_once('lib/rankings/ranklib.php');
-$access->check_feature(['feature_galleries','feature_gal_rankings']);
+$access->check_feature(['feature_galleries', 'feature_gal_rankings']);
 $access->check_permission('tiki_p_list_image_galleries');
 
 $allrankings = [
-	[
-	'name' => tra('Top galleries'),
-	'value' => 'gal_ranking_top_galleries'
-	],
-	[
-	'name' => tra('Top images'),
-	'value' => 'gal_ranking_top_images'
-	],
-	[
-	'name' => tra('Last images'),
-	'value' => 'gal_ranking_last_images'
-	],
+    [
+    'name' => tra('Top galleries'),
+    'value' => 'gal_ranking_top_galleries'
+    ],
+    [
+    'name' => tra('Top images'),
+    'value' => 'gal_ranking_top_images'
+    ],
+    [
+    'name' => tra('Last images'),
+    'value' => 'gal_ranking_last_images'
+    ],
 ];
 
 $smarty->assign('allrankings', $allrankings);
 
 if (! isset($_REQUEST["which"])) {
-	$which = 'gal_ranking_top_galleries';
+    $which = 'gal_ranking_top_galleries';
 } else {
-	$which = $_REQUEST["which"];
+    $which = $_REQUEST["which"];
 }
 
 $smarty->assign('which', $which);
 
 // Get the page from the request var or default it to HomePage
 if (! isset($_REQUEST["limit"])) {
-	$limit = 10;
+    $limit = 10;
 } else {
-	$limit = $_REQUEST["limit"];
+    $limit = $_REQUEST["limit"];
 }
 
 $smarty->assign_by_ref('limit', $limit);

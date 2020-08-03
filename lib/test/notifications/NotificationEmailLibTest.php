@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,34 +8,33 @@
 
 class NotificationEmailLibTest extends TikiTestCase
 {
+    public function testSendCommentNotification(): void
+    {
+        $tiki = TikiLib::lib('tiki');
+        $comment1 = $tiki->table('tiki_comments')->insert([
+            'object' => 1,
+            'objectType' => 'article',
+            'parentId' => 0
+        ]);
+        $comment2 = $tiki->table('tiki_comments')->insert([
+            'object' => 1,
+            'objectType' => 'article',
+            'parentId' => $comment1
+        ]);
+        $user_watch = $tiki->table('tiki_user_watches')->insert([
+            'user' => 'tester',
+            'event' => 'thread_comment_replied',
+            'object' => $comment1,
+            'email' => 'test@example.org'
+        ]);
 
-	public function testSendCommentNotification(): void
-	{
-		$tiki = TikiLib::lib('tiki');
-		$comment1 = $tiki->table('tiki_comments')->insert([
-			'object' => 1,
-			'objectType' => 'article',
-			'parentId' => 0
-		]);
-		$comment2 = $tiki->table('tiki_comments')->insert([
-			'object' => 1,
-			'objectType' => 'article',
-			'parentId' => $comment1
-		]);
-		$user_watch = $tiki->table('tiki_user_watches')->insert([
-			'user' => 'tester',
-			'event' => 'thread_comment_replied',
-			'object' => $comment1,
-			'email' => 'test@example.org'
-		]);
+        require_once __DIR__ . '/../../notifications/notificationemaillib.php';
+        $_SERVER["REQUEST_URI"] = '';
+        $res = sendCommentNotification('article', 1, 'Test comment', 'test', $comment2, null);
+        $this->assertEquals(1, $res);
 
-		require_once __DIR__ . '/../../notifications/notificationemaillib.php';
-		$_SERVER["REQUEST_URI"] = '';
-		$res = sendCommentNotification('article', 1, 'Test comment', 'test', $comment2, null);
-		$this->assertEquals(1, $res);
-
-		$tiki->table('tiki_comments')->delete(['threadId' => $comment1]);
-		$tiki->table('tiki_comments')->delete(['threadId' => $comment2]);
-		$tiki->table('tiki_user_watches')->delete(['watchId' => $user_watch]);
-	}
+        $tiki->table('tiki_comments')->delete(['threadId' => $comment1]);
+        $tiki->table('tiki_comments')->delete(['threadId' => $comment2]);
+        $tiki->table('tiki_user_watches')->delete(['watchId' => $user_watch]);
+    }
 }

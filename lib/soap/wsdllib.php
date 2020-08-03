@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,76 +8,78 @@
 
 // This script may only be included - so it's better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	die;
+    header("location: index.php");
+    die;
 }
 
 require_once 'lib/soap/nusoap/nusoap.php';
 
 class Tiki_Wsdl
 {
-	public function getParametersNames($wsdlUri, $operation)
-	{
-		global $prefs;
-		$parameters = [];
+    public function getParametersNames($wsdlUri, $operation)
+    {
+        global $prefs;
+        $parameters = [];
 
-		if (! $wsdlUri || ! $operation) {
-			return $parameters;
-		}
+        if (! $wsdlUri || ! $operation) {
+            return $parameters;
+        }
 
-		$context = null;
+        $context = null;
 
-		if ($prefs['use_proxy'] == 'y' && ! strpos($wsdlUri, 'localhost')) {
-			// Use proxy
-			$context = stream_context_create(
-				[
-					'http' => [
-							'proxy' => $prefs['proxy_host'] . ':' . $prefs['proxy_port'],
-							'request_fulluri' => true
-					]
-				]
-			);
-		}
+        if ($prefs['use_proxy'] == 'y' && ! strpos($wsdlUri, 'localhost')) {
+            // Use proxy
+            $context = stream_context_create(
+                [
+                    'http' => [
+                            'proxy' => $prefs['proxy_host'] . ':' . $prefs['proxy_port'],
+                            'request_fulluri' => true
+                    ]
+                ]
+            );
+        }
 
-		// Copy content in cache
-		$wsdl_data = file_get_contents($wsdlUri, false, $context);
+        // Copy content in cache
+        $wsdl_data = file_get_contents($wsdlUri, false, $context);
 
-		if (! isset($wsdl_data) || empty($wsdl_data)) {
-			trigger_error(tr("No WSDL found"));
-			return [];
-		}
+        if (! isset($wsdl_data) || empty($wsdl_data)) {
+            trigger_error(tr("No WSDL found"));
 
-		$wsdlFile = $GLOBALS['tikipath'] . 'temp/cache/' . md5($wsdlUri);
-		file_put_contents($wsdlFile, $wsdl_data);
+            return [];
+        }
 
-		// Read wsdl from local copy
-		$wsdl = new wsdl('file:' . $wsdlFile);
+        $wsdlFile = $GLOBALS['tikipath'] . 'temp/cache/' . md5($wsdlUri);
+        file_put_contents($wsdlFile, $wsdl_data);
 
-		if (! empty($wsdl->error_str)) {
-			trigger_error($wsdl->error_str);
-			return $parameters;
-		}
+        // Read wsdl from local copy
+        $wsdl = new wsdl('file:' . $wsdlFile);
 
-		$data = $wsdl->getOperationData($operation);
+        if (! empty($wsdl->error_str)) {
+            trigger_error($wsdl->error_str);
 
-		if (isset($data['input']['parts'])) {
-			foreach ($data['input']['parts'] as $parameter => $type) {
-				preg_match('/^(.*)\:(.*)\^?$/', $type, $matches);
+            return $parameters;
+        }
 
-				if (count($matches) == 3 && ($typeDef = $wsdl->getTypeDef($matches[2], $matches[1]))) {
-					if (isset($typeDef['elements'])) {
-						foreach ($typeDef['elements'] as $element) {
-							$parameters[] = $typeDef['name'] . ':' . $element['name'];
-						}
-					}
-				} else {
-					$parameters[] = $parameter;
-				}
-			}
-		}
+        $data = $wsdl->getOperationData($operation);
 
-		return $parameters;
-	}
+        if (isset($data['input']['parts'])) {
+            foreach ($data['input']['parts'] as $parameter => $type) {
+                preg_match('/^(.*)\:(.*)\^?$/', $type, $matches);
+
+                if (count($matches) == 3 && ($typeDef = $wsdl->getTypeDef($matches[2], $matches[1]))) {
+                    if (isset($typeDef['elements'])) {
+                        foreach ($typeDef['elements'] as $element) {
+                            $parameters[] = $typeDef['name'] . ':' . $element['name'];
+                        }
+                    }
+                } else {
+                    $parameters[] = $parameter;
+                }
+            }
+        }
+
+        return $parameters;
+    }
 }
 
 global $wsdllib;

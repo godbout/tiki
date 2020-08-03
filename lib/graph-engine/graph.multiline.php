@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -14,162 +15,163 @@ require_once 'lib/graph-engine/abstract.gridbased.php';
  */
 class MultilineGraphic extends GridBasedGraphic
 {
-	var $lines;
+    public $lines;
 
-	function __construct()
-	{
-		parent::__construct();
-		$this->lines = [];
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->lines = [];
+    }
 
-	function getRequiredSeries()
-	{
-		return [
-			'label' => false,
-			'color' => false,
-			'style' => false,
-			'x' => true,
-			'y0' => true
-		];
-	}
+    public function getRequiredSeries()
+    {
+        return [
+            'label' => false,
+            'color' => false,
+            'style' => false,
+            'x' => true,
+            'y0' => true
+        ];
+    }
 
-	function _getMinValue($type)
-	{
-		switch ($type) {
-			case 'dependant':
-				$extremes = [];
-				foreach ($this->lines as $line) {
-					$extremes[] = min($line);
-				}
+    public function _getMinValue($type)
+    {
+        switch ($type) {
+            case 'dependant':
+                $extremes = [];
+                foreach ($this->lines as $line) {
+                    $extremes[] = min($line);
+                }
 
-				$min = min($extremes);
-				break;
+                $min = min($extremes);
 
-			case 'independant':
-				$extremes = [];
-				foreach ($this->lines as $line) {
-					$extremes[] = min(array_keys($line));
-				}
+                break;
 
-				$min = min($extremes);
-		}
+            case 'independant':
+                $extremes = [];
+                foreach ($this->lines as $line) {
+                    $extremes[] = min(array_keys($line));
+                }
 
-		if ($min > 0) {
-			$min = 0;
-		}
+                $min = min($extremes);
+        }
 
-		return $min;
-	}
+        if ($min > 0) {
+            $min = 0;
+        }
 
-	function _getMaxValue($type)
-	{
-		switch ($type) {
-			case 'dependant':
-				$extremes = [];
-				foreach ($this->lines as $line) {
-					$extremes[] = max($line);
-				}
+        return $min;
+    }
 
-				return max($extremes);
+    public function _getMaxValue($type)
+    {
+        switch ($type) {
+            case 'dependant':
+                $extremes = [];
+                foreach ($this->lines as $line) {
+                    $extremes[] = max($line);
+                }
 
-			case 'independant':
-				$extremes = [];
-				foreach ($this->lines as $line) {
-					$extremes[] = max(array_keys($line));
-				}
+                return max($extremes);
 
-				return max($extremes);
-		}
-	}
+            case 'independant':
+                $extremes = [];
+                foreach ($this->lines as $line) {
+                    $extremes[] = max(array_keys($line));
+                }
 
-	function _getLabels($type)
-	{
-		return [];
-	}
+                return max($extremes);
+        }
+    }
 
-	function _handleData($data)
-	{
-		$lines = [];
-		for ($i = 0; isset($data['y' . $i]); ++$i) {
-			$lines[] = $data['y' . $i];
-		}
+    public function _getLabels($type)
+    {
+        return [];
+    }
 
-		$count = count($lines);
-		if (! isset($data['color'])) {
-			$data['color'] = [];
-			for ($i = 0; $count > $i; ++$i) {
-				$data['color'][] = $this->_getColor();
-			}
-		}
+    public function _handleData($data)
+    {
+        $lines = [];
+        for ($i = 0; isset($data['y' . $i]); ++$i) {
+            $lines[] = $data['y' . $i];
+        }
 
-		if (! isset($data['style'])) {
-			for ($i = 0; $count > $i; ++$i) {
-				$data['style'][] = 'Bold-LineStroke-' . $data['color'][$i];
-			}
-		}
+        $count = count($lines);
+        if (! isset($data['color'])) {
+            $data['color'] = [];
+            for ($i = 0; $count > $i; ++$i) {
+                $data['color'][] = $this->_getColor();
+            }
+        }
 
-		if (isset($data['label'])) {
-			foreach ($data['label'] as $key => $label) {
-				$this->addLegend($data['color'][$key], $label);
-			}
-		}
+        if (! isset($data['style'])) {
+            for ($i = 0; $count > $i; ++$i) {
+                $data['style'][] = 'Bold-LineStroke-' . $data['color'][$i];
+            }
+        }
 
-		foreach ($lines as $key => $line) {
-			$style = $data['style'][$key];
-			$this->lines[$style] = [];
+        if (isset($data['label'])) {
+            foreach ($data['label'] as $key => $label) {
+                $this->addLegend($data['color'][$key], $label);
+            }
+        }
 
-			foreach ($line as $key => $value) {
-				$x = $data['x'][$key];
-				if (! empty($value) || $value === 0) {
-					$this->lines[$style][$x] = $value;
-				}
-			}
+        foreach ($lines as $key => $line) {
+            $style = $data['style'][$key];
+            $this->lines[$style] = [];
 
-			ksort($this->lines[$style]);
-		}
+            foreach ($line as $key => $value) {
+                $x = $data['x'][$key];
+                if (! empty($value) || $value === 0) {
+                    $this->lines[$style][$x] = $value;
+                }
+            }
 
-		return true;
-	}
+            ksort($this->lines[$style]);
+        }
 
-	function _drawGridContent(&$renderer)
-	{
-		$layout = $this->_layout();
+        return true;
+    }
 
-		foreach ($this->lines as $style => $line) {
-			$previous = null;
-			$style = $renderer->getStyle($style);
+    public function _drawGridContent(&$renderer)
+    {
+        $layout = $this->_layout();
 
-			foreach ($line as $x => $y) {
-				if ($layout['grid-independant-location'] == 'horizontal') {
-					$xPos = $this->independant->getLocation($x);
-					$yPos = $this->dependant->getLocation($y);
+        foreach ($this->lines as $style => $line) {
+            $previous = null;
+            $style = $renderer->getStyle($style);
 
-					if (! is_null($previous)) {
-						$renderer->drawLine($previous['x'], $previous['y'], $xPos, $yPos, $style);
-					}
+            foreach ($line as $x => $y) {
+                if ($layout['grid-independant-location'] == 'horizontal') {
+                    $xPos = $this->independant->getLocation($x);
+                    $yPos = $this->dependant->getLocation($y);
 
-					$previous = ['x' => $xPos, 'y' => $yPos];
-				} else {
-					$xPos = $this->dependant->getLocation($y);
-					$yPos = $this->independant->getLocation($x);
+                    if (! is_null($previous)) {
+                        $renderer->drawLine($previous['x'], $previous['y'], $xPos, $yPos, $style);
+                    }
 
-					if (! is_null($previous)) {
-						$renderer->drawLine($previous['x'], $previous['y'], $xPos, $yPos, $style);
-					}
+                    $previous = ['x' => $xPos, 'y' => $yPos];
+                } else {
+                    $xPos = $this->dependant->getLocation($y);
+                    $yPos = $this->independant->getLocation($x);
 
-					$previous = ['x' => $xPos, 'y' => $yPos];
-				}
-			}
-		}
-	}
+                    if (! is_null($previous)) {
+                        $renderer->drawLine($previous['x'], $previous['y'], $xPos, $yPos, $style);
+                    }
 
-	function _drawLegendBox(&$renderer, $color)
-	{
-		$renderer->drawLine(0, 1, 1, 0, $renderer->getStyle("Bold-LineStroke-$color"));
-	}
+                    $previous = ['x' => $xPos, 'y' => $yPos];
+                }
+            }
+        }
+    }
 
-	function _default()
-	{
-		return array_merge(parent::_default(), []);
-	}
+    public function _drawLegendBox(&$renderer, $color)
+    {
+        $renderer->drawLine(0, 1, 1, 0, $renderer->getStyle("Bold-LineStroke-$color"));
+    }
+
+    public function _default()
+    {
+        return array_merge(parent::_default(), []);
+    }
 }

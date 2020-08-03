@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,63 +8,63 @@
 
 class Tiki_Profile_InstallHandler_RatingConfig extends Tiki_Profile_InstallHandler
 {
-	function getData()
-	{
-		if ($this->data) {
-			return $this->data;
-		}
+    public function getData()
+    {
+        if ($this->data) {
+            return $this->data;
+        }
 
-		$defaults = ['expiry' => 3600];
-		$data = array_merge($defaults, $this->obj->getData());
+        $defaults = ['expiry' => 3600];
+        $data = array_merge($defaults, $this->obj->getData());
 
-		$data = Tiki_Profile::convertYesNo($data);
+        $data = Tiki_Profile::convertYesNo($data);
 
-		return $this->data = $data;
-	}
+        return $this->data = $data;
+    }
 
-	function canInstall()
-	{
-		$data = $this->getData();
-		if (! isset($data['name'], $data['formula'])) {
-			return false;
-		}
+    public function canInstall()
+    {
+        $data = $this->getData();
+        if (! isset($data['name'], $data['formula'])) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	function _install()
-	{
-		$ratingconfiglib = TikiLib::lib('ratingconfig');
+    public function _install()
+    {
+        $ratingconfiglib = TikiLib::lib('ratingconfig');
 
-		$data = $this->getData();
+        $data = $this->getData();
 
-		$this->replaceReferences($data);
+        $this->replaceReferences($data);
 
-		$id = $ratingconfiglib->create_configuration($data['name']);
-		$ratingconfiglib->update_configuration($id, $data['name'], $data['expiry'], $data['formula']);
+        $id = $ratingconfiglib->create_configuration($data['name']);
+        $ratingconfiglib->update_configuration($id, $data['name'], $data['expiry'], $data['formula']);
 
-		return $id;
-	}
+        return $id;
+    }
 
-	public static function export(Tiki_Profile_Writer $writer, $id)
-	{
-		if (is_array($id)) {
-			$info = $id;
-		} else {
-			$ratingconfiglib = TikiLib::lib('ratingconfig');
-			$info = $ratingconfiglib->get_configuration($id);
-		}
+    public static function export(Tiki_Profile_Writer $writer, $id)
+    {
+        if (is_array($id)) {
+            $info = $id;
+        } else {
+            $ratingconfiglib = TikiLib::lib('ratingconfig');
+            $info = $ratingconfiglib->get_configuration($id);
+        }
 
-		if (! $info) {
-			return false;
-		}
+        if (! $info) {
+            return false;
+        }
 
-		$writer->addObject('rating_config', $info['ratingConfigId'], [
-			'name' => $info['name'],
-			'expiry' => $info['expiry'],
-			'formula' => $info['formula'],
-		]);
+        $writer->addObject('rating_config', $info['ratingConfigId'], [
+            'name' => $info['name'],
+            'expiry' => $info['expiry'],
+            'formula' => $info['formula'],
+        ]);
 
-		return true;
-	}
+        return true;
+    }
 }

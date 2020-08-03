@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -25,8 +26,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -34,199 +35,198 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * @param string $content
  * @param Smarty_Tiki $smarty
  * @param boolean $repeat
- * @return string
  * @throws Exception
+ * @return string
  */
-
 function smarty_block_textarea($params, $content, $smarty, $repeat)
 {
-	global $prefs, $is_html, $tiki_p_admin;
-	$headerlib = TikiLib::lib('header');
+    global $prefs, $is_html, $tiki_p_admin;
+    $headerlib = TikiLib::lib('header');
 
-	if ($repeat) {
-		return '';
-	}
+    if ($repeat) {
+        return '';
+    }
 
-	// some defaults
-	$params['_toolbars'] = isset($params['_toolbars']) ? $params['_toolbars'] : 'y';
-	if ($prefs['javascript_enabled'] != 'y') {
-		$params['_toolbars'] = 'n';
-	}
+    // some defaults
+    $params['_toolbars'] = isset($params['_toolbars']) ? $params['_toolbars'] : 'y';
+    if ($prefs['javascript_enabled'] != 'y') {
+        $params['_toolbars'] = 'n';
+    }
 
-	$params['_simple'] = isset($params['_simple']) ? $params['_simple'] : 'n';
+    $params['_simple'] = isset($params['_simple']) ? $params['_simple'] : 'n';
 
-	if (! isset($params['_wysiwyg'])) {
-		if ($params['_simple'] === 'n') {
-			// should not be set usually(?)
-			include_once 'lib/setup/editmode.php';
-			$params['_wysiwyg'] = $_SESSION['wysiwyg'];
-		} else {
-			$params['_wysiwyg'] = 'n';
-		}
-	}
-	if ($is_html === null) {
-		// sometimes $is_html has not been set, so take an educated guess
-		if ($params['_wysiwyg'] === 'y' && $prefs['wysiwyg_htmltowiki'] !== 'y') {
-			$is_html = true;
-		}
-	}
+    if (! isset($params['_wysiwyg'])) {
+        if ($params['_simple'] === 'n') {
+            // should not be set usually(?)
+            include_once 'lib/setup/editmode.php';
+            $params['_wysiwyg'] = $_SESSION['wysiwyg'];
+        } else {
+            $params['_wysiwyg'] = 'n';
+        }
+    }
+    if ($is_html === null) {
+        // sometimes $is_html has not been set, so take an educated guess
+        if ($params['_wysiwyg'] === 'y' && $prefs['wysiwyg_htmltowiki'] !== 'y') {
+            $is_html = true;
+        }
+    }
 
-	$params['_is_html'] = isset($params['_is_html']) ? $params['_is_html'] : $is_html;
+    $params['_is_html'] = isset($params['_is_html']) ? $params['_is_html'] : $is_html;
 
-	$params['name'] = isset($params['name']) ? $params['name'] : 'edit';
-	$params['id'] = isset($params['id']) ? $params['id'] : 'editwiki';
-	$params['area_id'] = isset($params['area_id']) ? $params['area_id'] : $params['id'];	// legacy param for toolbars?
-	$params['class'] = isset($params['class']) ? $params['class'] : 'wikiedit form-control';
-	$params['comments'] = isset($params['comments']) ? $params['comments'] : 'n';
-	$params['autosave'] = isset($params['autosave']) ? $params['autosave'] : 'y';
+    $params['name'] = isset($params['name']) ? $params['name'] : 'edit';
+    $params['id'] = isset($params['id']) ? $params['id'] : 'editwiki';
+    $params['area_id'] = isset($params['area_id']) ? $params['area_id'] : $params['id'];	// legacy param for toolbars?
+    $params['class'] = isset($params['class']) ? $params['class'] : 'wikiedit form-control';
+    $params['comments'] = isset($params['comments']) ? $params['comments'] : 'n';
+    $params['autosave'] = isset($params['autosave']) ? $params['autosave'] : 'y';
 
-	//codemirror integration
-	if ($prefs['feature_syntax_highlighter'] === 'y') {
-		$params['data-codemirror'] = isset($params['codemirror']) ? $params['codemirror'] : '';
-		$params['data-syntax'] = isset($params['syntax']) ? $params['syntax'] : '';
-	}
-	//keep params html5 friendly
-	unset($params['codemirror']);
-	unset($params['syntax']);
+    //codemirror integration
+    if ($prefs['feature_syntax_highlighter'] === 'y') {
+        $params['data-codemirror'] = isset($params['codemirror']) ? $params['codemirror'] : '';
+        $params['data-syntax'] = isset($params['syntax']) ? $params['syntax'] : '';
+    }
+    //keep params html5 friendly
+    unset($params['codemirror']);
+    unset($params['syntax']);
 
-	// mainly for modules admin - preview is for the module, not the custom module so don;t need to confirmExit
-	$params['_previewConfirmExit'] = isset($params['_previewConfirmExit']) ? $params['_previewConfirmExit'] : 'y';
+    // mainly for modules admin - preview is for the module, not the custom module so don;t need to confirmExit
+    $params['_previewConfirmExit'] = isset($params['_previewConfirmExit']) ? $params['_previewConfirmExit'] : 'y';
 
-	if (empty($params['section'])) {
-		global $section;
-		$params['section'] = $section ? $section : 'wiki page';
-	}
-	$html = '';
-	$html .= '<input type="hidden" name="mode_wysiwyg" value="" /><input type="hidden" name="mode_normal" value="" />';
+    if (empty($params['section'])) {
+        global $section;
+        $params['section'] = $section ? $section : 'wiki page';
+    }
+    $html = '';
+    $html .= '<input type="hidden" name="mode_wysiwyg" value="" /><input type="hidden" name="mode_normal" value="" />';
 
-	$auto_save_referrer = '';
-	$auto_save_warning = '';
-	$as_id = $params['id'];
+    $auto_save_referrer = '';
+    $auto_save_warning = '';
+    $as_id = $params['id'];
 
-	$smarty->loadPlugin('smarty_block_remarksbox');
-	$tmp_var = $smarty->getTemplateVars('page');
-	$editWarning = $prefs['wiki_timeout_warning'] === 'y' && isset($tmp_var) && $tmp_var !== 'sandbox';
-	if ($params['_simple'] === 'n' && $editWarning) {
-		$remrepeat = false;
-		if ($prefs['ajax_autosave'] === 'y' and $params['section'] === 'wiki page') {
-			$hint = '<strong>Save</strong> your work to restart the edit session timer';
-		} else {
-			$hint = '<strong>Preview</strong> (if available) or <strong>Save</strong> your work to restart the edit session timer';
-		}
-		$html .= smarty_block_remarksbox(
-			[ 'type' => 'warning', 'title' => tra('Warning')],
-			'<p>' . tra('This edit session will expire in') .
-			' <span id="edittimeout">' . (ini_get('session.gc_maxlifetime') / 60) . '</span> ' . tra('minutes') . '. ' .
-			tra($hint) . '</p>',
-			$smarty,
-			$remrepeat
-		) . "\n";
-		if ($prefs['javascript_enabled'] === 'y') {
-			$html = str_replace('<div class="alert alert-warning alert-dismissable">', '<div class="alert alert-warning alert-dismissable" style="display:none;">', $html);	// quickfix to stop this box appearing before doc.ready
-		}
-	}
+    $smarty->loadPlugin('smarty_block_remarksbox');
+    $tmp_var = $smarty->getTemplateVars('page');
+    $editWarning = $prefs['wiki_timeout_warning'] === 'y' && isset($tmp_var) && $tmp_var !== 'sandbox';
+    if ($params['_simple'] === 'n' && $editWarning) {
+        $remrepeat = false;
+        if ($prefs['ajax_autosave'] === 'y' and $params['section'] === 'wiki page') {
+            $hint = '<strong>Save</strong> your work to restart the edit session timer';
+        } else {
+            $hint = '<strong>Preview</strong> (if available) or <strong>Save</strong> your work to restart the edit session timer';
+        }
+        $html .= smarty_block_remarksbox(
+            [ 'type' => 'warning', 'title' => tra('Warning')],
+            '<p>' . tra('This edit session will expire in') .
+            ' <span id="edittimeout">' . (ini_get('session.gc_maxlifetime') / 60) . '</span> ' . tra('minutes') . '. ' .
+            tra($hint) . '</p>',
+            $smarty,
+            $remrepeat
+        ) . "\n";
+        if ($prefs['javascript_enabled'] === 'y') {
+            $html = str_replace('<div class="alert alert-warning alert-dismissable">', '<div class="alert alert-warning alert-dismissable" style="display:none;">', $html);	// quickfix to stop this box appearing before doc.ready
+        }
+    }
 
-	$params['switcheditor'] = isset($params['switcheditor']) ? $params['switcheditor'] : 'y';
-	$smarty->assign('comments', $params['comments']);	// 3 probably removable assigns
-	$smarty->assign('switcheditor', $params['switcheditor']);
-	$smarty->assign('toolbar_section', $params['section']);
+    $params['switcheditor'] = isset($params['switcheditor']) ? $params['switcheditor'] : 'y';
+    $smarty->assign('comments', $params['comments']);	// 3 probably removable assigns
+    $smarty->assign('switcheditor', $params['switcheditor']);
+    $smarty->assign('toolbar_section', $params['section']);
 
-	if ($prefs['feature_ajax'] == 'y' && $prefs['ajax_autosave'] == 'y' && $params['_simple'] == 'n' && $params['autosave'] == 'y') {
-		// retrieve autosaved content
-		$smarty->loadPlugin('smarty_block_self_link');
-		$auto_save_referrer = TikiLib::lib('autosave')->ensureReferrer();
-		if (empty($_REQUEST['autosave'])) {
-			$_REQUEST['autosave'] = 'n';
-		}
-		if (TikiLib::lib('autosave')->has_autosave($as_id, $auto_save_referrer)) {
-			//  and $params['preview'] == 0 -  why not?
-			$auto_saved = str_replace("\n", "\r\n", TikiLib::lib('autosave')->get_autosave($as_id, $auto_save_referrer));
-			if (strcmp($auto_saved, $content) === 0) {
-				$auto_saved = '';
-			}
-			if (empty($auto_saved) || (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] === 'y')) {
-				// switching modes, ignore auto save
-				TikiLib::lib('autosave')->remove_save($as_id, $auto_save_referrer);
-			} else {
-				$msg = '<div class="mandatory_star"><span class="autosave_message">' . tra('There is an autosaved draft of your recent edits, to use it instead ') . '</span>&nbsp;' .
-							'<span class="autosave_message_2" style="display:none;">' . tra('If you want the original instead of the autosaved draft of your edits') . '</span>' .
-							smarty_block_self_link([ '_ajax' => 'n', '_onclick' => 'toggle_autosaved(\'' . $as_id . '\',\'' . $auto_save_referrer . '\');return false;'], tra('click here'), $smarty) . "</div>";
-				$remrepeat = false;
-				$auto_save_warning = smarty_block_remarksbox([ 'type' => 'info', 'title' => tra('AutoSave')], $msg, $smarty, $remrepeat) . "\n";
-			}
-		}
-		$headerlib->add_jq_onready("register_id('$as_id','" . addcslashes($auto_save_referrer, "'") . "');");
-		$headerlib->add_js("var autoSaveId = '" . addcslashes($auto_save_referrer, "'") . "';");
-	}
+    if ($prefs['feature_ajax'] == 'y' && $prefs['ajax_autosave'] == 'y' && $params['_simple'] == 'n' && $params['autosave'] == 'y') {
+        // retrieve autosaved content
+        $smarty->loadPlugin('smarty_block_self_link');
+        $auto_save_referrer = TikiLib::lib('autosave')->ensureReferrer();
+        if (empty($_REQUEST['autosave'])) {
+            $_REQUEST['autosave'] = 'n';
+        }
+        if (TikiLib::lib('autosave')->has_autosave($as_id, $auto_save_referrer)) {
+            //  and $params['preview'] == 0 -  why not?
+            $auto_saved = str_replace("\n", "\r\n", TikiLib::lib('autosave')->get_autosave($as_id, $auto_save_referrer));
+            if (strcmp($auto_saved, $content) === 0) {
+                $auto_saved = '';
+            }
+            if (empty($auto_saved) || (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] === 'y')) {
+                // switching modes, ignore auto save
+                TikiLib::lib('autosave')->remove_save($as_id, $auto_save_referrer);
+            } else {
+                $msg = '<div class="mandatory_star"><span class="autosave_message">' . tra('There is an autosaved draft of your recent edits, to use it instead ') . '</span>&nbsp;' .
+                            '<span class="autosave_message_2" style="display:none;">' . tra('If you want the original instead of the autosaved draft of your edits') . '</span>' .
+                            smarty_block_self_link([ '_ajax' => 'n', '_onclick' => 'toggle_autosaved(\'' . $as_id . '\',\'' . $auto_save_referrer . '\');return false;'], tra('click here'), $smarty) . "</div>";
+                $remrepeat = false;
+                $auto_save_warning = smarty_block_remarksbox([ 'type' => 'info', 'title' => tra('AutoSave')], $msg, $smarty, $remrepeat) . "\n";
+            }
+        }
+        $headerlib->add_jq_onready("register_id('$as_id','" . addcslashes($auto_save_referrer, "'") . "');");
+        $headerlib->add_js("var autoSaveId = '" . addcslashes($auto_save_referrer, "'") . "';");
+    }
 
-	if ($params['_wysiwyg'] == 'y' && $params['_simple'] == 'n') {
-		// TODO cope with wysiwyg and simple
+    if ($params['_wysiwyg'] == 'y' && $params['_simple'] == 'n') {
+        // TODO cope with wysiwyg and simple
 
-		$wysiwyglib = TikiLib::lib('wysiwyg');
+        $wysiwyglib = TikiLib::lib('wysiwyg');
 
-		if (! isset($params['name'])) {
-			$params['name'] = 'edit';
-		}
+        if (! isset($params['name'])) {
+            $params['name'] = 'edit';
+        }
 
-		$ckoptions = $wysiwyglib->setUpEditor($params['_is_html'], $as_id, $params, $auto_save_referrer);
+        $ckoptions = $wysiwyglib->setUpEditor($params['_is_html'], $as_id, $params, $auto_save_referrer);
 
-		$html .= '<input type="hidden" name="wysiwyg" value="y" />';
-		$html .= '<textarea class="wikiedit" name="' . $params['name'] . '" id="' . $as_id . '" style="visibility:hidden;';	// missing closing quotes, closed in condition
+        $html .= '<input type="hidden" name="wysiwyg" value="y" />';
+        $html .= '<textarea class="wikiedit" name="' . $params['name'] . '" id="' . $as_id . '" style="visibility:hidden;';	// missing closing quotes, closed in condition
 
-		if (empty($params['cols'])) {
-			$html .= 'width:100%;' . (empty($params['rows']) ? 'height:500px;' : '') . '"';
-		} else {
-			$html .= '" cols="' . $params['cols'] . '"';
-		}
-		if (! empty($params['rows'])) {
-			$html .= ' rows="' . $params['rows'] . '"';
-		}
-		$html .= '>' . htmlspecialchars($content) . '</textarea>';
+        if (empty($params['cols'])) {
+            $html .= 'width:100%;' . (empty($params['rows']) ? 'height:500px;' : '') . '"';
+        } else {
+            $html .= '" cols="' . $params['cols'] . '"';
+        }
+        if (! empty($params['rows'])) {
+            $html .= ' rows="' . $params['rows'] . '"';
+        }
+        $html .= '>' . htmlspecialchars($content) . '</textarea>';
 
-		$headerlib->add_jq_onready(
-			'
+        $headerlib->add_jq_onready(
+            '
 CKEDITOR.replace( "' . $as_id . '",' . $ckoptions . ');
 CKEDITOR.on("instanceReady", function(event) {
 if (typeof ajaxLoadingHide == "function") { ajaxLoadingHide(); }
 this.instances.' . $as_id . '.resetDirty();
 });
 ',
-			20
-		);	// after dialog tools init (10)
-	} else {
-		// end of if ( $params['_wysiwyg'] == 'y' && $params['_simple'] == 'n')
+            20
+        );	// after dialog tools init (10)
+    } else {
+        // end of if ( $params['_wysiwyg'] == 'y' && $params['_simple'] == 'n')
 
-		// setup for wiki editor
+        // setup for wiki editor
 
-		$params['rows'] = ! empty($params['rows']) ? $params['rows'] : 20;
-//		$params['cols'] = !empty($params['cols']) ? $params['cols'] : 80;
+        $params['rows'] = ! empty($params['rows']) ? $params['rows'] : 20;
+        //		$params['cols'] = !empty($params['cols']) ? $params['cols'] : 80;
 
-		$textarea_attributes = '';
-		foreach ($params as $k => $v) {
-			if ($k[0] != '_' && ! in_array($k, ['comments', 'switcheditor', 'section', 'area_id', 'autosave'])) {
-				$textarea_attributes .= ' ' . $k . '="' . $v . '"';
-			}
-		}
-		if (empty($textarea_id)) {
-			$smarty->assign('textarea_id', $params['id']);
-		}
-		$smarty->assign('textarea__toolbars', $params['_toolbars']);
-		if ($textarea_attributes != '') {
-			$smarty->assign('textarea_attributes', $textarea_attributes);
-		}
-		$smarty->assignByRef('textareadata', $content);
-		$html .= $smarty->fetch('wiki_edit.tpl');
+        $textarea_attributes = '';
+        foreach ($params as $k => $v) {
+            if ($k[0] != '_' && ! in_array($k, ['comments', 'switcheditor', 'section', 'area_id', 'autosave'])) {
+                $textarea_attributes .= ' ' . $k . '="' . $v . '"';
+            }
+        }
+        if (empty($textarea_id)) {
+            $smarty->assign('textarea_id', $params['id']);
+        }
+        $smarty->assign('textarea__toolbars', $params['_toolbars']);
+        if ($textarea_attributes != '') {
+            $smarty->assign('textarea_attributes', $textarea_attributes);
+        }
+        $smarty->assignByRef('textareadata', $content);
+        $html .= $smarty->fetch('wiki_edit.tpl');
 
-		$html .= "\n" . '<input type="hidden" name="wysiwyg" value="n" />';
-	}	// wiki or wysiwyg
+        $html .= "\n" . '<input type="hidden" name="wysiwyg" value="n" />';
+    }	// wiki or wysiwyg
 
-	$js_editconfirm = '';
-	$js_editlock = '';
+    $js_editconfirm = '';
+    $js_editlock = '';
 
-	if ($params['_simple'] == 'n' && $params['comments'] !== 'y') {
-		// Display edit time out
+    if ($params['_simple'] == 'n' && $params['comments'] !== 'y') {
+        // Display edit time out
 
-		$js_editlock .= "
+        $js_editlock .= "
 var editTimeoutSeconds = " . ((int) ini_get('session.gc_maxlifetime')) . ";
 var editTimeElapsedSoFar = 0;
 var editTimeoutIntervalId;
@@ -266,7 +266,7 @@ function editTimerTick() {
 
 	if (editTimerWarnings == 0 && seconds <= 60 && editorDirty) {
 		alert('" . addslashes(tra('Your edit session will expire in:')) . ' 1 ' . tra('minute') . '. ' .
-				addslashes(tra('You must PREVIEW or SAVE your work now, to avoid losing your edits.')) . "');
+                addslashes(tra('You must PREVIEW or SAVE your work now, to avoid losing your edits.')) . "');
 		editTimerWarnings++;
 	} else if (seconds <= 0) {
 		clearInterval(editTimeoutIntervalId);
@@ -286,7 +286,7 @@ function editTimerTick() {
 
 ";
 
-		$js_editconfirm .= "
+        $js_editconfirm .= "
 \$(window).on('beforeunload', function(e) {
 	if (window.needToConfirm) {
 		if (typeof CKEDITOR === 'object') {
@@ -327,8 +327,8 @@ needToConfirm = true;
 editorDirty = " . (isset($_REQUEST["preview"]) && $params['_previewConfirmExit'] == 'y' ? 'true' : 'false') . ";
 ";
 
-		if ($prefs['feature_wysiwyg'] == 'y' && $prefs['wysiwyg_optional'] == 'y') {
-			$js_editconfirm .= '
+        if ($prefs['feature_wysiwyg'] == 'y' && $prefs['wysiwyg_optional'] == 'y') {
+            $js_editconfirm .= '
 function switchEditor(mode, form) {
 	window.needToConfirm=false;
 	var w;
@@ -341,20 +341,20 @@ function switchEditor(mode, form) {
 	}
 	form.submit();
 }';
-		}
-		if ($tiki_p_admin) {
-			$js_editconfirm .= '
+        }
+        if ($tiki_p_admin) {
+            $js_editconfirm .= '
 function admintoolbar() {
 	window.needToConfirm=false;
 	window.location="tiki-admin_toolbars.php";
 }';
-		}
+        }
 
-		if ($editWarning) {
-			$headerlib->add_js($js_editlock);
-		}
-		$headerlib->add_js($js_editconfirm);
-	}	// end if ($params['_simple'] == 'n')
+        if ($editWarning) {
+            $headerlib->add_js($js_editlock);
+        }
+        $headerlib->add_js($js_editconfirm);
+    }	// end if ($params['_simple'] == 'n')
 
-	return $auto_save_warning . $html;
+    return $auto_save_warning . $html;
 }

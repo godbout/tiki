@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,202 +8,206 @@
 
 class WikiPlugin_Negotiator_Wiki_Alias
 {
-	public static function info($name)
-	{
-		global $prefs;
+    public static function info($name)
+    {
+        global $prefs;
 
-		if (empty($name)) {
-			return false;
-		}
+        if (empty($name)) {
+            return false;
+        }
 
-		$name = TikiLib::strtolower($name);
+        $name = TikiLib::strtolower($name);
 
-		$prefName = "pluginalias_" . $name;
+        $prefName = "pluginalias_" . $name;
 
-		if (! isset($prefs[$prefName])) {
-			return false;
-		}
+        if (! isset($prefs[$prefName])) {
+            return false;
+        }
 
-		return unserialize($prefs[$prefName]);
-	}
+        return unserialize($prefs[$prefName]);
+    }
 
-	public static function getList()
-	{
-		global $prefs;
-		if (isset($prefs['pluginaliaslist'])) {
-			$alias = @unserialize($prefs['pluginaliaslist']);
-			$alias = array_filter($alias);
-			return $alias;
-		}
-		return [];
-	}
+    public static function getList()
+    {
+        global $prefs;
+        if (isset($prefs['pluginaliaslist'])) {
+            $alias = @unserialize($prefs['pluginaliaslist']);
+            $alias = array_filter($alias);
 
-	public static function store($name, $data)
-	{
-		/*
-			Input data structure:
+            return $alias;
+        }
 
-			implementation: other plugin_name
-			description:
-				** Equivalent of plugin info function here **
-			body:
-				input: use|ignore
-				default: body content to use
-				params:
-					token_name:
-						input: token_name, default uses same name above
-						default: value to use if missing
-						encoding: none|html|url - default to none
-			params:
-				; Use input parameter directly
-				token_name: default value
+        return [];
+    }
 
-				; Custom input parameter replacement
-				token_name:
-					pattern: body content to use
-					params:
-						token_name:
-							input: token_name, default uses same name above
-							default: value to use if missing
-							encoding: none|html|url - default to none
-		*/
-		if (empty($name)) {
-			return;
-		}
+    public static function store($name, $data)
+    {
+        /*
+            Input data structure:
 
-		$name = TikiLib::strtolower($name);
-		$data['plugin_name'] = $name;
+            implementation: other plugin_name
+            description:
+                ** Equivalent of plugin info function here **
+            body:
+                input: use|ignore
+                default: body content to use
+                params:
+                    token_name:
+                        input: token_name, default uses same name above
+                        default: value to use if missing
+                        encoding: none|html|url - default to none
+            params:
+                ; Use input parameter directly
+                token_name: default value
 
-		$prefName = "pluginalias_$name";
-		$tikilib = TikiLib::lib('tiki');
-		$tikilib->set_preference($prefName, serialize($data));
+                ; Custom input parameter replacement
+                token_name:
+                    pattern: body content to use
+                    params:
+                        token_name:
+                            input: token_name, default uses same name above
+                            default: value to use if missing
+                            encoding: none|html|url - default to none
+        */
+        if (empty($name)) {
+            return;
+        }
 
-		global $prefs;
-		$list = [];
-		if (isset($prefs['pluginaliaslist'])) {
-			$list = unserialize($prefs['pluginaliaslist']);
-		}
+        $name = TikiLib::strtolower($name);
+        $data['plugin_name'] = $name;
 
-		if (! in_array($name, $list)) {
-			$list[] = $name;
-			$tikilib->set_preference('pluginaliaslist', serialize($list));
-		}
+        $prefName = "pluginalias_$name";
+        $tikilib = TikiLib::lib('tiki');
+        $tikilib->set_preference($prefName, serialize($data));
 
-		foreach (glob('temp/cache/wikiplugin_*') as $file) {
-			unlink($file);
-		}
+        global $prefs;
+        $list = [];
+        if (isset($prefs['pluginaliaslist'])) {
+            $list = unserialize($prefs['pluginaliaslist']);
+        }
 
-		$cachelib = TikiLib::lib('cache');
-		$cachelib->invalidate('plugindesc');
-	}
+        if (! in_array($name, $list)) {
+            $list[] = $name;
+            $tikilib->set_preference('pluginaliaslist', serialize($list));
+        }
+
+        foreach (glob('temp/cache/wikiplugin_*') as $file) {
+            unlink($file);
+        }
+
+        $cachelib = TikiLib::lib('cache');
+        $cachelib->invalidate('plugindesc');
+    }
 
 
-	public static function delete($name)
-	{
-		$tikilib = TikiLib::lib('tiki');
-		$prefName = "pluginalias_" . $name;
+    public static function delete($name)
+    {
+        $tikilib = TikiLib::lib('tiki');
+        $prefName = "pluginalias_" . $name;
 
-		// Remove from list
-		$list = $tikilib->get_preference('pluginaliaslist', [], true);
-		$list = array_diff($list, [ $name ]);
-		$tikilib->set_preference('pluginaliaslist', serialize($list));
+        // Remove from list
+        $list = $tikilib->get_preference('pluginaliaslist', [], true);
+        $list = array_diff($list, [ $name ]);
+        $tikilib->set_preference('pluginaliaslist', serialize($list));
 
-		// Remove the definition
-		$tikilib->delete_preference($prefName);
+        // Remove the definition
+        $tikilib->delete_preference($prefName);
 
-		// Clear cache
-		$cachelib = TikiLib::lib('cache');
-		$cachelib->invalidate('plugindesc');
-		foreach (glob('temp/cache/wikiplugin_*') as $file) {
-			unlink($file);
-		}
-	}
+        // Clear cache
+        $cachelib = TikiLib::lib('cache');
+        $cachelib->invalidate('plugindesc');
+        foreach (glob('temp/cache/wikiplugin_*') as $file) {
+            unlink($file);
+        }
+    }
 
-	public static function getDetails($details = [])
-	{
-		if (self::findImplementation($details['name'], $details['body'], $details['args'])) {
-			return $details;
-		} else {
-			return false;
-		}
-	}
+    public static function getDetails($details = [])
+    {
+        if (self::findImplementation($details['name'], $details['body'], $details['args'])) {
+            return $details;
+        }
 
-	public static function findImplementation(& $implementation, & $data, & $args)
-	{
-		if ($info = self::info($implementation)) {
-			$implementation = $info['implementation'];
+        return false;
+    }
 
-			// Do the body conversion
-			if (isset($info['body'])) {
-				if (( isset($info['body']['input']) && $info['body']['input'] == 'ignore' )
-					|| empty($data) ) {
-					$data = isset($info['body']['default']) ? $info['body']['default'] : '';
-				}
+    public static function findImplementation(& $implementation, & $data, & $args)
+    {
+        if ($info = self::info($implementation)) {
+            $implementation = $info['implementation'];
 
-				if (isset($info['body']['params'])) {
-					$data = self::replaceArgs($data, $info['body']['params'], $args);
-				}
-			} else {
-				$data = '';
-			}
+            // Do the body conversion
+            if (isset($info['body'])) {
+                if ((isset($info['body']['input']) && $info['body']['input'] == 'ignore')
+                    || empty($data)) {
+                    $data = isset($info['body']['default']) ? $info['body']['default'] : '';
+                }
 
-			// Do parameter conversion
-			$params = [];
-			if (isset($info['params'])) {
-				foreach ($info['params'] as $key => $value) {
-					if (is_array($value) && isset($value['pattern']) && isset($value['params'])) {
-						$params[$key] = self::replaceArgs($value['pattern'], $value['params'], $args);
-					} else {
-						// Handle simple values
-						if (isset($args[$key])) {
-							$params[$key] = $args[$key];
-						} else {
-							$params[$key] = $value;
-						}
-					}
-				}
-			}
+                if (isset($info['body']['params'])) {
+                    $data = self::replaceArgs($data, $info['body']['params'], $args);
+                }
+            } else {
+                $data = '';
+            }
 
-			$args = $params;
+            // Do parameter conversion
+            $params = [];
+            if (isset($info['params'])) {
+                foreach ($info['params'] as $key => $value) {
+                    if (is_array($value) && isset($value['pattern']) && isset($value['params'])) {
+                        $params[$key] = self::replaceArgs($value['pattern'], $value['params'], $args);
+                    } else {
+                        // Handle simple values
+                        if (isset($args[$key])) {
+                            $params[$key] = $args[$key];
+                        } else {
+                            $params[$key] = $value;
+                        }
+                    }
+                }
+            }
 
-			// Attempt to find recursively
-			self::findImplementation($implementation, $data, $args);
+            $args = $params;
 
-			return true;
-		}
+            // Attempt to find recursively
+            self::findImplementation($implementation, $data, $args);
 
-		return false;
-	}
+            return true;
+        }
 
-	static function replaceArgs($content, $rules, $args)
-	{
-		$patterns = [];
-		$replacements = [];
+        return false;
+    }
 
-		foreach ($rules as $token => $info) {
-			$patterns[] = "%$token%";
-			if (isset($info['input']) && ! empty($info['input'])) {
-				$token = $info['input'];
-			}
+    public static function replaceArgs($content, $rules, $args)
+    {
+        $patterns = [];
+        $replacements = [];
 
-			if (isset($args[$token])) {
-				$value = $args[$token];
-			} else {
-				$value = isset($info['default']) ? $info['default'] : '';
-			}
+        foreach ($rules as $token => $info) {
+            $patterns[] = "%$token%";
+            if (isset($info['input']) && ! empty($info['input'])) {
+                $token = $info['input'];
+            }
 
-			switch (isset($info['encoding']) ? $info['encoding'] : 'none') {
-				case 'html':
-					$replacements[] = htmlentities($value, ENT_QUOTES, 'UTF-8');
-					break;
-				case 'url':
-					$replacements[] = rawurlencode($value);
-					break;
-				default:
-					$replacements[] = $value;
-			}
-		}
+            if (isset($args[$token])) {
+                $value = $args[$token];
+            } else {
+                $value = isset($info['default']) ? $info['default'] : '';
+            }
 
-		return str_replace($patterns, $replacements, $content);
-	}
+            switch (isset($info['encoding']) ? $info['encoding'] : 'none') {
+                case 'html':
+                    $replacements[] = htmlentities($value, ENT_QUOTES, 'UTF-8');
+
+                    break;
+                case 'url':
+                    $replacements[] = rawurlencode($value);
+
+                    break;
+                default:
+                    $replacements[] = $value;
+            }
+        }
+
+        return str_replace($patterns, $replacements, $content);
+    }
 }

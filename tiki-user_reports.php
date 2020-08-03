@@ -17,31 +17,31 @@ $reportsManager = Reports_Factory::build('Reports_Manager');
 
 //Enable User Reports
 if (isset($_POST['report_preferences']) && $_POST['use_daily_reports'] == "true" && $access->checkCsrf()) {
-	$interval = filter_input(INPUT_POST, 'interval', FILTER_SANITIZE_STRING);
-	$view = filter_input(INPUT_POST, 'view', FILTER_SANITIZE_STRING);
-	$type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
-	$always_email = filter_input(INPUT_POST, 'always_email', FILTER_SANITIZE_NUMBER_INT);
-	if ($always_email != 1) {
-		$always_email = 0;
-	}
+    $interval = filter_input(INPUT_POST, 'interval', FILTER_SANITIZE_STRING);
+    $view = filter_input(INPUT_POST, 'view', FILTER_SANITIZE_STRING);
+    $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
+    $always_email = filter_input(INPUT_POST, 'always_email', FILTER_SANITIZE_NUMBER_INT);
+    if ($always_email != 1) {
+        $always_email = 0;
+    }
 
-	$result = $reportsManager->save($user, $interval, $view, $type, $always_email);
-	if ((is_numeric($result) && $result > 0) || (is_object($result) && $result->numRows())) {
-		Feedback::success(tr('User report preferences saved'));
-	} else {
-		Feedback::error(tr('User report preferences not saved'));
-	}
-	header('Location: tiki-user_watches.php');
-	die;
+    $result = $reportsManager->save($user, $interval, $view, $type, $always_email);
+    if ((is_numeric($result) && $result > 0) || (is_object($result) && $result->numRows())) {
+        Feedback::success(tr('User report preferences saved'));
+    } else {
+        Feedback::error(tr('User report preferences not saved'));
+    }
+    header('Location: tiki-user_watches.php');
+    die;
 }
 //Disable User Reports
 if (isset($_POST['report_preferences']) && $_POST['use_daily_reports'] != "true") {
-	$result = $reportsManager->delete($user);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('User reports disabled'));
-	} else {
-		Feedback::error(tr('User report not disabled'));
-	}
-	header('Location: tiki-user_watches.php');
-	die;
+    $result = $reportsManager->delete($user);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('User reports disabled'));
+    } else {
+        Feedback::error(tr('User report not disabled'));
+    }
+    header('Location: tiki-user_watches.php');
+    die;
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,29 +8,30 @@
 
 function smarty_function_activity($params)
 {
-	$smarty = TikiLib::lib('smarty');
+    $smarty = TikiLib::lib('smarty');
 
-	if (isset($params['info'])) {
-		$activity = $params['info'];
-	} else {
-		$lib = TikiLib::lib('unifiedsearch');
-		$docs = $lib->getDocuments('activity', $params['id']);
+    if (isset($params['info'])) {
+        $activity = $params['info'];
+    } else {
+        $lib = TikiLib::lib('unifiedsearch');
+        $docs = $lib->getDocuments('activity', $params['id']);
 
-		$activity = reset($docs);
+        $activity = reset($docs);
 
-		if (! $activity) {
-			return tr('Not found.');
-		}
+        if (! $activity) {
+            return tr('Not found.');
+        }
 
-		$activity = TikiLib::lib('unifiedsearch')->getRawArray($activity);
-	}
+        $activity = TikiLib::lib('unifiedsearch')->getRawArray($activity);
+    }
 
-	$smarty->assign('activity', $activity);
-	$smarty->assign('activity_format', ! empty($params['format']) ? $params['format'] : 'default');
-	$templateName = 'activity/' . $activity['event_type'] . '.tpl';
+    $smarty->assign('activity', $activity);
+    $smarty->assign('activity_format', ! empty($params['format']) ? $params['format'] : 'default');
+    $templateName = 'activity/' . $activity['event_type'] . '.tpl';
 
-	if (empty($smarty->get_filename($templateName))) {
-		$templateName = 'activity/default_event.tpl';
-	}
-	return $smarty->fetch($templateName);
+    if (empty($smarty->get_filename($templateName))) {
+        $templateName = 'activity/default_event.tpl';
+    }
+
+    return $smarty->fetch($templateName);
 }

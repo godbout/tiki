@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,344 +8,353 @@
 
 class GoalLib
 {
-	static $runner;
+    public static $runner;
 
-	function listGoals()
-	{
-		$table = $this->table();
+    public function listGoals()
+    {
+        $table = $this->table();
 
-		$list = $table->fetchAll(['goalId', 'enabled', 'name', 'description', 'type', 'eligible'], [], -1, -1, [
-			'name' => 'ASC',
-		]);
+        $list = $table->fetchAll(['goalId', 'enabled', 'name', 'description', 'type', 'eligible'], [], -1, -1, [
+            'name' => 'ASC',
+        ]);
 
-		return array_map(function ($goal) {
-			$goal['eligible'] = json_decode($goal['eligible'], true);
-			return $goal;
-		}, $list);
-	}
+        return array_map(function ($goal) {
+            $goal['eligible'] = json_decode($goal['eligible'], true);
 
-	function listConditions()
-	{
-		$table = $this->table();
-		$table->useExceptions();
+            return $goal;
+        }, $list);
+    }
 
-		$list = $table->fetchAll(['goalId', 'conditions'], [], -1, -1, [
-		]);
+    public function listConditions()
+    {
+        $table = $this->table();
+        $table->useExceptions();
 
-		return array_map(function ($goal) {
-			$goal['conditions'] = json_decode($goal['conditions'], true);
-			return $goal;
-		}, $list);
-	}
+        $list = $table->fetchAll(['goalId', 'conditions'], [], -1, -1, [
+        ]);
 
-	function removeGoal($goalId)
-	{
-		$this->table()->delete(['goalId' => $goalId]);
+        return array_map(function ($goal) {
+            $goal['conditions'] = json_decode($goal['conditions'], true);
 
-		TikiLib::lib('goalevent')->touch();
-	}
+            return $goal;
+        }, $list);
+    }
 
-	function preserveGoals(array $ids)
-	{
-		$table = $this->table();
-		return $table->deleteMultiple(
-			[
-				'goalId' => $table->notIn($ids),
-			]
-		);
-	}
+    public function removeGoal($goalId)
+    {
+        $this->table()->delete(['goalId' => $goalId]);
 
-	function replaceGoal($goalId, array $data)
-	{
-		$base = null;
+        TikiLib::lib('goalevent')->touch();
+    }
 
-		if ($goalId) {
-			$base = $this->fetchGoal($goalId);
-		}
+    public function preserveGoals(array $ids)
+    {
+        $table = $this->table();
 
-		if (! $base) {
-			$base = [
-				'name' => 'No name',
-				'description' => '',
-				'type' => 'user',
-				'enabled' => 0,
-				'daySpan' => 14,
-				'from' => null,
-				'to' => null,
-				'eligible' => [],
-				'conditions' => [
-					[
-						'label' => tr('Goal achieved'),
-						'operator' => 'atMost',
-						'count' => 0,
-						'metric' => 'goal-count-unbounded',
-						'hidden' => 1,
-					],
-				],
-				'rewards' => [],
-			];
-		}
+        return $table->deleteMultiple(
+            [
+                'goalId' => $table->notIn($ids),
+            ]
+        );
+    }
 
-		$data = array_merge($base, $data);
+    public function replaceGoal($goalId, array $data)
+    {
+        $base = null;
 
-		$data['eligible'] = json_encode((array) $data['eligible']);
-		$data['conditions'] = json_encode((array) $data['conditions']);
-		$data['rewards'] = json_encode((array) $data['rewards']);
+        if ($goalId) {
+            $base = $this->fetchGoal($goalId);
+        }
 
-		if ($goalId) {
-			$this->table()->update($data, ['goalId' => $goalId]);
-		} else {
-			$goalId = $this->table()->insert($data);
-		}
+        if (! $base) {
+            $base = [
+                'name' => 'No name',
+                'description' => '',
+                'type' => 'user',
+                'enabled' => 0,
+                'daySpan' => 14,
+                'from' => null,
+                'to' => null,
+                'eligible' => [],
+                'conditions' => [
+                    [
+                        'label' => tr('Goal achieved'),
+                        'operator' => 'atMost',
+                        'count' => 0,
+                        'metric' => 'goal-count-unbounded',
+                        'hidden' => 1,
+                    ],
+                ],
+                'rewards' => [],
+            ];
+        }
 
-		TikiLib::lib('goalevent')->touch();
+        $data = array_merge($base, $data);
 
-		return $goalId;
-	}
+        $data['eligible'] = json_encode((array) $data['eligible']);
+        $data['conditions'] = json_encode((array) $data['conditions']);
+        $data['rewards'] = json_encode((array) $data['rewards']);
 
-	function fetchGoal($goalId)
-	{
-		$goal = $this->table()->fetchFullRow(['goalId' => $goalId]);
+        if ($goalId) {
+            $this->table()->update($data, ['goalId' => $goalId]);
+        } else {
+            $goalId = $this->table()->insert($data);
+        }
 
-		if ($goal) {
-			$goal['eligible'] = json_decode($goal['eligible'], true) ?: [];
-			$goal['conditions'] = json_decode($goal['conditions'], true) ?: [];
-			$goal['rewards'] = json_decode($goal['rewards'], true) ?: [];
+        TikiLib::lib('goalevent')->touch();
 
-			return $goal;
-		}
-	}
+        return $goalId;
+    }
 
-	function isEligible(array $goal, array $context)
-	{
-		if ($goal['type'] == 'user') {
-			return count(array_intersect($context['groups'], $goal['eligible'])) > 0;
-		} elseif ($context['group']) {
-			return in_array($context['group'], $goal['eligible']);
-		} else {
-			return false;
-		}
-	}
+    public function fetchGoal($goalId)
+    {
+        $goal = $this->table()->fetchFullRow(['goalId' => $goalId]);
 
-	function evaluateConditions(array $goal, array $context)
-	{
-		$this->prepareConditions($goal);
-		$runner = $this->getRunner();
+        if ($goal) {
+            $goal['eligible'] = json_decode($goal['eligible'], true) ?: [];
+            $goal['conditions'] = json_decode($goal['conditions'], true) ?: [];
+            $goal['rewards'] = json_decode($goal['rewards'], true) ?: [];
 
-		$goal['complete'] = true;
+            return $goal;
+        }
+    }
 
-		foreach ($goal['conditions'] as & $cond) {
-			$arguments = [];
-			foreach (['eventType', 'trackerItemBadge'] as $arg) {
-				if (isset($cond[$arg])) {
-					$arguments[$arg] = $cond[$arg];
-				}
-			}
+    public function isEligible(array $goal, array $context)
+    {
+        if ($goal['type'] == 'user') {
+            return count(array_intersect($context['groups'], $goal['eligible'])) > 0;
+        } elseif ($context['group']) {
+            return in_array($context['group'], $goal['eligible']);
+        }
 
-			$runner->setFormula($cond['metric']);
-			$runner->setVariables(array_merge($goal, $context, $arguments));
-			$cond['metric'] = $runner->evaluate();
+        return false;
+    }
 
-			if ($cond['operator'] == 'atLeast') {
-				$cond['complete'] = $cond['metric'] >= $cond['count'];
-				$cond['metric'] = min($cond['count'], $cond['metric']);
-			} else {
-				$cond['complete'] = $cond['metric'] <= $cond['count'];
-			}
+    public function evaluateConditions(array $goal, array $context)
+    {
+        $this->prepareConditions($goal);
+        $runner = $this->getRunner();
 
-			$goal['complete'] = $goal['complete'] && $cond['complete'];
-		}
+        $goal['complete'] = true;
 
-		if ($goal['complete']) {
-			$tx = TikiDb::get()->begin();
+        foreach ($goal['conditions'] as & $cond) {
+            $arguments = [];
+            foreach (['eventType', 'trackerItemBadge'] as $arg) {
+                if (isset($cond[$arg])) {
+                    $arguments[$arg] = $cond[$arg];
+                }
+            }
 
-			TikiLib::events()->trigger('tiki.goal.reached', [
-				'type' => 'goal',
-				'object' => $goal['goalId'],
-				'name' => $goal['name'],
-				'goalType' => $goal['type'],
-				'user' => $context['user'],
-				'group' => $context['group'],
-			]);
+            $runner->setFormula($cond['metric']);
+            $runner->setVariables(array_merge($goal, $context, $arguments));
+            $cond['metric'] = $runner->evaluate();
 
-			$rewardlib = TikiLib::lib('goalreward');
-			if ($goal['type'] == 'group') {
-				$rewardlib->giveRewardsToMembers($context['group'], $goal['rewards']);
-			} else {
-				$rewardlib->giveRewardsToUser($context['user'], $goal['rewards']);
-			}
+            if ($cond['operator'] == 'atLeast') {
+                $cond['complete'] = $cond['metric'] >= $cond['count'];
+                $cond['metric'] = min($cond['count'], $cond['metric']);
+            } else {
+                $cond['complete'] = $cond['metric'] <= $cond['count'];
+            }
 
-			$tx->commit();
-		}
+            $goal['complete'] = $goal['complete'] && $cond['complete'];
+        }
 
-		return $goal;
-	}
+        if ($goal['complete']) {
+            $tx = TikiDb::get()->begin();
 
-	function unevaluateConditions($goal)
-	{
-		$goal['complete'] = false;
+            TikiLib::events()->trigger('tiki.goal.reached', [
+                'type' => 'goal',
+                'object' => $goal['goalId'],
+                'name' => $goal['name'],
+                'goalType' => $goal['type'],
+                'user' => $context['user'],
+                'group' => $context['group'],
+            ]);
 
-		foreach ($goal['conditions'] as & $cond) {
-			$cond['metric'] = 0;
-			$cond['complete'] = false;
-		}
+            $rewardlib = TikiLib::lib('goalreward');
+            if ($goal['type'] == 'group') {
+                $rewardlib->giveRewardsToMembers($context['group'], $goal['rewards']);
+            } else {
+                $rewardlib->giveRewardsToUser($context['user'], $goal['rewards']);
+            }
 
-		return $goal;
-	}
+            $tx->commit();
+        }
 
-	function evaluateAllGoals()
-	{
-		$tx = TikiDb::get()->begin();
+        return $goal;
+    }
 
-		foreach ($this->listGoals() as $goal) {
-			if ($goal['enabled']) {
-				$this->prepareConditions($goal);
+    public function unevaluateConditions($goal)
+    {
+        $goal['complete'] = false;
 
-				foreach ($this->enumerateContexts($goal) as $context) {
-					$this->evaluateConditions($goal, $context);
-				}
-			}
-		}
+        foreach ($goal['conditions'] as & $cond) {
+            $cond['metric'] = 0;
+            $cond['complete'] = false;
+        }
 
-		$tx->commit();
-	}
+        return $goal;
+    }
 
-	private function prepareConditions(array & $goal)
-	{
-		if (isset($goal['prepared'])) {
-			return;
-		}
+    public function evaluateAllGoals()
+    {
+        $tx = TikiDb::get()->begin();
 
-		// listGoals does not extract all information, so when conditions are missing, reload
-		if (! isset($goal['conditions'])) {
-			$goal = $this->fetchGoal($goal['goalId']);
-		}
+        foreach ($this->listGoals() as $goal) {
+            if ($goal['enabled']) {
+                $this->prepareConditions($goal);
 
-		$runner = $this->getRunner();
+                foreach ($this->enumerateContexts($goal) as $context) {
+                    $this->evaluateConditions($goal, $context);
+                }
+            }
+        }
 
-		foreach ($goal['conditions'] as & $cond) {
-			$metric = $this->prepareMetric($cond['metric'], $goal);
-			$cond['metric'] = $runner->setFormula($metric);
-		}
+        $tx->commit();
+    }
 
-		$goal['prepared'] = true;
-	}
+    private function prepareConditions(array & $goal)
+    {
+        if (isset($goal['prepared'])) {
+            return;
+        }
 
-	private function enumerateContexts($goal)
-	{
-		if ($goal['type'] == 'group') {
-			foreach ($goal['eligible'] as $groupName) {
-				yield ['user' => null, 'group' => $groupName];
-			}
-		} else {
-			$userlib = TikiLib::lib('user');
+        // listGoals does not extract all information, so when conditions are missing, reload
+        if (! isset($goal['conditions'])) {
+            $goal = $this->fetchGoal($goal['goalId']);
+        }
 
-			$done = [];
+        $runner = $this->getRunner();
 
-			foreach ($goal['eligible'] as $groupName) {
-				foreach ($userlib->get_group_users($groupName) as $user) {
-					if (! isset($done[$user])) {
-						yield ['user' => $user, 'group' => null];
-						$done[$user] = true;
-					}
-				}
-			}
-		}
-	}
+        foreach ($goal['conditions'] as & $cond) {
+            $metric = $this->prepareMetric($cond['metric'], $goal);
+            $cond['metric'] = $runner->setFormula($metric);
+        }
 
-	public static function getRunner()
-	{
-		if (! self::$runner) {
-			self::$runner = new Math_Formula_Runner(
-				[
-					'Math_Formula_Function_' => '',
-					'Tiki_Formula_Function_' => '',
-				]
-			);
-		}
+        $goal['prepared'] = true;
+    }
 
-		return self::$runner;
-	}
+    private function enumerateContexts($goal)
+    {
+        if ($goal['type'] == 'group') {
+            foreach ($goal['eligible'] as $groupName) {
+                yield ['user' => null, 'group' => $groupName];
+            }
+        } else {
+            $userlib = TikiLib::lib('user');
 
-	private function prepareMetric($metric, $goal)
-	{
-		switch ($metric) {
-			case 'event-count':
-				$metric = '(result-count
+            $done = [];
+
+            foreach ($goal['eligible'] as $groupName) {
+                foreach ($userlib->get_group_users($groupName) as $user) {
+                    if (! isset($done[$user])) {
+                        yield ['user' => $user, 'group' => null];
+                        $done[$user] = true;
+                    }
+                }
+            }
+        }
+    }
+
+    public static function getRunner()
+    {
+        if (! self::$runner) {
+            self::$runner = new Math_Formula_Runner(
+                [
+                    'Math_Formula_Function_' => '',
+                    'Tiki_Formula_Function_' => '',
+                ]
+            );
+        }
+
+        return self::$runner;
+    }
+
+    private function prepareMetric($metric, $goal)
+    {
+        switch ($metric) {
+            case 'event-count':
+                $metric = '(result-count
 				(filter-date)
 				(filter-target)
 				(filter (content eventType) (field "event_type"))
 				(filter (type "goalevent"))
 			)';
-				break;
-			case 'event-count-unbounded':
-				$metric = '(result-count
+
+                break;
+            case 'event-count-unbounded':
+                $metric = '(result-count
 				(filter-target)
 				(filter (content eventType) (field "event_type"))
 				(filter (type "goalevent"))
 			)';
-				break;
-			case 'goal-count':
-				$metric = '(result-count
+
+                break;
+            case 'goal-count':
+                $metric = '(result-count
 				(filter-date)
 				(filter-target)
 				(filter (content "tiki.goal.reached") (field "event_type"))
 				(filter (type "goalevent"))
 				(filter (content (concat "goal:" goalId)) (field "target"))
 			)';
-				break;
-			case 'goal-count-unbounded':
-				$metric = '(result-count
+
+                break;
+            case 'goal-count-unbounded':
+                $metric = '(result-count
 				(filter-target)
 				(filter (content "tiki.goal.reached") (field "event_type"))
 				(filter (type "goalevent"))
 				(filter (content (concat "goal:" goalId)) (field "target"))
 			)';
-				break;
-			case 'has-badge':
-				$metric = '(relation-present
+
+                break;
+            case 'has-badge':
+                $metric = '(relation-present
 				(qualifier "tiki.badge.received")
 				(from type (if (equals type "user") user group))
 				(to "trackeritem" trackerItemBadge)
 			)';
-				break;
-		}
 
-		if ($goal['daySpan']) {
-			$metric = str_replace('(filter-date)', '(filter (range "modification_date") (from (concat daySpan " days ago")) (to "now"))', $metric);
-		} else {
-			$metric = str_replace('(filter-date)', '(filter (range "modification_date") (from from) (to to))', $metric);
-		}
+                break;
+        }
 
-		if ($goal['type'] == 'user') {
-			$metric = str_replace('(filter-target)', '(filter (content user) (field "user"))', $metric);
-		} else {
-			$metric = str_replace('(filter-target)', '(filter (multivalue group) (field "goal_groups"))', $metric);
-		}
+        if ($goal['daySpan']) {
+            $metric = str_replace('(filter-date)', '(filter (range "modification_date") (from (concat daySpan " days ago")) (to "now"))', $metric);
+        } else {
+            $metric = str_replace('(filter-date)', '(filter (range "modification_date") (from from) (to to))', $metric);
+        }
 
-		return $metric;
-	}
+        if ($goal['type'] == 'user') {
+            $metric = str_replace('(filter-target)', '(filter (content user) (field "user"))', $metric);
+        } else {
+            $metric = str_replace('(filter-target)', '(filter (multivalue group) (field "goal_groups"))', $metric);
+        }
 
-	function getMetricList()
-	{
-		return [
-			'event-count' => ['label' => tr('Event Count'), 'arguments' => ['eventType']],
-			'event-count-unbounded' => ['label' => tr('Event Count (Forever)'), 'arguments' => ['eventType']],
-			'goal-count' => ['label' => tr('Goal Reached (Periodic)'), 'arguments' => []],
-			'goal-count-unbounded' => ['label' => tr('Goal Reached (Forever)'), 'arguments' => []],
-			'has-badge' => ['label' => tr('Has Badge'), 'arguments' => ['trackerItemBadge']],
-		];
-	}
+        return $metric;
+    }
 
-	function listEligibleGroups()
-	{
-		global $prefs;
-		$groups = TikiLib::lib('user')->list_all_groups();
-		return array_diff($groups, $prefs['goal_group_blacklist']);
-	}
+    public function getMetricList()
+    {
+        return [
+            'event-count' => ['label' => tr('Event Count'), 'arguments' => ['eventType']],
+            'event-count-unbounded' => ['label' => tr('Event Count (Forever)'), 'arguments' => ['eventType']],
+            'goal-count' => ['label' => tr('Goal Reached (Periodic)'), 'arguments' => []],
+            'goal-count-unbounded' => ['label' => tr('Goal Reached (Forever)'), 'arguments' => []],
+            'has-badge' => ['label' => tr('Has Badge'), 'arguments' => ['trackerItemBadge']],
+        ];
+    }
 
-	private function table()
-	{
-		return TikiDb::get()->table('tiki_goals');
-	}
+    public function listEligibleGroups()
+    {
+        global $prefs;
+        $groups = TikiLib::lib('user')->list_all_groups();
+
+        return array_diff($groups, $prefs['goal_group_blacklist']);
+    }
+
+    private function table()
+    {
+        return TikiDb::get()->table('tiki_goals');
+    }
 }

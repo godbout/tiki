@@ -1,6 +1,8 @@
-<?php // -*- coding:utf-8 -*-
+<?php
+
+// -*- coding:utf-8 -*-
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
-// 
+//
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // Parameters:
@@ -66,7 +68,7 @@
 // ### and it still allows to translate ":" as "&nbsp;:" for languages that
 // ### need it (like french)
 
-$lang = array(
+$lang = [
 // ### Start of unused words
 // ### Please remove manually!
 // ### N.B. Legitimate strings may be marked// ### as unused!
@@ -118,5 +120,4 @@ $lang = array(
 "The page is empty" => "A página está vazia",
 "You do not have permission to view maps" => "Você não possui permissões para ver os mapas",
 "Second test special \"characters\" escaping" => "Alguma tradução \"characters\"",
-);
-
+];

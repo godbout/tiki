@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -11,7 +12,7 @@ require __DIR__ . '/svntools.php';
 info("Verifying...");
 
 if (! isset($_SERVER['argc']) || $_SERVER['argc'] != 3) {
-	error("Missing argument. Expecting tagged version to build increment from and to.\n\nExamples:\n\t2.0 2.2\n\t2.1 2.2");
+    error("Missing argument. Expecting tagged version to build increment from and to.\n\nExamples:\n\t2.0 2.2\n\t2.1 2.2");
 }
 
 $fromVersion = $_SERVER['argv'][1];
@@ -25,16 +26,16 @@ $toRep = get_info($branch);
 $local = get_info('.');
 
 if (! isset($fromRep->entry)) {
-	error("The origin tag does not exist.");
+    error("The origin tag does not exist.");
 }
 if (! isset($toRep->entry)) {
-	error("The destination tag does not exist.");
+    error("The destination tag does not exist.");
 }
 if (! isset($local->entry)) {
-	error("The current folder is not a local copy.");
+    error("The current folder is not a local copy.");
 }
 if (has_uncommited_changes('.')) {
-	error("Local copy contains uncommited changes.");
+    error("Local copy contains uncommited changes.");
 }
 
 info("Converting local copy to origin.");

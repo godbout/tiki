@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
-	header('location: index.php');
-	exit;
+    header('location: index.php');
+    exit;
 }
 
 /**
@@ -20,33 +21,33 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
  * return   - return the js code rather than add to the header
  * @param $params
  * @param $smarty
- * @return string
  * @throws Exception
+ * @return string
  */
 function smarty_function_js_insert_icon($params, $smarty)
 {
-	if (! empty($params['type'])) {
-		//set icon
-		$iconmap = [
-			'jscalendar' => 'calendar'
-		];
-		$iconname = ! empty($params['iconname']) ? $params['iconname'] : $iconmap[$params['type']];
-		$smarty->loadPlugin('smarty_function_icon');
-		$icon = smarty_function_icon(['name' => $iconname], $smarty);
-		//set js
-		switch ($params['type']) {
-			case 'jscalendar':
-				$js = "$('div.jscal > button.ui-datepicker-trigger').empty().append('$icon').addClass('btn btn-sm btn-link').css({'padding' : '0px', 'font-size': '16px'});";
-				break;
-		}
-		//load js
-		if (! empty($js)) {
-			if (isset($params['return']) && $params['return'] === 'y') {
-				return $js;
-			} else {
-				$headerlib = TikiLib::lib('header');
-				$headerlib->add_jq_onready($js);
-			}
-		}
-	}
+    if (! empty($params['type'])) {
+        //set icon
+        $iconmap = [
+            'jscalendar' => 'calendar'
+        ];
+        $iconname = ! empty($params['iconname']) ? $params['iconname'] : $iconmap[$params['type']];
+        $smarty->loadPlugin('smarty_function_icon');
+        $icon = smarty_function_icon(['name' => $iconname], $smarty);
+        //set js
+        switch ($params['type']) {
+            case 'jscalendar':
+                $js = "$('div.jscal > button.ui-datepicker-trigger').empty().append('$icon').addClass('btn btn-sm btn-link').css({'padding' : '0px', 'font-size': '16px'});";
+
+                break;
+        }
+        //load js
+        if (! empty($js)) {
+            if (isset($params['return']) && $params['return'] === 'y') {
+                return $js;
+            }
+            $headerlib = TikiLib::lib('header');
+            $headerlib->add_jq_onready($js);
+        }
+    }
 }

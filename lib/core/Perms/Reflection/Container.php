@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,9 +8,9 @@
 
 interface Perms_Reflection_Container
 {
-	function add($group, $permission);
-	function remove($group, $permission);
+    public function add($group, $permission);
+    public function remove($group, $permission);
 
-	function getDirectPermissions();
-	function getParentPermissions();
+    public function getDirectPermissions();
+    public function getParentPermissions();
 }

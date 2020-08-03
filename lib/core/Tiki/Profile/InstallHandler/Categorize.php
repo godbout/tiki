@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,55 +8,55 @@
 
 class Tiki_Profile_InstallHandler_Categorize extends Tiki_Profile_InstallHandler
 {
-	private $type;
-	private $object;
-	private $categories = [];
+    private $type;
+    private $object;
+    private $categories = [];
 
-	function fetchData()
-	{
-		$data = $this->obj->getData();
+    public function fetchData()
+    {
+        $data = $this->obj->getData();
 
-		if (isset($data['type'])) {
-			$this->type = $data['type'];
-		}
+        if (isset($data['type'])) {
+            $this->type = $data['type'];
+        }
 
-		if (isset($data['object'])) {
-			$this->object = $data['object'];
-		}
+        if (isset($data['object'])) {
+            $this->object = $data['object'];
+        }
 
-		if (isset($data['categories'])) {
-			$this->categories = (array) $data['categories'];
-		}
-	}
+        if (isset($data['categories'])) {
+            $this->categories = (array) $data['categories'];
+        }
+    }
 
-	function canInstall()
-	{
-		$this->fetchData();
+    public function canInstall()
+    {
+        $this->fetchData();
 
-		if (empty($this->type) || empty($this->object)) {
-			return false;
-		}
+        if (empty($this->type) || empty($this->object)) {
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	function _install()
-	{
-		global $tikilib;
-		$this->fetchData();
-		$this->replaceReferences($this->type);
-		$this->replaceReferences($this->object);
-		$this->replaceReferences($this->categories);
+    public function _install()
+    {
+        global $tikilib;
+        $this->fetchData();
+        $this->replaceReferences($this->type);
+        $this->replaceReferences($this->object);
+        $this->replaceReferences($this->categories);
 
-		$categlib = TikiLib::lib('categ');
+        $categlib = TikiLib::lib('categ');
 
-		$type = Tiki_Profile_Installer::convertType($this->type);
-		$object = Tiki_Profile_Installer::convertObject($type, $this->object);
+        $type = Tiki_Profile_Installer::convertType($this->type);
+        $object = Tiki_Profile_Installer::convertObject($type, $this->object);
 
-		foreach ($this->categories as $categId) {
-			$categlib->categorize_any($type, $object, $categId);
-		}
+        foreach ($this->categories as $categId) {
+            $categlib->categorize_any($type, $object, $categId);
+        }
 
-		return true;
-	}
+        return true;
+    }
 }

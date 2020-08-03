@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,15 +8,15 @@
 
 function prefs_restrict_list()
 {
-	return [
-		'restrict_language' => [
-			'name' => tra('Restrict supported languages'),
-			'description' => tra('Limit the languages made available on the site.'),
-			'type' => 'flag',
-			'dependencies' => ['feature_multilingual'],
-			'shorthint' => tr('Use Ctrl+Click to select multiple languages.'),
-			'default' => 'n',
-			'tags' => ['basic'],
-		],
-	];
+    return [
+        'restrict_language' => [
+            'name' => tra('Restrict supported languages'),
+            'description' => tra('Limit the languages made available on the site.'),
+            'type' => 'flag',
+            'dependencies' => ['feature_multilingual'],
+            'shorthint' => tr('Use Ctrl+Click to select multiple languages.'),
+            'default' => 'n',
+            'tags' => ['basic'],
+        ],
+    ];
 }

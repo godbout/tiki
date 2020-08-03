@@ -19,37 +19,37 @@ $access->check_permission('tiki_p_admin_shoutbox');
 
 // Do the add bad word form here
 if (isset($_REQUEST["add"])) {
-	check_ticket('admin-shoutboxwords');
-	if (empty($_REQUEST["word"])) {
-		$smarty->assign('msg', tra("You have to provide a word"));
-		$smarty->display("error.tpl");
-		die;
-	}
-	$shoutboxlib->add_bad_word($_REQUEST["word"]);
+    check_ticket('admin-shoutboxwords');
+    if (empty($_REQUEST["word"])) {
+        $smarty->assign('msg', tra("You have to provide a word"));
+        $smarty->display("error.tpl");
+        die;
+    }
+    $shoutboxlib->add_bad_word($_REQUEST["word"]);
 }
 if (isset($_REQUEST["remove"]) && ! empty($_REQUEST["remove"])) {
-	check_ticket('admin-shoutboxwords');
-	$shoutboxlib->remove_bad_word($_REQUEST["remove"]);
+    check_ticket('admin-shoutboxwords');
+    $shoutboxlib->remove_bad_word($_REQUEST["remove"]);
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'word_asc';
+    $sort_mode = 'word_asc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 // If offset is set use it if not then use offset =0
 // use the maxRecords php variable to set the limit
 // if sortMode is not set then use lastModif_desc
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $words = $shoutboxlib->get_bad_words($offset, $maxRecords, $sort_mode, $find);

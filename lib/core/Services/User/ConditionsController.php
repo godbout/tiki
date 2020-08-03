@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,227 +8,232 @@
 
 class Services_User_ConditionsController
 {
-	public static function requiresApproval($user)
-	{
-		if (! empty($_SESSION['terms_approved'])) {
-			return false;
-		}
+    public static function requiresApproval($user)
+    {
+        if (! empty($_SESSION['terms_approved'])) {
+            return false;
+        }
 
-		global $user;
+        global $user;
 
-		if (! $user) {
-			// Anonymous users cannot approve a thing.
-			return false;
-		}
+        if (! $user) {
+            // Anonymous users cannot approve a thing.
+            return false;
+        }
 
-		$lib = new self;
-		$page = $lib->getApprovalPageInfo();
+        $lib = new self;
+        $page = $lib->getApprovalPageInfo();
 
-		if (! $page) {
-			return false;
-		}
+        if (! $page) {
+            return false;
+        }
 
-		$perms = Perms::get('wiki page', $page['pageName']);
-		if ($perms->wiki_approve) {
-			// Users who can approve the terms do not need to approve them
-			// This includes adminsitrators who have all permissions
-			// Among other things, this avoids the issue of having to approve terms
-			// after modifying the page
-			$_SESSION['terms_approved'] = 'none';
-			return false;
-		}
+        $perms = Perms::get('wiki page', $page['pageName']);
+        if ($perms->wiki_approve) {
+            // Users who can approve the terms do not need to approve them
+            // This includes adminsitrators who have all permissions
+            // Among other things, this avoids the issue of having to approve terms
+            // after modifying the page
+            $_SESSION['terms_approved'] = 'none';
 
-		$hash = $lib->generateHash($page, $user);
-		$versions = $lib->getApprovedVersions($user);
-		if (in_array($hash, $versions)) {
-			$_SESSION['terms_approved'] = $hash;
-			return false;
-		}
+            return false;
+        }
 
-		return true;
-	}
+        $hash = $lib->generateHash($page, $user);
+        $versions = $lib->getApprovedVersions($user);
+        if (in_array($hash, $versions)) {
+            $_SESSION['terms_approved'] = $hash;
 
-	function setUp()
-	{
-		global $user;
+            return false;
+        }
 
-		Services_Exception_Disabled::check('conditions_enabled');
+        return true;
+    }
 
-		if (! $user) {
-			throw new Services_Exception_Denied(tr('Authentication required.'));
-		}
-	}
+    public function setUp()
+    {
+        global $user;
 
-	function action_approval($input)
-	{
-		global $user;
+        Services_Exception_Disabled::check('conditions_enabled');
 
-		$info = $this->getApprovalPageInfo();
-		$hash = $this->generateHash($info, $user);
+        if (! $user) {
+            throw new Services_Exception_Denied(tr('Authentication required.'));
+        }
+    }
 
-		$content = $info['data'];
-		$parse_options = [
-			'is_html' => $info['is_html'],
-			'language' => $info['lang'],
-		];
+    public function action_approval($input)
+    {
+        global $user;
 
-		$pdata = new Tiki_Render_Lazy(
-			function () use ($content, $parse_options) {
-				return TikiLib::lib('parser')->parse_data($content, $parse_options);
-			}
-		);
+        $info = $this->getApprovalPageInfo();
+        $hash = $this->generateHash($info, $user);
 
-		$origin = $input->origin->url() ?: $_SERVER['REQUEST_URI'];
-		$toApprove = $input->approve->word();
+        $content = $info['data'];
+        $parse_options = [
+            'is_html' => $info['is_html'],
+            'language' => $info['lang'],
+        ];
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			if ($input->decline->text()) {
-				$loginlib = TikiLib::lib('login');
-				$loginlib->logout();
-				TikiLib::lib('access')->redirect($origin);
-			} elseif ($toApprove) {
-				if ($toApprove == $hash) {
-					$this->approveVersion($hash);
-					TikiLib::lib('access')->redirect($origin);
-				} else {
-					Feedback::error(tr('The terms and conditions were modified while you were reading them.'));
-				}
-			} else {
-				Feedback::error(tr('You are required to approve the terms of use to continue.'));
-			}
-		}
+        $pdata = new Tiki_Render_Lazy(
+            function () use ($content, $parse_options) {
+                return TikiLib::lib('parser')->parse_data($content, $parse_options);
+            }
+        );
 
-		return [
-			'title' => tr('Terms and Conditions'),
-			'origin' => $origin,
-			'content' => $pdata,
-			'hash' => $hash,
-		];
-	}
+        $origin = $input->origin->url() ?: $_SERVER['REQUEST_URI'];
+        $toApprove = $input->approve->word();
 
-	public function action_age_validation($input)
-	{
-		global $user;
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($input->decline->text()) {
+                $loginlib = TikiLib::lib('login');
+                $loginlib->logout();
+                TikiLib::lib('access')->redirect($origin);
+            } elseif ($toApprove) {
+                if ($toApprove == $hash) {
+                    $this->approveVersion($hash);
+                    TikiLib::lib('access')->redirect($origin);
+                } else {
+                    Feedback::error(tr('The terms and conditions were modified while you were reading them.'));
+                }
+            } else {
+                Feedback::error(tr('You are required to approve the terms of use to continue.'));
+            }
+        }
 
-		$origin = $input->origin->url() ?: $_SERVER['REQUEST_URI'];
-		$inputBirthDate = $input->birth_date->text();
+        return [
+            'title' => tr('Terms and Conditions'),
+            'origin' => $origin,
+            'content' => $pdata,
+            'hash' => $hash,
+        ];
+    }
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			if ($input->decline->text()) {
-				$loginlib = TikiLib::lib('login');
-				$loginlib->logout();
-				TikiLib::lib('access')->redirect($origin);
-			} elseif ($inputBirthDate && ! $this->getBirthDate($user)) {
-				$this->setBirthDate($user, $inputBirthDate);
-				TikiLib::lib('access')->redirect($origin);
-			} else {
-				Feedback::error(tr('You must enter your date of birth to continue.'));
-			}
-		}
+    public function action_age_validation($input)
+    {
+        global $user;
 
-		return [
-			'title' => tr('Age Validation'),
-			'origin' => $origin,
-			'birth_date' => $this->getBirthDate($user),
-			'hasRequiredAge' => $this->hasRequiredAge($user),
-		];
-	}
+        $origin = $input->origin->url() ?: $_SERVER['REQUEST_URI'];
+        $inputBirthDate = $input->birth_date->text();
 
-	private function getApprovalPageInfo()
-	{
-		global $prefs;
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($input->decline->text()) {
+                $loginlib = TikiLib::lib('login');
+                $loginlib->logout();
+                TikiLib::lib('access')->redirect($origin);
+            } elseif ($inputBirthDate && ! $this->getBirthDate($user)) {
+                $this->setBirthDate($user, $inputBirthDate);
+                TikiLib::lib('access')->redirect($origin);
+            } else {
+                Feedback::error(tr('You must enter your date of birth to continue.'));
+            }
+        }
 
-		$page = $this->getApprovalPage();
+        return [
+            'title' => tr('Age Validation'),
+            'origin' => $origin,
+            'birth_date' => $this->getBirthDate($user),
+            'hasRequiredAge' => $this->hasRequiredAge($user),
+        ];
+    }
 
-		if ($prefs['flaggedrev_approval'] == 'y') {
-			$flaggedrevisionlib = TikiLib::lib('flaggedrevision');
+    private function getApprovalPageInfo()
+    {
+        global $prefs;
 
-			if ($flaggedrevisionlib->page_requires_approval($page)) {
-				if ($version_info = $flaggedrevisionlib->get_version_with($page, 'moderation', 'OK')) {
-					return $version_info;
-				}
-			}
-		}
+        $page = $this->getApprovalPage();
 
-		$tikilib = TikiLib::lib('tiki');
-		return $tikilib->get_page_info($page);
-	}
+        if ($prefs['flaggedrev_approval'] == 'y') {
+            $flaggedrevisionlib = TikiLib::lib('flaggedrevision');
 
-	private function getApprovalPage()
-	{
-		global $prefs;
-		$pageName = $prefs['conditions_page_name'];
-		if ($prefs['feature_multilingual'] == 'y') {
-			$tikilib = TikiLib::lib('tiki');
-			$multilinguallib = TikiLib::lib('multilingual');
+            if ($flaggedrevisionlib->page_requires_approval($page)) {
+                if ($version_info = $flaggedrevisionlib->get_version_with($page, 'moderation', 'OK')) {
+                    return $version_info;
+                }
+            }
+        }
 
-			$pageId = $tikilib->get_page_id_from_name($pageName);
-			$bestId = $multilinguallib->selectLangObj('wiki page', $pageId);
+        $tikilib = TikiLib::lib('tiki');
 
-			return $tikilib->get_page_name_from_id($bestId);
-		} else {
-			return $pageName;
-		}
-	}
+        return $tikilib->get_page_info($page);
+    }
 
-	private function approveVersion($hash)
-	{
-		global $user;
-		$versions = $this->getApprovedVersions($user);
-		array_unshift($versions, $hash);
+    private function getApprovalPage()
+    {
+        global $prefs;
+        $pageName = $prefs['conditions_page_name'];
+        if ($prefs['feature_multilingual'] == 'y') {
+            $tikilib = TikiLib::lib('tiki');
+            $multilinguallib = TikiLib::lib('multilingual');
 
-		$tikilib = TikiLib::lib('tiki');
-		$tikilib->set_user_preference($user, 'terms_approved', implode(',', $versions));
-	}
+            $pageId = $tikilib->get_page_id_from_name($pageName);
+            $bestId = $multilinguallib->selectLangObj('wiki page', $pageId);
 
-	private function getApprovedVersions($user)
-	{
-		$tikilib = TikiLib::lib('tiki');
-		$versions = $tikilib->get_user_preference($user, 'terms_approved', '');
-		return array_filter(explode(',', $versions));
-	}
+            return $tikilib->get_page_name_from_id($bestId);
+        }
 
-	private function generateHash($info, $user)
-	{
-		return md5($info['pageName'] . '--' . $info['version'] . '--' . TikiLib::lib('tiki')->get_site_hash() . '--' . $user);
-	}
+        return $pageName;
+    }
 
-	public static function hasRequiredAge($user)
-	{
-		global $prefs;
-		$age = $prefs['conditions_minimum_age'];
+    private function approveVersion($hash)
+    {
+        global $user;
+        $versions = $this->getApprovedVersions($user);
+        array_unshift($versions, $hash);
 
-		if (! $age || ! $user || Perms::get()->admin) {
-			// No age condition, accept everyone
-			return true;
-		}
+        $tikilib = TikiLib::lib('tiki');
+        $tikilib->set_user_preference($user, 'terms_approved', implode(',', $versions));
+    }
 
-		$lib = new self;
-		$birthDate = $lib->getBirthDate($user);
+    private function getApprovedVersions($user)
+    {
+        $tikilib = TikiLib::lib('tiki');
+        $versions = $tikilib->get_user_preference($user, 'terms_approved', '');
 
-		if (! $birthDate) {
-			return false;
-		}
+        return array_filter(explode(',', $versions));
+    }
 
-		$required = date('Y-m-d', strtotime("$age years ago"));
+    private function generateHash($info, $user)
+    {
+        return md5($info['pageName'] . '--' . $info['version'] . '--' . TikiLib::lib('tiki')->get_site_hash() . '--' . $user);
+    }
 
-		return $birthDate <= $required;
-	}
+    public static function hasRequiredAge($user)
+    {
+        global $prefs;
+        $age = $prefs['conditions_minimum_age'];
 
-	private function getBirthDate($user)
-	{
-		$tikilib = TikiLib::lib('tiki');
-		return $tikilib->get_user_preference($user, 'birth_date', '');
-	}
+        if (! $age || ! $user || Perms::get()->admin) {
+            // No age condition, accept everyone
+            return true;
+        }
 
-	private function setBirthDate($user, $date)
-	{
-		if (preg_match('/^\d{4}\-\d{2}\-\d{2}$/', $date) // Basic format
-			&& false !== strtotime($date)                // Valid date
-			&& $date < date('Y-m-d')                     // Not in the future, that would be strange
-			) {
-			$tikilib = TikiLib::lib('tiki');
-			$tikilib->set_user_preference($user, 'birth_date', $date);
-		}
-	}
+        $lib = new self;
+        $birthDate = $lib->getBirthDate($user);
+
+        if (! $birthDate) {
+            return false;
+        }
+
+        $required = date('Y-m-d', strtotime("$age years ago"));
+
+        return $birthDate <= $required;
+    }
+
+    private function getBirthDate($user)
+    {
+        $tikilib = TikiLib::lib('tiki');
+
+        return $tikilib->get_user_preference($user, 'birth_date', '');
+    }
+
+    private function setBirthDate($user, $date)
+    {
+        if (preg_match('/^\d{4}\-\d{2}\-\d{2}$/', $date) // Basic format
+            && false !== strtotime($date)                // Valid date
+            && $date < date('Y-m-d')                     // Not in the future, that would be strange
+            ) {
+            $tikilib = TikiLib::lib('tiki');
+            $tikilib->set_user_preference($user, 'birth_date', $date);
+        }
+    }
 }

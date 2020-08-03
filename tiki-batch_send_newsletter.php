@@ -9,14 +9,14 @@
 // $Id$
 
 $inputConfiguration = [
-	[
-		'staticKeyFilters' => [
-			'editionId' => 'int',
-		],
-	],
-	[
-		'catchAllUnset' => null,
-	],
+    [
+        'staticKeyFilters' => [
+            'editionId' => 'int',
+        ],
+    ],
+    [
+        'catchAllUnset' => null,
+    ],
 ];
 
 include('tiki-setup.php');
@@ -24,9 +24,9 @@ include('tiki-setup.php');
 $access->check_feature('feature_newsletters');
 
 if (php_sapi_name() == 'cli') {
-	new Perms_Context('admin'); // run as admin when executed from command line
+    new Perms_Context('admin'); // run as admin when executed from command line
 } else {
-	$access->check_permission('tiki_p_send_newsletters');
+    $access->check_permission('tiki_p_send_newsletters');
 }
 
 global $nllib;
@@ -35,15 +35,15 @@ include_once('lib/newsletters/nllib.php');
 
 function display_usage()
 {
-	$helpMsg = "\nUsage: php tiki-batch_send_newsletter.php editionId=X\n"
-		. "Usage: http://path_to_tiki/tiki-batch_send_newsletter.php?editionId=X\n";
+    $helpMsg = "\nUsage: php tiki-batch_send_newsletter.php editionId=X\n"
+        . "Usage: http://path_to_tiki/tiki-batch_send_newsletter.php?editionId=X\n";
 
-	if (php_sapi_name() == 'cli') {
-		echo $helpMsg;
-	} else {
-		echo nl2br($helpMsg);
-	}
-	die;
+    if (php_sapi_name() == 'cli') {
+        echo $helpMsg;
+    } else {
+        echo nl2br($helpMsg);
+    }
+    die;
 }
 
 error_reporting(E_ALL);
@@ -53,15 +53,15 @@ $request = new Tiki_Request();
 $editionId = $request->getProperty('editionId');
 
 if (empty($editionId)) {
-	display_usage();
+    display_usage();
 }
 
 if (! ($edition_info = $nllib->get_edition($editionId))) {
-	echo "Incorrect editionId: $editionId";
-	die;
+    echo "Incorrect editionId: $editionId";
+    die;
 }
 if (! ($nl_info = $nllib->get_newsletter($edition_info['nlId']))) {
-	echo 'Incorrect nlId: ' . $edition_info['nlId'];
+    echo 'Incorrect nlId: ' . $edition_info['nlId'];
 }
 $edition_info['editionId'] = 0;
 $sent = $errors = [];
@@ -69,14 +69,14 @@ $logFileName = '';
 $edition_info['begin'] = 'y';
 $nllib->send($nl_info, $edition_info, false, $sent, $errors, $logFileName);
 if (! empty($errors)) {
-	echo "Errors\n";
-	foreach ($errors as $error) {
-		echo $error . "\n";
-	}
-	die;
+    echo "Errors\n";
+    foreach ($errors as $error) {
+        echo $error . "\n";
+    }
+    die;
 }
 echo "Sent to\n";
 foreach ($sent as $s) {
-	echo $s . "\n";
+    echo $s . "\n";
 }
 echo "Log: $logFileName\n";

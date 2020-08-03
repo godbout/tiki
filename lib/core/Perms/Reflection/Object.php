@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,86 +8,87 @@
 
 class Perms_Reflection_Object implements Perms_Reflection_Container
 {
-	protected $factory;
-	protected $type;
-	protected $object;
-	protected $parentId;
+    protected $factory;
+    protected $type;
+    protected $object;
+    protected $parentId;
 
-	function __construct($factory, $type, $object, $parentId = null)
-	{
-		$this->factory = $factory;
-		$this->type = $type;
-		$this->object = $object;
-		$this->parentId = $parentId;
-	}
+    public function __construct($factory, $type, $object, $parentId = null)
+    {
+        $this->factory = $factory;
+        $this->type = $type;
+        $this->object = $object;
+        $this->parentId = $parentId;
+    }
 
-	function add($group, $permission)
-	{
-		$userlib = TikiLib::lib('user');
-		$userlib->assign_object_permission($group, $this->object, $this->type, $permission);
-	}
+    public function add($group, $permission)
+    {
+        $userlib = TikiLib::lib('user');
+        $userlib->assign_object_permission($group, $this->object, $this->type, $permission);
+    }
 
-	function remove($group, $permission)
-	{
-		$userlib = TikiLib::lib('user');
-		$userlib->remove_object_permission($group, $this->object, $this->type, $permission);
-	}
+    public function remove($group, $permission)
+    {
+        $userlib = TikiLib::lib('user');
+        $userlib->remove_object_permission($group, $this->object, $this->type, $permission);
+    }
 
-	function getDirectPermissions()
-	{
-		$userlib = TikiLib::lib('user');
-		$set = new Perms_Reflection_PermissionSet;
+    public function getDirectPermissions()
+    {
+        $userlib = TikiLib::lib('user');
+        $set = new Perms_Reflection_PermissionSet;
 
-		$permissions = $userlib->get_object_permissions($this->object, $this->type);
-		foreach ($permissions as $row) {
-			$set->add($row['groupName'], $row['permName']);
-		}
+        $permissions = $userlib->get_object_permissions($this->object, $this->type);
+        foreach ($permissions as $row) {
+            $set->add($row['groupName'], $row['permName']);
+        }
 
-		return $set;
-	}
+        return $set;
+    }
 
-	function getParentPermissions()
-	{
-		if ($permissions = $this->getCategoryPermissions()) {
-			return $permissions;
-		} elseif ($this->parentId) {
-			$parentType = Perms::parentType($this->type);
-			$parentObject = $this->factory->get($parentType, $this->parentId);
-			$permissions = $parentObject->getDirectPermissions();
-			if (! $permissions->getPermissionArray()) {
-				$permissions = $parentObject->getParentPermissions();
-			}
-			return $permissions;
-		} else {
-			return $this->factory->get('global', null)->getDirectPermissions();
-		}
-	}
+    public function getParentPermissions()
+    {
+        if ($permissions = $this->getCategoryPermissions()) {
+            return $permissions;
+        } elseif ($this->parentId) {
+            $parentType = Perms::parentType($this->type);
+            $parentObject = $this->factory->get($parentType, $this->parentId);
+            $permissions = $parentObject->getDirectPermissions();
+            if (! $permissions->getPermissionArray()) {
+                $permissions = $parentObject->getParentPermissions();
+            }
 
-	private function getCategoryPermissions()
-	{
-		$categories = $this->getCategories();
+            return $permissions;
+        }
 
-		$set = new Perms_Reflection_PermissionSet;
-		$count = 0;
-		foreach ($categories as $category) {
-			$category = $this->factory->get('category', $category);
-			foreach ($category->getDirectPermissions()->getPermissionArray() as $group => $perms) {
-				foreach ($perms as $perm) {
-					$set->add($group, $perm);
-					++$count;
-				}
-			}
-		}
+        return $this->factory->get('global', null)->getDirectPermissions();
+    }
 
-		if ($count != 0) {
-			return $set;
-		}
-	}
+    private function getCategoryPermissions()
+    {
+        $categories = $this->getCategories();
 
-	private function getCategories()
-	{
-		$categlib = TikiLib::lib('categ');
+        $set = new Perms_Reflection_PermissionSet;
+        $count = 0;
+        foreach ($categories as $category) {
+            $category = $this->factory->get('category', $category);
+            foreach ($category->getDirectPermissions()->getPermissionArray() as $group => $perms) {
+                foreach ($perms as $perm) {
+                    $set->add($group, $perm);
+                    ++$count;
+                }
+            }
+        }
 
-		return $categlib->get_object_categories($this->type, $this->object);
-	}
+        if ($count != 0) {
+            return $set;
+        }
+    }
+
+    private function getCategories()
+    {
+        $categlib = TikiLib::lib('categ');
+
+        return $categlib->get_object_categories($this->type, $this->object);
+    }
 }

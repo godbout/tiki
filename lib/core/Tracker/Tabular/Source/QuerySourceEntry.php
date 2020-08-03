@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,31 +10,31 @@ namespace Tracker\Tabular\Source;
 
 class QuerySourceEntry
 {
-	private $data;
+    private $data;
 
-	function __construct($data)
-	{
-		$this->data = $data;
-	}
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
 
-	function render(\Tracker\Tabular\Schema\Column $column)
-	{
-		$field = $column->getField();
-		$key = 'tracker_field_' . $field;
+    public function render(\Tracker\Tabular\Schema\Column $column)
+    {
+        $field = $column->getField();
+        $key = 'tracker_field_' . $field;
 
-		if (isset($this->data[$key])) {
-			$value = $this->data[$key];
-		} else {
-			$value = null;
-		}
+        if (isset($this->data[$key])) {
+            $value = $this->data[$key];
+        } else {
+            $value = null;
+        }
 
-		$extra = [];
-		foreach ($column->getQuerySources() as $target => $field) {
-			if (isset($this->data[$field])) {
-				$extra[$target] = $this->data[$field];
-			}
-		}
+        $extra = [];
+        foreach ($column->getQuerySources() as $target => $field) {
+            if (isset($this->data[$field])) {
+                $extra[$target] = $this->data[$field];
+            }
+        }
 
-		return $column->render($value, $extra);
-	}
+        return $column->render($value, $extra);
+    }
 }

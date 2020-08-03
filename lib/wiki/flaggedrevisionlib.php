@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,145 +8,148 @@
 
 class FlaggedRevisionLib extends TikiDb_Bridge
 {
-	const ACTION = 'Flagged';
+    const ACTION = 'Flagged';
 
-	function flag_revision($pageName, $version, $flag, $value, $comment = '')
-	{
-		global $prefs;
-		$attributelib = TikiLib::lib('attribute');
-		$histlib = TikiLib::lib('hist');
+    public function flag_revision($pageName, $version, $flag, $value, $comment = '')
+    {
+        global $prefs;
+        $attributelib = TikiLib::lib('attribute');
+        $histlib = TikiLib::lib('hist');
 
-		if ($version_info = $histlib->get_version($pageName, $version)) {
-			$tx = TikiDb::get()->begin();
+        if ($version_info = $histlib->get_version($pageName, $version)) {
+            $tx = TikiDb::get()->begin();
 
-			if ($prefs['feature_actionlog'] == 'y') {
-				$logslib = TikiLib::lib('logs');
-				$logslib->add_action(self::ACTION, $pageName, 'wiki page', "flag=$flag&version=$version&value=$value");
-			}
+            if ($prefs['feature_actionlog'] == 'y') {
+                $logslib = TikiLib::lib('logs');
+                $logslib->add_action(self::ACTION, $pageName, 'wiki page', "flag=$flag&version=$version&value=$value");
+            }
 
-			$attribute = $this->get_attribute_for_flag($flag);
-			$attributelib->set_attribute('wiki history', $version_info['historyId'], $attribute, $value, $comment);
+            $attribute = $this->get_attribute_for_flag($flag);
+            $attributelib->set_attribute('wiki history', $version_info['historyId'], $attribute, $value, $comment);
 
-			require_once('lib/search/refresh-functions.php');
-			refresh_index('pages', $pageName);
-			refresh_index('pages', "$pageName~~latest");
-			$tx->commit();
+            require_once('lib/search/refresh-functions.php');
+            refresh_index('pages', $pageName);
+            refresh_index('pages', "$pageName~~latest");
+            $tx->commit();
 
-			return true;
-		} else {
-			return false;
-		}
-	}
+            return true;
+        }
 
-	function get_version_with($pageName, $flag, $value)
-	{
-		$this->get_version_query($pageName, $flag, $value, $query, $bindvars);
+        return false;
+    }
 
-		$result = $this->fetchAll($query, $bindvars, 1);
+    public function get_version_with($pageName, $flag, $value)
+    {
+        $this->get_version_query($pageName, $flag, $value, $query, $bindvars);
 
-		$first = reset($result);
-		return $first;
-	}
+        $result = $this->fetchAll($query, $bindvars, 1);
 
-	function get_versions_with($pageName, $flag, $value)
-	{
-		$this->get_version_query($pageName, $flag, $value, $query, $bindvars, 'version');
-		$result = $this->fetchAll($query, $bindvars);
+        $first = reset($result);
 
-		$versions = [];
-		foreach ($result as $row) {
-			$versions[] = $row['version'];
-		}
+        return $first;
+    }
 
-		return $versions;
-	}
+    public function get_versions_with($pageName, $flag, $value)
+    {
+        $this->get_version_query($pageName, $flag, $value, $query, $bindvars, 'version');
+        $result = $this->fetchAll($query, $bindvars);
 
-	function get_flag_comment($pageName, $version, $flag, $value)
-	{
-		$query = 'SELECT toa.`comment` FROM `tiki_history` th INNER JOIN `tiki_object_attributes` toa ON toa.`itemId` = `historyId` AND toa.`type` = ? WHERE toa.`attribute` = ? AND toa.`value` = ? AND th.`pageName` = ? AND th.`version`=?';
-		$bindvars = [
-			'wiki history',
-			$this->get_attribute_for_flag($flag),
-			$value,
-			$pageName,
-			$version,
-		];
+        $versions = [];
+        foreach ($result as $row) {
+            $versions[] = $row['version'];
+        }
 
-		$result = $this->fetchAll($query, $bindvars, 1);
-		$first = reset($result);
-		return $first['comment'];
-	}
+        return $versions;
+    }
 
-	private function get_version_query($pageName, $flag, $value, & $query, & $bindvars, $fields = 'th.*')
-	{
-		// NOTE : These are out variables
-		$query = 'SELECT ' . $fields . ' FROM `tiki_history` th INNER JOIN `tiki_object_attributes` toa ON toa.`itemId` = `historyId` AND toa.`type` = ? WHERE toa.attribute = ? AND toa.value = ? AND th.pageName = ? ORDER BY `th`.`version` DESC';
+    public function get_flag_comment($pageName, $version, $flag, $value)
+    {
+        $query = 'SELECT toa.`comment` FROM `tiki_history` th INNER JOIN `tiki_object_attributes` toa ON toa.`itemId` = `historyId` AND toa.`type` = ? WHERE toa.`attribute` = ? AND toa.`value` = ? AND th.`pageName` = ? AND th.`version`=?';
+        $bindvars = [
+            'wiki history',
+            $this->get_attribute_for_flag($flag),
+            $value,
+            $pageName,
+            $version,
+        ];
 
-		$bindvars = [
-			'wiki history',
-			$this->get_attribute_for_flag($flag),
-			$value,
-			$pageName,
-		];
-	}
+        $result = $this->fetchAll($query, $bindvars, 1);
+        $first = reset($result);
 
-	public function version_is_flagged($pageName, $version, $flag, $value)
-	{
-		$query = 'SELECT th.historyId FROM `tiki_history` th INNER JOIN `tiki_object_attributes` toa ON toa.`itemId` = `historyId` AND toa.`type` = ? WHERE toa.`attribute` = ? AND toa.`value` = ? AND th.`pageName` = ? AND th.`version` = ? ORDER BY `th`.`version` DESC';
+        return $first['comment'];
+    }
 
-		$bindvars = [
-			'wiki history',
-			$this->get_attribute_for_flag($flag),
-			$value,
-			$pageName,
-			$version,
-		];
+    private function get_version_query($pageName, $flag, $value, & $query, & $bindvars, $fields = 'th.*')
+    {
+        // NOTE : These are out variables
+        $query = 'SELECT ' . $fields . ' FROM `tiki_history` th INNER JOIN `tiki_object_attributes` toa ON toa.`itemId` = `historyId` AND toa.`type` = ? WHERE toa.attribute = ? AND toa.value = ? AND th.pageName = ? ORDER BY `th`.`version` DESC';
 
-		$result = $this->fetchAll($query, $bindvars);
+        $bindvars = [
+            'wiki history',
+            $this->get_attribute_for_flag($flag),
+            $value,
+            $pageName,
+        ];
+    }
 
-		return (bool)$result;
-	}
+    public function version_is_flagged($pageName, $version, $flag, $value)
+    {
+        $query = 'SELECT th.historyId FROM `tiki_history` th INNER JOIN `tiki_object_attributes` toa ON toa.`itemId` = `historyId` AND toa.`type` = ? WHERE toa.`attribute` = ? AND toa.`value` = ? AND th.`pageName` = ? AND th.`version` = ? ORDER BY `th`.`version` DESC';
 
-	function page_requires_approval($pageName)
-	{
-		global $prefs, $tikilib;
+        $bindvars = [
+            'wiki history',
+            $this->get_attribute_for_flag($flag),
+            $value,
+            $pageName,
+            $version,
+        ];
 
-		if ($prefs['flaggedrev_approval'] != 'y') {
-			return false;
-		}
+        $result = $this->fetchAll($query, $bindvars);
 
-		if ($prefs['feature_categories'] == 'y') {
-			$categlib = TikiLib::lib('categ');
-			$approvalCategories = $tikilib->get_preference('flaggedrev_approval_categories', [], true);
+        return (bool)$result;
+    }
 
-			$objectCategories = $categlib->get_object_categories('wiki page', $pageName);
+    public function page_requires_approval($pageName)
+    {
+        global $prefs, $tikilib;
 
-			return count(array_intersect($approvalCategories, $objectCategories)) > 0;
-		}
+        if ($prefs['flaggedrev_approval'] != 'y') {
+            return false;
+        }
 
-		return false;
-	}
+        if ($prefs['feature_categories'] == 'y') {
+            $categlib = TikiLib::lib('categ');
+            $approvalCategories = $tikilib->get_preference('flaggedrev_approval_categories', [], true);
 
-	function find_approval_information($page, $version)
-	{
-		global $prefs;
+            $objectCategories = $categlib->get_object_categories('wiki page', $pageName);
 
-		if ($prefs['feature_actionlog'] == 'y') {
-			$logs = $this->table('tiki_actionlog');
-			return $logs->fetchRow(
-				['user', 'lastModif', 'ip'],
-				[
-					'action' => self::ACTION,
-					'object' => $page,
-					'objectType' => 'wiki page',
-					'comment' => "flag=moderation&version=$version&value=OK",
-				]
-			);
-		}
-	}
+            return count(array_intersect($approvalCategories, $objectCategories)) > 0;
+        }
 
-	private function get_attribute_for_flag($flag)
-	{
-		return 'tiki.history.' . $flag;
-	}
+        return false;
+    }
+
+    public function find_approval_information($page, $version)
+    {
+        global $prefs;
+
+        if ($prefs['feature_actionlog'] == 'y') {
+            $logs = $this->table('tiki_actionlog');
+
+            return $logs->fetchRow(
+                ['user', 'lastModif', 'ip'],
+                [
+                    'action' => self::ACTION,
+                    'object' => $page,
+                    'objectType' => 'wiki page',
+                    'comment' => "flag=moderation&version=$version&value=OK",
+                ]
+            );
+        }
+    }
+
+    private function get_attribute_for_flag($flag)
+    {
+        return 'tiki.history.' . $flag;
+    }
 }

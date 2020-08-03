@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -15,38 +16,39 @@ use TikiLib;
 
 class PreferencesGetCommand extends Command
 {
-	protected function configure()
-	{
-		$this
-			->setName('preferences:get')
-			->setDescription('Get a preference')
-			->addArgument(
-				'name',
-				InputArgument::REQUIRED,
-				'Preference name'
-			);
-	}
+    protected function configure()
+    {
+        $this
+            ->setName('preferences:get')
+            ->setDescription('Get a preference')
+            ->addArgument(
+                'name',
+                InputArgument::REQUIRED,
+                'Preference name'
+            );
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output)
-	{
-		$preference = $input->getArgument('name');
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $preference = $input->getArgument('name');
 
-		$tikilib = TikiLib::lib('tiki');
-		$prefslib = TikiLib::lib('prefs');
+        $tikilib = TikiLib::lib('tiki');
+        $prefslib = TikiLib::lib('prefs');
 
-		$preferenceInfo = $prefslib->getPreference($preference);
+        $preferenceInfo = $prefslib->getPreference($preference);
 
-		if (empty($preferenceInfo)) {
-			$output->write('<error>Preference not found.</error>');
-			return;
-		}
+        if (empty($preferenceInfo)) {
+            $output->write('<error>Preference not found.</error>');
 
-		$value = $tikilib->get_preference($preference);
+            return;
+        }
 
-		if (! empty($preferenceInfo['separator']) && is_array($value)) {
-			$value = implode($preferenceInfo['separator'], $value);
-		}
+        $value = $tikilib->get_preference($preference);
 
-		$output->writeln(sprintf('Preference %s has value %s', $preference, $value));
-	}
+        if (! empty($preferenceInfo['separator']) && is_array($value)) {
+            $value = implode($preferenceInfo['separator'], $value);
+        }
+
+        $output->writeln(sprintf('Preference %s has value %s', $preference, $value));
+    }
 }

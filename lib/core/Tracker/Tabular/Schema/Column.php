@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,229 +10,241 @@ namespace Tracker\Tabular\Schema;
 
 class Column
 {
-	const HEADER_PATTERN = '/\[(\*?)(\w+):([^\]]+)\]$/';
+    const HEADER_PATTERN = '/\[(\*?)(\w+):([^\]]+)\]$/';
 
-	private $permName;
-	private $label;
-	private $mode;
-	private $isPrimary = false;
-	private $isReadOnly = false;
-	private $isExportOnly = false;
-	private $isUniqueKey = false;
-	private $displayAlign = 'left';
-	private $renderTransform;
-	private $parseIntoTransform;
-	private $querySources = [];
-	private $incompatibilities = [];
-	private $plainReplacement = null;
+    private $permName;
+    private $label;
+    private $mode;
+    private $isPrimary = false;
+    private $isReadOnly = false;
+    private $isExportOnly = false;
+    private $isUniqueKey = false;
+    private $displayAlign = 'left';
+    private $renderTransform;
+    private $parseIntoTransform;
+    private $querySources = [];
+    private $incompatibilities = [];
+    private $plainReplacement = null;
 
-	function __construct($permName, $mode)
-	{
-		$this->permName = $permName;
-		$this->mode = $mode;
-		$this->parseIntoTransform = function (& $info, $value) {
-		};
-	}
+    public function __construct($permName, $mode)
+    {
+        $this->permName = $permName;
+        $this->mode = $mode;
+        $this->parseIntoTransform = function (& $info, $value) {
+        };
+    }
 
-	function getLabel()
-	{
-		return $this->label;
-	}
+    public function getLabel()
+    {
+        return $this->label;
+    }
 
-	function setLabel($label)
-	{
-		$this->label = $label;
-		return $this;
-	}
+    public function setLabel($label)
+    {
+        $this->label = $label;
 
-	function getDisplayAlign()
-	{
-		return $this->displayAlign;
-	}
+        return $this;
+    }
 
-	function setDisplayAlign($align)
-	{
-		$this->displayAlign = $align;
-		return $this;
-	}
+    public function getDisplayAlign()
+    {
+        return $this->displayAlign;
+    }
 
-	function addIncompatibility($field, $mode)
-	{
-		$this->incompatibilities[] = [$field, $mode];
-		return $this;
-	}
+    public function setDisplayAlign($align)
+    {
+        $this->displayAlign = $align;
 
-	function setRenderTransform(callable $transform)
-	{
-		$this->renderTransform = $transform;
-		return $this;
-	}
+        return $this;
+    }
 
-	function setParseIntoTransform(callable $transform)
-	{
-		$this->parseIntoTransform = $transform;
-		return $this;
-	}
+    public function addIncompatibility($field, $mode)
+    {
+        $this->incompatibilities[] = [$field, $mode];
 
-	function setPrimaryKey($pk)
-	{
-		$this->isPrimary = (bool) $pk;
-		return $this;
-	}
+        return $this;
+    }
 
-	function setReadOnly($readOnly)
-	{
-		$this->isReadOnly = (bool) $readOnly;
-		return $this;
-	}
+    public function setRenderTransform(callable $transform)
+    {
+        $this->renderTransform = $transform;
 
-	function setExportOnly($exportOnly)
-	{
-		$this->isExportOnly = (bool) $exportOnly;
-		return $this;
-	}
+        return $this;
+    }
 
-	function setUniqueKey($uniqueKey)
-	{
-		$this->isUniqueKey = (bool) $uniqueKey;
-		return $this;
-	}
+    public function setParseIntoTransform(callable $transform)
+    {
+        $this->parseIntoTransform = $transform;
 
-	function setPlainReplacement($replacement)
-	{
-		$this->plainReplacement = $replacement;
-		return $this;
-	}
+        return $this;
+    }
 
-	function is($field, $mode)
-	{
-		return $field == $this->permName && $mode == $this->mode;
-	}
+    public function setPrimaryKey($pk)
+    {
+        $this->isPrimary = (bool) $pk;
 
-	function isPrimaryKey()
-	{
-		return $this->isPrimary;
-	}
+        return $this;
+    }
 
-	function isReadOnly()
-	{
-		return $this->isReadOnly;
-	}
+    public function setReadOnly($readOnly)
+    {
+        $this->isReadOnly = (bool) $readOnly;
 
-	function isExportOnly()
-	{
-		return $this->isExportOnly;
-	}
+        return $this;
+    }
 
-	function isUniqueKey()
-	{
-		return $this->isUniqueKey;
-	}
+    public function setExportOnly($exportOnly)
+    {
+        $this->isExportOnly = (bool) $exportOnly;
 
-	function getField()
-	{
-		return $this->permName;
-	}
+        return $this;
+    }
 
-	function getMode()
-	{
-		return $this->mode;
-	}
+    public function setUniqueKey($uniqueKey)
+    {
+        $this->isUniqueKey = (bool) $uniqueKey;
 
-	function getEncodedHeader()
-	{
-		if ($this->isReadOnly) {
-			return $this->label;
-		} else {
-			$pk = $this->isPrimary ? '*' : '';
-			return "{$this->label} [$pk{$this->permName}:{$this->mode}]";
-		}
-	}
+        return $this;
+    }
 
-	function getPlainReplacement()
-	{
-		return $this->plainReplacement;
-	}
+    public function setPlainReplacement($replacement)
+    {
+        $this->plainReplacement = $replacement;
 
-	function render($value)
-	{
-		return call_user_func_array($this->renderTransform, func_get_args());
-	}
+        return $this;
+    }
 
-	function parseInto(& $info, $value)
-	{
-		$c = $this->parseIntoTransform;
-		if (! $this->isReadOnly) {
-			$c($info, $value);
-		}
-	}
+    public function is($field, $mode)
+    {
+        return $field == $this->permName && $mode == $this->mode;
+    }
 
-	function addQuerySource($name, $field)
-	{
-		$this->querySources[$name] = $field;
-		return $this;
-	}
+    public function isPrimaryKey()
+    {
+        return $this->isPrimary;
+    }
 
-	function getQuerySources()
-	{
-		return $this->querySources;
-	}
+    public function isReadOnly()
+    {
+        return $this->isReadOnly;
+    }
 
-	function validateAgainst(\Tracker\Tabular\Schema $schema)
-	{
-		if ($this->isPrimary && $this->isReadOnly) {
-			throw new \Exception(tr('Primary Key fields cannot be read-only.'));
-		}
+    public function isExportOnly()
+    {
+        return $this->isExportOnly;
+    }
 
-		$selfCount = 0;
+    public function isUniqueKey()
+    {
+        return $this->isUniqueKey;
+    }
 
-		foreach ($schema->getColumns() as $column) {
-			if ($column->is($this->permName, $this->mode)) {
-				$selfCount++;
-			}
+    public function getField()
+    {
+        return $this->permName;
+    }
 
-			foreach ($this->incompatibilities as $entry) {
-				list($field, $mode) = $entry;
+    public function getMode()
+    {
+        return $this->mode;
+    }
 
-				if ($column->is($field, $mode)) {
-					// Skip incompatibility if either field is read-only
-					if ($this->isReadOnly() || $column->isReadOnly()) {
-						continue;
-					}
+    public function getEncodedHeader()
+    {
+        if ($this->isReadOnly) {
+            return $this->label;
+        }
+        $pk = $this->isPrimary ? '*' : '';
 
-					throw new \Exception(tr(
-						'Column "%0" cannot co-exist with "%1".',
-						$column->getEncodedHeader(),
-						$this->getEncodedHeader()
-					));
-				}
-			}
-		}
+        return "{$this->label} [$pk{$this->permName}:{$this->mode}]";
+    }
 
-		if ($selfCount > 1) {
-			throw new \Exception(tr('Column "%0:%1" found multiple times.', $this->permName, $this->mode));
-		}
-	}
+    public function getPlainReplacement()
+    {
+        return $this->plainReplacement;
+    }
 
-	function withWrappedRenderTransform(callable $callback)
-	{
-		$column = new self($this->permName, $this->mode);
-		$column->label = $this->label;
-		$column->isPrimary = $this->isPrimary;
-		$column->isReadOnly = $this->isReadOnly;
-		$column->isExportOnly = $this->isExportOnly;
-		$column->isUniqueKey = $this->isUniqueKey;
-		$column->displayAlign = $this->displayAlign;
-		$column->parseIntoTransform = $this->parseIntoTransform;
-		$column->querySources = $this->querySources;
-		$column->incompatibilities = $this->incompatibilities;
-		$column->plainReplacement = $this->plainReplacement;
+    public function render($value)
+    {
+        return call_user_func_array($this->renderTransform, func_get_args());
+    }
 
-		$column->renderTransform = function () use ($callback) {
-			$value = call_user_func_array($this->renderTransform, func_get_args());
-			return $callback($value);
-		};
+    public function parseInto(& $info, $value)
+    {
+        $c = $this->parseIntoTransform;
+        if (! $this->isReadOnly) {
+            $c($info, $value);
+        }
+    }
 
-		return $column;
-	}
+    public function addQuerySource($name, $field)
+    {
+        $this->querySources[$name] = $field;
+
+        return $this;
+    }
+
+    public function getQuerySources()
+    {
+        return $this->querySources;
+    }
+
+    public function validateAgainst(\Tracker\Tabular\Schema $schema)
+    {
+        if ($this->isPrimary && $this->isReadOnly) {
+            throw new \Exception(tr('Primary Key fields cannot be read-only.'));
+        }
+
+        $selfCount = 0;
+
+        foreach ($schema->getColumns() as $column) {
+            if ($column->is($this->permName, $this->mode)) {
+                $selfCount++;
+            }
+
+            foreach ($this->incompatibilities as $entry) {
+                list($field, $mode) = $entry;
+
+                if ($column->is($field, $mode)) {
+                    // Skip incompatibility if either field is read-only
+                    if ($this->isReadOnly() || $column->isReadOnly()) {
+                        continue;
+                    }
+
+                    throw new \Exception(tr(
+                        'Column "%0" cannot co-exist with "%1".',
+                        $column->getEncodedHeader(),
+                        $this->getEncodedHeader()
+                    ));
+                }
+            }
+        }
+
+        if ($selfCount > 1) {
+            throw new \Exception(tr('Column "%0:%1" found multiple times.', $this->permName, $this->mode));
+        }
+    }
+
+    public function withWrappedRenderTransform(callable $callback)
+    {
+        $column = new self($this->permName, $this->mode);
+        $column->label = $this->label;
+        $column->isPrimary = $this->isPrimary;
+        $column->isReadOnly = $this->isReadOnly;
+        $column->isExportOnly = $this->isExportOnly;
+        $column->isUniqueKey = $this->isUniqueKey;
+        $column->displayAlign = $this->displayAlign;
+        $column->parseIntoTransform = $this->parseIntoTransform;
+        $column->querySources = $this->querySources;
+        $column->incompatibilities = $this->incompatibilities;
+        $column->plainReplacement = $this->plainReplacement;
+
+        $column->renderTransform = function () use ($callback) {
+            $value = call_user_func_array($this->renderTransform, func_get_args());
+
+            return $callback($value);
+        };
+
+        return $column;
+    }
 }

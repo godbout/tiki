@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -13,181 +14,187 @@
  */
 class Tracker_Field_UserGroups extends Tracker_Field_Abstract implements Tracker_Field_Filterable
 {
-	public static function getTypes()
-	{
-		return [
-			'usergroups' => [
-				'name' => tr('User Groups'),
-				'description' => tr('Display the list of groups for the user associated with the tracker items.'),
-				'help' => 'User Groups',
-				'prefs' => ['trackerfield_usergroups'],
-				'tags' => ['advanced'],
-				'default' => 'n',
-				'params' => [
-					'directOnly' => [
-						'name' => tr('Show direct groups memberships only'),
-						'description' => tr('Do not show inherited/included groups'),
-						'filter' => 'int',
-						'options' => [
-							0 => tr('No'),
-							1 => tr('Yes'),
-						],
-						'default' => 0,
-					],
-					'specifyFields' => [
-						'name' => tr('Specify Fields'),
-						'description' => tr('Get the groups for users from these fields, not the "owner" user fields.'),
-						'separator' => '|',
-						'filter' => 'int',
-						'profile_reference' => 'tracker_field',
-						'parent' => 'input[name=trackerId]',
-						'parentkey' => 'tracker_id',
-						'sort_order' => 'position_nasc',
-					],
-				],
-			],
-		];
-	}
+    public static function getTypes()
+    {
+        return [
+            'usergroups' => [
+                'name' => tr('User Groups'),
+                'description' => tr('Display the list of groups for the user associated with the tracker items.'),
+                'help' => 'User Groups',
+                'prefs' => ['trackerfield_usergroups'],
+                'tags' => ['advanced'],
+                'default' => 'n',
+                'params' => [
+                    'directOnly' => [
+                        'name' => tr('Show direct groups memberships only'),
+                        'description' => tr('Do not show inherited/included groups'),
+                        'filter' => 'int',
+                        'options' => [
+                            0 => tr('No'),
+                            1 => tr('Yes'),
+                        ],
+                        'default' => 0,
+                    ],
+                    'specifyFields' => [
+                        'name' => tr('Specify Fields'),
+                        'description' => tr('Get the groups for users from these fields, not the "owner" user fields.'),
+                        'separator' => '|',
+                        'filter' => 'int',
+                        'profile_reference' => 'tracker_field',
+                        'parent' => 'input[name=trackerId]',
+                        'parentkey' => 'tracker_id',
+                        'sort_order' => 'position_nasc',
+                    ],
+                ],
+            ],
+        ];
+    }
 
-	function getFieldData(array $requestData = [])
-	{
-		$itemId = $this->getItemId();
+    public function getFieldData(array $requestData = [])
+    {
+        $itemId = $this->getItemId();
 
-		$value = [];
+        $value = [];
 
-		if ($itemId) {
-			$fields = $this->getOption('specifyFields');
+        if ($itemId) {
+            $fields = $this->getOption('specifyFields');
 
-			if (empty($fields) or empty(array_filter($fields))) {
-				$itemUsers = $this->getTrackerDefinition()->getItemUsers($itemId);
-			} else {
-				$trackerId = $this->getConfiguration('trackerId');
-				$trackerlib = TikiLib::lib('trk');
-				$itemUsers = array_map(
-					function ($fieldId) use ($trackerId, $itemId, $trackerlib) {
-						$owners = $trackerlib->get_item_value($trackerId, $itemId, $fieldId);
-						return $trackerlib->parse_user_field($owners);
-					}, $fields);
+            if (empty($fields) or empty(array_filter($fields))) {
+                $itemUsers = $this->getTrackerDefinition()->getItemUsers($itemId);
+            } else {
+                $trackerId = $this->getConfiguration('trackerId');
+                $trackerlib = TikiLib::lib('trk');
+                $itemUsers = array_map(
+                    function ($fieldId) use ($trackerId, $itemId, $trackerlib) {
+                        $owners = $trackerlib->get_item_value($trackerId, $itemId, $fieldId);
 
-				$itemUsers = call_user_func_array('array_merge', $itemUsers);
-			}
+                        return $trackerlib->parse_user_field($owners);
+                    },
+                    $fields
+                );
 
-			if (! empty($itemUsers)) {
-				$tikilib = TikiLib::lib('tiki');
-				foreach ($itemUsers as $itemUser) {
-					$value = array_merge($value, array_diff(
-						$tikilib->get_user_groups($itemUser, ! $this->getOption('directOnly')),
-						['Registered', 'Anonymous']
-					));
-				}
-			}
-			$value = array_unique(array_filter($value));
-			natcasesort($value);
-		}
+                $itemUsers = call_user_func_array('array_merge', $itemUsers);
+            }
 
-		return [
-			'value' => implode(',', $value),
-			'groups' => $value
-		];
-	}
+            if (! empty($itemUsers)) {
+                $tikilib = TikiLib::lib('tiki');
+                foreach ($itemUsers as $itemUser) {
+                    $value = array_merge($value, array_diff(
+                        $tikilib->get_user_groups($itemUser, ! $this->getOption('directOnly')),
+                        ['Registered', 'Anonymous']
+                    ));
+                }
+            }
+            $value = array_unique(array_filter($value));
+            natcasesort($value);
+        }
 
-	function renderInput($context = [])
-	{
-		return $this->renderOutput($context);
-	}
+        return [
+            'value' => implode(',', $value),
+            'groups' => $value
+        ];
+    }
 
-	function renderOutput($context = [])
-	{
-		return $this->renderTemplate('trackeroutput/usergroups.tpl', $context);
-	}
+    public function renderInput($context = [])
+    {
+        return $this->renderOutput($context);
+    }
 
-	function renderDiff($context = [])
-	{
-		if (isset($context['oldValue'])) {
-			$context['renderedOldValue'] = $context['oldValue'];
-		}
-		return parent::renderDiff($context);
-	}
+    public function renderOutput($context = [])
+    {
+        return $this->renderTemplate('trackeroutput/usergroups.tpl', $context);
+    }
 
-	public function watchCompare($old, $new)
-	{
-		// TODO properly
-		return '';
-	}
+    public function renderDiff($context = [])
+    {
+        if (isset($context['oldValue'])) {
+            $context['renderedOldValue'] = $context['oldValue'];
+        }
 
-	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
-	{
-		$baseKey = $this->getBaseKey();
-		$data = $this->getFieldData();
-		$listtext = implode(' ', $data['groups']);
+        return parent::renderDiff($context);
+    }
 
-		return [
-			$baseKey => $typeFactory->multivalue($data['groups']),
-			"{$baseKey}_text" => $typeFactory->plaintext($listtext),
-		];
-	}
+    public function watchCompare($old, $new)
+    {
+        // TODO properly
+        return '';
+    }
 
-	function getProvidedFields()
-	{
-		$baseKey = $this->getBaseKey();
-		return [$baseKey];
-	}
+    public function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
+    {
+        $baseKey = $this->getBaseKey();
+        $data = $this->getFieldData();
+        $listtext = implode(' ', $data['groups']);
 
-	function getGlobalFields()
-	{
-		$baseKey = $this->getBaseKey();
-		return [$baseKey => true];
-	}
+        return [
+            $baseKey => $typeFactory->multivalue($data['groups']),
+            "{$baseKey}_text" => $typeFactory->plaintext($listtext),
+        ];
+    }
 
-	function getFilterCollection()
-	{
-		$userlib = TikiLib::lib('user');
-		$groups = $userlib->list_all_groups_with_permission();
-		$groups = $userlib->get_group_info($groups);
+    public function getProvidedFields()
+    {
+        $baseKey = $this->getBaseKey();
 
-		$possibilities = [];
-		foreach ($groups as $group) {
-			$possibilities[$group['groupName']] = $group['groupName'];
-		}
-		$possibilities['-Blank (no data)-'] = tr('-Blank (no data)-');
+        return [$baseKey];
+    }
 
-		$filters = new Tracker\Filter\Collection($this->getTrackerDefinition());
-		$permName = $this->getConfiguration('permName');
-		$name = $this->getConfiguration('name');
-		$baseKey = $this->getBaseKey();
+    public function getGlobalFields()
+    {
+        $baseKey = $this->getBaseKey();
 
-		$filters->addNew($permName, 'dropdown')
-			->setLabel($name)
-			->setControl(new Tracker\Filter\Control\DropDown("tf_{$permName}_dd", $possibilities))
-			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
-				$value = $control->getValue();
+        return [$baseKey => true];
+    }
 
-				if ($value === '-Blank (no data)-') {
-					$query->filterIdentifier('', $baseKey . '_text');
-				} elseif ($value) {
-					$query->filterMultivalue((string) $value, $baseKey);
-				}
-			});
+    public function getFilterCollection()
+    {
+        $userlib = TikiLib::lib('user');
+        $groups = $userlib->list_all_groups_with_permission();
+        $groups = $userlib->get_group_info($groups);
 
-		$filters->addNew($permName, 'multiselect')
-			->setLabel($name)
-			->setControl(new Tracker\Filter\Control\MultiSelect("tf_{$permName}_ms", $possibilities))
-			->setApplyCondition(function ($control, Search_Query $query) use ($permName, $baseKey) {
-				$values = $control->getValues();
+        $possibilities = [];
+        foreach ($groups as $group) {
+            $possibilities[$group['groupName']] = $group['groupName'];
+        }
+        $possibilities['-Blank (no data)-'] = tr('-Blank (no data)-');
 
-				if (! empty($values)) {
-					$sub = $query->getSubQuery("ms_$permName");
+        $filters = new Tracker\Filter\Collection($this->getTrackerDefinition());
+        $permName = $this->getConfiguration('permName');
+        $name = $this->getConfiguration('name');
+        $baseKey = $this->getBaseKey();
 
-					foreach ($values as $v) {
-						if ($v === '-Blank (no data)-') {
-							$sub->filterIdentifier('', $baseKey . '_text');
-						} elseif ($v) {
-							$sub->filterMultivalue((string) $v, $baseKey);
-						}
-					}
-				}
-			});
+        $filters->addNew($permName, 'dropdown')
+            ->setLabel($name)
+            ->setControl(new Tracker\Filter\Control\DropDown("tf_{$permName}_dd", $possibilities))
+            ->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+                $value = $control->getValue();
 
-		return $filters;
-	}
+                if ($value === '-Blank (no data)-') {
+                    $query->filterIdentifier('', $baseKey . '_text');
+                } elseif ($value) {
+                    $query->filterMultivalue((string) $value, $baseKey);
+                }
+            });
+
+        $filters->addNew($permName, 'multiselect')
+            ->setLabel($name)
+            ->setControl(new Tracker\Filter\Control\MultiSelect("tf_{$permName}_ms", $possibilities))
+            ->setApplyCondition(function ($control, Search_Query $query) use ($permName, $baseKey) {
+                $values = $control->getValues();
+
+                if (! empty($values)) {
+                    $sub = $query->getSubQuery("ms_$permName");
+
+                    foreach ($values as $v) {
+                        if ($v === '-Blank (no data)-') {
+                            $sub->filterIdentifier('', $baseKey . '_text');
+                        } elseif ($v) {
+                            $sub->filterMultivalue((string) $v, $baseKey);
+                        }
+                    }
+                }
+            });
+
+        return $filters;
+    }
 }

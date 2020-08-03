@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -13,37 +14,37 @@ namespace Tiki\Package;
  */
 class VendorHelper
 {
-	/**
-	 * Keyword to add to vendor path prefixes in order to replace it with the package name
-	 */
-	const REPLACEABLE_PACKAGE_NAME_KEYWORD = '{{package}}';
+    /**
+     * Keyword to add to vendor path prefixes in order to replace it with the package name
+     */
+    const REPLACEABLE_PACKAGE_NAME_KEYWORD = '{{package}}';
 
-	/**
-	 * Available vendor paths to check
-	 */
-	const AVAILABLE_VENDOR_PATHS = [
-		'vendor_custom' => 'vendor_custom/tiki-pkg-' . self::REPLACEABLE_PACKAGE_NAME_KEYWORD . '/',
-		'vendor'        => 'vendor/'
-	];
+    /**
+     * Available vendor paths to check
+     */
+    const AVAILABLE_VENDOR_PATHS = [
+        'vendor_custom' => 'vendor_custom/tiki-pkg-' . self::REPLACEABLE_PACKAGE_NAME_KEYWORD . '/',
+        'vendor' => 'vendor/'
+    ];
 
-	/**
-	 * Returns the vendor path of a package file given a specific order to check. Returns false if file wasn't found in any paths to check.
-	 * @param $packageName
-	 * @param $path
-	 * @param bool $fullPath
-	 * @return bool|string
-	 */
-	public static function getAvailableVendorPath($packageName, $path, $fullPath = true)
-	{
-		foreach (self::AVAILABLE_VENDOR_PATHS as $pathPrefix) {
-			$pathPrefix = str_replace(self::REPLACEABLE_PACKAGE_NAME_KEYWORD, $packageName, $pathPrefix);
-			$filePath = $pathPrefix . $path;
+    /**
+     * Returns the vendor path of a package file given a specific order to check. Returns false if file wasn't found in any paths to check.
+     * @param $packageName
+     * @param $path
+     * @param bool $fullPath
+     * @return bool|string
+     */
+    public static function getAvailableVendorPath($packageName, $path, $fullPath = true)
+    {
+        foreach (self::AVAILABLE_VENDOR_PATHS as $pathPrefix) {
+            $pathPrefix = str_replace(self::REPLACEABLE_PACKAGE_NAME_KEYWORD, $packageName, $pathPrefix);
+            $filePath = $pathPrefix . $path;
 
-			if (file_exists($filePath)) {
-				return $fullPath ? $filePath : $pathPrefix;
-			}
-		}
+            if (file_exists($filePath)) {
+                return $fullPath ? $filePath : $pathPrefix;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 }

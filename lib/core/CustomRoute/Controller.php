@@ -16,69 +16,68 @@ use \TikiLib;
  */
 class Controller
 {
-	/**
-	 * Populate a custom route item from the request
-	 *
-	 * @param array $request
-	 * @return Item
-	 */
-	public function populateFromRequest($request)
-	{
-		$id = ! empty($request['route']) ? $request['route'] : '';
-		$type = isset($request['router_type']) ? $request['router_type'] : '';
-		$from = isset($request['router_from']) ? $request['router_from'] : '';
-		$description = isset($request['router_description']) ? $request['router_description'] : '';
-		$active = empty($request['router_active']) ? 0 : 1;
-		$shortUrl = empty($request['router_short_url']) ? 0 : 1;
-		$params = [];
+    /**
+     * Populate a custom route item from the request
+     *
+     * @param array $request
+     * @return Item
+     */
+    public function populateFromRequest($request)
+    {
+        $id = ! empty($request['route']) ? $request['route'] : '';
+        $type = isset($request['router_type']) ? $request['router_type'] : '';
+        $from = isset($request['router_from']) ? $request['router_from'] : '';
+        $description = isset($request['router_description']) ? $request['router_description'] : '';
+        $active = empty($request['router_active']) ? 0 : 1;
+        $shortUrl = empty($request['router_short_url']) ? 0 : 1;
+        $params = [];
 
-		if (! empty($type)) {
-			$className = 'Tiki\\CustomRoute\\Type\\' . $type;
-			if (! class_exists($className)) {
-				Feedback::error(tr('An error occurred; please contact the administrator.'));
-				$this->redirectToAdmin();
-			}
+        if (! empty($type)) {
+            $className = 'Tiki\\CustomRoute\\Type\\' . $type;
+            if (! class_exists($className)) {
+                Feedback::error(tr('An error occurred; please contact the administrator.'));
+                $this->redirectToAdmin();
+            }
 
-			/** @var Type $class */
-			$class = new $className();
-			$params = $class->parseParams($request);
-		}
+            /** @var Type $class */
+            $class = new $className();
+            $params = $class->parseParams($request);
+        }
 
-		return new Item($type, $from, $params, $description, $active, $shortUrl, $id);
-	}
+        return new Item($type, $from, $params, $description, $active, $shortUrl, $id);
+    }
 
-	/**
-	 * Handle the saving the item
-	 *
-	 * @param array $request
-	 * @return array
-	 */
-	public function saveRequest($request)
-	{
+    /**
+     * Handle the saving the item
+     *
+     * @param array $request
+     * @return array
+     */
+    public function saveRequest($request)
+    {
+        $item = $this->populateFromRequest($request);
+        $errors = $item->validate();
 
-		$item = $this->populateFromRequest($request);
-		$errors = $item->validate();
+        if (empty($errors)) {
+            $id = $item->id;
+            $item->save();
+            $feedback = $id ? tr('Route was updated.') : tr('Route was created.');
 
-		if (empty($errors)) {
-			$id = $item->id;
-			$item->save();
-			$feedback = $id ? tr('Route was updated.') : tr('Route was created.');
+            Feedback::success($feedback);
+            $this->redirectToAdmin();
+        }
 
-			Feedback::success($feedback);
-			$this->redirectToAdmin();
-		}
+        Feedback::error(['mes' => $errors]);
 
-		Feedback::error(['mes' => $errors]);
+        return $item->toArray();
+    }
 
-		return $item->toArray();
-	}
-
-	/**
-	 * Redirect to the Custom Route admin page
-	 */
-	private function redirectToAdmin()
-	{
-		TikiLib::lib('access')->redirect('tiki-admin_routes.php');
-		die;
-	}
+    /**
+     * Redirect to the Custom Route admin page
+     */
+    private function redirectToAdmin()
+    {
+        TikiLib::lib('access')->redirect('tiki-admin_routes.php');
+        die;
+    }
 }

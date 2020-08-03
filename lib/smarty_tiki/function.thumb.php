@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /*
@@ -20,32 +21,32 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function smarty_function_thumb($params, $smarty)
 {
-	global $prefs;
+    global $prefs;
 
-	if (! is_array($params) || ! isset($params['_id'])) {
-		return;
-	}
+    if (! is_array($params) || ! isset($params['_id'])) {
+        return;
+    }
 
-	if (! isset($params['_max'])) {
-		$params['_max'] = $prefs['fgal_thumb_max_size']; // default thumbnail size
-	}
+    if (! isset($params['_max'])) {
+        $params['_max'] = $prefs['fgal_thumb_max_size']; // default thumbnail size
+    }
 
-	// Include smarty functions used below
-	$smarty->loadPlugin('smarty_function_html_image');
+    // Include smarty functions used below
+    $smarty->loadPlugin('smarty_function_html_image');
 
-	// Smarty html_image has some problems to detect height and width of such a file...
-	//	$html = smarty_function_html_image(array(
-	//		'src' => 'tiki-download_file.php?fileId='.((int)$params['_id']).'&amp;thumbnail&amp;max='.((int)$params['_max'])
-	//	), $smarty);
+    // Smarty html_image has some problems to detect height and width of such a file...
+    //	$html = smarty_function_html_image(array(
+    //		'src' => 'tiki-download_file.php?fileId='.((int)$params['_id']).'&amp;thumbnail&amp;max='.((int)$params['_max'])
+    //	), $smarty);
 
-	$html = '<img ';
-	foreach ($params as $k => $v) {
-		if ($k == '' || $k[0] == '_' || $k == 'src') {
-			continue;
-		}
-		$html .= ' ' . htmlentities($k) . '="' . htmlentities($v) . '"';
-	}
-	$html .= ' src="tiki-download_file.php?fileId=' . ((int) $params['_id']) . '&amp;thumbnail&amp;max=' . ((int) $params['_max']) . '" />';
+    $html = '<img ';
+    foreach ($params as $k => $v) {
+        if ($k == '' || $k[0] == '_' || $k == 'src') {
+            continue;
+        }
+        $html .= ' ' . htmlentities($k) . '="' . htmlentities($v) . '"';
+    }
+    $html .= ' src="tiki-download_file.php?fileId=' . ((int) $params['_id']) . '&amp;thumbnail&amp;max=' . ((int) $params['_max']) . '" />';
 
-	return $html;
+    return $html;
 }

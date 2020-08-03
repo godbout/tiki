@@ -19,15 +19,15 @@ $auto_query_args = ['find', 'sort_mode', 'offset', 'theme', 'categId'];
 
 //consider preference feature_theme_control_parentcategory setting when displaying list of available categories
 if ($prefs['feature_theme_control_parentcategory'] != "n" && $prefs['feature_theme_control_parentcategory'] != -1) {
-	$parentCategoryId = $prefs['feature_theme_control_parentcategory'];
-	$categoryFilter = [
-		'type' => 'children',
-		'identifier' => $parentCategoryId,
-	];
+    $parentCategoryId = $prefs['feature_theme_control_parentcategory'];
+    $categoryFilter = [
+        'type' => 'children',
+        'identifier' => $parentCategoryId,
+    ];
 } else {
-	$categoryFilter = [
-		'type' => 'all',
-	];
+    $categoryFilter = [
+        'type' => 'all',
+    ];
 }
 $categories = $categlib->getCategories($categoryFilter, true, true, false);
 $smarty->assign('categories', $categories);
@@ -38,37 +38,37 @@ $themes = $themelib->list_themes_and_options();
 $smarty->assign('themes', $themes);
 
 if (isset($_REQUEST['assign'])) {
-	if (isset($_REQUEST['categoryId'])) {
-		check_ticket('theme-control');
-		$themecontrollib->tc_assign_category($_REQUEST['categoryId'], $_REQUEST['theme']);
-	} else {
-		$smarty->assign('msg', tra("Please create a category first"));
-		$smarty->display("error.tpl");
-		die;
-	}
+    if (isset($_REQUEST['categoryId'])) {
+        check_ticket('theme-control');
+        $themecontrollib->tc_assign_category($_REQUEST['categoryId'], $_REQUEST['theme']);
+    } else {
+        $smarty->assign('msg', tra("Please create a category first"));
+        $smarty->display("error.tpl");
+        die;
+    }
 }
 if (isset($_REQUEST['delete'])) {
-	check_ticket('theme-control');
-	foreach (array_keys($_REQUEST['categoryIds']) as $cat) {
-		$themecontrollib->tc_remove_cat($cat);
-	}
+    check_ticket('theme-control');
+    foreach (array_keys($_REQUEST['categoryIds']) as $cat) {
+        $themecontrollib->tc_remove_cat($cat);
+    }
 }
 
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'name_asc';
+    $sort_mode = 'name_asc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $smarty->assign_by_ref('sort_mode', $sort_mode);

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,6 +10,9 @@
  * Smarty plugin
  * @package Smarty
  * @subpackage plugins
+ * @param mixed $string
+ * @param mixed $position
+ * @param null|mixed $length
  */
 
 /**
@@ -27,10 +31,9 @@
  */
 function smarty_modifier_substring($string, $position = 0, $length = null)
 {
+    if ($length == null) {
+        return substr($string, $position);
+    }
 
-	if ($length == null) {
-		return substr($string, $position);
-	} else {
-		return substr($string, $position, $length);
-	}
+    return substr($string, $position, $length);
 }

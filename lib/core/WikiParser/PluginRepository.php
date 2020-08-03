@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,79 +8,82 @@
 
 class WikiParser_PluginRepository
 {
-	private $folders = [];
-	private $pluginsFound = [];
+    private $folders = [];
+    private $pluginsFound = [];
 
-	function addPluginFolder($folder)
-	{
-		$this->folders[] = $folder;
-	}
+    public function addPluginFolder($folder)
+    {
+        $this->folders[] = $folder;
+    }
 
-	function getInfo($pluginName)
-	{
-		if (! $this->pluginExists($pluginName)) {
-			return null;
-		}
+    public function getInfo($pluginName)
+    {
+        if (! $this->pluginExists($pluginName)) {
+            return null;
+        }
 
-		$pluginName = strtolower($pluginName);
-		$location = $this->pluginsFound[$pluginName];
+        $pluginName = strtolower($pluginName);
+        $location = $this->pluginsFound[$pluginName];
 
-		$functionName = "wikiplugin_$pluginName";
-		$infoName = "wikiplugin_{$pluginName}_info";
+        $functionName = "wikiplugin_$pluginName";
+        $infoName = "wikiplugin_{$pluginName}_info";
 
-		include_once "{$location}/$functionName.php";
+        include_once "{$location}/$functionName.php";
 
-		if (! function_exists($functionName)) {
-			$this->pluginsFound[ $pluginName ] = false;
-			return null;
-		}
+        if (! function_exists($functionName)) {
+            $this->pluginsFound[ $pluginName ] = false;
 
-		if (! function_exists($infoName)) {
-			return null;
-		}
+            return null;
+        }
 
-		return new WikiParser_PluginDefinition($this, $infoName());
-	}
+        if (! function_exists($infoName)) {
+            return null;
+        }
 
-	function pluginExists($pluginName)
-	{
-		$pluginName = strtolower($pluginName);
+        return new WikiParser_PluginDefinition($this, $infoName());
+    }
 
-		if (isset($this->pluginsFound[ $pluginName ])) {
-			return false !== $this->pluginsFound[ $pluginName ];
-		}
+    public function pluginExists($pluginName)
+    {
+        $pluginName = strtolower($pluginName);
 
-		foreach ($this->folders as $folder) {
-			if ($this->pluginExistsIn($pluginName, $folder)) {
-				$this->pluginsFound[ $pluginName ] = $folder;
-				return true;
-			}
-		}
+        if (isset($this->pluginsFound[ $pluginName ])) {
+            return false !== $this->pluginsFound[ $pluginName ];
+        }
 
-		$this->pluginsFound[ $pluginName ] = false;
-		return false;
-	}
+        foreach ($this->folders as $folder) {
+            if ($this->pluginExistsIn($pluginName, $folder)) {
+                $this->pluginsFound[ $pluginName ] = $folder;
 
-	private function pluginExistsIn($pluginName, $folder)
-	{
-		$file = $folder . '/wikiplugin_' . $pluginName . '.php';
+                return true;
+            }
+        }
 
-		return file_exists($file);
-	}
+        $this->pluginsFound[ $pluginName ] = false;
 
-	function getList()
-	{
-		$real = [];
+        return false;
+    }
 
-		foreach ($this->folders as $folder) {
-			foreach (glob($folder . '/wikiplugin_*.php') as $file) {
-				$base = basename($file);
-				$plugin = substr($base, 11, -4);
+    private function pluginExistsIn($pluginName, $folder)
+    {
+        $file = $folder . '/wikiplugin_' . $pluginName . '.php';
 
-				$real[] = $plugin;
-			}
-		}
+        return file_exists($file);
+    }
 
-		return $real;
-	}
+    public function getList()
+    {
+        $real = [];
+
+        foreach ($this->folders as $folder) {
+            foreach (glob($folder . '/wikiplugin_*.php') as $file) {
+                $base = basename($file);
+                $plugin = substr($base, 11, -4);
+
+                $real[] = $plugin;
+            }
+        }
+
+        return $real;
+    }
 }

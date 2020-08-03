@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -8,129 +9,130 @@
 
 class PageContentLib
 {
-	function augmentInformation($data)
-	{
-		global $prefs;
+    public function augmentInformation($data)
+    {
+        global $prefs;
 
-		if ($prefs['page_content_fetch'] == 'y') {
-			$new = $this->grabContent($data['url']);
-			if ($new) {
-				$data['content'] = $new['content'];
-			}
-		}
+        if ($prefs['page_content_fetch'] == 'y') {
+            $new = $this->grabContent($data['url']);
+            if ($new) {
+                $data['content'] = $new['content'];
+            }
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
-	function grabContent($url)
-	{
-		$tikilib = TikiLib::lib('tiki');
+    public function grabContent($url)
+    {
+        $tikilib = TikiLib::lib('tiki');
 
-		$client = $tikilib->get_http_client($url);
-		$response = $tikilib->http_perform_request($client);
+        $client = $tikilib->get_http_client($url);
+        $response = $tikilib->http_perform_request($client);
 
-		// Obtain the URL after redirections
-		$url = (string) $client->getUri();
-		$html = $response->getBody();
+        // Obtain the URL after redirections
+        $url = (string) $client->getUri();
+        $html = $response->getBody();
 
-		// Note: PHP Readability expects UTF-8 encoded content.
-		// If your content is not UTF-8 encoded, convert it
-		// first before passing it to PHP Readability.
-		// Both iconv() and mb_convert_encoding() can do this.
+        // Note: PHP Readability expects UTF-8 encoded content.
+        // If your content is not UTF-8 encoded, convert it
+        // first before passing it to PHP Readability.
+        // Both iconv() and mb_convert_encoding() can do this.
 
-		// If we've got Tidy, let's clean up input.
-		// This step is highly recommended - PHP's default HTML parser
-		// often doesn't do a great job and results in strange output.
-		$html = $this->tidy($html);
+        // If we've got Tidy, let's clean up input.
+        // This step is highly recommended - PHP's default HTML parser
+        // often doesn't do a great job and results in strange output.
+        $html = $this->tidy($html);
 
-		// give it to Readability
-		global $prefs;
-		if (! class_exists('Readability\Readability')) {
-			return false;
-		}
+        // give it to Readability
+        global $prefs;
+        if (! class_exists('Readability\Readability')) {
+            return false;
+        }
 
-		$readability = new Readability\Readability($html, $url);
+        $readability = new Readability\Readability($html, $url);
 
-		$result = $readability->init();
+        $result = $readability->init();
 
-		if ($result) {
-			$content = $this->tidy($readability->getContent()->innerHTML);
-			$content = $this->replacePaths($content, $url);
-			return [
-				'title' => $readability->getTitle()->textContent,
-				'content' => $content,
-			];
-		}
-	}
+        if ($result) {
+            $content = $this->tidy($readability->getContent()->innerHTML);
+            $content = $this->replacePaths($content, $url);
 
-	private function tidy($html)
-	{
-		if (function_exists('tidy_parse_string')) {
-			$tidy = tidy_parse_string($html, [], 'UTF8');
-			$tidy->cleanRepair();
-			$html = $tidy->value;
-		}
+            return [
+                'title' => $readability->getTitle()->textContent,
+                'content' => $content,
+            ];
+        }
+    }
 
-		return $html;
-	}
+    private function tidy($html)
+    {
+        if (function_exists('tidy_parse_string')) {
+            $tidy = tidy_parse_string($html, [], 'UTF8');
+            $tidy->cleanRepair();
+            $html = $tidy->value;
+        }
 
-	private function getUrls($url)
-	{
-		// From http://stackoverflow.com/questions/21201062/using-readability-api-to-scrape-most-relavant-image-from-page
+        return $html;
+    }
 
-		// Parse URL
-		$urlArr = parse_url($url);
+    private function getUrls($url)
+    {
+        // From http://stackoverflow.com/questions/21201062/using-readability-api-to-scrape-most-relavant-image-from-page
 
-		// Determine Base URL, with scheme, host, and port
-		$base = $urlArr['scheme'] . "://" . $urlArr['host'];
-		if (array_key_exists("port", $urlArr) && $urlArr['port'] != 80) {
-			$base .= ":" . $urlArr['port'];
-		}
+        // Parse URL
+        $urlArr = parse_url($url);
 
-		// Truncate the Path using the position of the last forward slash
-		$relative = $base . substr($urlArr['path'], 0, strrpos($urlArr['path'], "/") + 1);
+        // Determine Base URL, with scheme, host, and port
+        $base = $urlArr['scheme'] . "://" . $urlArr['host'];
+        if (array_key_exists("port", $urlArr) && $urlArr['port'] != 80) {
+            $base .= ":" . $urlArr['port'];
+        }
 
-		// Return our two URLs
-		return [$base, $relative];
-	}
+        // Truncate the Path using the position of the last forward slash
+        $relative = $base . substr($urlArr['path'], 0, strrpos($urlArr['path'], "/") + 1);
 
-	function replacePaths($html, $url)
-	{
-		// Modified from: http://stackoverflow.com/questions/21201062/using-readability-api-to-scrape-most-relavant-image-from-page
+        // Return our two URLs
+        return [$base, $relative];
+    }
 
-		// Retrieve our URLs
-		list($baseUrl, $relativeUrl) = $this->getUrls($url);
+    public function replacePaths($html, $url)
+    {
+        // Modified from: http://stackoverflow.com/questions/21201062/using-readability-api-to-scrape-most-relavant-image-from-page
 
-		$convert = function ($url) use ($baseUrl, $relativeUrl) {
-			// Resolve relative paths
-			if (substr($url, 0, 2) == "//") { // Missing protocol
-				// Fine, use current
-			} elseif (substr($url, 0, 1) == "/") { // Path Relative to Base
-				$url = $baseUrl . $url;
-			} elseif (substr($url, 0, 4) !== "http") { // Path Relative to Dimension
-				$url = $relativeUrl . $url;
-			}
+        // Retrieve our URLs
+        list($baseUrl, $relativeUrl) = $this->getUrls($url);
 
-			return $url;
-		};
+        $convert = function ($url) use ($baseUrl, $relativeUrl) {
+            // Resolve relative paths
+            if (substr($url, 0, 2) == "//") { // Missing protocol
+                // Fine, use current
+            } elseif (substr($url, 0, 1) == "/") { // Path Relative to Base
+                $url = $baseUrl . $url;
+            } elseif (substr($url, 0, 4) !== "http") { // Path Relative to Dimension
+                $url = $relativeUrl . $url;
+            }
 
-		libxml_use_internal_errors(true);
+            return $url;
+        };
 
-		$dom = new DOMDocument();
-		$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
+        libxml_use_internal_errors(true);
 
-		foreach ($dom->getElementsByTagName('img') as $node) {
-			$image = $node->getAttribute('src');
+        $dom = new DOMDocument();
+        $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 
-			$node->setAttribute('src', $convert($image));
-		}
+        foreach ($dom->getElementsByTagName('img') as $node) {
+            $image = $node->getAttribute('src');
 
-		foreach ($dom->getElementsByTagName('a') as $node) {
-			$link = $node->getAttribute('href');
+            $node->setAttribute('src', $convert($image));
+        }
 
-			$node->setAttribute('href', $convert($link));
-		}
+        foreach ($dom->getElementsByTagName('a') as $node) {
+            $link = $node->getAttribute('href');
 
-		return $dom->saveHTML();
-	}
+            $node->setAttribute('href', $convert($link));
+        }
+
+        return $dom->saveHTML();
+    }
 }

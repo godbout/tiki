@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,8 +10,6 @@ namespace Tiki\Test\Lib\Perspective;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\BrowserKit\Response;
-use Tiki\Test\TestHelpers\TikiDbHelper;
-use Tiki\Test\TestHelpers\TikiProfileHelper;
 use Tiki\Test\TestHelpers\WebClientHelper;
 
 /**
@@ -18,69 +17,69 @@ use Tiki\Test\TestHelpers\WebClientHelper;
  */
 class PerspectivesNavigationBaseTestCase extends TestCase
 {
-	/**
-	 * Value used in the fixture files for TIKI_TEST_HOST
-	 */
-	public const FIXTURE_HOST = 'tiki.localdomain';
-	/**
-	 * Value used in the fixture files for TIKI_TEST_HOST_A
-	 */
-	public const FIXTURE_SITE = 'tiki-a.localdomain';
+    /**
+     * Value used in the fixture files for TIKI_TEST_HOST
+     */
+    public const FIXTURE_HOST = 'tiki.localdomain';
+    /**
+     * Value used in the fixture files for TIKI_TEST_HOST_A
+     */
+    public const FIXTURE_SITE = 'tiki-a.localdomain';
 
-	public static function setUpBeforeClass() : void
-	{
-		if (! getenv('TIKI_TEST_HOST') || ! getenv('TIKI_TEST_HOST_A') || ! getenv('TIKI_TEST_HOST_B')) {
-			self::markTestSkipped(
-				'To run perspective tests you are expected to have a running webserver with 3 vhosts pointing to it and to setup the env TIKI_TEST_HOST, TIKI_TEST_HOST_A and TIKI_TEST_HOST_B'
-			);
-		}
-	}
+    public static function setUpBeforeClass() : void
+    {
+        if (! getenv('TIKI_TEST_HOST') || ! getenv('TIKI_TEST_HOST_A') || ! getenv('TIKI_TEST_HOST_B')) {
+            self::markTestSkipped(
+                'To run perspective tests you are expected to have a running webserver with 3 vhosts pointing to it and to setup the env TIKI_TEST_HOST, TIKI_TEST_HOST_A and TIKI_TEST_HOST_B'
+            );
+        }
+    }
 
-	public function navigateSteps($steps, $cleanCookies = false)
-	{
-		$client = WebClientHelper::createTestClient(false);
+    public function navigateSteps($steps, $cleanCookies = false)
+    {
+        $client = WebClientHelper::createTestClient(false);
 
-		foreach ($steps as $stepIndex => $step) {
-			[$url, $httpCode, $location, $perspective] = $step;
+        foreach ($steps as $stepIndex => $step) {
+            [$url, $httpCode, $location, $perspective] = $step;
 
-			if ($cleanCookies) {
-				$client->getCookieJar()->clear();
-			}
+            if ($cleanCookies) {
+                $client->getCookieJar()->clear();
+            }
 
-			if (empty($url) || $url === 'follow-redirect') {
-				$crawler = $client->followRedirect();
-			} else {
-				$crawler = $client->request('GET', $url);
-			}
+            if (empty($url) || $url === 'follow-redirect') {
+                $crawler = $client->followRedirect();
+            } else {
+                $crawler = $client->request('GET', $url);
+            }
 
-			/** @var Response $response */
-			$response = $client->getResponse();
+            /** @var Response $response */
+            $response = $client->getResponse();
 
-			$this->assertEquals($httpCode, $response->getStatusCode(), 'Comparing HTTP Code #' . $stepIndex);
+            $this->assertEquals($httpCode, $response->getStatusCode(), 'Comparing HTTP Code #' . $stepIndex);
 
-			if (! empty($location)) {
-				$this->assertEquals(
-					$location,
-					$response->getHeader('Location'),
-					'Comparing Location header returned #' . $stepIndex
-				);
-			}
+            if (! empty($location)) {
+                $this->assertEquals(
+                    $location,
+                    $response->getHeader('Location'),
+                    'Comparing Location header returned #' . $stepIndex
+                );
+            }
 
-			if (! empty($perspective)) {
-				if ($perspective[0] === '!') {
-					$this->assertNotContains(
-						substr($perspective, 1),
-						$crawler->filter('body')->attr('class'),
-						'Page shows right perspective #' . $stepIndex
-					);
-				} else {
-					$this->assertContains(
-						$perspective,
-						$crawler->filter('body')->attr('class'),
-						'Page shows right perspective #' . $stepIndex
-					);
-				}
-			}
-		}
-	}
+            if (! empty($perspective)) {
+                if ($perspective[0] === '!') {
+                    $this->assertNotContains(
+                        substr($perspective, 1),
+                        $crawler->filter('body')->attr('class'),
+                        'Page shows right perspective #' . $stepIndex
+                    );
+                } else {
+                    $this->assertContains(
+                        $perspective,
+                        $crawler->filter('body')->attr('class'),
+                        'Page shows right perspective #' . $stepIndex
+                    );
+                }
+            }
+        }
+    }
 }

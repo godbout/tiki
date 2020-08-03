@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
-	header('location: index.php');
-	exit;
+    header('location: index.php');
+    exit;
 }
 
 /**
@@ -24,454 +25,491 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
  */
 class TikiDate
 {
-	public $trad = [
-					'January','February','March','April','May','June','July','August','September','October','November','December',
-					'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec',
-					'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday',
-					'Mon','Tue','Wed','Thu','Fri','Sat','Sun','of'
-	];
+    public $trad = [
+                    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December',
+                    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+                    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
+                    'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'of'
+    ];
 
-	public $translated_trad = [];
-	public $date;
-	public $translation_array = [
-				'%a' => 'D',
-				'%A' => 'l',
-				'%b' => 'M',
-				'%B' => 'F',
-				'%c' => 'r',    // not quite the same as locale but RFC 2822
-				'%d' => 'd',
-				'%D' => 'm/d/y',
-				'%e' => 'j',
-				'%F' => 'c',
-				'%g' => 'y',
-				'%G' => 'Y',
-				'%h' => 'M',
-				'%H' => 'H',
-				'%i' => 'h',
-				'%I' => 'h',
-				'%j' => 'z',
-				'%k' => 'G',
-				'%l' => 'g',
-				'%m' => 'm',
-				'%M' => 'i',
-				'%n' => "\n",
-				'%p' => 'A',
-				'%P' => 'a',
-				'%r' => 'h:i:s A',
-				'%R' => 'h:i',
-				'%s' => 's',
-				'%S' => 's',
-				'%t' => "\t",
-				'%T' => 'h:i:s',
-				'%u' => 'N',
-				'%U' => 'W',
-				'%V' => 'W',
-				'%w' => 'w',
-				'%W' => 'W',
-				'%y' => 'y',
-				'%Y' => 'Y',
-				'%z' => 'O',
-				'%Z' => 'T',
-	];
+    public $translated_trad = [];
+    public $date;
+    public $translation_array = [
+                '%a' => 'D',
+                '%A' => 'l',
+                '%b' => 'M',
+                '%B' => 'F',
+                '%c' => 'r',    // not quite the same as locale but RFC 2822
+                '%d' => 'd',
+                '%D' => 'm/d/y',
+                '%e' => 'j',
+                '%F' => 'c',
+                '%g' => 'y',
+                '%G' => 'Y',
+                '%h' => 'M',
+                '%H' => 'H',
+                '%i' => 'h',
+                '%I' => 'h',
+                '%j' => 'z',
+                '%k' => 'G',
+                '%l' => 'g',
+                '%m' => 'm',
+                '%M' => 'i',
+                '%n' => "\n",
+                '%p' => 'A',
+                '%P' => 'a',
+                '%r' => 'h:i:s A',
+                '%R' => 'h:i',
+                '%s' => 's',
+                '%S' => 's',
+                '%t' => "\t",
+                '%T' => 'h:i:s',
+                '%u' => 'N',
+                '%U' => 'W',
+                '%V' => 'W',
+                '%w' => 'w',
+                '%W' => 'W',
+                '%y' => 'y',
+                '%Y' => 'Y',
+                '%z' => 'O',
+                '%Z' => 'T',
+    ];
 
-	public static $deprecated_tz = [
-		'CST6CDT',
-		'Cuba',
-		'Egypt',
-		'Eire',
-		'EST5EDT',
-		'Factory',
-		'GB-Eire',
-		'GMT0',
-		'Greenwich',
-		'Hongkong',
-		'Iceland',
-		'Iran',
-		'Israel',
-		'Jamaica',
-		'Japan',
-		'Kwajalein',
-		'Libya',
-		'localtime',	// because PHP Fatal error was observed in Apache2 logfile
-				// not mentioned here: https://bugs.php.net/bug.php?id=66985
-		'leap-seconds.list', // same here
-		'MST7MDT',
-		'Navajo',
-		'NZ-CHAT',
-		'Poland',
-		'Portugal',
-		'PST8PDT',
-		'Singapore',
-		'Turkey',
-		'Universal',
-		'W-SU',
-		'Zulu',
-		'tzdata.zi',
-		'leapseconds'
-	];
+    public static $deprecated_tz = [
+        'CST6CDT',
+        'Cuba',
+        'Egypt',
+        'Eire',
+        'EST5EDT',
+        'Factory',
+        'GB-Eire',
+        'GMT0',
+        'Greenwich',
+        'Hongkong',
+        'Iceland',
+        'Iran',
+        'Israel',
+        'Jamaica',
+        'Japan',
+        'Kwajalein',
+        'Libya',
+        'localtime',	// because PHP Fatal error was observed in Apache2 logfile
+                // not mentioned here: https://bugs.php.net/bug.php?id=66985
+        'leap-seconds.list', // same here
+        'MST7MDT',
+        'Navajo',
+        'NZ-CHAT',
+        'Poland',
+        'Portugal',
+        'PST8PDT',
+        'Singapore',
+        'Turkey',
+        'Universal',
+        'W-SU',
+        'Zulu',
+        'tzdata.zi',
+        'leapseconds'
+    ];
 
-	/**
-	 * Default constructor
-	 */
-	function __construct()
-	{
+    /**
+     * Default constructor
+     */
+    public function __construct()
+    {
+        if (isset($_SERVER['TZ']) && ! empty($_SERVER['TZ'])) {	// apache - can be set in .htaccess
+            $tz = $_SERVER['TZ'];
+        } elseif (ini_get('date.timezone')) {					// set in php.ini
+            $tz = ini_get('date.timezone');
+        } elseif (getenv('TZ')) {								// system env setting
+            $tz = getenv('TZ');
+        } else {
+            $tz = 'UTC';
+        }
+        date_default_timezone_set($tz);
 
-		if (isset($_SERVER['TZ']) && ! empty($_SERVER['TZ'])) {	// apache - can be set in .htaccess
-			$tz = $_SERVER['TZ'];
-		} elseif (ini_get('date.timezone')) {					// set in php.ini
-			$tz = ini_get('date.timezone');
-		} elseif (getenv('TZ')) {								// system env setting
-			$tz = getenv('TZ');
-		} else {
-			$tz = 'UTC';
-		}
-		date_default_timezone_set($tz);
+        $this->date = new DateTime();	// was: DateTime(date("Y-m-d H:i:s Z"))
+        // the Z (timezone) param was causing an error
+        // DateTime constructor defaults to "now" anyway so unnecessary?
+        $this->search = array_keys($this->translation_array);
+        $this->replace = array_values($this->translation_array);
+    }
 
-		$this->date = new DateTime();	// was: DateTime(date("Y-m-d H:i:s Z"))
-										// the Z (timezone) param was causing an error
-										// DateTime constructor defaults to "now" anyway so unnecessary?
-		$this->search = array_keys($this->translation_array);
-		$this->replace = array_values($this->translation_array);
-	}
+    /**
+     * @return array
+     */
+    public static function getTimeZoneList()
+    {
+        $tz = [];
+        $now = new DateTime('now', new DateTimeZone('UTC'));
+        $tz_list = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
+        ksort($tz_list);
 
-	/**
-	 * @return array
-	 */
-	static function getTimeZoneList()
-	{
-		$tz = [];
-		$now = new DateTime('now', new DateTimeZone('UTC'));
-		$tz_list = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
-		ksort($tz_list);
+        foreach ($tz_list as $tz_id) {
+            if (self::isKnownTimezoneID($tz_id)) {
+                $tmp_now = new DateTime('now', new DateTimeZone($tz_id));
+                $tmp = $tmp_now->getOffset() - 3600 * $tmp_now->format('I');
+                $tz[$tz_id]['offset'] = $tmp * 1000;
+            }
+        }
 
-		foreach ($tz_list as $tz_id) {
-			if (self::isKnownTimezoneID($tz_id)) {
-				$tmp_now = new DateTime('now', new DateTimeZone($tz_id));
-				$tmp = $tmp_now->getOffset() - 3600 * $tmp_now->format('I');
-				$tz[$tz_id]['offset'] = $tmp * 1000;
-			}
-		}
-		return $tz;
-	}
+        return $tz;
+    }
 
-	static function tzServerOffset($display_tz = null)
-	{
-		if (! $display_tz) {
-			$display_tz = 'UTC';
-		}
-		$tz = new DateTimeZone($display_tz);
-		$d = new DateTime('now', $tz);
-		return $tz->getOffset($d);
-	}
+    public static function tzServerOffset($display_tz = null)
+    {
+        if (! $display_tz) {
+            $display_tz = 'UTC';
+        }
+        $tz = new DateTimeZone($display_tz);
+        $d = new DateTime('now', $tz);
 
-	static function getStartDay($timestamp, $tz)
-	{
-		$dt = DateTime::createFromFormat('U', $timestamp);
-		$tz = new DateTimeZone($tz);
-		$dt->setTimezone($tz);
-		$dt->setTime(0,0,0);
-		return $dt->getTimestamp();
-	}
+        return $tz->getOffset($d);
+    }
 
-	/**
-	 * @param $format
-	 * @param bool $is_strftime_format
-	 * @return string
-	 */
-	function format($format, $is_strftime_format = true)
-	{
-		global $prefs;
+    public static function getStartDay($timestamp, $tz)
+    {
+        $dt = DateTime::createFromFormat('U', $timestamp);
+        $tz = new DateTimeZone($tz);
+        $dt->setTimezone($tz);
+        $dt->setTime(0, 0, 0);
 
-		// Format the date
-		if ($is_strftime_format) {
-			$format = preg_replace('/(?<!%)([a-zA-Z])/', '\\\$1', $format);
-			$return = $this->date->format(str_replace($this->search, $this->replace, $format));
-		} else {
-			$return = $this->date->format($format);
-		}
+        return $dt->getTimestamp();
+    }
 
-		// Translate the date if we are not already in english
+    /**
+     * @param $format
+     * @param bool $is_strftime_format
+     * @return string
+     */
+    public function format($format, $is_strftime_format = true)
+    {
+        global $prefs;
 
-		// Divide the date into an array of strings by looking for dates elements
-		// (specified in $this->trad)
-		$words = preg_split('/(' . implode('|', $this->trad) . ')/', $return, -1, PREG_SPLIT_DELIM_CAPTURE);
+        // Format the date
+        if ($is_strftime_format) {
+            $format = preg_replace('/(?<!%)([a-zA-Z])/', '\\\$1', $format);
+            $return = $this->date->format(str_replace($this->search, $this->replace, $format));
+        } else {
+            $return = $this->date->format($format);
+        }
 
-		// For each strings in $words array...
-		$return = '';
-		foreach ($words as $w) {
-			if (array_key_exists($w, $this->translated_trad)) {
-				// ... we've loaded this previously
-				$return .= $this->translated_trad["$w"];
-			} elseif (in_array($w, $this->trad)) {
-				// ... or we have a date element that needs a translation
-				$t = tra($w, '', true);
-				$this->translated_trad["$w"] = $t;
-				$return .= $t;
-			} else {
-				// ... or we have a string that should not be translated
-				$return .= $w;
-			}
-		}
+        // Translate the date if we are not already in english
 
-		// replace POSIX GMT relative tz with ISO signs
-		if (strpos($return, 'GMT+') !== false) {
-			$return = str_replace('GMT+', 'GMT-', $return);
-		} else {
-			$return = str_replace('GMT-', 'GMT+', $return);
-		}
+        // Divide the date into an array of strings by looking for dates elements
+        // (specified in $this->trad)
+        $words = preg_split('/(' . implode('|', $this->trad) . ')/', $return, -1, PREG_SPLIT_DELIM_CAPTURE);
 
-		return $return;
-	}
+        // For each strings in $words array...
+        $return = '';
+        foreach ($words as $w) {
+            if (array_key_exists($w, $this->translated_trad)) {
+                // ... we've loaded this previously
+                $return .= $this->translated_trad["$w"];
+            } elseif (in_array($w, $this->trad)) {
+                // ... or we have a date element that needs a translation
+                $t = tra($w, '', true);
+                $this->translated_trad["$w"] = $t;
+                $return .= $t;
+            } else {
+                // ... or we have a string that should not be translated
+                $return .= $w;
+            }
+        }
 
-	/**
-	 * @param $days
-	 */
-	function addDays($days)
-	{
-		if ($days >= 0) {
-			$this->date->modify("+$days day");
-		} else {
-			$this->date->modify("$days day");
-		}
-	}
+        // replace POSIX GMT relative tz with ISO signs
+        if (strpos($return, 'GMT+') !== false) {
+            $return = str_replace('GMT+', 'GMT-', $return);
+        } else {
+            $return = str_replace('GMT-', 'GMT+', $return);
+        }
 
-	/**
-	 * @param $months
-	 */
-	function addMonths($months)
-	{
-		if ($months >= 0) {
-			$this->date->modify("+$months months");
-		} else {
-			$this->date->modify("$months months");
-		}
-	}
+        return $return;
+    }
 
-	/**
-	 * @return int
-	 */
-	function getTime()
-	{
-		return (int)$this->date->format('U');
-	}
+    /**
+     * @param $days
+     */
+    public function addDays($days)
+    {
+        if ($days >= 0) {
+            $this->date->modify("+$days day");
+        } else {
+            $this->date->modify("$days day");
+        }
+    }
 
-	/**
-	 * @return int
-	 */
-	function getWeekOfYear()
-	{
-		return (int)$this->date->format('W');
-	}
+    /**
+     * @param $months
+     */
+    public function addMonths($months)
+    {
+        if ($months >= 0) {
+            $this->date->modify("+$months months");
+        } else {
+            $this->date->modify("$months months");
+        }
+    }
 
-	/**
-	 * @param $date
-	 */
-	function setDate($date, $tz_id = null)
-	{
-		if (is_numeric($date)) {
-			$this->date = new DateTime('@'.$date);
-		} else {
-			$this->date = new DateTime($date, $tz_id ? $this->getTZByID($tz_id) : null);
-		}
-	}
+    /**
+     * @return int
+     */
+    public function getTime()
+    {
+        return (int)$this->date->format('U');
+    }
 
-	/**
-	 * @param $day
-	 * @param $month
-	 * @param $year
-	 * @param $hour
-	 * @param $minute
-	 * @param $second
-	 * @param $partsecond
-	 */
-	function setLocalTime($day, $month, $year, $hour, $minute, $second, $partsecond)
-	{
-		$this->date->setDate($year, $month, $day);
-		$this->date->setTime($hour, $minute, $second);
-	}
+    /**
+     * @return int
+     */
+    public function getWeekOfYear()
+    {
+        return (int)$this->date->format('W');
+    }
 
-	function getTZByID($tz_id) {
-		global $prefs;
-		if (! self::TimezoneIsValidId($tz_id) && (! empty($prefs['timezone_offset']) || $prefs['timezone_offset'] == 0)) {	// timezone_offset in seconds
-			$tz_id = timezone_name_from_abbr($tz_id, $prefs['timezone_offset']);
-		}
-		$dtz = null;
-		while (! $dtz) {
-			try {
-				$dtz = new DateTimeZone($tz_id);
-			} catch (Exception $e) {
-				$tz_id = $this->convertMissingTimezone($tz_id);
-			}
-		}
-		return $dtz;
-	}
+    /**
+     * @param $date
+     * @param null|mixed $tz_id
+     */
+    public function setDate($date, $tz_id = null)
+    {
+        if (is_numeric($date)) {
+            $this->date = new DateTime('@' . $date);
+        } else {
+            $this->date = new DateTime($date, $tz_id ? $this->getTZByID($tz_id) : null);
+        }
+    }
 
-	/**
-	 * @param $tz_id
-	 */
-	function setTZbyID($tz_id)
-	{
-		$this->date->setTimezone($this->getTZByID($tz_id));
-	}
+    /**
+     * @param $day
+     * @param $month
+     * @param $year
+     * @param $hour
+     * @param $minute
+     * @param $second
+     * @param $partsecond
+     */
+    public function setLocalTime($day, $month, $year, $hour, $minute, $second, $partsecond)
+    {
+        $this->date->setDate($year, $month, $day);
+        $this->date->setTime($hour, $minute, $second);
+    }
 
-	/**
-	 * @param $tz_id
-	 * @return string
-	 */
-	function convertMissingTimezone($tz_id)
-	{
-		switch ($tz_id) {		// Convert timezones not in PHP 5
-			case 'A':
-				$tz_id = 'Etc/GMT+1';		// military A to Z
-				break;
-			case 'B':
-				$tz_id = 'Etc/GMT+2';
-				break;
-			case 'C':
-				$tz_id = 'Etc/GMT+3';
-				break;
-			case 'D':
-				$tz_id = 'Etc/GMT+4';
-				break;
-			case 'E':
-				$tz_id = 'Etc/GMT+5';
-				break;
-			case 'F':
-				$tz_id = 'Etc/GMT+6';
-				break;
-			case 'G':
-				$tz_id = 'Etc/GMT+7';
-				break;
-			case 'H':
-				$tz_id = 'Etc/GMT+8';
-				break;
-			case 'I':
-				$tz_id = 'Etc/GMT+9';
-				break;
-			case 'K':
-				$tz_id = 'Etc/GMT+10';
-				break;
-			case 'L':
-				$tz_id = 'Etc/GMT+11';
-				break;
-			case 'M':
-				$tz_id = 'Etc/GMT+12';
-				break;
-			case 'N':
-				$tz_id = 'Etc/GMT-1';
-				break;
-			case 'O':
-				$tz_id = 'Etc/GMT-2';
-				break;
-			case 'P':
-				$tz_id = 'Etc/GMT-3';
-				break;
-			case 'Q':
-				$tz_id = 'Etc/GMT-4';
-				break;
-			case 'R':
-				$tz_id = 'Etc/GMT-5';
-				break;
-			case 'S':
-				$tz_id = 'Etc/GMT-6';
-				break;
-			case 'T':
-				$tz_id = 'Etc/GMT-7';
-				break;
-			case 'U':
-				$tz_id = 'Etc/GMT-8';
-				break;
-			case 'V':
-				$tz_id = 'Etc/GMT-9';
-				break;
-			case 'W':
-				$tz_id = 'Etc/GMT-10';
-				break;
-			case 'X':
-				$tz_id = 'Etc/GMT-11';
-				break;
-			case 'Y':
-				$tz_id = 'Etc/GMT-12';
-				break;
-			case 'Z':
-				$tz_id = 'Etc/GMT';
+    public function getTZByID($tz_id)
+    {
+        global $prefs;
+        if (! self::TimezoneIsValidId($tz_id) && (! empty($prefs['timezone_offset']) || $prefs['timezone_offset'] == 0)) {	// timezone_offset in seconds
+            $tz_id = timezone_name_from_abbr($tz_id, $prefs['timezone_offset']);
+        }
+        $dtz = null;
+        while (! $dtz) {
+            try {
+                $dtz = new DateTimeZone($tz_id);
+            } catch (Exception $e) {
+                $tz_id = $this->convertMissingTimezone($tz_id);
+            }
+        }
 
-			default:
-				$tz_id = 'UTC';
-				break;
-		}
-		return $tz_id;
-	}
+        return $dtz;
+    }
 
-	/**
-	 * @return string
-	 */
-	function getTimezoneId()
-	{
-		$tz = $this->date->format('e');
-		if ($tz === 'GMT') {
-			$tz = 'UTC';	// timezone list from DateTimeZone::listIdentifiers() only has UTC, no GMT any more
-		}
-		return $tz;
-	}
+    /**
+     * @param $tz_id
+     */
+    public function setTZbyID($tz_id)
+    {
+        $this->date->setTimezone($this->getTZByID($tz_id));
+    }
 
-	/**
-	 * Checks that the string is a timezone identifier (Note: timezone abbreviations
-	 * are not always valid timezones and don't handle daylight saving correctly).
-	 * display_timezone can be manually set to an identifier in preferences but
-	 * will be an [uppercase] abbreviation if auto-detected by JavaScript.
-	 */
-	static function TimezoneIsValidId($id)
-	{
-		return in_array($id, self::getTimezoneIdentifiers());
-	}
+    /**
+     * @param $tz_id
+     * @return string
+     */
+    public function convertMissingTimezone($tz_id)
+    {
+        switch ($tz_id) {		// Convert timezones not in PHP 5
+            case 'A':
+                $tz_id = 'Etc/GMT+1';		// military A to Z
 
-	/**
-	 * Checks that the string timezone identifier is recognized as a timezone.
-	 * This does not rely on an ever-expanding blacklist TikiDate::$deprecated_tz
-	 * Therefore it should not break every time the OS updates the TZ list
-	 */
-	static function isKnownTimezoneID($tzid) {
-		if (empty($tzid)) {
-			return false;
-		}
-		foreach (timezone_abbreviations_list() as $zone) {
-			foreach ($zone as $item) {
-				if ($item["timezone_id"] == $tzid) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+                break;
+            case 'B':
+                $tz_id = 'Etc/GMT+2';
 
-	static function getTimezoneAbbreviations()
-	{
-		static $abbrevs = null;
+                break;
+            case 'C':
+                $tz_id = 'Etc/GMT+3';
 
-		if (! $abbrevs) {
-			$abbrevs = array_keys(DateTimeZone::listAbbreviations());
-		}
+                break;
+            case 'D':
+                $tz_id = 'Etc/GMT+4';
 
-		return $abbrevs;
-	}
+                break;
+            case 'E':
+                $tz_id = 'Etc/GMT+5';
 
-	static function getTimezoneIdentifiers()
-	{
-		static $ids = null;
+                break;
+            case 'F':
+                $tz_id = 'Etc/GMT+6';
 
-		if (! $ids) {
-			$t_ids = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
-			foreach ($t_ids as $id) {
-				if (in_array($id, TikiDate::$deprecated_tz)) {
-					continue; // Workaround PHP5.5 no more this timezone https://bugs.php.net/bug.php?id=66985
-				}
-				$ids[] = $id;
-			}
-		}
+                break;
+            case 'G':
+                $tz_id = 'Etc/GMT+7';
 
-		return $ids;
-	}
+                break;
+            case 'H':
+                $tz_id = 'Etc/GMT+8';
+
+                break;
+            case 'I':
+                $tz_id = 'Etc/GMT+9';
+
+                break;
+            case 'K':
+                $tz_id = 'Etc/GMT+10';
+
+                break;
+            case 'L':
+                $tz_id = 'Etc/GMT+11';
+
+                break;
+            case 'M':
+                $tz_id = 'Etc/GMT+12';
+
+                break;
+            case 'N':
+                $tz_id = 'Etc/GMT-1';
+
+                break;
+            case 'O':
+                $tz_id = 'Etc/GMT-2';
+
+                break;
+            case 'P':
+                $tz_id = 'Etc/GMT-3';
+
+                break;
+            case 'Q':
+                $tz_id = 'Etc/GMT-4';
+
+                break;
+            case 'R':
+                $tz_id = 'Etc/GMT-5';
+
+                break;
+            case 'S':
+                $tz_id = 'Etc/GMT-6';
+
+                break;
+            case 'T':
+                $tz_id = 'Etc/GMT-7';
+
+                break;
+            case 'U':
+                $tz_id = 'Etc/GMT-8';
+
+                break;
+            case 'V':
+                $tz_id = 'Etc/GMT-9';
+
+                break;
+            case 'W':
+                $tz_id = 'Etc/GMT-10';
+
+                break;
+            case 'X':
+                $tz_id = 'Etc/GMT-11';
+
+                break;
+            case 'Y':
+                $tz_id = 'Etc/GMT-12';
+
+                break;
+            case 'Z':
+                $tz_id = 'Etc/GMT';
+
+                // no break
+            default:
+                $tz_id = 'UTC';
+
+                break;
+        }
+
+        return $tz_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTimezoneId()
+    {
+        $tz = $this->date->format('e');
+        if ($tz === 'GMT') {
+            $tz = 'UTC';	// timezone list from DateTimeZone::listIdentifiers() only has UTC, no GMT any more
+        }
+
+        return $tz;
+    }
+
+    /**
+     * Checks that the string is a timezone identifier (Note: timezone abbreviations
+     * are not always valid timezones and don't handle daylight saving correctly).
+     * display_timezone can be manually set to an identifier in preferences but
+     * will be an [uppercase] abbreviation if auto-detected by JavaScript.
+     * @param mixed $id
+     */
+    public static function TimezoneIsValidId($id)
+    {
+        return in_array($id, self::getTimezoneIdentifiers());
+    }
+
+    /**
+     * Checks that the string timezone identifier is recognized as a timezone.
+     * This does not rely on an ever-expanding blacklist TikiDate::$deprecated_tz
+     * Therefore it should not break every time the OS updates the TZ list
+     * @param mixed $tzid
+     */
+    public static function isKnownTimezoneID($tzid)
+    {
+        if (empty($tzid)) {
+            return false;
+        }
+        foreach (timezone_abbreviations_list() as $zone) {
+            foreach ($zone as $item) {
+                if ($item["timezone_id"] == $tzid) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static function getTimezoneAbbreviations()
+    {
+        static $abbrevs = null;
+
+        if (! $abbrevs) {
+            $abbrevs = array_keys(DateTimeZone::listAbbreviations());
+        }
+
+        return $abbrevs;
+    }
+
+    public static function getTimezoneIdentifiers()
+    {
+        static $ids = null;
+
+        if (! $ids) {
+            $t_ids = DateTimeZone::listIdentifiers(DateTimeZone::ALL_WITH_BC);
+            foreach ($t_ids as $id) {
+                if (in_array($id, TikiDate::$deprecated_tz)) {
+                    continue; // Workaround PHP5.5 no more this timezone https://bugs.php.net/bug.php?id=66985
+                }
+                $ids[] = $id;
+            }
+        }
+
+        return $ids;
+    }
 }
 
 /**
@@ -480,13 +518,13 @@ class TikiDate
 class Date_Calc
 {
 
-	/**
-	 * @param $month
-	 * @param $year
-	 * @return int
-	 */
-	public static function daysInMonth($month, $year)
-	{
-		return cal_days_in_month(CAL_GREGORIAN, $month, $year);
-	}
+    /**
+     * @param $month
+     * @param $year
+     * @return int
+     */
+    public static function daysInMonth($month, $year)
+    {
+        return cal_days_in_month(CAL_GREGORIAN, $month, $year);
+    }
 }

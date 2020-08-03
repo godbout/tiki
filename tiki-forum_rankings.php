@@ -18,47 +18,47 @@ $access->check_feature('feature_forum_rankings');
 $access->check_permission('tiki_p_forum_read');
 
 $allrankings = [
-	[
-	'name' => tra('Last forum topics'),
-	'value' => 'forums_ranking_last_topics'
-	],
-	[
-	'name' => tra('Last replied forum topics'),
-	'value' => 'forums_ranking_last_replied_topics'
-	],
-	[
-	'name' => tra('Most-Read Forum Topics'),
-	'value' => 'forums_ranking_most_read_topics'
-	],
-	[
-	'name' => tra('Top topics'),
-	'value' => 'forums_ranking_top_topics'
-	],
-	[
-	'name' => tra('Forum posts'),
-	'value' => 'forums_ranking_most_commented_forum'
-	],
-	[
-	'name' => tra('Most-Visited Forums'),
-	'value' => 'forums_ranking_most_visited_forums'
-	]
+    [
+    'name' => tra('Last forum topics'),
+    'value' => 'forums_ranking_last_topics'
+    ],
+    [
+    'name' => tra('Last replied forum topics'),
+    'value' => 'forums_ranking_last_replied_topics'
+    ],
+    [
+    'name' => tra('Most-Read Forum Topics'),
+    'value' => 'forums_ranking_most_read_topics'
+    ],
+    [
+    'name' => tra('Top topics'),
+    'value' => 'forums_ranking_top_topics'
+    ],
+    [
+    'name' => tra('Forum posts'),
+    'value' => 'forums_ranking_most_commented_forum'
+    ],
+    [
+    'name' => tra('Most-Visited Forums'),
+    'value' => 'forums_ranking_most_visited_forums'
+    ]
 ];
 
 $smarty->assign('allrankings', $allrankings);
 
 if (! isset($_REQUEST["which"])) {
-	$which = 'forums_ranking_last_topics';
+    $which = 'forums_ranking_last_topics';
 } else {
-	$which = $_REQUEST["which"];
+    $which = $_REQUEST["which"];
 }
 
 $smarty->assign('which', $which);
 
 // Get the page from the request var or default it to HomePage
 if (! isset($_REQUEST["limit"])) {
-	$limit = 10;
+    $limit = 10;
 } else {
-	$limit = $_REQUEST["limit"];
+    $limit = $_REQUEST["limit"];
 }
 
 $smarty->assign_by_ref('limit', $limit);

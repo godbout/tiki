@@ -16,9 +16,9 @@ $access->check_feature('feature_calendar');
 $access->check_permission('tiki_p_admin_calendar');
 
 if (isset($_REQUEST["import"]) && isset($_REQUEST["calendarId"]) && isset($_FILES["fileCSV"])) {
-	if ($calendarlib->importCSV($_FILES["fileCSV"]["tmp_name"], $_REQUEST["calendarId"])) {
-		$smarty->assign('updated', "y");
-	}
+    if ($calendarlib->importCSV($_FILES["fileCSV"]["tmp_name"], $_REQUEST["calendarId"])) {
+        $smarty->assign('updated', "y");
+    }
 }
 $calendars = $calendarlib->list_calendars(); // no check perm as p_admin only
 $smarty->assign_by_ref('calendars', $calendars['data']);

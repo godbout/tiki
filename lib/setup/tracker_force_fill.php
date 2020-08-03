@@ -1,27 +1,29 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) != false) {
-	header('location: index.php');
-	exit;
+    header('location: index.php');
+    exit;
 }
 global $user;
 if (empty($user) || empty($prefs['tracker_force_tracker_id']) || empty($prefs['tracker_force_mandatory_field']) || empty($prefs['tracker_force_tracker_fields'])) {
-	return;
+    return;
 }
 $tracker_id = $prefs['tracker_force_tracker_id'];
 $tracker_definition = Tracker_Definition::get($tracker_id);
 
 if (empty($tracker_definition)) {
-	Feedback::warning(
-		tr('A tracker with id "%0" is required to be filled in, but it was deleted', $tracker_id)
-		. "<br/>"
-		. tr('Update the preference "<b>%0</b>" on admin panel', tra('Tracker ID of tracker required to be filled in'))
-	);
-	return;
+    Feedback::warning(
+        tr('A tracker with id "%0" is required to be filled in, but it was deleted', $tracker_id)
+        . "<br/>"
+        . tr('Update the preference "<b>%0</b>" on admin panel', tra('Tracker ID of tracker required to be filled in'))
+    );
+
+    return;
 }
 
 //user field info
@@ -38,14 +40,14 @@ $trackerlib = TikiLib::lib('trk');
 $item = $trackerlib->get_item($tracker_id, $user_field_id, $user);
 
 if ($item) {
-	//if the mandatory field is empty or if it's a checkbox and is set to 'n', force tracker input
-	if (empty($item[$mandatory_field_id]) || ($mandatory_field_info['type'] == 'c' && $item[$mandatory_field_id] == "n")) {
-		$action = "update";
-	} else {
-		return; //do nothing
-	}
+    //if the mandatory field is empty or if it's a checkbox and is set to 'n', force tracker input
+    if (empty($item[$mandatory_field_id]) || ($mandatory_field_info['type'] == 'c' && $item[$mandatory_field_id] == "n")) {
+        $action = "update";
+    } else {
+        return; //do nothing
+    }
 } else {
-	$action = "new";
+    $action = "new";
 }
 
 $smarty->assign_by_ref("force_fill_action", $action);

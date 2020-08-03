@@ -18,44 +18,44 @@ $access->check_feature(['feature_wiki', 'feature_wiki_rankings']);
 $access->check_permission('tiki_p_view');
 
 if (! isset($_REQUEST["limit"])) {
-	$limit = 10;
+    $limit = 10;
 } else {
-	$limit = $_REQUEST["limit"];
+    $limit = $_REQUEST["limit"];
 }
 
 if (isset($_REQUEST["categId"]) && $_REQUEST["categId"] > 0) {
-	$smarty->assign('categIdstr', $_REQUEST["categId"]);
-	$categs = explode(",", $_REQUEST["categId"]);
+    $smarty->assign('categIdstr', $_REQUEST["categId"]);
+    $categs = explode(",", $_REQUEST["categId"]);
 } else {
-	$categs = [];
+    $categs = [];
 }
 $smarty->assign('categId', $categs);
 
 $allrankings = [
-	[
-	'name' => tra('Top pages'),
-	'value' => 'wiki_ranking_top_pages'
-	],
-	[
-	'name' => tra('Last pages'),
-	'value' => 'wiki_ranking_last_pages'
-	],
-	[
-	'name' => tra('Most-relevant pages'),
-	'value' => 'wiki_ranking_top_pagerank'
-	],
-	[
-	'name' => tra('Top authors'),
-	'value' => 'wiki_ranking_top_authors'
-	]
+    [
+    'name' => tra('Top pages'),
+    'value' => 'wiki_ranking_top_pages'
+    ],
+    [
+    'name' => tra('Last pages'),
+    'value' => 'wiki_ranking_last_pages'
+    ],
+    [
+    'name' => tra('Most-relevant pages'),
+    'value' => 'wiki_ranking_top_pagerank'
+    ],
+    [
+    'name' => tra('Top authors'),
+    'value' => 'wiki_ranking_top_authors'
+    ]
 ];
 
 $smarty->assign('allrankings', $allrankings);
 
 if (! isset($_REQUEST["which"])) {
-	$which = 'wiki_ranking_top_pages';
+    $which = 'wiki_ranking_top_pages';
 } else {
-	$which = $_REQUEST["which"];
+    $which = $_REQUEST["which"];
 }
 
 $smarty->assign('which', $which);

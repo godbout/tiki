@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,399 +8,402 @@
 
 function wikiplugin_convene_info()
 {
-	return [
-		'name' => tra('Convene'),
-		'documentation' => 'PluginConvene',
-		'description' => tra('Suggest meeting dates and times and vote to select one.'),
-		'introduced' => 9,
-		'prefs' => ['wikiplugin_convene','feature_calendar'],
-		'body' => tra('Convene data generated from user input'),
-		'iconname' => 'group',
-		'filter' => 'rawhtml_unsafe',
-		'tags' => [ 'basic' ],
-		'params' => [
-			'title' => [
-				'required' => false,
-				'name' => tra('Title'),
-				'description' => tra('Title for the event'),
-				'since' => '9.0',
-				'default' => tra('Convene'),
-			],
-			'calendarid' => [
-				'required' => false,
-				'name' => tra('Calendar ID'),
-				'description' => tra('ID number of the site calendar in which to store the date for the events with the most votes'),
-				'since' => '9.0',
-				'filter' => 'digits',
-				'default' => 1,
-				'profile_reference' => 'calendar',
-			],
-			'minvotes' => [
-				'required' => false,
-				'name' => tra('Minimum Votes'),
-				'description' => tra('Minimum number of votes needed to show Add-to-Calendar icon, so that new users do
+    return [
+        'name' => tra('Convene'),
+        'documentation' => 'PluginConvene',
+        'description' => tra('Suggest meeting dates and times and vote to select one.'),
+        'introduced' => 9,
+        'prefs' => ['wikiplugin_convene', 'feature_calendar'],
+        'body' => tra('Convene data generated from user input'),
+        'iconname' => 'group',
+        'filter' => 'rawhtml_unsafe',
+        'tags' => [ 'basic' ],
+        'params' => [
+            'title' => [
+                'required' => false,
+                'name' => tra('Title'),
+                'description' => tra('Title for the event'),
+                'since' => '9.0',
+                'default' => tra('Convene'),
+            ],
+            'calendarid' => [
+                'required' => false,
+                'name' => tra('Calendar ID'),
+                'description' => tra('ID number of the site calendar in which to store the date for the events with the most votes'),
+                'since' => '9.0',
+                'filter' => 'digits',
+                'default' => 1,
+                'profile_reference' => 'calendar',
+            ],
+            'minvotes' => [
+                'required' => false,
+                'name' => tra('Minimum Votes'),
+                'description' => tra('Minimum number of votes needed to show Add-to-Calendar icon, so that new users do
 					not see a potentially confusing icon before the convene has enough information on it'),
-				'since' => '10.3',
-				'filter' => 'digits',
-				'default' => 3,
-			],
-			'dateformat' => [
-				'required' => false,
-				'name' => tra('Date-Time Format'),
-				'description' => tra('Display date and time in short or long format, according to the site wide setting'),
-				'since' => '9.0',
-				'filter' => 'alpha',
-				'default' => '',
-				'options' => [
-					['text' => '', 'value' => ''],
-					['text' => tra('Short'), 'value' => 'short'],
-					['text' => tra('Long'), 'value' => 'long']
-				]
-			],
-			'adminperms' => [
-				'required' => false,
-				'name' => tra('Observe Admin Permissions'),
-				'description' => tra("Only admins can edit or delete other users' votes and dates. N.B. This is a guide only as if a user can edit the page they can change this setting, it is intended to make the plugin easier to use for most users."),
-				'since' => '9.0',
-				'filter' => 'alpha',
-				'default' => 'y',
-				'options' => [
-					['text' => '', 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
-					['text' => tra('No'), 'value' => 'n']
-				]
-			],
-			'avatars' => [
-				'required' => false,
-				'name' => tra('Show user profile pictures'),
-				'description' => tra("Show user's profile pictures next to their names."),
-				'since' => '9.0',
-				'filter' => 'alpha',
-				'default' => 'y',
-				'options' => [
-					['text' => '', 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
-					['text' => tra('No'), 'value' => 'n']
-				]
-			],
-			'autolock' => [
-				'required' => false,
-				'name' => tra('Automatic Lock'),
-				'description' => tra('Lock this plugin at a certain time and date (format YYYY-MM-DD hh:mm'),
-				'since' => '20.2',
-				'filter' => 'datetime',
-				'default' => '',
-			],
-			'locked' => [
-				'required' => false,
-				'name' => tra('Locked'),
-				'description' => tra('Prevent further votes or changes from the interface.'),
-				'since' => '20.2',
-				'filter' => 'alpha',
-				'default' => 'n',
-				'options' => [
-					['text' => '', 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
-					['text' => tra('No'), 'value' => 'n']
-				],
-			],
-		]
-	];
+                'since' => '10.3',
+                'filter' => 'digits',
+                'default' => 3,
+            ],
+            'dateformat' => [
+                'required' => false,
+                'name' => tra('Date-Time Format'),
+                'description' => tra('Display date and time in short or long format, according to the site wide setting'),
+                'since' => '9.0',
+                'filter' => 'alpha',
+                'default' => '',
+                'options' => [
+                    ['text' => '', 'value' => ''],
+                    ['text' => tra('Short'), 'value' => 'short'],
+                    ['text' => tra('Long'), 'value' => 'long']
+                ]
+            ],
+            'adminperms' => [
+                'required' => false,
+                'name' => tra('Observe Admin Permissions'),
+                'description' => tra("Only admins can edit or delete other users' votes and dates. N.B. This is a guide only as if a user can edit the page they can change this setting, it is intended to make the plugin easier to use for most users."),
+                'since' => '9.0',
+                'filter' => 'alpha',
+                'default' => 'y',
+                'options' => [
+                    ['text' => '', 'value' => ''],
+                    ['text' => tra('Yes'), 'value' => 'y'],
+                    ['text' => tra('No'), 'value' => 'n']
+                ]
+            ],
+            'avatars' => [
+                'required' => false,
+                'name' => tra('Show user profile pictures'),
+                'description' => tra("Show user's profile pictures next to their names."),
+                'since' => '9.0',
+                'filter' => 'alpha',
+                'default' => 'y',
+                'options' => [
+                    ['text' => '', 'value' => ''],
+                    ['text' => tra('Yes'), 'value' => 'y'],
+                    ['text' => tra('No'), 'value' => 'n']
+                ]
+            ],
+            'autolock' => [
+                'required' => false,
+                'name' => tra('Automatic Lock'),
+                'description' => tra('Lock this plugin at a certain time and date (format YYYY-MM-DD hh:mm'),
+                'since' => '20.2',
+                'filter' => 'datetime',
+                'default' => '',
+            ],
+            'locked' => [
+                'required' => false,
+                'name' => tra('Locked'),
+                'description' => tra('Prevent further votes or changes from the interface.'),
+                'since' => '20.2',
+                'filter' => 'alpha',
+                'default' => 'n',
+                'options' => [
+                    ['text' => '', 'value' => ''],
+                    ['text' => tra('Yes'), 'value' => 'y'],
+                    ['text' => tra('No'), 'value' => 'n']
+                ],
+            ],
+        ]
+    ];
 }
 
 function wikiplugin_convene($data, $params)
 {
-	global $page;
-	$headerlib = TikiLib::lib('header');
-	$tikilib = TikiLib::lib('tiki');
-	$smarty = TikiLib::lib('smarty');
-	$smarty->loadPlugin('smarty_function_icon');
-	$smarty->loadPlugin('smarty_modifier_userlink');
-	$smarty->loadPlugin('smarty_modifier_avatarize');
-	// perms for this object
-	$currentObject = current_object();
-	$perms = Perms::get($currentObject);
-	//in case there is any feedback from a previous ajax action since this plugin does not refresh the page upon edit
-	Feedback::send_headers();
+    global $page;
+    $headerlib = TikiLib::lib('header');
+    $tikilib = TikiLib::lib('tiki');
+    $smarty = TikiLib::lib('smarty');
+    $smarty->loadPlugin('smarty_function_icon');
+    $smarty->loadPlugin('smarty_modifier_userlink');
+    $smarty->loadPlugin('smarty_modifier_avatarize');
+    // perms for this object
+    $currentObject = current_object();
+    $perms = Perms::get($currentObject);
+    //in case there is any feedback from a previous ajax action since this plugin does not refresh the page upon edit
+    Feedback::send_headers();
 
-	static $conveneI = 0;
-	++$conveneI;
-	$i = $conveneI;
+    static $conveneI = 0;
+    ++$conveneI;
+    $i = $conveneI;
 
-	$params = array_merge(
-		[
-			'title'      => 'Convene',
-			'calendarid' => 1,
-			'minvotes'   => 3,
-			"dateformat" => 'short',
-			'adminperms' => 'y',
-			'avatars' => 'y',
-			'locked' => 'n',
-			'autolock' => '',
-		],
-		$params
-	);
+    $params = array_merge(
+        [
+            'title' => 'Convene',
+            'calendarid' => 1,
+            'minvotes' => 3,
+            "dateformat" => 'short',
+            'adminperms' => 'y',
+            'avatars' => 'y',
+            'locked' => 'n',
+            'autolock' => '',
+        ],
+        $params
+    );
 
-	extract($params, EXTR_SKIP);
+    extract($params, EXTR_SKIP);
 
-	$dataString = $data . '';
-	$dataArray = [];
+    $dataString = $data . '';
+    $dataArray = [];
 
-	//start flat static text to prepared array
-	$lines = explode("\n", trim($data));
-	sort($lines);
-	foreach ($lines as $line) {
-		$line = trim($line);
+    //start flat static text to prepared array
+    $lines = explode("\n", trim($data));
+    sort($lines);
+    foreach ($lines as $line) {
+        $line = trim($line);
 
-		if (! empty($line)) {
-			$parts = explode(':', $line);
-			$dataArray[trim($parts[0])] = trim($parts[1]);
-		}
-	}
+        if (! empty($line)) {
+            $parts = explode(':', $line);
+            $dataArray[trim($parts[0])] = trim($parts[1]);
+        }
+    }
 
-	$data = TikiFilter_PrepareInput::delimiter('_')->prepare($dataArray);
-	//end flat static text to prepared array
+    $data = TikiFilter_PrepareInput::delimiter('_')->prepare($dataArray);
+    //end flat static text to prepared array
 
-	//start get users from array
-	$users = [];
-	foreach (end($data['dates']) as $user => $vote) {
-		$users[] = $user;
-	}
-	//end get users from array
-
-
-	//start votes summed together
-	$votes = [];
-	foreach ($data['dates'] as $stamp => $date) {
-		foreach ($date as $vote) {
-			if (empty($votes[$stamp])) {
-				$votes[$stamp] = 0;
-			}
-			$votes[$stamp] += (int)$vote;
-		}
-	}
-	//end votes summed together
+    //start get users from array
+    $users = [];
+    foreach (end($data['dates']) as $user => $vote) {
+        $users[] = $user;
+    }
+    //end get users from array
 
 
-	//start find top vote stamp
-	$topVoteStamp = 0;
-	foreach ($votes as $stamp => $vote) {
-		if (! isset($votes[$topVoteStamp]) || (
-				isset($votes[$topVoteStamp]) &&
-				$vote > $votes[$topVoteStamp]
-			)
-		) {
-			$topVoteStamp = $stamp;
-		}
-	}
-	//end find top vote stamp
+    //start votes summed together
+    $votes = [];
+    foreach ($data['dates'] as $stamp => $date) {
+        foreach ($date as $vote) {
+            if (empty($votes[$stamp])) {
+                $votes[$stamp] = 0;
+            }
+            $votes[$stamp] += (int)$vote;
+        }
+    }
+    //end votes summed together
 
 
-	//start reverse array for easy listing as table
-	$rows = [];
-	foreach ($data['dates'] as $stamp => $date) {
-		foreach ($date as $user => $vote) {
-			if (isset($rows[$user][$stamp])) {
-				$rows[$user][$stamp] = [];
-			}
+    //start find top vote stamp
+    $topVoteStamp = 0;
+    foreach ($votes as $stamp => $vote) {
+        if (! isset($votes[$topVoteStamp]) || (
+            isset($votes[$topVoteStamp]) &&
+                $vote > $votes[$topVoteStamp]
+        )
+        ) {
+            $topVoteStamp = $stamp;
+        }
+    }
+    //end find top vote stamp
 
-			$rows[$user][$stamp] = $vote;
-		}
-	}
-	//end reverse array for easy listing as table
 
-	$result = "";
+    //start reverse array for easy listing as table
+    $rows = [];
+    foreach ($data['dates'] as $stamp => $date) {
+        foreach ($date as $user => $vote) {
+            if (isset($rows[$user][$stamp])) {
+                $rows[$user][$stamp] = [];
+            }
 
-	//start date header
-	$dateHeader = "";
-	$deleteicon = smarty_function_icon(['name' => 'delete', 'iclass' => 'tips', 'ititle' => ':' . tr('Delete Date')], $smarty->getEmptyInternalTemplate());
-	$tikiDate = new TikiDate();
-	$gmformat = str_replace($tikiDate->search, $tikiDate->replace, $tikilib->get_short_datetime_format());
+            $rows[$user][$stamp] = $vote;
+        }
+    }
+    //end reverse array for easy listing as table
 
-	$autolockMessage = '';
+    $result = "";
 
-	if ($params['autolock']) {
-		if (! preg_match('/\d{4}-\d{2}-\d{2} \d{2}:\d/', $params['autolock'])) {
-			$autolock = \TikiLib::date_format('%Y-%m-%d %H:%M', strtotime($params['autolock']));
-			if (! $autolock) {
-				Feedback::error(tr('Plugin convene: autolock date format not recognised'));
-			} else {
-				$params['autolock'] = $autolock;
-			}
-		}
-		$lockDate = new TikiDate();
-		$lockDate->setDate($params['autolock']);
+    //start date header
+    $dateHeader = "";
+    $deleteicon = smarty_function_icon(['name' => 'delete', 'iclass' => 'tips', 'ititle' => ':' . tr('Delete Date')], $smarty->getEmptyInternalTemplate());
+    $tikiDate = new TikiDate();
+    $gmformat = str_replace($tikiDate->search, $tikiDate->replace, $tikilib->get_short_datetime_format());
 
-		$smarty->loadPlugin('smarty_modifier_tiki_short_datetime');
-		if ($lockDate < $tikiDate) {
-			$params['locked'] = 'y';
-			$autolockMessage = tr('Voting ended: %0', smarty_modifier_tiki_short_datetime($params['autolock']));
-		} else {
-			$autolockMessage = tr('Voting ends: %0', smarty_modifier_tiki_short_datetime($params['autolock']));
-		}
-	}
+    $autolockMessage = '';
 
-	$canEdit = $perms->edit;
-	if ($params['adminperms'] !== 'y') {
-		$canAdmin = $canEdit;
-	} else 	if ($currentObject['type'] === 'wiki page') {
-		$canAdmin = $perms->admin_wiki;
-	} else if ($currentObject['type'] === 'trackeritem') {
-		$canAdmin = $perms->admin_trackers;
-	} else {
-		$canAdmin = $perms->admin;	// global for other object types
-	}
+    if ($params['autolock']) {
+        if (! preg_match('/\d{4}-\d{2}-\d{2} \d{2}:\d/', $params['autolock'])) {
+            $autolock = \TikiLib::date_format('%Y-%m-%d %H:%M', strtotime($params['autolock']));
+            if (! $autolock) {
+                Feedback::error(tr('Plugin convene: autolock date format not recognised'));
+            } else {
+                $params['autolock'] = $autolock;
+            }
+        }
+        $lockDate = new TikiDate();
+        $lockDate->setDate($params['autolock']);
 
-	foreach ($votes as $stamp => $totals) {
-		$dateHeader .= '<td class="align-bottom conveneHeader"><span class="tips" title="' . tr('UTC date time: %0', gmdate($gmformat, $stamp)) . '">';
-		if (! empty($dateformat) && $dateformat == "long") {
-			$dateHeader .= $tikilib->get_long_datetime($stamp);
-		} else {
-			$dateHeader .= $tikilib->get_short_datetime($stamp);
-		}
-		$dateHeader .= '</span>';
-		if ($canAdmin && $params['locked'] !== 'y') {
-			$dateHeader .= " <button class='conveneDeleteDate$i icon btn btn-danger btn-sm' data-date='$stamp'>$deleteicon</button>";
-		}
-		$dateHeader .= "</td>";
-	}
-	$result .= "<tr class='conveneHeaderRow'>";
+        $smarty->loadPlugin('smarty_modifier_tiki_short_datetime');
+        if ($lockDate < $tikiDate) {
+            $params['locked'] = 'y';
+            $autolockMessage = tr('Voting ended: %0', smarty_modifier_tiki_short_datetime($params['autolock']));
+        } else {
+            $autolockMessage = tr('Voting ends: %0', smarty_modifier_tiki_short_datetime($params['autolock']));
+        }
+    }
 
-	if ($canEdit) {
-		if ($params['locked'] !== 'y') {
-			$result .= "<td class='align-middle'>" .
-					"<input type='button' class='conveneAddDate$i btn btn-primary btn-sm' value='" . tr('Add Date') . "'/>"
-				. "<div class='small text-muted'>$autolockMessage</div>"
-				. "</td>";
-		} else {
-			$result .= "<td class='align-left'>"
-				. smarty_function_icon(
-					['name' => 'lock', 'iclass' => 'tips', 'ititle' => ':'
-						. tr("Locked")], $smarty->getEmptyInternalTemplate()
-				)
-				. "<div class='small text-muted'>$autolockMessage</div>"
-				. "</td>";
-		}
-	} else {
-		$result .= "<td class='align-middle'>" . (
-			""
-			) . "</td>";
-	}
+    $canEdit = $perms->edit;
+    if ($params['adminperms'] !== 'y') {
+        $canAdmin = $canEdit;
+    } elseif ($currentObject['type'] === 'wiki page') {
+        $canAdmin = $perms->admin_wiki;
+    } elseif ($currentObject['type'] === 'trackeritem') {
+        $canAdmin = $perms->admin_trackers;
+    } else {
+        $canAdmin = $perms->admin;	// global for other object types
+    }
 
-	$result .= "$dateHeader
+    foreach ($votes as $stamp => $totals) {
+        $dateHeader .= '<td class="align-bottom conveneHeader"><span class="tips" title="' . tr('UTC date time: %0', gmdate($gmformat, $stamp)) . '">';
+        if (! empty($dateformat) && $dateformat == "long") {
+            $dateHeader .= $tikilib->get_long_datetime($stamp);
+        } else {
+            $dateHeader .= $tikilib->get_short_datetime($stamp);
+        }
+        $dateHeader .= '</span>';
+        if ($canAdmin && $params['locked'] !== 'y') {
+            $dateHeader .= " <button class='conveneDeleteDate$i icon btn btn-danger btn-sm' data-date='$stamp'>$deleteicon</button>";
+        }
+        $dateHeader .= "</td>";
+    }
+    $result .= "<tr class='conveneHeaderRow'>";
+
+    if ($canEdit) {
+        if ($params['locked'] !== 'y') {
+            $result .= "<td class='align-middle'>" .
+                    "<input type='button' class='conveneAddDate$i btn btn-primary btn-sm' value='" . tr('Add Date') . "'/>"
+                . "<div class='small text-muted'>$autolockMessage</div>"
+                . "</td>";
+        } else {
+            $result .= "<td class='align-left'>"
+                . smarty_function_icon(
+                    ['name' => 'lock', 'iclass' => 'tips', 'ititle' => ':'
+                        . tr("Locked")],
+                    $smarty->getEmptyInternalTemplate()
+                )
+                . "<div class='small text-muted'>$autolockMessage</div>"
+                . "</td>";
+        }
+    } else {
+        $result .= "<td class='align-middle'>" . (
+            ""
+        ) . "</td>";
+    }
+
+    $result .= "$dateHeader
 		</tr>";
-	//end date header
+    //end date header
 
 
-	//start user list and votes
-	$userList = "";
-	foreach ($rows as $user => $row) {
-		$userList .= "<tr class='conveneVotes conveneUserVotes$i'>";
-		$editThisUser = $canAdmin || $user === $GLOBALS['user'];
+    //start user list and votes
+    $userList = "";
+    foreach ($rows as $user => $row) {
+        $userList .= "<tr class='conveneVotes conveneUserVotes$i'>";
+        $editThisUser = $canAdmin || $user === $GLOBALS['user'];
 
-		if ($params['avatars'] === 'y') {
-			$avatar = " <div class='float-right'>" . smarty_modifier_avatarize($user) . '</div>';
-			$rightPadding = 'max-width: 10em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
-		} else {
-			$avatar = '';
-			$rightPadding = '';
-		}
+        if ($params['avatars'] === 'y') {
+            $avatar = " <div class='float-right'>" . smarty_modifier_avatarize($user) . '</div>';
+            $rightPadding = 'max-width: 10em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
+        } else {
+            $avatar = '';
+            $rightPadding = '';
+        }
 
-		if ($editThisUser && $params['locked'] !== 'y') {
-			$buttons = "<div class='btn-group'><button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
-				. smarty_function_icon(
-					['name' => 'pencil', 'iclass' => 'tips', 'ititle' => ':'
-						. tr("Edit User/Save changes")], $smarty->getEmptyInternalTemplate()
-				)
-				. "</button><button data-user='$user' class='conveneDeleteUser$i icon btn btn-danger btn-sm'>"
-				. smarty_function_icon(
-					['name' => 'delete', 'iclass' => 'tips', 'ititle' => ':'
-						. tr("Delete User")], $smarty->getEmptyInternalTemplate()
-				)
-				. "</button></div> ";
-		} else {
-			$buttons = "";
-		}
+        if ($editThisUser && $params['locked'] !== 'y') {
+            $buttons = "<div class='btn-group'><button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
+                . smarty_function_icon(
+                    ['name' => 'pencil', 'iclass' => 'tips', 'ititle' => ':'
+                        . tr("Edit User/Save changes")],
+                    $smarty->getEmptyInternalTemplate()
+                )
+                . "</button><button data-user='$user' class='conveneDeleteUser$i icon btn btn-danger btn-sm'>"
+                . smarty_function_icon(
+                    ['name' => 'delete', 'iclass' => 'tips', 'ititle' => ':'
+                        . tr("Delete User")],
+                    $smarty->getEmptyInternalTemplate()
+                )
+                . "</button></div> ";
+        } else {
+            $buttons = "";
+        }
 
-		$userList .= "<td class='align-middle' style='white-space: nowrap'><div class='align-items-center d-flex justify-content-between'>"
-				. $buttons
-				. "<div class='flex-fill'><div class='mx-2' style='$rightPadding'>" . smarty_modifier_userlink($user) . "</div></div>$avatar</div></td>";
+        $userList .= "<td class='align-middle' style='white-space: nowrap'><div class='align-items-center d-flex justify-content-between'>"
+                . $buttons
+                . "<div class='flex-fill'><div class='mx-2' style='$rightPadding'>" . smarty_modifier_userlink($user) . "</div></div>$avatar</div></td>";
 
-		foreach ($row as $stamp => $vote) {
-			if ($vote == 1) {
-				$class = "convene-ok text-center alert-success";
-				$text = smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':' . tr('OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
-			} elseif ($vote == -1) {
-				$class = "convene-no text-center alert-danger";
-				$text = smarty_function_icon(['name' => 'remove', 'iclass' => 'tips', 'ititle' => ':' . tr('Not OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
-			} else {
-				$class = "convene-unconfirmed text-center alert-light";
-				$text = smarty_function_icon(['name' => 'help', 'iclass' => 'tips', 'ititle' => ':' . tr('Unconfirmed'), 'size' => 2], $smarty->getEmptyInternalTemplate());
-			}
+        foreach ($row as $stamp => $vote) {
+            if ($vote == 1) {
+                $class = "convene-ok text-center alert-success";
+                $text = smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':' . tr('OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
+            } elseif ($vote == -1) {
+                $class = "convene-no text-center alert-danger";
+                $text = smarty_function_icon(['name' => 'remove', 'iclass' => 'tips', 'ititle' => ':' . tr('Not OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
+            } else {
+                $class = "convene-unconfirmed text-center alert-light";
+                $text = smarty_function_icon(['name' => 'help', 'iclass' => 'tips', 'ititle' => ':' . tr('Unconfirmed'), 'size' => 2], $smarty->getEmptyInternalTemplate());
+            }
 
-			$userList .= "<td class='align-middle $class'>" . $text
-				. "<input type='hidden' name='dates_" . $stamp . "_" . $user . "' value='$vote' class='conveneUserVote$i form-control' />"
-				. "</td>";
-		}
-		$userList .= "</tr>";
-	}
-	$result .= $userList;
-	//end user list and votes
-
-
-	//start add new user and votes
-	$result .= "<tr class='conveneFooterRow'>";
+            $userList .= "<td class='align-middle $class'>" . $text
+                . "<input type='hidden' name='dates_" . $stamp . "_" . $user . "' value='$vote' class='conveneUserVote$i form-control' />"
+                . "</td>";
+        }
+        $userList .= "</tr>";
+    }
+    $result .= $userList;
+    //end user list and votes
 
 
-	if (! empty($data['dates'])) {	// need a date before adding users
-		$result .= "<td>";
-		if ($params['locked'] !== 'y') {
-			if ($canAdmin) {
-				$result .= "<div class='btn-group'><input class='conveneAddUser$i form-control' value='' placeholder='"
-					. tr("Username...") . "' style='float:left;width:72%;border-bottom-right-radius:0;border-top-right-radius:0;'>
+    //start add new user and votes
+    $result .= "<tr class='conveneFooterRow'>";
+
+
+    if (! empty($data['dates'])) {	// need a date before adding users
+        $result .= "<td>";
+        if ($params['locked'] !== 'y') {
+            if ($canAdmin) {
+                $result .= "<div class='btn-group'><input class='conveneAddUser$i form-control' value='' placeholder='"
+                    . tr("Username...") . "' style='float:left;width:72%;border-bottom-right-radius:0;border-top-right-radius:0;'>
 							<input type='button' value='+' title='" . tr('Add User')
-					. "' class='conveneAddUserButton$i btn btn-primary' /></div>";
-			} else {
-				if ($canEdit) {
-					$result .= "<div class='btn-group'><input class='conveneAddUser$i form-control' value='{$GLOBALS['user']}' disabled='disabled'"
-						.
-						" style='float:left;width:72%;border-bottom-right-radius:0;border-top-right-radius:0;'>" .
-						"<input type='button' value='+' title='" . tr('Add User') .
-						"' class='conveneAddUserButton$i btn btn-primary' /></div>";
-				}
-			}
-		}
-		$result .= "</td>";
-	}
-	//end add new user and votes
+                    . "' class='conveneAddUserButton$i btn btn-primary' /></div>";
+            } else {
+                if ($canEdit) {
+                    $result .= "<div class='btn-group'><input class='conveneAddUser$i form-control' value='{$GLOBALS['user']}' disabled='disabled'"
+                        .
+                        " style='float:left;width:72%;border-bottom-right-radius:0;border-top-right-radius:0;'>" .
+                        "<input type='button' value='+' title='" . tr('Add User') .
+                        "' class='conveneAddUserButton$i btn btn-primary' /></div>";
+                }
+            }
+        }
+        $result .= "</td>";
+    }
+    //end add new user and votes
 
 
-	//start last row with auto selected date(s)
-	$lastRow = "";
-	foreach ($votes as $stamp => $total) {
-		$pic = "";
-		$selectedDateClass = "";
-		if ($total == $votes[$topVoteStamp]) {
-			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'alert-success tips', 'ititle' => ':' . tr("Selected Date")], $smarty->getEmptyInternalTemplate()) : "");
-			if ($canEdit && $votes[$topVoteStamp] >= $minvotes) {
-				$pic .= "<a class='btn btn-success btn-sm mx-1 text-white' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid'>"
-					. smarty_function_icon(['name' => 'calendar', 'iclass' => 'tips', 'ititle' => ':' . tr("Add as Calendar Event")], $smarty->getEmptyInternalTemplate())
-					. "</a>";
-			}
-			$selectedDateClass = " alert-success";
-		}
+    //start last row with auto selected date(s)
+    $lastRow = "";
+    foreach ($votes as $stamp => $total) {
+        $pic = "";
+        $selectedDateClass = "";
+        if ($total == $votes[$topVoteStamp]) {
+            $pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'alert-success tips', 'ititle' => ':' . tr("Selected Date")], $smarty->getEmptyInternalTemplate()) : "");
+            if ($canEdit && $votes[$topVoteStamp] >= $minvotes) {
+                $pic .= "<a class='btn btn-success btn-sm mx-1 text-white' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid'>"
+                    . smarty_function_icon(['name' => 'calendar', 'iclass' => 'tips', 'ititle' => ':' . tr("Add as Calendar Event")], $smarty->getEmptyInternalTemplate())
+                    . "</a>";
+            }
+            $selectedDateClass = " alert-success";
+        }
 
-		$lastRow .= "<td class='align-middle conveneFooter$selectedDateClass'><div class='align-items-center d-flex justify-content-center'>" . $total . "&nbsp;$pic</div></td>";
-	}
-	$result .= $lastRow;
+        $lastRow .= "<td class='align-middle conveneFooter$selectedDateClass'><div class='align-items-center d-flex justify-content-center'>" . $total . "&nbsp;$pic</div></td>";
+    }
+    $result .= $lastRow;
 
-	$result .= "</tr>";
-	//end last row with auto selected date(s)
-	$smarty->loadPlugin('smarty_function_ticket');
-	$ticket = smarty_function_ticket(['mode' => 'get'], $smarty->getEmptyInternalTemplate());
+    $result .= "</tr>";
+    //end last row with auto selected date(s)
+    $smarty->loadPlugin('smarty_function_ticket');
+    $ticket = smarty_function_ticket(['mode' => 'get'], $smarty->getEmptyInternalTemplate());
 
 
-	$result = <<<FORM
+    $result = <<<FORM
 			<form id='pluginConvene$i'>
 				<input type="hidden" id="convene-ticket" name="ticket" value="$ticket">
 			    <div class="table-responsive">
@@ -408,24 +412,24 @@ function wikiplugin_convene($data, $params)
 			</form>
 FORM;
 
-	$conveneData = json_encode(
-		[
-			"dates" => $data['dates'],
-			"users" => $users,
-			"votes" => $votes,
-			"topVote" => $votes[$topVoteStamp],
-			"rows" => $rows,
-			"data" => $dataString,
-		]
-	);
+    $conveneData = json_encode(
+        [
+            "dates" => $data['dates'],
+            "users" => $users,
+            "votes" => $votes,
+            "topVote" => $votes[$topVoteStamp],
+            "rows" => $rows,
+            "data" => $dataString,
+        ]
+    );
 
-	$n = '\n';
-	$regexN = '/[\r\n]+/g';
+    $n = '\n';
+    $regexN = '/[\r\n]+/g';
 
 
-	$headerlib->add_jq_onready(
-		/** @lang JavaScript */
-		<<<JQ
+    $headerlib->add_jq_onready(
+        /** @lang JavaScript */
+        <<<JQ
 
 		var convene$i = $.extend({
 			fromBlank: function(user, date) {
@@ -816,10 +820,10 @@ FORM;
 		};
 		initConvene$i();
 JQ
-	);
+    );
 
-	return
-	<<<RETURN
+    return
+    <<<RETURN
 ~np~
 	<div class="card">
 		<div class="card-header">

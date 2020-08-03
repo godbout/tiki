@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,13 +10,13 @@
 // the behavior of the TikiImporter_Wiki::insertPage()
 global $page;
 $page = ['revisions' => [
-				  0 => [
-					  'minor' => false,
-					  'lastModif' => 1123887605,
-					  'user' => 'Igordebraga',
-					  'ip' => '0.0.0.0',
-					  'comment' => '',
-					  'data' => 'lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do brasil.
+                  0 => [
+                      'minor' => false,
+                      'lastModif' => 1123887605,
+                      'user' => 'Igordebraga',
+                      'ip' => '0.0.0.0',
+                      'comment' => '',
+                      'data' => 'lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do brasil.
 
 
 *((COC))
@@ -24,13 +25,13 @@ $page = ['revisions' => [
 *((UNIVERSO)){{esboço-educação}} ((Categoria:Educação))
 
                   '],
-				  1 => [
-					  'minor' => false,
-					  'lastModif' => 1130805792,
-					  'user' => 'Martiniano Hilário',
-					  'ip' => '0.0.0.0',
-					  'comment' => '',
-					  'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
+                  1 => [
+                      'minor' => false,
+                      'lastModif' => 1130805792,
+                      'user' => 'Martiniano Hilário',
+                      'ip' => '0.0.0.0',
+                      'comment' => '',
+                      'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
 
 
 *((COC))
@@ -39,13 +40,13 @@ $page = ['revisions' => [
 *((UNIVERSO)){{mínimo}} ((Categoria:Educação))
 
                   '],
-				  2 => [
-					  'minor' => false,
-					  'lastModif' => 1137345461,
-					  'ip' => '201.24.14.135',
-					  'user' => 'anonymous',
-					  'comment' => '',
-					  'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
+                  2 => [
+                      'minor' => false,
+                      'lastModif' => 1137345461,
+                      'ip' => '201.24.14.135',
+                      'user' => 'anonymous',
+                      'comment' => '',
+                      'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
 
 
 *((COC))
@@ -56,13 +57,13 @@ $page = ['revisions' => [
 
 
                   '],
-				  3 => [
-					  'minor' => false,
-					  'lastModif' => 1138451599,
-					  'ip' => '201.24.54.212',
-					  'user' => 'anonymous',
-					  'comment' => '',
-					  'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
+                  3 => [
+                      'minor' => false,
+                      'lastModif' => 1138451599,
+                      'ip' => '201.24.54.212',
+                      'user' => 'anonymous',
+                      'comment' => '',
+                      'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
 
 
 *((COC))
@@ -73,13 +74,13 @@ $page = ['revisions' => [
 
 
                   '],
-				  4 => [
-					  'minor' => false,
-					  'lastModif' => 1145870372,
-					  'user' => 'Martiniano Hilário',
-					  'ip' => '0.0.0.0',
-					  'comment' => 'recat',
-					  'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
+                  4 => [
+                      'minor' => false,
+                      'lastModif' => 1145870372,
+                      'user' => 'Martiniano Hilário',
+                      'ip' => '0.0.0.0',
+                      'comment' => 'recat',
+                      'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
 
 
 *((COC))
@@ -90,13 +91,13 @@ $page = ['revisions' => [
 
 
                   '],
-				  5 => [
-					  'minor' => 1,
-					  'lastModif' => 1150287386,
-					  'user' => 'Rui Silva',
-					  'ip' => '0.0.0.0',
-					  'comment' => 'tirado link para pág. a eliminar',
-					  'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
+                  5 => [
+                      'minor' => 1,
+                      'lastModif' => 1150287386,
+                      'user' => 'Rui Silva',
+                      'ip' => '0.0.0.0',
+                      'comment' => 'tirado link para pág. a eliminar',
+                      'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
 
 
 *((COC))
@@ -106,13 +107,13 @@ $page = ['revisions' => [
 
 
                   '],
-				  6 => [
-					  'minor' => false,
-					  'lastModif' => 1226515380,
-					  'user' => 'LijeBot',
-					  'ip' => '0.0.0.0',
-					  'comment' => 'clean up, Replaced: [Categoria:e → [[Categoria:E',
-					  'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
+                  6 => [
+                      'minor' => false,
+                      'lastModif' => 1226515380,
+                      'user' => 'LijeBot',
+                      'ip' => '0.0.0.0',
+                      'comment' => 'clean up, Replaced: [Categoria:e → [[Categoria:E',
+                      'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
 
 
 *((COC))
@@ -122,13 +123,13 @@ $page = ['revisions' => [
 
 
                   '],
-				  7 => [
-					  'minor' => false,
-					  'lastModif' => 1234172034,
-					  'ip' => '189.41.74.5',
-					  'user' => 'anonymous',
-					  'comment' => '',
-					  'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
+                  7 => [
+                      'minor' => false,
+                      'lastModif' => 1234172034,
+                      'ip' => '189.41.74.5',
+                      'user' => 'anonymous',
+                      'comment' => '',
+                      'data' => '{{Portal de Educação}}Lista de __redes de ensino__, com diversas ((escola))s e universidades ao redor do Brasil.
 
 
 *((COC))
@@ -139,6 +140,6 @@ $page = ['revisions' => [
 
 
                   '],
-			  ],
-			  'name' => 'Redes de ensino'
+              ],
+              'name' => 'Redes de ensino'
 ];

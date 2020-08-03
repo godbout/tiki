@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,319 +10,319 @@
  * @package   Tiki
  * @subpackage    Language
  */
-
 class Language_GetStrings
 {
-	/**
-	 * Array of file types objects.
-	 *
-	 * @var array
-	 */
-	protected $fileTypes = [];
+    /**
+     * Array of file types objects.
+     *
+     * @var array
+     */
+    protected $fileTypes = [];
 
-	/**
-	 * Array of valid extensions. Extracted
-	 * from $this->fileTypes.
-	 *
-	 * @var array
-	 */
-	protected $extensions = [];
+    /**
+     * Array of valid extensions. Extracted
+     * from $this->fileTypes.
+     *
+     * @var array
+     */
+    protected $extensions = [];
 
-	/**
-	 * List of languages whose language.php
-	 * files will be updated. If empty all
-	 * language.php files are updated.
-	 *
-	 * @var array
-	 */
-	protected $languages = [];
+    /**
+     * List of languages whose language.php
+     * files will be updated. If empty all
+     * language.php files are updated.
+     *
+     * @var array
+     */
+    protected $languages = [];
 
-	/**
-	 * Name of the file that contain the
-	 * translations.
-	 * @var string
-	 */
-	protected $fileName = 'language.php';
+    /**
+     * Name of the file that contain the
+     * translations.
+     * @var string
+     */
+    protected $fileName = 'language.php';
 
-	/**
-	 * @var Language_CollectFiles
-	 */
-	public $collectFiles;
+    /**
+     * @var Language_CollectFiles
+     */
+    public $collectFiles;
 
-	/**
-	 * @var Language_WriteFile_Factory
-	 */
-	public $writeFileFactory;
+    /**
+     * @var Language_WriteFile_Factory
+     */
+    public $writeFileFactory;
 
-	/**
-	 * Whether file paths where the string was found
-	 * is included or not in langauge.php files. Default
-	 * is false.
-	 *
-	 * @var bool
-	 */
-	protected $outputFiles = false;
+    /**
+     * Whether file paths where the string was found
+     * is included or not in langauge.php files. Default
+     * is false.
+     *
+     * @var bool
+     */
+    protected $outputFiles = false;
 
-	/**
-	 * Directory used as base to search for strings
-	 * and to construct paths to language.php files.
-	 * @var string
-	 */
-	protected $baseDir;
+    /**
+     * Directory used as base to search for strings
+     * and to construct paths to language.php files.
+     * @var string
+     */
+    protected $baseDir;
 
-	/**
-	 * Class construct.
-	 *
-	 * The following are valid $options:
-	 *   - 'outputFiles' => true: will write to language.php file the path
-	 *     to the files where the string was found. Default is false.
-	 *   - 'lang' => 'langCode' or 'lang' => array(list of lang codes):
-	 *     language code or list of language codes whose language.php will be
-	 *     updated. If empty, all language.php files are updated.
-	 *
-	 * @param Language_CollectFiles $collectFiles
-	 * @param Language_WriteFile_Factory $writeFileFactory factory to create Language_WriteFile objects
-	 * @param array $options list of options to control object behavior (see above)
-	 * @return null
-	 */
-	public function __construct(Language_CollectFiles $collectFiles, Language_WriteFile_Factory $writeFileFactory, array $options = null)
-	{
-		$this->collectFiles = $collectFiles;
-		$this->writeFileFactory = $writeFileFactory;
+    /**
+     * Class construct.
+     *
+     * The following are valid $options:
+     *   - 'outputFiles' => true: will write to language.php file the path
+     *     to the files where the string was found. Default is false.
+     *   - 'lang' => 'langCode' or 'lang' => array(list of lang codes):
+     *     language code or list of language codes whose language.php will be
+     *     updated. If empty, all language.php files are updated.
+     *
+     * @param Language_CollectFiles $collectFiles
+     * @param Language_WriteFile_Factory $writeFileFactory factory to create Language_WriteFile objects
+     * @param array $options list of options to control object behavior (see above)
+     * @return null
+     */
+    public function __construct(Language_CollectFiles $collectFiles, Language_WriteFile_Factory $writeFileFactory, array $options = null)
+    {
+        $this->collectFiles = $collectFiles;
+        $this->writeFileFactory = $writeFileFactory;
 
-		if (isset($options['outputFiles'])) {
-			$this->outputFiles = true;
-		}
+        if (isset($options['outputFiles'])) {
+            $this->outputFiles = true;
+        }
 
-		if (isset($options['baseDir'])) {
-			if (! is_dir($options['baseDir'])) {
-				throw new Language_Exception("Invalid directory {$options['baseDir']}.");
-			}
+        if (isset($options['baseDir'])) {
+            if (! is_dir($options['baseDir'])) {
+                throw new Language_Exception("Invalid directory {$options['baseDir']}.");
+            }
 
-			$this->baseDir = $options['baseDir'];
-		} else {
-			$this->baseDir = getcwd();
-		}
+            $this->baseDir = $options['baseDir'];
+        } else {
+            $this->baseDir = getcwd();
+        }
 
-		if (isset($options['fileName'])) {
-			$this->fileName = $options['fileName'];
-		}
+        if (isset($options['fileName'])) {
+            $this->fileName = $options['fileName'];
+        }
 
-		if (isset($options['lang'])) {
-			$this->setLanguages($options['lang']);
-		} else {
-			$this->setLanguages();
-		}
-	}
+        if (isset($options['lang'])) {
+            $this->setLanguages($options['lang']);
+        } else {
+            $this->setLanguages();
+        }
+    }
 
-	/**
-	 * Getter for $this->extensions
-	 * @return array
-	 */
-	public function getExtensions()
-	{
-		return $this->extensions;
-	}
+    /**
+     * Getter for $this->extensions
+     * @return array
+     */
+    public function getExtensions()
+    {
+        return $this->extensions;
+    }
 
-	/**
-	 * Getter for $this->fileTypes
-	 * @return array
-	 */
-	public function getFileTypes()
-	{
-		return $this->fileTypes;
-	}
+    /**
+     * Getter for $this->fileTypes
+     * @return array
+     */
+    public function getFileTypes()
+    {
+        return $this->fileTypes;
+    }
 
-	/**
-	 * Add a file type object to $this->fileTypes
-	 * and update $this->extensions.
-	 *
-	 * @param $fileType Language_FileType
-	 * @return null
-	 * @throws Language_Exception if type being added already exists
-	 */
-	public function addFileType(Language_FileType $fileType)
-	{
-		if (in_array($fileType, $this->fileTypes)) {
-			$className = get_class($fileType);
-			throw new Language_Exception("Type $className already added.");
-		}
+    /**
+     * Add a file type object to $this->fileTypes
+     * and update $this->extensions.
+     *
+     * @param $fileType Language_FileType
+     * @throws Language_Exception if type being added already exists
+     * @return null
+     */
+    public function addFileType(Language_FileType $fileType)
+    {
+        if (in_array($fileType, $this->fileTypes)) {
+            $className = get_class($fileType);
 
-		$this->fileTypes[] = $fileType;
-		$this->extensions = array_merge($this->extensions, $fileType->getExtensions());
-	}
+            throw new Language_Exception("Type $className already added.");
+        }
 
-	/**
-	 * Setter method $this->languages
-	 * property.
-	 *
-	 * @param array|string $languages
-	 * @return null
-	 */
-	public function setLanguages($languages = null)
-	{
-		if (is_null($languages)) {
-			$languages = $this->getAllLanguages();
-		} else {
-			if (is_string($languages)) {
-				$languages = [$languages];
-			}
+        $this->fileTypes[] = $fileType;
+        $this->extensions = array_merge($this->extensions, $fileType->getExtensions());
+    }
 
-			foreach ($languages as $lang) {
-				if (! file_exists($this->baseDir . '/lang/' . $lang)) {
-					throw new Language_Exception('Invalid language code.');
-				}
-			}
-		}
+    /**
+     * Setter method $this->languages
+     * property.
+     *
+     * @param array|string $languages
+     * @return null
+     */
+    public function setLanguages($languages = null)
+    {
+        if (is_null($languages)) {
+            $languages = $this->getAllLanguages();
+        } else {
+            if (is_string($languages)) {
+                $languages = [$languages];
+            }
 
-		$this->languages = $languages;
-	}
+            foreach ($languages as $lang) {
+                if (! file_exists($this->baseDir . '/lang/' . $lang)) {
+                    throw new Language_Exception('Invalid language code.');
+                }
+            }
+        }
 
-	/**
-	 * Getter method for $this->languages.
-	 *
-	 * @return array
-	 */
-	public function getLanguages()
-	{
-		return $this->languages;
-	}
+        $this->languages = $languages;
+    }
 
-	/**
-	 * Get English strings from a given file.
-	 *
-	 * @param string $filePath path to file
-	 * @return array collected strings
-	 */
-	public function collectStrings($filePath)
-	{
-		if (empty($this->fileTypes)) {
-			throw new Language_Exception('No Language_FileType found.');
-		}
+    /**
+     * Getter method for $this->languages.
+     *
+     * @return array
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
 
-		$strings = [];
-		$fileExtension = strrchr($filePath, '.');
+    /**
+     * Get English strings from a given file.
+     *
+     * @param string $filePath path to file
+     * @return array collected strings
+     */
+    public function collectStrings($filePath)
+    {
+        if (empty($this->fileTypes)) {
+            throw new Language_Exception('No Language_FileType found.');
+        }
 
-		if (! $fileExtension || $fileExtension == '.') {
-			throw new Language_Exception('Could not determine file extension.');
-		}
+        $strings = [];
+        $fileExtension = strrchr($filePath, '.');
 
-		foreach ($this->fileTypes as $fileType) {
-			if (in_array($fileExtension, $fileType->getExtensions())) {
-				$file = file_get_contents($filePath);
+        if (! $fileExtension || $fileExtension == '.') {
+            throw new Language_Exception('Could not determine file extension.');
+        }
 
-				foreach ($fileType->getCleanupRegexes() as $regex => $replacement) {
-					$file = preg_replace($regex, $replacement, $file);
-				}
+        foreach ($this->fileTypes as $fileType) {
+            if (in_array($fileExtension, $fileType->getExtensions())) {
+                $file = file_get_contents($filePath);
 
-				foreach ($fileType->getRegexes() as $postProcess => $regex) {
-					$matches = [];
-					preg_match_all($regex, $file, $matches);
-					$newStrings = $matches[1];
+                foreach ($fileType->getCleanupRegexes() as $regex => $replacement) {
+                    $file = preg_replace($regex, $replacement, $file);
+                }
 
-					// $postProcess can be used to call a file type specific method for each regular expression
-					// used for PHP file type to perform different clean up for single quoted and double quoted strings
-					if (method_exists($fileType, $postProcess)) {
-						$newStrings = $fileType->$postProcess($newStrings);
-					}
+                foreach ($fileType->getRegexes() as $postProcess => $regex) {
+                    $matches = [];
+                    preg_match_all($regex, $file, $matches);
+                    $newStrings = $matches[1];
 
-					$strings = array_merge($strings, $newStrings);
-				}
+                    // $postProcess can be used to call a file type specific method for each regular expression
+                    // used for PHP file type to perform different clean up for single quoted and double quoted strings
+                    if (method_exists($fileType, $postProcess)) {
+                        $newStrings = $fileType->$postProcess($newStrings);
+                    }
 
-				break;
-			}
-		}
+                    $strings = array_merge($strings, $newStrings);
+                }
 
-		return array_values(array_unique($strings));
-	}
+                break;
+            }
+        }
 
-	/**
-	 * Loop through a list of files and
-	 * calls $this->collectStrings() for each
-	 * file. Return a list of translatable strings
-	 * found.
-	 *
-	 * @param array $files
-	 * @return array $strings translatable strings found in scanned files
-	 */
-	public function scanFiles($files)
-	{
-		$strings = [];
+        return array_values(array_unique($strings));
+    }
 
-		// strings collected per file
-		$filesStrings = [];
+    /**
+     * Loop through a list of files and
+     * calls $this->collectStrings() for each
+     * file. Return a list of translatable strings
+     * found.
+     *
+     * @param array $files
+     * @return array $strings translatable strings found in scanned files
+     */
+    public function scanFiles($files)
+    {
+        $strings = [];
 
-		if (! empty($files)) {
-			foreach ($files as $file) {
-				$filesStrings[$file] = $this->collectStrings($file);
-			}
-		}
+        // strings collected per file
+        $filesStrings = [];
 
-		// join strings collected per file into a single array
-		// and remove duplicated strings
-		foreach ($filesStrings as $file => $fileStrings) {
-			foreach ($fileStrings as $str) {
-				if (! isset($strings[$str])) {
-					$string = ['name' => $str];
+        if (! empty($files)) {
+            foreach ($files as $file) {
+                $filesStrings[$file] = $this->collectStrings($file);
+            }
+        }
 
-					if ($this->outputFiles) {
-						// $string['files'] is an array with all the files where the string was found
-						$string['files'] = [$file];
-					}
+        // join strings collected per file into a single array
+        // and remove duplicated strings
+        foreach ($filesStrings as $file => $fileStrings) {
+            foreach ($fileStrings as $str) {
+                if (! isset($strings[$str])) {
+                    $string = ['name' => $str];
 
-					$strings[$str] = $string;
-				} else {
-					if ($this->outputFiles) {
-						$strings[$str]['files'][] = $file;
-					}
-				}
-			}
-		}
+                    if ($this->outputFiles) {
+                        // $string['files'] is an array with all the files where the string was found
+                        $string['files'] = [$file];
+                    }
 
-		return $strings;
-	}
+                    $strings[$str] = $string;
+                } else {
+                    if ($this->outputFiles) {
+                        $strings[$str]['files'][] = $file;
+                    }
+                }
+            }
+        }
 
-	public function writeToFiles($strings)
-	{
-		foreach ($this->languages as $lang) {
-			$filePath = $this->baseDir . '/lang/' . $lang . '/' . $this->fileName;
-			$writeFile = $this->writeFileFactory->factory($filePath);
-			$writeFile->writeStringsToFile($strings, $this->outputFiles);
-		}
-	}
+        return $strings;
+    }
 
-	/**
-	 * Return all available languages (check for the
-	 * existence of a language file).
-	 * @return array all language codes
-	 */
-	protected function getAllLanguages()
-	{
-		$dirs = dir($this->baseDir . '/lang');
+    public function writeToFiles($strings)
+    {
+        foreach ($this->languages as $lang) {
+            $filePath = $this->baseDir . '/lang/' . $lang . '/' . $this->fileName;
+            $writeFile = $this->writeFileFactory->factory($filePath);
+            $writeFile->writeStringsToFile($strings, $this->outputFiles);
+        }
+    }
 
-		while (false !== ($entry = $dirs->read())) {
-			if ($entry == '.' || $entry == '..') {
-				continue;
-			}
+    /**
+     * Return all available languages (check for the
+     * existence of a language file).
+     * @return array all language codes
+     */
+    protected function getAllLanguages()
+    {
+        $dirs = dir($this->baseDir . '/lang');
 
-			$path = $dirs->path . '/' . $entry;
-			if (is_dir($path) && file_exists($path . '/' . $this->fileName)) {
-				$languages[] = $entry;
-			}
-		}
+        while (false !== ($entry = $dirs->read())) {
+            if ($entry == '.' || $entry == '..') {
+                continue;
+            }
 
-		return $languages;
-	}
+            $path = $dirs->path . '/' . $entry;
+            if (is_dir($path) && file_exists($path . '/' . $this->fileName)) {
+                $languages[] = $entry;
+            }
+        }
 
-	public function run()
-	{
-		if (empty($this->fileTypes)) {
-			throw new Language_Exception('No Language_FileType found.');
-		}
+        return $languages;
+    }
 
-		$this->collectFiles->setExtensions($this->extensions);
-		$files = $this->collectFiles->run($this->baseDir);
-		$strings = $this->scanFiles($files);
-		$this->writeToFiles($strings);
-	}
+    public function run()
+    {
+        if (empty($this->fileTypes)) {
+            throw new Language_Exception('No Language_FileType found.');
+        }
+
+        $this->collectFiles->setExtensions($this->extensions);
+        $files = $this->collectFiles->run($this->baseDir);
+        $strings = $this->scanFiles($files);
+        $this->writeToFiles($strings);
+    }
 }

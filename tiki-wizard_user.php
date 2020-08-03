@@ -9,43 +9,42 @@
 // $Id$
 
 $inputConfiguration = [[
-	   'staticKeyFilters'	=> [
-		   'use-default-prefs'	=> 'alnum', 		// request
-		   'use-changes-wizard' => 'alnum', 		// request
-		   'url'				=> 'relativeurl',	// request
-		   'close'				=> 'alnum',			// post
-		   'showOnLogin'		=> 'alnum',			// post
-		   'wizard_step'		=> 'int',			// post
-		   'stepNr'			=> 'int',			// get
-		   'back'				=> 'alnum',			// post
-	   ],
-	   ['staticKeyFiltersForArrays' => [
-		   'lm_preference' => 'xss',
-	   ]],
-	   [ 'catchAllUnset' => null ],
+       'staticKeyFilters' => [
+           'use-default-prefs' => 'alnum', 		// request
+           'use-changes-wizard' => 'alnum', 		// request
+           'url' => 'relativeurl',	// request
+           'close' => 'alnum',			// post
+           'showOnLogin' => 'alnum',			// post
+           'wizard_step' => 'int',			// post
+           'stepNr' => 'int',			// get
+           'back' => 'alnum',			// post
+       ],
+       ['staticKeyFiltersForArrays' => [
+           'lm_preference' => 'xss',
+       ]],
+       [ 'catchAllUnset' => null ],
    ]];
 
 /**
 $inputConfiguration = [
-	['staticKeyFilters' => [
-		'faqId' => 'int',
-		'sort_mode' => 'alpha',
-		'find' => 'text',
-		'sugg' => 'word',
-		'suggested_question' => 'text',
-		'suggested_answer' => 'purifier',
-		'print' => 'word']
-	],
-	[ 'catchAllUnset' => null ],
+    ['staticKeyFilters' => [
+        'faqId' => 'int',
+        'sort_mode' => 'alpha',
+        'find' => 'text',
+        'sugg' => 'word',
+        'suggested_question' => 'text',
+        'suggested_answer' => 'purifier',
+        'print' => 'word']
+    ],
+    [ 'catchAllUnset' => null ],
 ];**/
-
 require 'tiki-setup.php';
 
 // User preferences screen
 if ($prefs['feature_wizard_user'] != 'y') {
-	$smarty->assign('msg', tra("This feature is disabled") . ": feature_wizard_user");
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("This feature is disabled") . ": feature_wizard_user");
+    $smarty->display("error.tpl");
+    die;
 }
 $access->check_user($user);
 
@@ -67,14 +66,14 @@ global $user, $prefs;
 $userlib = TikiLib::lib('user');
 $tikilib = TikiLib::lib('tiki');
 if ($prefs['userTracker'] === 'y') {
-	$trklib = TikiLib::lib('trk');
+    $trklib = TikiLib::lib('trk');
 
-	$utid = $userlib->get_tracker_usergroup($user);
+    $utid = $userlib->get_tracker_usergroup($user);
 
-	if (isset($utid['usersTrackerId'])) {
-		$_REQUEST['trackerId'] = $utid['usersTrackerId'];
-		$_REQUEST["itemId"] = $trklib->get_item_id($_REQUEST['trackerId'], $utid['usersFieldId'], $user);
-	}
+    if (isset($utid['usersTrackerId'])) {
+        $_REQUEST['trackerId'] = $utid['usersTrackerId'];
+        $_REQUEST["itemId"] = $trklib->get_item_id($_REQUEST['trackerId'], $utid['usersFieldId'], $user);
+    }
 }
 /// --------------------------------
 
@@ -118,36 +117,36 @@ $stepNr = 0;
 $reqStepNr = $wizardlib->wizard_stepNr;
 $homepageUrl = $_REQUEST['url'];
 foreach ($pages as $page) {
-	global $base_url;
-	$cssClasses = '';
+    global $base_url;
+    $cssClasses = '';
 
-	// Start the user wizard
-	$url = $base_url . 'tiki-wizard_user.php?&amp;stepNr=' . $stepNr . '&amp;url=' . rawurlencode($homepageUrl);
+    // Start the user wizard
+    $url = $base_url . 'tiki-wizard_user.php?&amp;stepNr=' . $stepNr . '&amp;url=' . rawurlencode($homepageUrl);
 
-	$cnt = $stepNr + 1;
-	if ($cnt <= 9) {
-		$cnt = '&nbsp;&nbsp;' . $cnt;
-	}
-	$toc .= '<li><a ';
-	$cssClasses .= 'adminWizardTOCItem ';
-	if ($stepNr == $reqStepNr) {
-		$cssClasses .= 'highlight ';
-	}
-	if (! $page->isVisible()) {
-		$cssClasses .= 'disabledTOCSelection ';
-	}
-	$css = '';
-	if (strlen($cssClasses) > 0) {
-		$css = 'class="' . $cssClasses . '" ';
-	}
-	$toc .= $css;
-	$toc .= 'href="' . $url . '">' . $page->pageTitle() . '</a></li>';
-	$stepNr++;
+    $cnt = $stepNr + 1;
+    if ($cnt <= 9) {
+        $cnt = '&nbsp;&nbsp;' . $cnt;
+    }
+    $toc .= '<li><a ';
+    $cssClasses .= 'adminWizardTOCItem ';
+    if ($stepNr == $reqStepNr) {
+        $cssClasses .= 'highlight ';
+    }
+    if (! $page->isVisible()) {
+        $cssClasses .= 'disabledTOCSelection ';
+    }
+    $css = '';
+    if (strlen($cssClasses) > 0) {
+        $css = 'class="' . $cssClasses . '" ';
+    }
+    $toc .= $css;
+    $toc .= 'href="' . $url . '">' . $page->pageTitle() . '</a></li>';
+    $stepNr++;
 }
 $toc .= '</ul>';
 
 if ($reqStepNr > 0) {
-	$smarty->assign('wizard_toc', $toc);
+    $smarty->assign('wizard_toc', $toc);
 }
 
 // disallow robots to index page:

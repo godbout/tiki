@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,60 +8,63 @@
 
 class Math_Formula_Parser
 {
-	function parse($string)
-	{
-		$tokenizer = new Math_Formula_Tokenizer;
-		$tokens = $tokenizer->getTokens($string);
+    public function parse($string)
+    {
+        $tokenizer = new Math_Formula_Tokenizer;
+        $tokens = $tokenizer->getTokens($string);
 
-		$element = $this->getElement($tokens);
+        $element = $this->getElement($tokens);
 
-		if (! empty($tokens)) {
-			throw new Math_Formula_Parser_Exception('Unexpected trailing characters.', $tokens);
-		}
+        if (! empty($tokens)) {
+            throw new Math_Formula_Parser_Exception('Unexpected trailing characters.', $tokens);
+        }
 
-		return $element;
-	}
+        return $element;
+    }
 
-	private function getElement(& $tokens)
-	{
-		$first = array_shift($tokens);
+    private function getElement(& $tokens)
+    {
+        $first = array_shift($tokens);
 
-		if ($first != '(') {
-			array_unshift($tokens, $first);
-			throw new Math_Formula_Parser_Exception(tra('Expecting "("'), $tokens);
-		}
+        if ($first != '(') {
+            array_unshift($tokens, $first);
 
-		$type = array_shift($tokens);
+            throw new Math_Formula_Parser_Exception(tra('Expecting "("'), $tokens);
+        }
 
-		if ($type == '(' || $type == ')') {
-			array_unshift($tokens, $type);
-			throw new Math_Formula_Parser_Exception(tr('Unexpected "%0"', $type), $tokens);
-		}
+        $type = array_shift($tokens);
 
-		$element = new Math_Formula_Element($type);
+        if ($type == '(' || $type == ')') {
+            array_unshift($tokens, $type);
 
-		while (strlen($token = array_shift($tokens)) != 0 && $token != ')') {
-			if ($token == '(') {
-				array_unshift($tokens, $token);
-				$token = $this->getElement($tokens);
+            throw new Math_Formula_Parser_Exception(tr('Unexpected "%0"', $type), $tokens);
+        }
 
-				if ($token->getType() == 'comment') {
-					continue;
-				}
-			}
+        $element = new Math_Formula_Element($type);
 
-			if ($token[0] === '"') {
-				$element->addChild(new Math_Formula_InternalString($token));
-			} else {
-				$element->addChild($token);
-			}
-		}
+        while (strlen($token = array_shift($tokens)) != 0 && $token != ')') {
+            if ($token == '(') {
+                array_unshift($tokens, $token);
+                $token = $this->getElement($tokens);
 
-		if ($token != ')') {
-			array_unshift($tokens, $token);
-			throw new Math_Formula_Parser_Exception(tra('Expecting ")"'), $tokens);
-		}
+                if ($token->getType() == 'comment') {
+                    continue;
+                }
+            }
 
-		return $element;
-	}
+            if ($token[0] === '"') {
+                $element->addChild(new Math_Formula_InternalString($token));
+            } else {
+                $element->addChild($token);
+            }
+        }
+
+        if ($token != ')') {
+            array_unshift($tokens, $token);
+
+            throw new Math_Formula_Parser_Exception(tra('Expecting ")"'), $tokens);
+        }
+
+        return $element;
+    }
 }

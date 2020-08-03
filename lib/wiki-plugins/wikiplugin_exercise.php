@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,109 +8,109 @@
 
 function wikiplugin_exercise_info()
 {
-	return [
-		'name' => tra('Exercise'),
-		'documentation' => tra('PluginExercise'),
-		'description' => tra('Create an exercise/test with questions and grade'),
-		'prefs' => ['wikiplugin_exercise'],
-		'filter' => 'text',
-		'format' => 'html',
-		'iconname' => 'education',
-		'introduced' => 9,
-		'tags' => ['basic'],
-		'params' => [
-			'answer' => [
-				'required' => false,
-				'name' => tr('Answer'),
-				'description' => tr('Used inline to specify the right answer to the question and propose an input field.'),
-				'since' => '9.0',
-				'filter' => 'text',
-			],
-			'incorrect' => [
-				'required' => false,
-				'name' => tr('Incorrect'),
-				'description' => tr('Incorrect answer to suggest. Several incorrect answers can be suggested (separated by "+")'),
-				'since' => '9.0',
-				'filter' => 'text',
-			],
-		],
-	];
+    return [
+        'name' => tra('Exercise'),
+        'documentation' => tra('PluginExercise'),
+        'description' => tra('Create an exercise/test with questions and grade'),
+        'prefs' => ['wikiplugin_exercise'],
+        'filter' => 'text',
+        'format' => 'html',
+        'iconname' => 'education',
+        'introduced' => 9,
+        'tags' => ['basic'],
+        'params' => [
+            'answer' => [
+                'required' => false,
+                'name' => tr('Answer'),
+                'description' => tr('Used inline to specify the right answer to the question and propose an input field.'),
+                'since' => '9.0',
+                'filter' => 'text',
+            ],
+            'incorrect' => [
+                'required' => false,
+                'name' => tr('Incorrect'),
+                'description' => tr('Incorrect answer to suggest. Several incorrect answers can be suggested (separated by "+")'),
+                'since' => '9.0',
+                'filter' => 'text',
+            ],
+        ],
+    ];
 }
 
 function wikiplugin_exercise($data, $params)
 {
-	static $nextId = 1;
-	$smarty = TikiLib::lib('smarty');
-	$smarty->loadPlugin('smarty_modifier_escape');
+    static $nextId = 1;
+    $smarty = TikiLib::lib('smarty');
+    $smarty->loadPlugin('smarty_modifier_escape');
 
-	$params = new JitFilter($params);
-	$answer = $params->answer->text();
+    $params = new JitFilter($params);
+    $answer = $params->answer->text();
 
-	if (isset(TikiLib::lib('parser')->option['indexing']) && TikiLib::lib('parser')->option['indexing']) {
-		return "{$params->answer->text()} {$params->incorrect->text()}";
-	}
+    if (isset(TikiLib::lib('parser')->option['indexing']) && TikiLib::lib('parser')->option['indexing']) {
+        return "{$params->answer->text()} {$params->incorrect->text()}";
+    }
 
-	if ($answer) {
-		$escapedAnswer = smarty_modifier_escape($answer);
-		$escapedId = smarty_modifier_escape('exercise-' . $nextId++);
+    if ($answer) {
+        $escapedAnswer = smarty_modifier_escape($answer);
+        $escapedId = smarty_modifier_escape('exercise-' . $nextId++);
 
-		if ($incorrect = $params->incorrect->text()) {
-			$exercises = wikiplugin_exercise_parse_argument($incorrect);
-			wikiplugin_exercise_process_group($exercises, '#' . $escapedId);
-		}
+        if ($incorrect = $params->incorrect->text()) {
+            $exercises = wikiplugin_exercise_parse_argument($incorrect);
+            wikiplugin_exercise_process_group($exercises, '#' . $escapedId);
+        }
 
-		return <<<HTML
+        return <<<HTML
 <span id="$escapedId" class="exercise-input" data-answer="$escapedAnswer">___________</span>
 HTML;
-	} else {
-		$exercises = wikiplugin_exercise_parse_data($data);
-		wikiplugin_exercise_process_group($exercises);
-		return wikiplugin_exercise_finalize();
-	}
+    }
+    $exercises = wikiplugin_exercise_parse_data($data);
+    wikiplugin_exercise_process_group($exercises);
+
+    return wikiplugin_exercise_finalize();
 }
 
 function wikiplugin_exercise_parse_data($data)
 {
-	$exercises = [];
-	$key = -1;
+    $exercises = [];
+    $key = -1;
 
-	foreach (explode("\n", $data) as $line) {
-		$line = trim($line);
+    foreach (explode("\n", $data) as $line) {
+        $line = trim($line);
 
-		if (empty($line)) {
-			continue;
-		}
+        if (empty($line)) {
+            continue;
+        }
 
-		if (substr($line, 0, 3) === '---') {
-			$key = count($exercises);
-			$exercises[] = [];
-		} elseif ($key !== -1) {
-			$parts = array_map('trim', explode(':', $line, 2));
-			$exercises[$key][] = ['option' => array_shift($parts), 'justification' => array_shift($parts)];
-		}
-	}
+        if (substr($line, 0, 3) === '---') {
+            $key = count($exercises);
+            $exercises[] = [];
+        } elseif ($key !== -1) {
+            $parts = array_map('trim', explode(':', $line, 2));
+            $exercises[$key][] = ['option' => array_shift($parts), 'justification' => array_shift($parts)];
+        }
+    }
 
-	return $exercises;
+    return $exercises;
 }
 
 function wikiplugin_exercise_parse_argument($data)
 {
-	$out = [];
-	$answers = explode('+', $data);
-	foreach ($answers as $possibility) {
-		if (preg_match('/^\s*([^\(]+)(:\s*\(\s*(.*)\s*\))?\s*/', $possibility, $parts)) {
-			$out[] = ['option' => $parts[1], 'justification' => isset($parts[2]) ? $parts[2] : false];
-		}
-	}
+    $out = [];
+    $answers = explode('+', $data);
+    foreach ($answers as $possibility) {
+        if (preg_match('/^\s*([^\(]+)(:\s*\(\s*(.*)\s*\))?\s*/', $possibility, $parts)) {
+            $out[] = ['option' => $parts[1], 'justification' => isset($parts[2]) ? $parts[2] : false];
+        }
+    }
 
-	return [$out];
+    return [$out];
 }
 
 function wikiplugin_exercise_process_group($exercises, $scope = '.exercise-input')
 {
-	$headerlib = TikiLib::lib('header');
+    $headerlib = TikiLib::lib('header');
 
-	$js = <<<JS
+    $js = <<<JS
 $.exerciseGroup = function (exercises, scope) {
 	var shuffle = function(o){
 	for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
@@ -141,23 +142,23 @@ $.exerciseGroup = function (exercises, scope) {
 	});
 };
 JS;
-	$headerlib->add_js($js);
+    $headerlib->add_js($js);
 
-	$exercises = json_encode($exercises);
-	$headerlib->add_js("$.exerciseGroup($exercises, '$scope');");
+    $exercises = json_encode($exercises);
+    $headerlib->add_js("$.exerciseGroup($exercises, '$scope');");
 }
 
 function wikiplugin_exercise_finalize()
 {
-	$smarty = TikiLib::lib('smarty');
-	$smarty->loadPlugin('smarty_function_icon');
+    $smarty = TikiLib::lib('smarty');
+    $smarty->loadPlugin('smarty_function_icon');
 
-	$checkYourScore = smarty_modifier_escape(tr('Check your score'));
-	$yourScoreIs = tr('You scored %0 out of %1', '~SCORE~', '~TOTAL~');
-	$checkIcon = smarty_function_icon(['_id' => 'tick', 'title' => tr('Good!')], $smarty->getEmptyInternalTemplate());
-	$crossIcon = smarty_function_icon(['_id' => 'cross', 'title' => tr('Oops!')], $smarty->getEmptyInternalTemplate());
+    $checkYourScore = smarty_modifier_escape(tr('Check your score'));
+    $yourScoreIs = tr('You scored %0 out of %1', '~SCORE~', '~TOTAL~');
+    $checkIcon = smarty_function_icon(['_id' => 'tick', 'title' => tr('Good!')], $smarty->getEmptyInternalTemplate());
+    $crossIcon = smarty_function_icon(['_id' => 'cross', 'title' => tr('Oops!')], $smarty->getEmptyInternalTemplate());
 
-	$js = <<<JS
+    $js = <<<JS
 $.exerciseFinalize = function (random) {
 	$('.exercise-form').filter(':first').removeClass('exercise-form').each(function (k, form) {
 		var label = $('p', form).hide().text(), elements = $('.exercise-input.done:not(.complete)').addClass('complete');
@@ -194,14 +195,14 @@ $.exerciseFinalize = function (random) {
 	});
 };
 JS;
-	$headerlib = TikiLib::lib('header');
-	$headerlib->add_js($js);
+    $headerlib = TikiLib::lib('header');
+    $headerlib->add_js($js);
 
-	static $id = 0;
-	++$id;
-	$headerlib->add_js("$.exerciseFinalize($id);");
+    static $id = 0;
+    ++$id;
+    $headerlib->add_js("$.exerciseFinalize($id);");
 
-	return <<<HTML
+    return <<<HTML
 <form class="exercise-form" method="get" action="#">
 	<p>$yourScoreIs</p>
 	<input type="submit" class="btn btn-primary btn-sm" value="$checkYourScore"/>

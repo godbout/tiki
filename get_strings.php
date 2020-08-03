@@ -33,12 +33,11 @@
  *
  *
  */
-
 echo "\nUse of this file is now deprecated. use php console.php translation:getstrings instead.\n";
 
 if (php_sapi_name() != 'cli') {
-	require_once('tiki-setup.php');
-	$access->check_permission('tiki_p_admin');
+    require_once('tiki-setup.php');
+    $access->check_permission('tiki_p_admin');
 }
 
 require_once('lib/init/initlib.php');
@@ -52,47 +51,47 @@ $options = [];
 $request = new Tiki_Request();
 
 if ($request->hasProperty('lang')) {
-	$options['lang'] = $request->getProperty('lang');
+    $options['lang'] = $request->getProperty('lang');
 }
 
 if ($request->hasProperty('outputFiles')) {
-	$options['outputFiles'] = $request->getProperty('outputFiles');
+    $options['outputFiles'] = $request->getProperty('outputFiles');
 }
 
 $excludeDirs = [
-	'dump' , 'img', 'lang', 'bin', 'installer/schema',
-	'vendor_bundled', 'vendor', 'vendor_extra', 'vendor_custom',
-	 'lib/test',	'temp', 'permissioncheck',
-	'storage',	'tiki_tests', 'doc', 'db','lib/openlayers','tests', 'modules/cache'
+    'dump' , 'img', 'lang', 'bin', 'installer/schema',
+    'vendor_bundled', 'vendor', 'vendor_extra', 'vendor_custom',
+     'lib/test',	'temp', 'permissioncheck',
+    'storage',	'tiki_tests', 'doc', 'db', 'lib/openlayers', 'tests', 'modules/cache'
 ];
 $excludeDirs = array_filter($excludeDirs, 'is_dir'); // only keep in the exclude list if the dir exists
 
 // Files are processed after the base directory, so adding a file here allows to scan it even if its directory was excluded.
 $includeFiles = [
-	'./lang/langmapping.php', './img/flags/flagnames.php'
+    './lang/langmapping.php', './img/flags/flagnames.php'
 ];
 
 // command-line only options
 if (php_sapi_name() == 'cli') {
-	if ($request->hasProperty('baseDir')) {
-		$options['baseDir'] = $request->getProperty('baseDir');
+    if ($request->hasProperty('baseDir')) {
+        $options['baseDir'] = $request->getProperty('baseDir');
 
-		// when a custom base dir is set, default $includeFiles and $excludeDirs are not used
-		$includeFiles = [];
-		$excludeDirs = [];
-	}
+        // when a custom base dir is set, default $includeFiles and $excludeDirs are not used
+        $includeFiles = [];
+        $excludeDirs = [];
+    }
 
-	if ($request->hasProperty('excludeDirs')) {
-		$excludeDirs = explode(',', $request->getProperty('excludeDirs'));
-	}
+    if ($request->hasProperty('excludeDirs')) {
+        $excludeDirs = explode(',', $request->getProperty('excludeDirs'));
+    }
 
-	if ($request->hasProperty('includeFiles')) {
-		$includeFiles = explode(',', $request->getProperty('includeFiles'));
-	}
+    if ($request->hasProperty('includeFiles')) {
+        $includeFiles = explode(',', $request->getProperty('includeFiles'));
+    }
 
-	if ($request->hasProperty('fileName')) {
-		$options['fileName'] = $request->getProperty('fileName');
-	}
+    if ($request->hasProperty('fileName')) {
+        $options['fileName'] = $request->getProperty('fileName');
+    }
 }
 
 $getStrings = new Language_GetStrings(new Language_CollectFiles, new Language_WriteFile_Factory, $options);
@@ -118,9 +117,9 @@ echo formatOutput("\nTotal time spent: " . $timer->stop() . " seconds\n");
  */
 function formatOutput($string)
 {
-	if (php_sapi_name() == 'cli') {
-		return $string;
-	} else {
-		return nl2br($string);
-	}
+    if (php_sapi_name() == 'cli') {
+        return $string;
+    }
+
+    return nl2br($string);
 }

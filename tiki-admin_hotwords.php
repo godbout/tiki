@@ -15,43 +15,43 @@ $access->check_permission('tiki_p_admin');
 
 // Process the form to add a user here
 if (isset($_REQUEST["add"]) && $access->checkCsrf()) {
-	if (empty($_REQUEST["word"]) || empty($_REQUEST["url"])) {
-		Feedback::errorPage(tr('You have to provide a hotword and a URL'));
-	}
-	$result = $hotwordlib->add_hotword($_REQUEST["word"], $_REQUEST["url"]);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('Hotword added'));
-	} else {
-		Feedback::error(tr('Hotword not added'));
-	}
+    if (empty($_REQUEST["word"]) || empty($_REQUEST["url"])) {
+        Feedback::errorPage(tr('You have to provide a hotword and a URL'));
+    }
+    $result = $hotwordlib->add_hotword($_REQUEST["word"], $_REQUEST["url"]);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('Hotword added'));
+    } else {
+        Feedback::error(tr('Hotword not added'));
+    }
 }
 if (isset($_REQUEST["remove"]) && ! empty($_REQUEST["remove"]) && $access->checkCsrf(true)) {
-	$result = $hotwordlib->remove_hotword($_REQUEST["remove"]);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('Hotword deleted'));
-	} else {
-		Feedback::error(tr('Hotword not deleted'));
-	}
+    $result = $hotwordlib->remove_hotword($_REQUEST["remove"]);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('Hotword deleted'));
+    } else {
+        Feedback::error(tr('Hotword not deleted'));
+    }
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'word_desc';
+    $sort_mode = 'word_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 // If offset is set use it if not then use offset =0
 // use the maxRecords php variable to set the limit
 // if sortMode is not set then use lastModif_desc
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $words = $hotwordlib->list_hotwords($offset, $maxRecords, $sort_mode, $find);

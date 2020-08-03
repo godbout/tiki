@@ -17,12 +17,12 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache"); // HTTP/1.0
 $access->check_feature('feature_live_support');
 if (! $lslib->operators_online()) {
-	header("location: tiki-live_support_message.php");
-	die;
+    header("location: tiki-live_support_message.php");
+    die;
 }
 $smarty->assign('senderId', md5(uniqid('.')));
 if ($user) {
-	$smarty->assign('user_email', $userlib->get_user_email($user));
+    $smarty->assign('user_email', $userlib->get_user_email($user));
 }
 // Display the template
 $smarty->display("tiki-live_support_client.tpl");

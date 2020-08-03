@@ -13,39 +13,39 @@ $trklib = TikiLib::lib('trk');
 $err = false;
 
 if ($prefs['feature_trackers'] !== 'y' || $prefs['feature_jquery'] !== 'y' || $prefs['feature_jquery_autocomplete'] !== 'y' ||
-				empty($_REQUEST['fieldId'])) {
-	$err = true;
+                empty($_REQUEST['fieldId'])) {
+    $err = true;
 } elseif (empty($_REQUEST['trackerId'])) {
-	$field_info = $trklib->get_tracker_field($_REQUEST['fieldId']);
-	$_REQUEST['trackerId'] = $field_info['trackerId'];
+    $field_info = $trklib->get_tracker_field($_REQUEST['fieldId']);
+    $_REQUEST['trackerId'] = $field_info['trackerId'];
 }
 if (empty($_REQUEST['trackerId'])) {
-	$err = true;
+    $err = true;
 } else {
-	$tracker_info = $trklib->get_tracker($_REQUEST['trackerId']);
-	if (empty($tracker_info)) {
-		$err = true;
-	} else {
-		$tikilib->get_perm_object($_REQUEST['trackerId'], 'tracker', $tracker_info, true);
-		if ($tiki_p_view_trackers != 'y') {
-			$err = true;
-		}
-	}
+    $tracker_info = $trklib->get_tracker($_REQUEST['trackerId']);
+    if (empty($tracker_info)) {
+        $err = true;
+    } else {
+        $tikilib->get_perm_object($_REQUEST['trackerId'], 'tracker', $tracker_info, true);
+        if ($tiki_p_view_trackers != 'y') {
+            $err = true;
+        }
+    }
 }
 if (! isset($_REQUEST['lang'])) {
-	$_REQUEST['lang'] = '';
+    $_REQUEST['lang'] = '';
 }
 
 $values = [];
 if (! $err) {	// errors
-	$vals = $trklib->list_tracker_field_values($_REQUEST['trackerId'], $_REQUEST['fieldId'], 'opc', 'y', $_REQUEST['lang']);
-	if (! empty($_REQUEST['q'])) {
-		foreach ($vals as &$val) {
-			if (strpos(strtolower($val), strtolower($_REQUEST['q'])) !== false) {
-				$values[] = $val;
-			}
-		}
-	}
+    $vals = $trklib->list_tracker_field_values($_REQUEST['trackerId'], $_REQUEST['fieldId'], 'opc', 'y', $_REQUEST['lang']);
+    if (! empty($_REQUEST['q'])) {
+        foreach ($vals as &$val) {
+            if (strpos(strtolower($val), strtolower($_REQUEST['q'])) !== false) {
+                $values[] = $val;
+            }
+        }
+    }
 }
 
 $access->output_serialized($values);

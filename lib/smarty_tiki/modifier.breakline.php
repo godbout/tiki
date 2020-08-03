@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -15,5 +16,5 @@
  */
 function smarty_modifier_breakline($str_content)
 {
-	return str_replace('[breakline]', '<br />', $str_content);
+    return str_replace('[breakline]', '<br />', $str_content);
 }

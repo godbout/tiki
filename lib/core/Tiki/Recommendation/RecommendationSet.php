@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,66 +10,66 @@ namespace Tiki\Recommendation;
 
 class RecommendationSet implements \Countable, \Iterator
 {
-	private $engine;
-	private $recommendations = [];
-	private $debug = [];
+    private $engine;
+    private $recommendations = [];
+    private $debug = [];
 
-	function __construct($engineName)
-	{
-		$this->engine = $engineName;
-	}
+    public function __construct($engineName)
+    {
+        $this->engine = $engineName;
+    }
 
-	function add(EngineOutput $recommendation)
-	{
-		if ($recommendation instanceof Recommendation) {
-			$this->recommendations[] = $recommendation;
-		} else {
-			$this->addDebug($recommendation);
-		}
-	}
+    public function add(EngineOutput $recommendation)
+    {
+        if ($recommendation instanceof Recommendation) {
+            $this->recommendations[] = $recommendation;
+        } else {
+            $this->addDebug($recommendation);
+        }
+    }
 
-	function addDebug($info)
-	{
-		$this->debug[] = $info;
-	}
+    public function addDebug($info)
+    {
+        $this->debug[] = $info;
+    }
 
-	function getEngine()
-	{
-		return $this->engine;
-	}
+    public function getEngine()
+    {
+        return $this->engine;
+    }
 
-	function getDebug()
-	{
-		return new \ArrayIterator($this->debug);
-	}
+    public function getDebug()
+    {
+        return new \ArrayIterator($this->debug);
+    }
 
-	function count()
-	{
-		return count($this->recommendations);
-	}
+    public function count()
+    {
+        return count($this->recommendations);
+    }
 
-	function current()
-	{
-		return current($this->recommendations);
-	}
+    public function current()
+    {
+        return current($this->recommendations);
+    }
 
-	function next()
-	{
-		next($this->recommendations);
-	}
+    public function next()
+    {
+        next($this->recommendations);
+    }
 
-	function key()
-	{
-		return key($this->recommendations);
-	}
+    public function key()
+    {
+        return key($this->recommendations);
+    }
 
-	function valid()
-	{
-		return current($this->recommendations) !== false;
-	}
+    public function valid()
+    {
+        return current($this->recommendations) !== false;
+    }
 
-	function rewind()
-	{
-		reset($this->recommendations);
-	}
+    public function rewind()
+    {
+        reset($this->recommendations);
+    }
 }

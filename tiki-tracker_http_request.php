@@ -17,15 +17,13 @@
  *
  * @see lib/core/Tracker/Field/DynamicList.php for furher details.
  */
-
-
 require_once('tiki-setup.php');
 $trklib = TikiLib::lib('trk');
 if ($prefs['feature_categories'] == 'y') {
-	$categlib = TikiLib::lib('categ');
+    $categlib = TikiLib::lib('categ');
 }
 if ($prefs['feature_trackers'] != 'y') {
-	die;
+    die;
 }
 $access = TikiLib::lib('access');
 
@@ -50,20 +48,21 @@ $json_return = [];
 //  $insertId: their could be more than one dynamic list field bound to the same $filterFieldValueHere. Need to know Dynamic Item List field we refer to.
 // $originalValue: to select the orginalValue (the value currently used for selecting the element), on changes of $filterFieldValueHere
 $json_return['request'] = [
-	'insertId' => $insertId,
-	'originalValue' => $originalValue
+    'insertId' => $insertId,
+    'originalValue' => $originalValue
 ];
 $json_return['response'] = [];
 
 if (! $hideBlank) {
-	// blank value is the default first option here
-	$json_return['response'][] = ['', ' '];
+    // blank value is the default first option here
+    $json_return['response'][] = ['', ' '];
 }
 
 // if we do not have something to compare with we return empty result
 if (empty($filterFieldValueHere)) {
-	$access->output_serialized($json_return);
-	return;
+    $access->output_serialized($json_return);
+
+    return;
 }
 
 // start pre processing
@@ -76,35 +75,41 @@ $finalFilterValueHere = $filterFieldValueHere;
 // check which combination of filterFieldTypeHere and filterFieldTypeThere we have and how to deal with it.
 // case 'xyz' - xyz tested means: this combinination has been tested and works for both, trackerlistview and item templateview.
 switch ($filterFieldHere['type']) {
-	case 'e': // category tested
-		// only allow category with category. disallow any other category combination.
-		if ($filterFieldThere['type'] != 'e') {
-			$access->output_serialized($json_return);
-			return;
-		}
-		break;
+    case 'e': // category tested
+        // only allow category with category. disallow any other category combination.
+        if ($filterFieldThere['type'] != 'e') {
+            $access->output_serialized($json_return);
 
-	case 'r': // r = itemlink - disallow itemlink/category, allow itemlink/itemlink, itemlink/simplefield types like text
-		switch ($filterFieldThere['type']) {
-			case 'r': // r = itemlink tested
-				break;
-			case 't': // textfield tested
-			default:
-				$handler = $trklib->get_field_handler($filterFieldHere);
-				$optTrackerId = $handler->getOption('trackerId');
-				$optFieldId = $handler->getOption('fieldId');
-				$finalFilterValueHere = $trklib->get_item_value($optTrackerId, $filterFieldValueHere, $optFieldId);
-				break;
-		}
-		break;
+            return;
+        }
 
-	default:
-		// if both field types are unknown but match, we assume that it could work
-		if ($filterFieldHere['type'] != $filterFieldThere['type']) {
-			$access->output_serialized($json_return);
-			return;
-		}
-		break;
+        break;
+
+    case 'r': // r = itemlink - disallow itemlink/category, allow itemlink/itemlink, itemlink/simplefield types like text
+        switch ($filterFieldThere['type']) {
+            case 'r': // r = itemlink tested
+                break;
+            case 't': // textfield tested
+            default:
+                $handler = $trklib->get_field_handler($filterFieldHere);
+                $optTrackerId = $handler->getOption('trackerId');
+                $optFieldId = $handler->getOption('fieldId');
+                $finalFilterValueHere = $trklib->get_item_value($optTrackerId, $filterFieldValueHere, $optFieldId);
+
+                break;
+        }
+
+        break;
+
+    default:
+        // if both field types are unknown but match, we assume that it could work
+        if ($filterFieldHere['type'] != $filterFieldThere['type']) {
+            $access->output_serialized($json_return);
+
+            return;
+        }
+
+        break;
 }
 
 // start main processing - $trackerIdThere is not used at all in get_items_list()
@@ -113,70 +118,75 @@ $listFieldThere = $trklib->get_tracker_field($listFieldIdThere);
 // special handling for itemList field. We would get always the same values on each iteration so we do it only one time.
 $itemListFirstRun = true;
 foreach ($remoteItemIds as $remoteItemId) {
-	$itemInfo = $trklib->get_tracker_item($remoteItemId);
+    $itemInfo = $trklib->get_tracker_item($remoteItemId);
 
-	// @TODO although it should be checked by the fieldhandler, verify that permissions on itemId level are respected. i.e restricted by a category field etc.
-	// however: something like this does not work: $permObject = $tikilib->get_perm_object($remoteItemId, 'trackeritem');
-	$hasPermission = true;
-	if (! $hasPermission) {
-		continue;
-	}
+    // @TODO although it should be checked by the fieldhandler, verify that permissions on itemId level are respected. i.e restricted by a category field etc.
+    // however: something like this does not work: $permObject = $tikilib->get_perm_object($remoteItemId, 'trackeritem');
+    $hasPermission = true;
+    if (! $hasPermission) {
+        continue;
+    }
 
-	$listFieldThere = array_merge($listFieldThere, ['value' => $itemInfo[$listFieldIdThere]]);
-	$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
-	// do not inherit showlinks settings from remote items.
-	$context = ['showlinks' => 'n', 'list_mode' => 'csv'];
+    $listFieldThere = array_merge($listFieldThere, ['value' => $itemInfo[$listFieldIdThere]]);
+    $handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
+    // do not inherit showlinks settings from remote items.
+    $context = ['showlinks' => 'n', 'list_mode' => 'csv'];
 
-	// permissions are ok, now get the values depending on the fieldtype of $listFieldIdThere
-	switch ($listFieldThere['type']) {
-		case 'l': // itemlist tested
-			// itemlink can have multiple matches and we would the same matches on each iteration.
-			// so we only process one iteration and take the fields as selections out of it.
-			if (! $itemListFirstRun) {
-				break;
-			}
+    // permissions are ok, now get the values depending on the fieldtype of $listFieldIdThere
+    switch ($listFieldThere['type']) {
+        case 'l': // itemlist tested
+            // itemlink can have multiple matches and we would the same matches on each iteration.
+            // so we only process one iteration and take the fields as selections out of it.
+            if (! $itemListFirstRun) {
+                break;
+            }
 
-			$valueFields = $handler->getFieldData();
-			if (is_array($valueFields)) {
-				// return each item of that list - requires match in DynamicList.php renderInnerOutput()
-				// note: we save the itemId of the item selected out of the list, not the value. Allows to keep the links consistant on changing values.
-				foreach ($valueFields['items'] as $valueField => $labelField) {
-					$labelField = preg_replace('/<\!--.*?-->/', '', $labelField);	// remove comments added by log_tpl
-					$json_return['response'][] = [$valueField, $labelField];
-				}
-			}
-			$itemListFirstRun = false;
-			break;
+            $valueFields = $handler->getFieldData();
+            if (is_array($valueFields)) {
+                // return each item of that list - requires match in DynamicList.php renderInnerOutput()
+                // note: we save the itemId of the item selected out of the list, not the value. Allows to keep the links consistant on changing values.
+                foreach ($valueFields['items'] as $valueField => $labelField) {
+                    $labelField = preg_replace('/<\!--.*?-->/', '', $labelField);	// remove comments added by log_tpl
+                    $json_return['response'][] = [$valueField, $labelField];
+                }
+            }
+            $itemListFirstRun = false;
 
-		case 'r': // itemlink tested
-			$valueField = $handler->getFieldData();
-			$labelField = $handler->renderOutput($context);
-			$labelField = preg_replace('/<\!--.*?-->/', '', $labelField);	// remove comments added by log_tpl
-			$json_return['response'][] = [$valueField['value'], $labelField];
-			break;
+            break;
 
-		case 'e': // category tested
-		case 'd': // dropdown
-			// array selected_categories etc.
-			$valueField = $handler->getFieldData();
-			// for some reason, need to apply the values back, oterwise renderOutput does not return a value - bug?
-			$listFieldThere = array_merge($listFieldThere, $valueField);
-			$handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
-			$labelField = $handler->renderOutput($context);
-			// we return all categories per itemId, without html, comma-separated
-			$labelField = str_replace('<br/>', ', ', $labelField);
-			$json_return['response'][] = [$remoteItemId, $labelField];
-			break;
+        case 'r': // itemlink tested
+            $valueField = $handler->getFieldData();
+            $labelField = $handler->renderOutput($context);
+            $labelField = preg_replace('/<\!--.*?-->/', '', $labelField);	// remove comments added by log_tpl
+            $json_return['response'][] = [$valueField['value'], $labelField];
 
-		// other fieldtypes
-		case 't': // textfield tested
-		default:
-			$labelField = $handler->renderOutput($context);
-			$labelField = preg_replace('/<\!--.*?-->/', '', $labelField);	// remove comments added by log_tpl
-			$json_return['response'][] = [$remoteItemId, $labelField];
-			break;
-	} // switch
+            break;
+
+        case 'e': // category tested
+        case 'd': // dropdown
+            // array selected_categories etc.
+            $valueField = $handler->getFieldData();
+            // for some reason, need to apply the values back, oterwise renderOutput does not return a value - bug?
+            $listFieldThere = array_merge($listFieldThere, $valueField);
+            $handler = $trklib->get_field_handler($listFieldThere, $itemInfo);
+            $labelField = $handler->renderOutput($context);
+            // we return all categories per itemId, without html, comma-separated
+            $labelField = str_replace('<br/>', ', ', $labelField);
+            $json_return['response'][] = [$remoteItemId, $labelField];
+
+            break;
+
+        // other fieldtypes
+        case 't': // textfield tested
+        default:
+            $labelField = $handler->renderOutput($context);
+            $labelField = preg_replace('/<\!--.*?-->/', '', $labelField);	// remove comments added by log_tpl
+            $json_return['response'][] = [$remoteItemId, $labelField];
+
+            break;
+    } // switch
 } // foreach
 
 $access->output_serialized($json_return);
+
 return;

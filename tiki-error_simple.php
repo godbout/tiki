@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,23 +10,23 @@ require_once 'tiki-filter-base.php';
 $filter = \TikiFilter::get('xss');
 
 if (! empty($_REQUEST['error'])) {
-	$error = $filter->filter(substr($_REQUEST["error"], 0, 256));
+    $error = $filter->filter(substr($_REQUEST["error"], 0, 256));
 } else {
-	$error = '';
+    $error = '';
 }
 if (! empty($_REQUEST['title'])) {
-	$title = $filter->filter($_REQUEST['title']);
+    $title = $filter->filter($_REQUEST['title']);
 } else {
-	$title = '';
+    $title = '';
 }
 
 if (! empty($_REQUEST['login_error'])) {
-	$login_error = $filter->filter($_REQUEST["login_error"]);
+    $login_error = $filter->filter($_REQUEST["login_error"]);
 } else {
-	$login_error = '';
+    $login_error = '';
 }
-$style_alert = ''.$login_error !='' ? 'alert alert-danger' : '';
-$style_alert_btn = ''.$login_error !='' ? '' : 'display:none';
+$style_alert = '' . $login_error != '' ? 'alert alert-danger' : '';
+$style_alert_btn = '' . $login_error != '' ? '' : 'display:none';
 session_start();
 $ticket = strtr(str_replace('=', '', base64_encode(\phpseclib\Crypt\Random::string(32))), '+/', '-_');
 $_SESSION['tickets'][$ticket] = time();
@@ -39,8 +40,8 @@ $login = '<form class="form-detail" id="myform" action="tiki-login.php?page=tiki
 				<label for="password">Password</label>
 				<input type="password" name="pass" id="password" class="input-text" required>
 			</div>
-			<div class="'.$style_alert.'" role="alert">'.$login_error.'
-				<button type="button" class="close" style="'.$style_alert_btn.'" data-dismiss="alert" aria-label="Close">
+			<div class="' . $style_alert . '" role="alert">' . $login_error . '
+				<button type="button" class="close" style="' . $style_alert_btn . '" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
@@ -52,9 +53,9 @@ $login = '<form class="form-detail" id="myform" action="tiki-login.php?page=tiki
 </form>';
 
 if (file_exists('themes/base_files/other/site_closed_local.html')) {
-	$html = file_get_contents('themes/base_files/other/site_closed_local.html');
+    $html = file_get_contents('themes/base_files/other/site_closed_local.html');
 } else {
-	$html = file_get_contents('themes/base_files/other/site_closed.html');
+    $html = file_get_contents('themes/base_files/other/site_closed.html');
 }
 
 $html = str_replace('{error}', $error, $html);

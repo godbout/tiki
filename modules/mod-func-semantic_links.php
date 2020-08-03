@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (basename($_SERVER['SCRIPT_NAME']) == basename(__FILE__)) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -16,12 +17,12 @@ if (basename($_SERVER['SCRIPT_NAME']) == basename(__FILE__)) {
  */
 function module_semantic_links_info()
 {
-	return [
-		'name' => tra('Semantic Links'),
-		'description' => tra('List the relationships known for the Wiki page displayed. For each relation type contained in the page, it lists all the pages it links to or gets linked from.'),
-		'prefs' => ['feature_semantic'],
-		'params' => []
-	];
+    return [
+        'name' => tra('Semantic Links'),
+        'description' => tra('List the relationships known for the Wiki page displayed. For each relation type contained in the page, it lists all the pages it links to or gets linked from.'),
+        'prefs' => ['feature_semantic'],
+        'params' => []
+    ];
 }
 
 /**
@@ -30,21 +31,21 @@ function module_semantic_links_info()
  */
 function module_semantic_links($mod_reference, $module_params)
 {
-	global $page;
-	$smarty = TikiLib::lib('smarty');
-	$smarty->assign('show_semantic_links_module', false);
+    global $page;
+    $smarty = TikiLib::lib('smarty');
+    $smarty->assign('show_semantic_links_module', false);
 
-	if (isset($page) && ! empty($page)) {
-		$semanticlib = TikiLib::lib('semantic');
+    if (isset($page) && ! empty($page)) {
+        $semanticlib = TikiLib::lib('semantic');
 
-		$msl_page = $page;
-		$relations = $semanticlib->getRelationList($msl_page);
+        $msl_page = $page;
+        $relations = $semanticlib->getRelationList($msl_page);
 
-		if (count($relations)) {
-			$smarty->assign('msl_page', $msl_page);
-			$smarty->assign('show_semantic_links_module', true);
-			$smarty->assign('msl_relations', $relations);
-			$smarty->clear_assign('tpl_module_title');
-		}
-	}
+        if (count($relations)) {
+            $smarty->assign('msl_page', $msl_page);
+            $smarty->assign('show_semantic_links_module', true);
+            $smarty->assign('msl_relations', $relations);
+            $smarty->clear_assign('tpl_module_title');
+        }
+    }
 }

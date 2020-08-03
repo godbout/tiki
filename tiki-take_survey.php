@@ -12,15 +12,15 @@ $section = 'surveys';
 require_once('tiki-setup.php');
 include_once('lib/surveys/surveylib.php');
 if ($prefs['feature_categories'] == 'y') {
-	$categlib = TikiLib::lib('categ');
+    $categlib = TikiLib::lib('categ');
 }
 
 $access->check_feature('feature_surveys');
 
 if (! isset($_REQUEST["surveyId"])) {
-	$smarty->assign('msg', tra("No survey indicated"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("No survey indicated"));
+    $smarty->display("error.tpl");
+    die;
 }
 $access->check_permission('take_survey', 'Take Survey', 'survey', $_REQUEST['surveyId']);
 
@@ -30,19 +30,19 @@ $smarty->assign('survey_info', $survey_info);
 
 // Check if user has taken this survey
 if ($tiki_p_admin != 'y') {
-	if ($tikilib->user_has_voted($user, 'survey' . $_REQUEST["surveyId"])) {
-		$smarty->assign('msg', tra("You cannot take this survey twice"));
-		$smarty->display("error.tpl");
-		die;
-	}
+    if ($tikilib->user_has_voted($user, 'survey' . $_REQUEST["surveyId"])) {
+        $smarty->assign('msg', tra("You cannot take this survey twice"));
+        $smarty->display("error.tpl");
+        die;
+    }
 }
 $questions = $srvlib->list_survey_questions($_REQUEST["surveyId"], 0, -1, 'position_asc', '');
 $smarty->assign('pagination', false);
 foreach ($questions['data'] as $question) {
-	if ($question['type'] === 'h' && ! empty($question['explode']) && $question['explode'][0] === 'y') {
-		$smarty->assign('pagination', true);
-		$headerlib->add_css('.questionblock, .submit {display:none;}')
-			->add_jq_onready('
+    if ($question['type'] === 'h' && ! empty($question['explode']) && $question['explode'][0] === 'y') {
+        $smarty->assign('pagination', true);
+        $headerlib->add_css('.questionblock, .submit {display:none;}')
+            ->add_jq_onready('
 (function($) {
 	var surveyPage, surveyPageCount = 0, surveyHeight = 0, h = 0, beenToLastPage = false;
 	if (typeof surveyKeepSameHeight === "undefined") {
@@ -116,26 +116,27 @@ foreach ($questions['data'] as $question) {
 	});
 })(jQuery)
 			');
-		break;
-	}
+
+        break;
+    }
 }
 $smarty->assign_by_ref('questions', $questions["data"]);
 $error_msg = '';
 if (isset($_REQUEST["ans"])) {
-	check_ticket('take-survey');
-	$srvlib->register_answers($_REQUEST['surveyId'], $questions['data'], $_REQUEST, $error_msg);
-	if (empty($error_msg)) {
-		if (! empty($_REQUEST["vote"])) {
-			$srvlib->add_survey_hit($_REQUEST["surveyId"]);
-		}
-		header('Location: tiki-list_surveys.php');
-		die;
-	}
+    check_ticket('take-survey');
+    $srvlib->register_answers($_REQUEST['surveyId'], $questions['data'], $_REQUEST, $error_msg);
+    if (empty($error_msg)) {
+        if (! empty($_REQUEST["vote"])) {
+            $srvlib->add_survey_hit($_REQUEST["surveyId"]);
+        }
+        header('Location: tiki-list_surveys.php');
+        die;
+    }
 }
 
 $showToolBars = false;
 if ($prefs['poll_surveys_textarea_hidetoolbar'] != 'y') {
-	$showToolBars = true;
+    $showToolBars = true;
 }
 $smarty->assign('showToolBars', $showToolBars);
 

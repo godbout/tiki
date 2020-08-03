@@ -16,47 +16,48 @@ $access->check_feature('feature_articles');
 $access->check_permission(['tiki_p_articles_admin_topics']);
 
 if (isset($_REQUEST["addtopic"])) {
-	check_ticket('admin-topics');
-	if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
-		$filegallib = TikiLib::lib('filegal');
-		try {
-			$filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
-		} catch (Exception $e) {
-			$smarty->assign('errortype', 403);
-			$smarty->assign('msg', $e->getMessage());
-			$smarty->display("error.tpl");
-			die;
-		}
-		$fp = fopen($_FILES['userfile1']['tmp_name'], "rb");
-		$data = fread($fp, filesize($_FILES['userfile1']['tmp_name']));
-		fclose($fp);
-		$imgtype = $_FILES['userfile1']['type'];
-		$imgsize = $_FILES['userfile1']['size'];
-		$imgname = $_FILES['userfile1']['name'];
-	} else {
-		$data = '';
-		$imgtype = '';
-		$imgsize = '';
-		$imgname = '';
-	}
-	// Store the image
-	$artlib->add_topic($_REQUEST["name"], $imgname, $imgtype, $imgsize, $data);
+    check_ticket('admin-topics');
+    if (isset($_FILES['userfile1']) && is_uploaded_file($_FILES['userfile1']['tmp_name'])) {
+        $filegallib = TikiLib::lib('filegal');
+
+        try {
+            $filegallib->assertUploadedFileIsSafe($_FILES['userfile1']['tmp_name'], $_FILES['userfile1']['name']);
+        } catch (Exception $e) {
+            $smarty->assign('errortype', 403);
+            $smarty->assign('msg', $e->getMessage());
+            $smarty->display("error.tpl");
+            die;
+        }
+        $fp = fopen($_FILES['userfile1']['tmp_name'], "rb");
+        $data = fread($fp, filesize($_FILES['userfile1']['tmp_name']));
+        fclose($fp);
+        $imgtype = $_FILES['userfile1']['type'];
+        $imgsize = $_FILES['userfile1']['size'];
+        $imgname = $_FILES['userfile1']['name'];
+    } else {
+        $data = '';
+        $imgtype = '';
+        $imgsize = '';
+        $imgname = '';
+    }
+    // Store the image
+    $artlib->add_topic($_REQUEST["name"], $imgname, $imgtype, $imgsize, $data);
 }
 if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity(tra('Are you sure you want to remove this topic?'));
-	$artlib->remove_topic($_REQUEST["remove"]);
+    $access->check_authenticity(tra('Are you sure you want to remove this topic?'));
+    $artlib->remove_topic($_REQUEST["remove"]);
 }
 if (isset($_REQUEST["removeall"])) {
-	$access->check_authenticity(tra('Are you sure you want to remove this topic AND all the articles related?'));
-	$artlib->remove_topic($_REQUEST["removeall"], 1);
+    $access->check_authenticity(tra('Are you sure you want to remove this topic AND all the articles related?'));
+    $artlib->remove_topic($_REQUEST["removeall"], 1);
 }
 if (isset($_REQUEST["activate"])) {
-	check_ticket('admin-topics');
-	$artlib->activate_topic($_REQUEST["activate"]);
+    check_ticket('admin-topics');
+    $artlib->activate_topic($_REQUEST["activate"]);
 }
 if (isset($_REQUEST["deactivate"])) {
-	check_ticket('admin-topics');
-	$artlib->deactivate_topic($_REQUEST["deactivate"]);
+    check_ticket('admin-topics');
+    $artlib->deactivate_topic($_REQUEST["deactivate"]);
 }
 $topics = $artlib->list_topics();
 /* To renumber array keys from 0 since smarty 3 doesn't seem to like arrays

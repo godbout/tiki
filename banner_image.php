@@ -11,7 +11,7 @@
 // application to display an image from the database with
 // option to resize the image dynamically creating a thumbnail on the fly.
 if (! isset($_REQUEST["id"])) {
-	die;
+    die;
 }
 
 $id = (int) $_REQUEST['id'];
@@ -19,12 +19,12 @@ $defaultCache = 'temp';
 $bannercachefile = "$defaultCache/banner.$id";
 
 if (is_file($bannercachefile) and (! isset($_REQUEST["reload"]))) {
-	$size = getimagesize($bannercachefile);
-	$type = $size['mime'];
+    $size = getimagesize($bannercachefile);
+    $type = $size['mime'];
 
-	header("Content-type: $type");
-	readfile($bannercachefile);
-	exit;
+    header("Content-type: $type");
+    readfile($bannercachefile);
+    exit;
 }
 
 require_once('tiki-setup.php');
@@ -34,32 +34,32 @@ $access->check_feature('feature_banners');
 $bannercachefile = $prefs['tmpDir'];
 
 if ($tikidomain) {
-	$bannercachefile .= "/$tikidomain";
+    $bannercachefile .= "/$tikidomain";
 }
 
 $bannercachefile .= "/banner." . (int)$_REQUEST["id"];
 
 if (is_file($bannercachefile) and (! isset($_REQUEST["reload"]))) {
-	$size = getimagesize($bannercachefile);
-	$type = $size['mime'];
+    $size = getimagesize($bannercachefile);
+    $type = $size['mime'];
 } else {
-	$bannerlib = TikiLib::lib('banner');
-	$data = $bannerlib->get_banner($_REQUEST["id"]);
-	if (! $data) {
-		die;
-	}
-	$type = $data["imageType"];
-	$data = $data["imageData"];
-	if ($data) {
-		$fp = fopen($bannercachefile, "wb");
-		fputs($fp, $data);
-		fclose($fp);
-	}
+    $bannerlib = TikiLib::lib('banner');
+    $data = $bannerlib->get_banner($_REQUEST["id"]);
+    if (! $data) {
+        die;
+    }
+    $type = $data["imageType"];
+    $data = $data["imageData"];
+    if ($data) {
+        $fp = fopen($bannercachefile, "wb");
+        fputs($fp, $data);
+        fclose($fp);
+    }
 }
 
 header("Content-type: $type");
 if (is_file($bannercachefile)) {
-	readfile($bannercachefile);
+    readfile($bannercachefile);
 } else {
-	echo $data;
+    echo $data;
 }

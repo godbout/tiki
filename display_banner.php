@@ -11,7 +11,7 @@
 // Only to be called from edit_banner or view_banner to display the banner without adding
 // impressions to the banner
 if (! isset($_REQUEST["id"])) {
-	die;
+    die;
 }
 
 require_once('tiki-setup.php');
@@ -25,20 +25,24 @@ $data = $bannerlib->get_banner($_REQUEST["id"]);
 $id = $data["bannerId"];
 
 switch ($data["which"]) {
-	case 'useHTML':
-		$raw = $data["HTMLData"];
-		break;
+    case 'useHTML':
+        $raw = $data["HTMLData"];
 
-	case 'useImage':
-		$raw = "<img src=\"banner_image.php?id=" . $id . "\" />";
-		break;
+        break;
 
-	case 'useFixedURL':
-		$raw = '<img src="' . $data["fixedURLData"] . '">"';
-		break;
+    case 'useImage':
+        $raw = "<img src=\"banner_image.php?id=" . $id . "\" />";
 
-	case 'useText':
-		$raw = $data["textData"];
-		break;
+        break;
+
+    case 'useFixedURL':
+        $raw = '<img src="' . $data["fixedURLData"] . '">"';
+
+        break;
+
+    case 'useText':
+        $raw = $data["textData"];
+
+        break;
 }
-print ($raw);
+print($raw);

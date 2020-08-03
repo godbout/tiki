@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -17,14 +18,14 @@ $graph = new MultilineGraphic;
 $graph->setTitle(tra('Pageviews'));
 //Set some data
 if (! isset($_REQUEST["days"])) {
-	$_REQUEST["days"] = 7;
+    $_REQUEST["days"] = 7;
 }
 
 $statslib = TikiLib::lib('stats');
 $data = $statslib->get_pv_chart_data($_REQUEST["days"]);
 
 foreach ($data['xdata'] as $key => $date) {
-	 $data['xdata'][$key] = strtotime($date) / 24 / 3600;
+    $data['xdata'][$key] = strtotime($date) / 24 / 3600;
 }
 $graph->setData(['x' => $data['xdata'], 'y0' => $data['ydata']]);
 $graph->setParam('grid-independant-major-font', false);

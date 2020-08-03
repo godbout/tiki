@@ -12,22 +12,22 @@ require_once('tiki-setup.php');
 
 $access->check_feature('change_theme');
 if (! empty($group_theme)) {
-	$access->display_error(null, 'A group theme is defined.');
+    $access->display_error(null, 'A group theme is defined.');
 }
 
 if (isset($_REQUEST['theme'])) {
-	if (empty($_REQUEST['theme'])) {
-		$_REQUEST['theme_option'] = '';
-	}
+    if (empty($_REQUEST['theme'])) {
+        $_REQUEST['theme_option'] = '';
+    }
 
-	$tikilib->set_user_preference($user, 'theme', $_REQUEST['theme']); //save user's theme preference
-	$tikilib->set_user_preference($user, 'theme_option', $_REQUEST['theme_option']);
+    $tikilib->set_user_preference($user, 'theme', $_REQUEST['theme']); //save user's theme preference
+    $tikilib->set_user_preference($user, 'theme_option', $_REQUEST['theme_option']);
 }
 
 if (isset($_SERVER['HTTP_REFERER'])) {
-	$orig_url = $_SERVER['HTTP_REFERER'];
+    $orig_url = $_SERVER['HTTP_REFERER'];
 } else {
-	$orig_url = $prefs['tikiIndex'];
+    $orig_url = $prefs['tikiIndex'];
 }
 header("location: $orig_url");
 exit;

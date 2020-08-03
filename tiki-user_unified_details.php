@@ -8,12 +8,12 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-$inputConfiguration =	[[
-	'staticKeyFilters'	=> [
-		'userId'		=> 'digits',
-		'view_user'		=> 'word',
-	],
-	'catchAllUnset'		=> null
+$inputConfiguration = [[
+    'staticKeyFilters' => [
+        'userId' => 'digits',
+        'view_user' => 'word',
+    ],
+    'catchAllUnset' => null
 ]];
 
 require_once('tiki-setup.php');
@@ -22,42 +22,42 @@ $messulib = TikiLib::lib('message');
 $trklib = TikiLib::lib('trk');
 
 if (isset($_REQUEST['userId'])) {
-	$userwatch = $tikilib->get_user_login($_REQUEST['userId']);
-	if ($userwatch === false) {
-		$smarty->assign('errortype', 'no_redirect_login');
-		$smarty->assign('msg', tra("Unknown user"));
-		$smarty->display("error.tpl");
-		die;
-	}
+    $userwatch = $tikilib->get_user_login($_REQUEST['userId']);
+    if ($userwatch === false) {
+        $smarty->assign('errortype', 'no_redirect_login');
+        $smarty->assign('msg', tra("Unknown user"));
+        $smarty->display("error.tpl");
+        die;
+    }
 } elseif (isset($_REQUEST['view_user'])) {
-	$userwatch = $_REQUEST['view_user'];
-	if (! $userlib->user_exists($userwatch)) {
-		$smarty->assign('errortype', 'no_redirect_login');
-		$smarty->assign('msg', tra("Unknown user"));
-		$smarty->display("error.tpl");
-		die;
-	}
+    $userwatch = $_REQUEST['view_user'];
+    if (! $userlib->user_exists($userwatch)) {
+        $smarty->assign('errortype', 'no_redirect_login');
+        $smarty->assign('msg', tra("Unknown user"));
+        $smarty->display("error.tpl");
+        die;
+    }
 } else {
-	$access->check_user($user);
-	$userwatch = $user;
+    $access->check_user($user);
+    $userwatch = $user;
 }
 
 $smarty->assign('userwatch', $userwatch);
 
 if ($prefs['feature_score'] == 'y' and isset($user) and $user != $userwatch) {
-	TikiLib::events()->trigger(
-		'tiki.user.view',
-		[
-			'type' => 'user',
-			'object' => $userwatch,
-			'user' => $user,
-		]
-	);
+    TikiLib::events()->trigger(
+        'tiki.user.view',
+        [
+            'type' => 'user',
+            'object' => $userwatch,
+            'user' => $user,
+        ]
+    );
 }
 
 $lib = TikiLib::lib('unifiedsearch');
 $query = $lib->buildQuery([
-	'type' => 'user',
+    'type' => 'user',
 ]);
 $query->filterIdentifier($userwatch, "object_id");
 $user_info = $query->search($lib->getIndex());
@@ -68,29 +68,29 @@ $smarty->assign("userinfo", $user_info[0]);
 
 //user_tracker_infos is a pref that allows you to list certain tracker fields in the user profile, if set.
 if (! empty($prefs['user_tracker_infos'])) {
-	$trackerinfo = explode(',', $prefs['user_tracker_infos']);
-	// in user_tracker_infos, the first entry refers to the tracker id of the user tracker
-	$userTrackerId = $trackerinfo[0];
-	array_shift($trackerinfo);
+    $trackerinfo = explode(',', $prefs['user_tracker_infos']);
+    // in user_tracker_infos, the first entry refers to the tracker id of the user tracker
+    $userTrackerId = $trackerinfo[0];
+    array_shift($trackerinfo);
 
-	$definition = Tracker_Definition::get($userTrackerId);
-	$fields = $definition->getFields();
-	$template_fields = [];
-	// for each field in the tracker, if it's in the user_tracker_infos field, pass it  to template fields,
-	// which will be passed to the tpl
-	foreach ($fields as $field) {
-		if (in_array($field['fieldId'], $trackerinfo)) {
-			$template_fields[] = [
-				'label' => $field['name'],
-				'permName' => $field['permName'],
-			];
-		}
-	}
-	$smarty->assign("template_fields", $template_fields);
+    $definition = Tracker_Definition::get($userTrackerId);
+    $fields = $definition->getFields();
+    $template_fields = [];
+    // for each field in the tracker, if it's in the user_tracker_infos field, pass it  to template fields,
+    // which will be passed to the tpl
+    foreach ($fields as $field) {
+        if (in_array($field['fieldId'], $trackerinfo)) {
+            $template_fields[] = [
+                'label' => $field['name'],
+                'permName' => $field['permName'],
+            ];
+        }
+    }
+    $smarty->assign("template_fields", $template_fields);
 }
 $userprefslib = TikiLib::lib('userprefs');
 if ($user_picture_id = $userprefslib->get_user_picture_id($userwatch)) {
-	$smarty->assign('user_picture_id', $user_picture_id);
+    $smarty->assign('user_picture_id', $user_picture_id);
 }
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');

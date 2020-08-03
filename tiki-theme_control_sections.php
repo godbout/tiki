@@ -23,14 +23,14 @@ $themes = $themelib->list_themes_and_options();
 $smarty->assign('themes', $themes);
 
 if (isset($_REQUEST['assign'])) {
-	check_ticket('tc-sections');
-	$themecontrollib->tc_assign_section($_REQUEST['section'], $_REQUEST['theme']);
+    check_ticket('tc-sections');
+    $themecontrollib->tc_assign_section($_REQUEST['section'], $_REQUEST['theme']);
 }
 if (isset($_REQUEST['delete'])) {
-	check_ticket('tc-sections');
-	foreach (array_keys($_REQUEST["sec"]) as $sec) {
-		$themecontrollib->tc_remove_section($sec);
-	}
+    check_ticket('tc-sections');
+    foreach (array_keys($_REQUEST["sec"]) as $sec) {
+        $themecontrollib->tc_remove_section($sec);
+    }
 }
 $channels = $themecontrollib->tc_list_sections(0, -1, 'section_asc', '');
 $smarty->assign_by_ref('channels', $channels["data"]);

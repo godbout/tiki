@@ -15,53 +15,54 @@
 // param: $contributionItemId: id of the comment if in coment/forum
 
 if (basename($_SERVER['SCRIPT_NAME']) === basename(__FILE__)) {
-	die('This script may only be included.');
+    die('This script may only be included.');
 }
 
 require_once('tiki-setup.php');
 global $prefs;
 
 if ($prefs['feature_contribution'] == 'y') {
-	$contributionlib = TikiLib::lib('contribution');
-	$contributions = $contributionlib->list_contributions();
-	if (! empty($_REQUEST['contributions'])) {
-		for ($i = $contributions['cant'] - 1; $i >= 0; -- $i) {
-			if (in_array($contributions['data'][$i]['contributionId'], $_REQUEST['contributions'])) {
-				$contributions['data'][$i]['selected'] = 'y';
-				$oneSelected = 'y';
-			}
-		}
-	}
-	if (! empty($contributionItemId)) {
-		$assignedContributions = $contributionlib->get_assigned_contributions($contributionItemId, 'comment');
-		if (! empty($assignedContributions)) {
-			foreach ($assignedContributions as $a) {
-				for ($i = $contributions['cant'] - 1; $i >= 0; -- $i) {
-					if ($a['contributionId'] == $contributions['data'][$i]['contributionId']) {
-						$contributions['data'][$i]['selected'] = 'y';
-						$oneSelected = 'y';
-						break;
-					}
-				}
-			}
-		}
-	}
-	if (! empty($oneSelected)) {
-		if ((isset($section) && $section == 'forum' && $prefs['feature_contribution_mandatory_forum'] != 'y') || ((! isset($section) || $section != 'forum') && $prefs['feature_contribution_mandatory_comment'] != 'y')) {
-			$contributions['data'][] = ['contributionId' => 0, 'name' => ''];
-		}
-	}
-	$smarty->assign_by_ref('contributions', $contributions['data']);
+    $contributionlib = TikiLib::lib('contribution');
+    $contributions = $contributionlib->list_contributions();
+    if (! empty($_REQUEST['contributions'])) {
+        for ($i = $contributions['cant'] - 1; $i >= 0; -- $i) {
+            if (in_array($contributions['data'][$i]['contributionId'], $_REQUEST['contributions'])) {
+                $contributions['data'][$i]['selected'] = 'y';
+                $oneSelected = 'y';
+            }
+        }
+    }
+    if (! empty($contributionItemId)) {
+        $assignedContributions = $contributionlib->get_assigned_contributions($contributionItemId, 'comment');
+        if (! empty($assignedContributions)) {
+            foreach ($assignedContributions as $a) {
+                for ($i = $contributions['cant'] - 1; $i >= 0; -- $i) {
+                    if ($a['contributionId'] == $contributions['data'][$i]['contributionId']) {
+                        $contributions['data'][$i]['selected'] = 'y';
+                        $oneSelected = 'y';
 
-	if ($prefs['feature_contributor_wiki'] == 'y' && ! empty($section) && $section == 'wiki page') {
-		$users = $userlib->list_all_users();
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    if (! empty($oneSelected)) {
+        if ((isset($section) && $section == 'forum' && $prefs['feature_contribution_mandatory_forum'] != 'y') || ((! isset($section) || $section != 'forum') && $prefs['feature_contribution_mandatory_comment'] != 'y')) {
+            $contributions['data'][] = ['contributionId' => 0, 'name' => ''];
+        }
+    }
+    $smarty->assign_by_ref('contributions', $contributions['data']);
 
-		include_once('lib/smarty_tiki/modifier.username.php');
-		$users = array_map('smarty_modifier_username', $users);
+    if ($prefs['feature_contributor_wiki'] == 'y' && ! empty($section) && $section == 'wiki page') {
+        $users = $userlib->list_all_users();
 
-		$smarty->assign_by_ref('users', $users);
-		if (! empty($_REQUEST['contributors'])) {
-			$smarty->assign_by_ref('contributors', $_REQUEST['contributors']);
-		}
-	}
+        include_once('lib/smarty_tiki/modifier.username.php');
+        $users = array_map('smarty_modifier_username', $users);
+
+        $smarty->assign_by_ref('users', $users);
+        if (! empty($_REQUEST['contributors'])) {
+            $smarty->assign_by_ref('contributors', $_REQUEST['contributors']);
+        }
+    }
 }

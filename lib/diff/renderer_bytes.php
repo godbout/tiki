@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -17,54 +18,56 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 class Text_Diff_Renderer_bytes extends Text_Diff_Renderer
 {
-	public function __construct($first = -1)
-	{
-		$this->_addBytes = 0;
-		$this->_delBytes = 0;
-		$this->_first = $first;
-	}
+    public function __construct($first = -1)
+    {
+        $this->_addBytes = 0;
+        $this->_delBytes = 0;
+        $this->_first = $first;
+    }
 
-	protected function _startDiff()
-	{
-	}
+    protected function _startDiff()
+    {
+    }
 
-	protected function _endDiff()
-	{
-		return 'add=' . $this->_addBytes . '&amp;del=' . $this->_delBytes;
-	}
+    protected function _endDiff()
+    {
+        return 'add=' . $this->_addBytes . '&amp;del=' . $this->_delBytes;
+    }
 
-	protected function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
-	{
-	}
+    protected function _blockHeader($xbeg, $xlen, $ybeg, $ylen)
+    {
+    }
 
-	protected function _added($lines)
-	{
-		$this->_addBytes += $this->_count($lines);
-	}
+    protected function _added($lines)
+    {
+        $this->_addBytes += $this->_count($lines);
+    }
 
-	protected function _deleted($lines)
-	{
-		$this->_delBytes += $this->_count($lines);
-	}
+    protected function _deleted($lines)
+    {
+        $this->_delBytes += $this->_count($lines);
+    }
 
-	protected function _changed($orig, $final)
-	{
-		if ($this->_first >= 0) { // stop recursion
-			$this->_addBytes += count($final);
-			$this->_delBytes += count($orig);
-			return;
-		}
-		$change = diffChar($orig, $final, 0, 'bytes');
-		preg_match("/add=([0-9]*)&amp;del=([0-9]*)/", $change, $matches);
-		$this->_addBytes += $matches[1];
-		$this->_delBytes += $matches[2];
-	}
-	protected function _count($lines)
-	{
-		$bytes = 0;
-		foreach ($lines as $line) {
-			$bytes += strlen($line);
-		}
-		return $bytes;
-	}
+    protected function _changed($orig, $final)
+    {
+        if ($this->_first >= 0) { // stop recursion
+            $this->_addBytes += count($final);
+            $this->_delBytes += count($orig);
+
+            return;
+        }
+        $change = diffChar($orig, $final, 0, 'bytes');
+        preg_match("/add=([0-9]*)&amp;del=([0-9]*)/", $change, $matches);
+        $this->_addBytes += $matches[1];
+        $this->_delBytes += $matches[2];
+    }
+    protected function _count($lines)
+    {
+        $bytes = 0;
+        foreach ($lines as $line) {
+            $bytes += strlen($line);
+        }
+
+        return $bytes;
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -10,7 +11,7 @@
  */
 function upgrade_20180921_sql_upgrade_fix_from_older_tiki($installer)
 {
-	$query = <<<SQL
+    $query = <<<SQL
 -- Fix upgrade from 9.x
 ALTER TABLE `tiki_forums_reported` DROP PRIMARY KEY;
 ALTER TABLE `tiki_forums_reported` ADD PRIMARY KEY (`threadId`, `forumId`, `parentId`, `user`); -- Changed in 20121210_better_forum_reported_index_tiki.sql but never make it to tiki.sql
@@ -245,5 +246,5 @@ INSERT IGNORE INTO `tiki_menu_options` (`menuId`, `type`, `name`, `url`, `positi
 ALTER TABLE `tiki_queue` CHANGE `handler` `handler` varchar(64) DEFAULT NULL;
 SQL;
 
-	$installer->query($query);
+    $installer->query($query);
 }

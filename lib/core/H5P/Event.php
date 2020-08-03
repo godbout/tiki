@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -13,61 +14,61 @@
  */
 class H5P_Event extends H5PEventBase
 {
-	private $user = null;
+    private $user = null;
 
-	/**
-	 * Adds event type, h5p library and timestamp to event before saving it.
-	 *
-	 * @param string $type
-	 *  Name of event to log
-	 * @param string $sub_type
-	 * @param string $content_id
-	 * @param string $content_title
-	 * @param string $library_name
-	 * @param string $library_version
-	 * @internal param string $library Name of H5P library affacted*  Name of H5P library affacted
-	 */
-	function __construct($type, $sub_type = null, $content_id = null, $content_title = null, $library_name = null, $library_version = null)
-	{
-		global $user;
+    /**
+     * Adds event type, h5p library and timestamp to event before saving it.
+     *
+     * @param string $type
+     *  Name of event to log
+     * @param string $sub_type
+     * @param string $content_id
+     * @param string $content_title
+     * @param string $library_name
+     * @param string $library_version
+     * @internal param string $library Name of H5P library affacted*  Name of H5P library affacted
+     */
+    public function __construct($type, $sub_type = null, $content_id = null, $content_title = null, $library_name = null, $library_version = null)
+    {
+        global $user;
 
-		$this->user = $user;
+        $this->user = $user;
 
-		parent::__construct($type, $sub_type, $content_id, $content_title, $library_name, $library_version);
-	}
+        parent::__construct($type, $sub_type, $content_id, $content_title, $library_name, $library_version);
+    }
 
-	/**
-	 * Store the event.
-	 */
-	protected function save()
-	{
+    /**
+     * Store the event.
+     */
+    protected function save()
+    {
 
-		// Get data in array format without NULL values
-		$data = $this->getDataArray();
+        // Get data in array format without NULL values
+        $data = $this->getDataArray();
 
-		$message = 'Library ' . $data['library_name'] . ' (' . $data['library_version'] . ')';
+        $message = 'Library ' . $data['library_name'] . ' (' . $data['library_version'] . ')';
 
-		$title = $data['content_title'] ? $data['content_title'] : $data['content_id'];
+        $title = $data['content_title'] ? $data['content_title'] : $data['content_id'];
 
-		TikiLib::lib('logs')->add_action(
-			$data['type'],
-			$title,
-			'h5p',
-			$message,
-			$this->user,
-			'',
-			'',
-			$data['created_at']
-		);
+        TikiLib::lib('logs')->add_action(
+            $data['type'],
+            $title,
+            'h5p',
+            $message,
+            $this->user,
+            '',
+            '',
+            $data['created_at']
+        );
 
-		return $this->id;
-	}
+        return $this->id;
+    }
 
-	/**
-	 * Count number of events.
-	 */
-	protected function saveStats()
-	{
-		// TODO implement this
-	}
+    /**
+     * Count number of events.
+     */
+    protected function saveStats()
+    {
+        // TODO implement this
+    }
 }

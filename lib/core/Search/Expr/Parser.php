@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,202 +8,202 @@
 
 class Search_Expr_Parser
 {
-	private $special = ['(', ')', 'AND', 'OR', 'NOT', '+'];
+    private $special = ['(', ')', 'AND', 'OR', 'NOT', '+'];
 
-	function parse($string)
-	{
-		$tokenizer = new Search_Expr_Tokenizer;
+    public function parse($string)
+    {
+        $tokenizer = new Search_Expr_Tokenizer;
 
-		$tokens = [];
-		foreach ($tokenizer->tokenize($string) as $part) {
-			if (in_array(strtoupper($part), $this->special)) {
-				$tokens[] = strtoupper($part);
-			} elseif (strpos($part, ' ') === false) {
-				if (! $this->isAStopWord($part)) {
-					$tokens[] = new Search_Expr_Token($part);
-				}
-			} else {
-				$tokens[] = new Search_Expr_ExplicitPhrase($part);
-			}
-		}
+        $tokens = [];
+        foreach ($tokenizer->tokenize($string) as $part) {
+            if (in_array(strtoupper($part), $this->special)) {
+                $tokens[] = strtoupper($part);
+            } elseif (strpos($part, ' ') === false) {
+                if (! $this->isAStopWord($part)) {
+                    $tokens[] = new Search_Expr_Token($part);
+                }
+            } else {
+                $tokens[] = new Search_Expr_ExplicitPhrase($part);
+            }
+        }
 
-		return $this->reduce($tokens);
-	}
+        return $this->reduce($tokens);
+    }
 
-	private function reduce($tokens)
-	{
-		$tokens = $this->filterExcessiveKeywords($tokens);
-		$tokens = $this->reduceParenthesis($tokens);
-		$tokens = $this->applyOperator($tokens, 'NOT', 'buildNot');
-		$tokens = $this->applyOperator($tokens, 'OR', 'buildOr');
-		$tokens = $this->applyOperator($tokens, 'AND', 'buildAnd');
-		$tokens = $this->applyOperator($tokens, '+', 'buildAnd');
-		$tokens = array_values($tokens);
+    private function reduce($tokens)
+    {
+        $tokens = $this->filterExcessiveKeywords($tokens);
+        $tokens = $this->reduceParenthesis($tokens);
+        $tokens = $this->applyOperator($tokens, 'NOT', 'buildNot');
+        $tokens = $this->applyOperator($tokens, 'OR', 'buildOr');
+        $tokens = $this->applyOperator($tokens, 'AND', 'buildAnd');
+        $tokens = $this->applyOperator($tokens, '+', 'buildAnd');
+        $tokens = array_values($tokens);
 
-		if (count($tokens) === 0) {
-			return new Search_Expr_ImplicitPhrase([]);
-		} elseif (count($tokens) === 1) {
-			return reset($tokens);
-		}
+        if (count($tokens) === 0) {
+            return new Search_Expr_ImplicitPhrase([]);
+        } elseif (count($tokens) === 1) {
+            return reset($tokens);
+        }
 
-		// Separate the implicit phrase tokens into tokens of the same type.
-		// Explicit Token Token Explicit -> (Explicit (Token Token) Explicit)
-		$parts = [];
-		$key = 0;
-		$initialClass = get_class(reset($tokens));
+        // Separate the implicit phrase tokens into tokens of the same type.
+        // Explicit Token Token Explicit -> (Explicit (Token Token) Explicit)
+        $parts = [];
+        $key = 0;
+        $initialClass = get_class(reset($tokens));
 
-		foreach ($tokens as $token) {
-			$class = get_class($token);
-			if ($initialClass != $class) {
-				$key++;
-				$initialClass = $class;
-			}
+        foreach ($tokens as $token) {
+            $class = get_class($token);
+            if ($initialClass != $class) {
+                $key++;
+                $initialClass = $class;
+            }
 
-			$parts[$key][] = $token;
-		}
+            $parts[$key][] = $token;
+        }
 
-		if (count($parts) === 1) {
-			return new Search_Expr_ImplicitPhrase(reset($parts));
-		} else {
-			return new Search_Expr_ImplicitPhrase(array_map(function ($p) {
-				if (count($p) === 1) {
-					return reset($p);
-				} else {
-					return new Search_Expr_ImplicitPhrase($p);
-				}
-			}, $parts));
-		}
-	}
+        if (count($parts) === 1) {
+            return new Search_Expr_ImplicitPhrase(reset($parts));
+        }
 
-	private function reduceParenthesis($tokens)
-	{
-		$out = [];
-		$firstOpen = null;
-		$openCount = 0;
+        return new Search_Expr_ImplicitPhrase(array_map(function ($p) {
+            if (count($p) === 1) {
+                return reset($p);
+            }
 
-		foreach ($tokens as $key => $token) {
-			if ($token === '(') {
-				if ($openCount === 0) {
-					$firstOpen = $key;
-				}
+            return new Search_Expr_ImplicitPhrase($p);
+        }, $parts));
+    }
 
-				++$openCount;
-			} elseif ($token === ')') {
-				--$openCount;
+    private function reduceParenthesis($tokens)
+    {
+        $out = [];
+        $firstOpen = null;
+        $openCount = 0;
 
-				if ($openCount === 0) {
-					$inner = array_slice($tokens, $firstOpen + 1, $key - $firstOpen - 1);
-					$out[] = $this->reduce($inner);
-					$firstOpen = null;
-				}
+        foreach ($tokens as $key => $token) {
+            if ($token === '(') {
+                if ($openCount === 0) {
+                    $firstOpen = $key;
+                }
 
-				// Skip extra closing parenthesis and restore state
-				$openCount = max(0, $openCount);
-			} elseif ($openCount === 0) {
-				$out[] = $token;
-			}
-		}
+                ++$openCount;
+            } elseif ($token === ')') {
+                --$openCount;
 
-		// Handle a missing final parenthesis by reducing everything until the end
-		if ($firstOpen) {
-			$inner = array_slice($tokens, $firstOpen + 1);
-			$out[] = $this->reduce($inner);
-		}
+                if ($openCount === 0) {
+                    $inner = array_slice($tokens, $firstOpen + 1, $key - $firstOpen - 1);
+                    $out[] = $this->reduce($inner);
+                    $firstOpen = null;
+                }
 
-		return $out;
-	}
+                // Skip extra closing parenthesis and restore state
+                $openCount = max(0, $openCount);
+            } elseif ($openCount === 0) {
+                $out[] = $token;
+            }
+        }
 
-	private function applyOperator($tokens, $lookingFor, $buildMethod)
-	{
-		$tokens = array_values($tokens);
-		$positions = [];
-		foreach ($tokens as $key => $token) {
-			if ($lookingFor === $token) {
-				$positions[] = $key;
-			}
-		}
+        // Handle a missing final parenthesis by reducing everything until the end
+        if ($firstOpen) {
+            $inner = array_slice($tokens, $firstOpen + 1);
+            $out[] = $this->reduce($inner);
+        }
 
-		foreach ($positions as $key) {
-			$this->$buildMethod($tokens, $key);
-		}
+        return $out;
+    }
 
-		return array_filter($tokens);
-	}
+    private function applyOperator($tokens, $lookingFor, $buildMethod)
+    {
+        $tokens = array_values($tokens);
+        $positions = [];
+        foreach ($tokens as $key => $token) {
+            if ($lookingFor === $token) {
+                $positions[] = $key;
+            }
+        }
 
-	private function buildOr(&$tokens, $key)
-	{
-		$previous = $key - 1;
-		$next = $key + 1;
+        foreach ($positions as $key) {
+            $this->$buildMethod($tokens, $key);
+        }
 
-		while (! $tokens[$previous]) {
-			$previous--;
-		}
+        return array_filter($tokens);
+    }
 
-		$tokens[$key] = new Search_Expr_Or([$tokens[$previous], $tokens[$next]]);
-		$tokens[$previous] = null;
-		$tokens[$next] = null;
-	}
+    private function buildOr(&$tokens, $key)
+    {
+        $previous = $key - 1;
+        $next = $key + 1;
 
-	private function buildAnd(&$tokens, $key)
-	{
-		$previous = $key - 1;
-		$next = $key + 1;
+        while (! $tokens[$previous]) {
+            $previous--;
+        }
 
-		while (! $tokens[$previous]) {
-			$previous--;
-		}
+        $tokens[$key] = new Search_Expr_Or([$tokens[$previous], $tokens[$next]]);
+        $tokens[$previous] = null;
+        $tokens[$next] = null;
+    }
 
-		$tokens[$key] = new Search_Expr_And([$tokens[$previous], $tokens[$next]]);
-		$tokens[$previous] = null;
-		$tokens[$next] = null;
-	}
+    private function buildAnd(&$tokens, $key)
+    {
+        $previous = $key - 1;
+        $next = $key + 1;
 
-	private function buildNot(&$tokens, $key)
-	{
-		if (isset($tokens[$key + 1])) {
-			$tokens[$key] = new Search_Expr_Not($tokens[$key + 1]);
-			$tokens[$key + 1] = null;
-		} else {
-			$tokens[$key] = new Search_Expr_Not(new Search_Expr_Token(''));
-		}
-	}
+        while (! $tokens[$previous]) {
+            $previous--;
+        }
 
-	private function filterExcessiveKeywords($tokens)
-	{
-		$out = [];
-		$skip = true;
-		foreach ($tokens as $token) {
-			if (is_string($token) && in_array($token, ['AND', 'OR', '+'])) {
-				if (! $skip) {
-					$out[] = $token;
-					$skip = true;
-				}
-			} else {
-				$skip = false;
-				$out[] = $token;
-			}
-		}
+        $tokens[$key] = new Search_Expr_And([$tokens[$previous], $tokens[$next]]);
+        $tokens[$previous] = null;
+        $tokens[$next] = null;
+    }
 
-		return $out;
-	}
+    private function buildNot(&$tokens, $key)
+    {
+        if (isset($tokens[$key + 1])) {
+            $tokens[$key] = new Search_Expr_Not($tokens[$key + 1]);
+            $tokens[$key + 1] = null;
+        } else {
+            $tokens[$key] = new Search_Expr_Not(new Search_Expr_Token(''));
+        }
+    }
 
-	/**
-	 * when using AND as the default operator queries including stopped words fail
-	 * so remove them here for the relevant engines (elastic only so far)
-	 *
-	 * @param string $word
-	 * @return boolean
-	 */
-	private function isAStopWord($word)
-	{
-		global $prefs;
+    private function filterExcessiveKeywords($tokens)
+    {
+        $out = [];
+        $skip = true;
+        foreach ($tokens as $token) {
+            if (is_string($token) && in_array($token, ['AND', 'OR', '+'])) {
+                if (! $skip) {
+                    $out[] = $token;
+                    $skip = true;
+                }
+            } else {
+                $skip = false;
+                $out[] = $token;
+            }
+        }
 
-		if ($prefs['unified_search_default_operator'] == 0 || $prefs['unified_engine'] === 'mysql') {
-			return false;
-		}
+        return $out;
+    }
 
-		$stopwords = $prefs['unified_stopwords'];
+    /**
+     * when using AND as the default operator queries including stopped words fail
+     * so remove them here for the relevant engines (elastic only so far)
+     *
+     * @param string $word
+     * @return boolean
+     */
+    private function isAStopWord($word)
+    {
+        global $prefs;
 
-		 return in_array(strtolower($word), array_map('strtolower', $stopwords));
-	}
+        if ($prefs['unified_search_default_operator'] == 0 || $prefs['unified_engine'] === 'mysql') {
+            return false;
+        }
+
+        $stopwords = $prefs['unified_stopwords'];
+
+        return in_array(strtolower($word), array_map('strtolower', $stopwords));
+    }
 }

@@ -18,40 +18,40 @@ $cookietab = 1;
 $routeLib = TikiLib::lib('custom_route');
 $controller = new Tiki\CustomRoute\Controller();
 if ((isset($_POST['new_route']) || (isset($_POST['editroute']) && isset($_POST['route'])) && empty($_POST['load_options']))
-	&& $access->checkCsrf()) {
-	// If route saved, it redirects to the routes page, cleaning the add/edit route form.
-	$route = $controller->saveRequest($_POST);
-	$cookietab = 2;
+    && $access->checkCsrf()) {
+    // If route saved, it redirects to the routes page, cleaning the add/edit route form.
+    $route = $controller->saveRequest($_POST);
+    $cookietab = 2;
 } elseif (isset($_REQUEST['route']) && $_REQUEST['route'] && empty($_POST['load_options'])) {
-	$item = Tiki\CustomRoute\Item::load($_REQUEST['route']);
-	$route = $item->toArray();
-	$cookietab = '2';
+    $item = Tiki\CustomRoute\Item::load($_REQUEST['route']);
+    $route = $item->toArray();
+    $cookietab = '2';
 } else {
-	$item = $controller->populateFromRequest($_POST);
-	$route = $item->toArray();
+    $item = $controller->populateFromRequest($_POST);
+    $route = $item->toArray();
 
-	if (! isset($_POST['load_options']) && isset($_REQUEST['route'])) {
-		unset($route['id']);
-		$_REQUEST['route'] = 0;
-	}
+    if (! isset($_POST['load_options']) && isset($_REQUEST['route'])) {
+        unset($route['id']);
+        $_REQUEST['route'] = 0;
+    }
 }
 
 $routes = $routeLib->getRoute();
 $smarty->assign_by_ref('routes', $routes);
 
 if (isset($_REQUEST['add']) || ! empty($_REQUEST['router_type'])) {
-	$cookietab = '2';
+    $cookietab = '2';
 }
 
 $smarty->assign('route', $route);
 $smarty->assign('routeId', $_REQUEST['route']);
 $smarty->assign(
-	'routerTypes',
-	[
-		\Tiki\CustomRoute\Item::TYPE_DIRECT => 'Redirect to another URL',
-		\Tiki\CustomRoute\Item::TYPE_OBJECT => 'Redirect to tiki object',
-		\Tiki\CustomRoute\Item::TYPE_TRACKER_FIELD => 'To tracker item by field value',
-	]
+    'routerTypes',
+    [
+        \Tiki\CustomRoute\Item::TYPE_DIRECT => 'Redirect to another URL',
+        \Tiki\CustomRoute\Item::TYPE_OBJECT => 'Redirect to tiki object',
+        \Tiki\CustomRoute\Item::TYPE_TRACKER_FIELD => 'To tracker item by field value',
+    ]
 );
 
 

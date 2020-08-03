@@ -1,7 +1,8 @@
 <?php
+
 // File header
 
-$lang = array(
+$lang = [
 /* file1, file3 */
 // "First string" => "First string",
 /* file2 */
@@ -12,4 +13,4 @@ $lang = array(
 "Translation is the same as English string" => "Translation is the same as English string",
 /* file4 */
 // "etc" => "etc",
-);
+];

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -23,51 +24,57 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * @param string idletime (optional)
  * @param string fullname (optional)
  * @param integer max_length (optional)
+ * @param mixed $other_user
+ * @param mixed $class
+ * @param mixed $idletime
+ * @param mixed $fullname
+ * @param mixed $max_length
+ * @param mixed $popup
  * @return string user link
  *
  * Syntax: {$foo|userlink[:"<class>"][:"<idletime>"][:"<fullname>"][:<max_length>]} (optional params in brackets)
  *
  * Example: {$userinfo.login|userlink:'link':::25}
  */
-
 function smarty_modifier_userlink($other_user, $class = 'userlink', $idletime = 'not_set', $fullname = '', $max_length = 0, $popup = '')
 {
-	global $prefs;
+    global $prefs;
 
-	if (empty($other_user)) {
-		return "";
-	}
-	if (is_array($other_user)) {
-		if (count($other_user) > 1) {
-			$other_user = array_map(
-				function ($username) use ($class, $idletime, $popup) {
-					$username = TikiLib::lib('user')->distinguish_anonymous_users($username);
-					return smarty_modifier_userlink($username, $class, $idletime, '', 0, $popup);
-				},
-				$other_user
-			);
+    if (empty($other_user)) {
+        return "";
+    }
+    if (is_array($other_user)) {
+        if (count($other_user) > 1) {
+            $other_user = array_map(
+                function ($username) use ($class, $idletime, $popup) {
+                    $username = TikiLib::lib('user')->distinguish_anonymous_users($username);
 
-			$last = array_pop($other_user);
-			return tr('%0 and %1', implode(', ', $other_user), $last);
-		} else {
-			$other_user = TikiLib::lib('user')->distinguish_anonymous_users(reset($other_user));
-		}
-	} else {
-		$other_user = TikiLib::lib('user')->distinguish_anonymous_users($other_user);
-	}
-	if (! $fullname) {
-		$fullname = TikiLib::lib('user')->clean_user($other_user);
-	}
-	if ($max_length) {
-		TikiLib::lib('smarty')->loadPlugin('smarty_modifier_truncate');
-		$fullname = smarty_modifier_truncate($fullname, $max_length, '...', true);
-	}
+                    return smarty_modifier_userlink($username, $class, $idletime, '', 0, $popup);
+                },
+                $other_user
+            );
 
-	if (empty($popup) && $prefs['feature_community_mouseover'] == 'n') {
-		$popup = 'n';
-	} else {
-		$popup = 'y';
-	}
+            $last = array_pop($other_user);
 
-	return TikiLib::lib('user')->build_userinfo_tag($other_user, htmlspecialchars($fullname, ENT_QUOTES), $class, $popup);
+            return tr('%0 and %1', implode(', ', $other_user), $last);
+        }
+        $other_user = TikiLib::lib('user')->distinguish_anonymous_users(reset($other_user));
+    } else {
+        $other_user = TikiLib::lib('user')->distinguish_anonymous_users($other_user);
+    }
+    if (! $fullname) {
+        $fullname = TikiLib::lib('user')->clean_user($other_user);
+    }
+    if ($max_length) {
+        TikiLib::lib('smarty')->loadPlugin('smarty_modifier_truncate');
+        $fullname = smarty_modifier_truncate($fullname, $max_length, '...', true);
+    }
+
+    if (empty($popup) && $prefs['feature_community_mouseover'] == 'n') {
+        $popup = 'n';
+    } else {
+        $popup = 'y';
+    }
+
+    return TikiLib::lib('user')->build_userinfo_tag($other_user, htmlspecialchars($fullname, ENT_QUOTES), $class, $popup);
 }

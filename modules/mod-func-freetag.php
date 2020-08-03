@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -16,12 +17,12 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function module_freetag_info()
 {
-	return [
-		'name' => tra('Tags Editor'),
-		'description' => tra('Shows current tags and enables adding and removing some if permissions allow.'),
-		'prefs' => ['feature_freetags'],
-		'params' => []
-	];
+    return [
+        'name' => tra('Tags Editor'),
+        'description' => tra('Shows current tags and enables adding and removing some if permissions allow.'),
+        'prefs' => ['feature_freetags'],
+        'params' => []
+    ];
 }
 
 /**
@@ -30,23 +31,23 @@ function module_freetag_info()
  */
 function module_freetag($mod_reference, $module_params)
 {
-	global $sections, $section;
-	$smarty = TikiLib::lib('smarty');
-	$modlib = TikiLib::lib('mod');
+    global $sections, $section;
+    $smarty = TikiLib::lib('smarty');
+    $modlib = TikiLib::lib('mod');
 
-	$globalperms = Perms::get();
-	if ($globalperms->view_freetags && isset($sections[$section])) {
-		$tagid = 0;
-		$par = $sections[$section];
-		if (isset($par['itemkey']) && ! empty($_REQUEST["{$par['itemkey']}"])) {
-			$tagid = $_REQUEST["{$par['itemkey']}"];
-		} elseif (isset($par['key']) && ! empty($_REQUEST["{$par['key']}"])) {
-			$tagid = $_REQUEST["{$par['key']}"];
-		}
-		if ($tagid) {
-			$smarty->assign('viewTags', 'y');
-		}
-	} elseif ($modlib->is_admin_mode(true)) {
-		$smarty->assign('viewTags', 'y');
-	}
+    $globalperms = Perms::get();
+    if ($globalperms->view_freetags && isset($sections[$section])) {
+        $tagid = 0;
+        $par = $sections[$section];
+        if (isset($par['itemkey']) && ! empty($_REQUEST["{$par['itemkey']}"])) {
+            $tagid = $_REQUEST["{$par['itemkey']}"];
+        } elseif (isset($par['key']) && ! empty($_REQUEST["{$par['key']}"])) {
+            $tagid = $_REQUEST["{$par['key']}"];
+        }
+        if ($tagid) {
+            $smarty->assign('viewTags', 'y');
+        }
+    } elseif ($modlib->is_admin_mode(true)) {
+        $smarty->assign('viewTags', 'y');
+    }
 }

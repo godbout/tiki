@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,66 +8,66 @@
 
 class Search_ContentSource_ForumSource implements Search_ContentSource_Interface
 {
-	private $db;
+    private $db;
 
-	function __construct()
-	{
-		$this->db = TikiDb::get();
-	}
+    public function __construct()
+    {
+        $this->db = TikiDb::get();
+    }
 
-	function getDocuments()
-	{
-		return $this->db->table('tiki_forums')->fetchColumn('forumId', []);
-	}
+    public function getDocuments()
+    {
+        return $this->db->table('tiki_forums')->fetchColumn('forumId', []);
+    }
 
-	function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
-	{
-		$lib = TikiLib::lib('comments');
+    public function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
+    {
+        $lib = TikiLib::lib('comments');
 
-		$item = $lib->get_forum($objectId);
+        $item = $lib->get_forum($objectId);
 
-		if (! $item) {
-			return false;
-		}
+        if (! $item) {
+            return false;
+        }
 
-		$data = [
-			'title' => $typeFactory->sortable($item['name']),
-			'creation_date' => $typeFactory->timestamp($item['created']),
-			'date' => $typeFactory->timestamp($item['created']),
-			'description' => $typeFactory->plaintext($item['description']),
-			'language' => $typeFactory->identifier($item['forumLanguage'] ?: 'unknown'),
+        $data = [
+            'title' => $typeFactory->sortable($item['name']),
+            'creation_date' => $typeFactory->timestamp($item['created']),
+            'date' => $typeFactory->timestamp($item['created']),
+            'description' => $typeFactory->plaintext($item['description']),
+            'language' => $typeFactory->identifier($item['forumLanguage'] ?: 'unknown'),
 
-			'forum_section' => $typeFactory->identifier($item['section']),
+            'forum_section' => $typeFactory->identifier($item['section']),
 
-			'view_permission' => $typeFactory->identifier('tiki_p_forum_read'),
-		];
+            'view_permission' => $typeFactory->identifier('tiki_p_forum_read'),
+        ];
 
-		return $data;
-	}
+        return $data;
+    }
 
-	function getProvidedFields()
-	{
-		return [
-			'title',
-			'creation_date',
-			'date',
-			'description',
-			'language',
+    public function getProvidedFields()
+    {
+        return [
+            'title',
+            'creation_date',
+            'date',
+            'description',
+            'language',
 
-			'forum_section',
+            'forum_section',
 
-			'searchable',
+            'searchable',
 
-			'view_permission',
-		];
-	}
+            'view_permission',
+        ];
+    }
 
-	function getGlobalFields()
-	{
-		return [
-			'title' => true,
-			'description' => true,
-			'date' => true,
-		];
-	}
+    public function getGlobalFields()
+    {
+        return [
+            'title' => true,
+            'description' => true,
+            'date' => true,
+        ];
+    }
 }

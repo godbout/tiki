@@ -32,7 +32,7 @@ $bufid = [];
 $bufdata = [];
 $editable = [];
 if (! isset($cookietab)) {
-	$cookietab = '1';
+    $cookietab = '1';
 }
 $rawcals = $calendarlib->list_calendars();
 $cals_info = $rawcals;
@@ -45,56 +45,56 @@ $maxHourOfDay = 12;
 $manyEvents = [];
 
 foreach ($rawcals["data"] as $cal_data) {
-	$cal_id = $cal_data['calendarId'];
-	$minHourOfDay = min($minHourOfDay, (int)($cal_data['startday'] / 3600));
-	$maxHourOfDay = max($maxHourOfDay, (int)(($cal_data['endday'] + 1) / 3600));
-	if ($tiki_p_admin == 'y') {
-		$cal_data["tiki_p_view_calendar"] = 'y';
-		$cal_data["tiki_p_view_events"] = 'y';
-		$cal_data["tiki_p_add_events"] = 'y';
-		$cal_data["tiki_p_change_events"] = 'y';
-	} elseif ($cal_data["personal"] == "y") {
-		if ($user) {
-			$cal_data["tiki_p_view_calendar"] = 'y';
-			$cal_data["tiki_p_view_events"] = 'y';
-			$cal_data["tiki_p_add_events"] = 'y';
-			$cal_data["tiki_p_change_events"] = 'y';
-		} else {
-			$cal_data["tiki_p_view_calendar"] = 'n';
-			$cal_data["tiki_p_view_events"] = 'y';
-			$cal_data["tiki_p_add_events"] = 'n';
-			$cal_data["tiki_p_change_events"] = 'n';
-		}
-	} else {
-		$calperms = Perms::get([ 'type' => 'calendar', 'object' => $cal_id ]);
-		$cal_data["tiki_p_view_calendar"] = $calperms->view_calendar ? 'y' : 'n';
-		$cal_data["tiki_p_view_events"] = $calperms->view_events ? 'y' : 'n';
-		$cal_data["tiki_p_add_events"] = $calperms->add_events ? 'y' : 'n';
-		$cal_data["tiki_p_change_events"] = $calperms->change_events ? 'y' : 'n';
-	}
-	if ($cal_data["tiki_p_view_calendar"] == 'y') {
-		$viewOneCal = 'y';
-		$bufid[] = $cal_id;
-		$bufdata["$cal_id"] = $cal_data;
-	}
-	if ($cal_data["tiki_p_view_events"] == 'y') {
-		$visible[] = $cal_id;
-	}
-	if ($cal_data["tiki_p_add_events"] == 'y') {
-		$modifTab = 1;
-	}
-	if ($cal_data["tiki_p_change_events"] == 'y') {
-		$modifTab = 1;
-		$editable[] = $cal_id;
-		$visible[] = $cal_id;
-	}
+    $cal_id = $cal_data['calendarId'];
+    $minHourOfDay = min($minHourOfDay, (int)($cal_data['startday'] / 3600));
+    $maxHourOfDay = max($maxHourOfDay, (int)(($cal_data['endday'] + 1) / 3600));
+    if ($tiki_p_admin == 'y') {
+        $cal_data["tiki_p_view_calendar"] = 'y';
+        $cal_data["tiki_p_view_events"] = 'y';
+        $cal_data["tiki_p_add_events"] = 'y';
+        $cal_data["tiki_p_change_events"] = 'y';
+    } elseif ($cal_data["personal"] == "y") {
+        if ($user) {
+            $cal_data["tiki_p_view_calendar"] = 'y';
+            $cal_data["tiki_p_view_events"] = 'y';
+            $cal_data["tiki_p_add_events"] = 'y';
+            $cal_data["tiki_p_change_events"] = 'y';
+        } else {
+            $cal_data["tiki_p_view_calendar"] = 'n';
+            $cal_data["tiki_p_view_events"] = 'y';
+            $cal_data["tiki_p_add_events"] = 'n';
+            $cal_data["tiki_p_change_events"] = 'n';
+        }
+    } else {
+        $calperms = Perms::get([ 'type' => 'calendar', 'object' => $cal_id ]);
+        $cal_data["tiki_p_view_calendar"] = $calperms->view_calendar ? 'y' : 'n';
+        $cal_data["tiki_p_view_events"] = $calperms->view_events ? 'y' : 'n';
+        $cal_data["tiki_p_add_events"] = $calperms->add_events ? 'y' : 'n';
+        $cal_data["tiki_p_change_events"] = $calperms->change_events ? 'y' : 'n';
+    }
+    if ($cal_data["tiki_p_view_calendar"] == 'y') {
+        $viewOneCal = 'y';
+        $bufid[] = $cal_id;
+        $bufdata["$cal_id"] = $cal_data;
+    }
+    if ($cal_data["tiki_p_view_events"] == 'y') {
+        $visible[] = $cal_id;
+    }
+    if ($cal_data["tiki_p_add_events"] == 'y') {
+        $modifTab = 1;
+    }
+    if ($cal_data["tiki_p_change_events"] == 'y') {
+        $modifTab = 1;
+        $editable[] = $cal_id;
+        $visible[] = $cal_id;
+    }
 }
 
 if ($viewOneCal != 'y') {
-	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have permission to view the calendar"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('errortype', 401);
+    $smarty->assign('msg', tra("You do not have permission to view the calendar"));
+    $smarty->display("error.tpl");
+    die;
 }
 
 $listcals = $bufid;
@@ -102,50 +102,50 @@ $infocals["data"] = $bufdata;
 
 // set up list of groups
 $use_default_calendars = false;
-if (isset($_REQUEST["calIds"])and is_array($_REQUEST["calIds"])and count($_REQUEST["calIds"])) {
-	$_SESSION['CalendarViewGroups'] = array_intersect($_REQUEST["calIds"], $listcals);
-	if (! empty($user)) {
-		$tikilib->set_user_preference($user, 'default_calendars', serialize($_SESSION['CalendarViewGroups']));
-	}
-} elseif (isset($_REQUEST["calIds"])and ! is_array($_REQUEST["calIds"])) {
-	$_SESSION['CalendarViewGroups'] = array_intersect([$_REQUEST["calIds"]], $listcals);
-	if (! empty($user)) {
-		$tikilib->set_user_preference($user, 'default_calendars', serialize($_SESSION['CalendarViewGroups']));
-	}
+if (isset($_REQUEST["calIds"]) and is_array($_REQUEST["calIds"]) and count($_REQUEST["calIds"])) {
+    $_SESSION['CalendarViewGroups'] = array_intersect($_REQUEST["calIds"], $listcals);
+    if (! empty($user)) {
+        $tikilib->set_user_preference($user, 'default_calendars', serialize($_SESSION['CalendarViewGroups']));
+    }
+} elseif (isset($_REQUEST["calIds"]) and ! is_array($_REQUEST["calIds"])) {
+    $_SESSION['CalendarViewGroups'] = array_intersect([$_REQUEST["calIds"]], $listcals);
+    if (! empty($user)) {
+        $tikilib->set_user_preference($user, 'default_calendars', serialize($_SESSION['CalendarViewGroups']));
+    }
 } elseif (! empty($_REQUEST['allCals'])) {
-	$_SESSION['CalendarViewGroups'] = $listcals;
+    $_SESSION['CalendarViewGroups'] = $listcals;
 } elseif (! isset($_SESSION['CalendarViewGroups']) || ! empty($_REQUEST['allCals'])) {
-	$use_default_calendars = true;
-} elseif (isset($_REQUEST["refresh"])and ! isset($_REQUEST["calIds"])) {
-	$_SESSION['CalendarViewGroups'] = [];
+    $use_default_calendars = true;
+} elseif (isset($_REQUEST["refresh"]) and ! isset($_REQUEST["calIds"])) {
+    $_SESSION['CalendarViewGroups'] = [];
 } elseif (! empty($user) || ! isset($_SESSION['CalendarViewGroups'])) {
-	$use_default_calendars = true;
+    $use_default_calendars = true;
 }
 
 if ($use_default_calendars) {
-	if ($prefs['feature_default_calendars'] == 'y') {
-		$_SESSION['CalendarViewGroups'] = array_intersect(is_array($prefs['default_calendars']) ? $prefs['default_calendars'] : unserialize($prefs['default_calendars']), $listcals);
-	} elseif (! empty($user)) {
-		$user_default_calendars = $tikilib->get_user_preference($user, 'default_calendars', $listcals);
-		if (is_string($user_default_calendars)) {
-			$user_default_calendars = unserialize($user_default_calendars);
-		}
-		$_SESSION['CalendarViewGroups'] = $user_default_calendars;
-	} else {
-		$_SESSION['CalendarViewGroups'] = $listcals;
-	}
+    if ($prefs['feature_default_calendars'] == 'y') {
+        $_SESSION['CalendarViewGroups'] = array_intersect(is_array($prefs['default_calendars']) ? $prefs['default_calendars'] : unserialize($prefs['default_calendars']), $listcals);
+    } elseif (! empty($user)) {
+        $user_default_calendars = $tikilib->get_user_preference($user, 'default_calendars', $listcals);
+        if (is_string($user_default_calendars)) {
+            $user_default_calendars = unserialize($user_default_calendars);
+        }
+        $_SESSION['CalendarViewGroups'] = $user_default_calendars;
+    } else {
+        $_SESSION['CalendarViewGroups'] = $listcals;
+    }
 }
 
 $thiscal = [];
 $checkedCals = [];
 
 foreach ($listcals as $thatid) {
-	if (is_array($_SESSION['CalendarViewGroups']) && (in_array("$thatid", $_SESSION['CalendarViewGroups']))) {
-		$thiscal["$thatid"] = 1;
-		$checkedCals[] = $thatid;
-	} else {
-		$thiscal["$thatid"] = 0;
-	}
+    if (is_array($_SESSION['CalendarViewGroups']) && (in_array("$thatid", $_SESSION['CalendarViewGroups']))) {
+        $thiscal["$thatid"] = 1;
+        $checkedCals[] = $thatid;
+    } else {
+        $thiscal["$thatid"] = 0;
+    }
 }
 
 //include_once("tiki-calendar_setup.php");
@@ -154,12 +154,12 @@ foreach ($listcals as $thatid) {
 /*
 $viewdays = array();
 foreach ($_SESSION['CalendarViewGroups'] as $calendar) {
-	$info = $calendarlib->get_calendar($calendar);
-	if (is_array($info['viewdays']))
-		$viewdays = array_merge($info['viewdays'],$viewdays);
+    $info = $calendarlib->get_calendar($calendar);
+    if (is_array($info['viewdays']))
+        $viewdays = array_merge($info['viewdays'],$viewdays);
 }
 if (empty($viewdays)) {
-		$viewdays = array(0,1,2,3,4,5,6);
+        $viewdays = array(0,1,2,3,4,5,6);
 }
 sort($viewdays, SORT_NUMERIC);
 $viewdays = array_map("correct_start_day", array_unique($viewdays));
@@ -167,7 +167,7 @@ $viewdays2 = array_values($viewdays);
 */
 
 if (isset($_REQUEST['sort_mode'])) {
-	$sort_mode = $_REQUEST['sort_mode'];
+    $sort_mode = $_REQUEST['sort_mode'];
 }
 
 $viewstart = $_REQUEST['start'];
@@ -180,38 +180,38 @@ $viewend = new DateTime($viewend);
 $viewend = $viewend->getTimestamp();
 
 if ($_SESSION['CalendarViewGroups']) {
-	$listevents = $calendarlib->list_raw_items($_SESSION['CalendarViewGroups'], $user, $viewstart, $viewend, 0, -1);
-	for ($i = count($listevents) - 1; $i >= 0; --$i) {
-		$listevents[$i]['editable'] = in_array($listevents[$i]['calendarId'], $editable) ? "y" : "n";
-		$listevents[$i]['visible'] = in_array($listevents[$i]['calendarId'], $visible) ? "y" : "n";
-	}
+    $listevents = $calendarlib->list_raw_items($_SESSION['CalendarViewGroups'], $user, $viewstart, $viewend, 0, -1);
+    for ($i = count($listevents) - 1; $i >= 0; --$i) {
+        $listevents[$i]['editable'] = in_array($listevents[$i]['calendarId'], $editable) ? "y" : "n";
+        $listevents[$i]['visible'] = in_array($listevents[$i]['calendarId'], $visible) ? "y" : "n";
+    }
 } else {
-	$listevents = [];
+    $listevents = [];
 }
 
 
-if ($prefs['feature_theme_control'] == 'y'	and isset($_REQUEST['calIds'])) {
-	$cat_type = "calendar";
-	$cat_objid = $_REQUEST['calIds'][0];
+if ($prefs['feature_theme_control'] == 'y' and isset($_REQUEST['calIds'])) {
+    $cat_type = "calendar";
+    $cat_objid = $_REQUEST['calIds'][0];
 }
 
 $events = [];
 foreach ($listevents as $event) {
-	if ($event['editable'] === 'y' and $cal_data["tiki_p_change_events"] == 'y') {
-		$url = 'tiki-calendar_edit_item.php?fullcalendar=y&calitemId=' . $event['calitemId'];
-	} else {
-		$url = 'tiki-calendar_edit_item.php?viewcalitemId=' . $event['calitemId']; // removed fullcalendar=y param to prevent display without tpl for anons in some setups
-	}
-	$events[] = [ 'id' => $event['calitemId'],
-											'title' => $event['name'],
-											'description' => ! empty($event["description"]) ? TikiLib::lib('parser')->parse_data($event["description"], ['is_html' => $prefs['calendar_description_is_html'] === 'y']) : "",
-											'url' => $url,
-											'allDay' => $event['allday'] != 0 ,
-											'start' => TikiLib::date_format("c", $event['date_start'], false, 5, false),
-											'end' => TikiLib::date_format("c", $event['date_end'], false, 5, false),
-											'editable' => $event['editable'] === 'y',
-											'color' => '#' . $cals_info['data'][$event['calendarId']]['custombgcolor'],
-											'textColor' => '#' . $cals_info['data'][$event['calendarId']]['customfgcolor']];
+    if ($event['editable'] === 'y' and $cal_data["tiki_p_change_events"] == 'y') {
+        $url = 'tiki-calendar_edit_item.php?fullcalendar=y&calitemId=' . $event['calitemId'];
+    } else {
+        $url = 'tiki-calendar_edit_item.php?viewcalitemId=' . $event['calitemId']; // removed fullcalendar=y param to prevent display without tpl for anons in some setups
+    }
+    $events[] = [ 'id' => $event['calitemId'],
+                                            'title' => $event['name'],
+                                            'description' => ! empty($event["description"]) ? TikiLib::lib('parser')->parse_data($event["description"], ['is_html' => $prefs['calendar_description_is_html'] === 'y']) : "",
+                                            'url' => $url,
+                                            'allDay' => $event['allday'] != 0 ,
+                                            'start' => TikiLib::date_format("c", $event['date_start'], false, 5, false),
+                                            'end' => TikiLib::date_format("c", $event['date_end'], false, 5, false),
+                                            'editable' => $event['editable'] === 'y',
+                                            'color' => '#' . $cals_info['data'][$event['calendarId']]['custombgcolor'],
+                                            'textColor' => '#' . $cals_info['data'][$event['calendarId']]['customfgcolor']];
 }
 
 echo json_encode($events);

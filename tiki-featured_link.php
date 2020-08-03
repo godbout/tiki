@@ -16,7 +16,7 @@ $access->check_feature('feature_featuredLinks');
 $flinkslib->add_featured_link_hit($_REQUEST["url"]);
 // Get the page from the request var or default it to HomePage
 if (! isset($_REQUEST["url"]) || ! $flinkslib->get_featured_link($_REQUEST['url'])) {
-	Feedback::errorPage(tr('No page indicated'));
+    Feedback::errorPage(tr('No page indicated'));
 }
 
 $section = 'featured_links';

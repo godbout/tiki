@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,18 +8,18 @@
 
 class Reports_FactoryTest extends TikiTestCase
 {
-	public function testBuild_shouldReturnInstances()
-	{
-		$classes = ['Reports_Users', 'Reports_Cache', 'Reports_Manager', 'Reports_Send'];
+    public function testBuild_shouldReturnInstances()
+    {
+        $classes = ['Reports_Users', 'Reports_Cache', 'Reports_Manager', 'Reports_Send'];
 
-		foreach ($classes as $className) {
-			$this->assertInstanceOf($className, Reports_Factory::build($className));
-		}
-	}
+        foreach ($classes as $className) {
+            $this->assertInstanceOf($className, Reports_Factory::build($className));
+        }
+    }
 
-	public function testBuild_shouldThrowExceptionForUnknownClass()
-	{
-		$this->expectException('Exception');
-		Reports_Factory::build('Unknown_Class');
-	}
+    public function testBuild_shouldThrowExceptionForUnknownClass()
+    {
+        $this->expectException('Exception');
+        Reports_Factory::build('Unknown_Class');
+    }
 }

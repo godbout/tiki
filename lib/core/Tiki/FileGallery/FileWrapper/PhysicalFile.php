@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,74 +10,79 @@ namespace Tiki\FileGallery\FileWrapper;
 
 class PhysicalFile implements WrapperInterface
 {
-	private $path;
-	private $basePath;
+    private $path;
+    private $basePath;
 
-	function __construct($basePath, $path)
-	{
-		$this->basePath = rtrim($basePath, '/\\');
-		$this->path = $path;
-	}
+    public function __construct($basePath, $path)
+    {
+        $this->basePath = rtrim($basePath, '/\\');
+        $this->path = $path;
+    }
 
-	function getReadableFile()
-	{
-		return $this->fullPath();
-	}
+    public function getReadableFile()
+    {
+        return $this->fullPath();
+    }
 
-	function getContents()
-	{
-		$tmpfname = $this->fullPath();
+    public function getContents()
+    {
+        $tmpfname = $this->fullPath();
 
-		return \file_get_contents($tmpfname);
-	}
+        return \file_get_contents($tmpfname);
+    }
 
-	function getChecksum()
-	{
-		$tmpfname = $this->fullPath();
-		if (filesize($tmpfname) > 0) {
-			return md5_file($tmpfname);
-		} else {
-			return md5(time());
-		}
-	}
+    public function getChecksum()
+    {
+        $tmpfname = $this->fullPath();
+        if (filesize($tmpfname) > 0) {
+            return md5_file($tmpfname);
+        }
 
-	function getSize() {
-		return filesize($this->fullPath());
-	}
+        return md5(time());
+    }
 
-	function isFileLocal() {
-		return true;
-	}
+    public function getSize()
+    {
+        return filesize($this->fullPath());
+    }
 
-	function replaceContents($data) {
-		$dest = $this->fullPath();
-		$baseDir = dirname($dest);
+    public function isFileLocal()
+    {
+        return true;
+    }
 
-		if (! file_exists($baseDir)) {
-			mkdir($baseDir, umask() ^ 0777, true);
-		}
+    public function replaceContents($data)
+    {
+        $dest = $this->fullPath();
+        $baseDir = dirname($dest);
 
-		if (is_writable($baseDir) && (! file_exists($dest) || is_writable($dest))) {
-			$result = file_put_contents($dest, $data);
-		} else {
-			$result = false;
-		}
+        if (! file_exists($baseDir)) {
+            mkdir($baseDir, umask() ^ 0777, true);
+        }
 
-		if ($result === false) {
-			throw new WriteException(tr("Unable to write to destination path: %0", $dest));
-		}
-	}
+        if (is_writable($baseDir) && (! file_exists($dest) || is_writable($dest))) {
+            $result = file_put_contents($dest, $data);
+        } else {
+            $result = false;
+        }
 
-	function getStorableContent() {
-		return [
-			'data' => null,
-			'path' => $this->path,
-			'filesize' => $this->getSize(),
-			'hash' => $this->getChecksum(),
-		];
-	}
+        if ($result === false) {
+            throw new WriteException(tr("Unable to write to destination path: %0", $dest));
+        }
+    }
 
-	private function fullPath() {
-		return $this->basePath . '/' . $this->path;
-	}
+    public function getStorableContent()
+    {
+        return [
+            'data' => null,
+            'path' => $this->path,
+            'filesize' => $this->getSize(),
+            'hash' => $this->getChecksum(),
+        ];
+    }
+
+    private function fullPath()
+    {
+        return $this->basePath . '/' . $this->path;
+    }
 }

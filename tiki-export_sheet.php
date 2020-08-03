@@ -13,24 +13,24 @@ require_once('tiki-setup.php');
 require_once('lib/sheet/grid.php');
 $sheetlib = TikiLib::lib('sheet');
 $auto_query_args = [
-	'sheetId',
-	'readdate',
+    'sheetId',
+    'readdate',
 ];
 
 $access->check_feature('feature_sheet');
 
 $info = TikiLib::lib("sheet")->get_sheet_info($_REQUEST['sheetId']);
 if (empty($info)) {
-	$smarty->assign('msg', tra('Incorrect parameter'));
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tra('Incorrect parameter'));
+    $smarty->display('error.tpl');
+    die;
 }
 
 $objectperms = Perms::get('sheet', $_REQUEST['sheetId']);
 if ($tiki_p_admin != 'y' && ! $objectperms->view_sheet && ! ($user && $info['author'] == $user)) {
-	$smarty->assign('msg', tra('Permission denied'));
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tra('Permission denied'));
+    $smarty->display('error.tpl');
+    die;
 }
 
 $encoding = new Encoding();
@@ -50,50 +50,50 @@ $history = $sheetlib->sheet_history($_REQUEST['sheetId']);
 $smarty->assign_by_ref('history', $history);
 
 if (isset($_REQUEST['encoding'])) {
-	$smarty->assign('page_mode', 'submit');
+    $smarty->assign('page_mode', 'submit');
 
-	$handler = new TikiSheetDatabaseHandler($_REQUEST['sheetId'], $_REQUEST['readdate']);
-	$grid->import($handler);
+    $handler = new TikiSheetDatabaseHandler($_REQUEST['sheetId'], $_REQUEST['readdate']);
+    $grid->import($handler);
 
-	$handler = $_REQUEST['handler'];
+    $handler = $_REQUEST['handler'];
 
-	if (! in_array($handler, TikiSheet::getHandlerList())) {
-		$smarty->assign('msg', "Handler is not allowed.");
-		$smarty->display("error.tpl");
-		die;
-	}
+    if (! in_array($handler, TikiSheet::getHandlerList())) {
+        $smarty->assign('msg', "Handler is not allowed.");
+        $smarty->display("error.tpl");
+        die;
+    }
 
-	$handler = new $handler("php://stdout", 'UTF-8', $_REQUEST['encoding']);
-	$grid->export($handler);
+    $handler = new $handler("php://stdout", 'UTF-8', $_REQUEST['encoding']);
+    $grid->export($handler);
 
-	header("Content-type: text/comma-separated-values");
-	header("Content-Disposition: attachment; filename=export.csv");
-	header("Expires: 0");
-	header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
-	header("Pragma: public");
+    header("Content-type: text/comma-separated-values");
+    header("Content-Disposition: attachment; filename=export.csv");
+    header("Expires: 0");
+    header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+    header("Pragma: public");
 
-	echo $handler->output;
-	exit;
-} else {
-	$list = [];
-
-	$handlers = TikiSheet::getHandlerList();
-
-	foreach ($handlers as $key => $handler) {
-		$temp = new $handler;
-		if (! $temp->supports(TIKISHEET_SAVE_DATA | TIKISHEET_SAVE_CALC)) {
-			continue;
-		}
-
-		$list[$key] = [
-			"name" => $temp->name(),
-			"version" => $temp->version(),
-			"class" => $handler
-		];
-	}
-
-	$smarty->assign_by_ref("handlers", $list);
+    echo $handler->output;
+    exit;
 }
+    $list = [];
+
+    $handlers = TikiSheet::getHandlerList();
+
+    foreach ($handlers as $key => $handler) {
+        $temp = new $handler;
+        if (! $temp->supports(TIKISHEET_SAVE_DATA | TIKISHEET_SAVE_CALC)) {
+            continue;
+        }
+
+        $list[$key] = [
+            "name" => $temp->name(),
+            "version" => $temp->version(),
+            "class" => $handler
+        ];
+    }
+
+    $smarty->assign_by_ref("handlers", $list);
+
 
 $cat_type = 'sheet';
 $cat_objid = $_REQUEST["sheetId"];

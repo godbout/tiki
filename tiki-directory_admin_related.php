@@ -14,14 +14,14 @@ $access->check_feature('feature_directory');
 $access->check_permission('tiki_p_admin_directory_cats');
 // If no parent category then the parent category is 0
 if (! isset($_REQUEST["parent"])) {
-	$_REQUEST["parent"] = 0;
+    $_REQUEST["parent"] = 0;
 }
 $smarty->assign('parent', $_REQUEST["parent"]);
 if ($_REQUEST["parent"] == 0) {
-	$parent_name = 'Top';
+    $parent_name = 'Top';
 } else {
-	$parent_info = $dirlib->dir_get_category($_REQUEST['parent']);
-	$parent_name = $parent_info['name'];
+    $parent_info = $dirlib->dir_get_category($_REQUEST['parent']);
+    $parent_name = $parent_info['name'];
 }
 $smarty->assign('parent_name', $parent_name);
 // Now get the path to the parent category
@@ -29,39 +29,39 @@ $path = $dirlib->dir_get_category_path_admin($_REQUEST["parent"]);
 $smarty->assign_by_ref('path', $path);
 // Remove a relationship
 if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$dirlib->dir_remove_related($_REQUEST["parent"], $_REQUEST["categId"]);
+    $access->check_authenticity();
+    $dirlib->dir_remove_related($_REQUEST["parent"], $_REQUEST["categId"]);
 }
 // Update a relationship
 if (isset($_REQUEST["update"])) {
-	check_ticket('dir-admin-related');
-	$dirlib->dir_remove_related($_REQUEST["parent"], $_REQUEST["oldcategId"]);
-	$dirlib->dir_add_categ_rel($_REQUEST["parent"], $_REQUEST["categId"]);
+    check_ticket('dir-admin-related');
+    $dirlib->dir_remove_related($_REQUEST["parent"], $_REQUEST["oldcategId"]);
+    $dirlib->dir_add_categ_rel($_REQUEST["parent"], $_REQUEST["categId"]);
 }
 // Add a relationship
 if (isset($_REQUEST["add"])) {
-	check_ticket('dir-admin-related');
-	$dirlib->dir_add_categ_rel($_REQUEST["parent"], $_REQUEST["categId"]);
-	if (isset($_REQUEST["mutual"]) && $_REQUEST["mutual"] == 'on') {
-		$dirlib->dir_add_categ_rel($_REQUEST["categId"], $_REQUEST["parent"]);
-	}
+    check_ticket('dir-admin-related');
+    $dirlib->dir_add_categ_rel($_REQUEST["parent"], $_REQUEST["categId"]);
+    if (isset($_REQUEST["mutual"]) && $_REQUEST["mutual"] == 'on') {
+        $dirlib->dir_add_categ_rel($_REQUEST["categId"], $_REQUEST["parent"]);
+    }
 }
 // Listing: categories in the parent category
 // Pagination resolution
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'created_desc';
+    $sort_mode = 'created_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign_by_ref('offset', $offset);
 $smarty->assign_by_ref('sort_mode', $sort_mode);

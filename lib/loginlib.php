@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,66 +8,67 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
-	header('location: index.php');
-	exit;
+    header('location: index.php');
+    exit;
 }
 
 class LoginLib
 {
-	function getUser()
-	{
-		return $GLOBALS['user'];
-	}
+    public function getUser()
+    {
+        return $GLOBALS['user'];
+    }
 
-	function getUserId()
-	{
-		$id = TikiLib::lib('tiki')->get_user_id($this->getUser());
-		if ($id === -1) {
-			return false;
-		} else {
-			return $id;
-		}
-	}
+    public function getUserId()
+    {
+        $id = TikiLib::lib('tiki')->get_user_id($this->getUser());
+        if ($id === -1) {
+            return false;
+        }
 
-	function activateSession($user)
-	{
-		global $user_cookie_site;
-		$_SESSION[$user_cookie_site] = $user;
-	}
+        return $id;
+    }
 
-	function switchUser($name)
-	{
-		global $user, $user_cookie_site;
-		$perms = Perms::get();
+    public function activateSession($user)
+    {
+        global $user_cookie_site;
+        $_SESSION[$user_cookie_site] = $user;
+    }
 
-		if (! $perms->admin) {
-			return;
-		}
+    public function switchUser($name)
+    {
+        global $user, $user_cookie_site;
+        $perms = Perms::get();
 
-		$userlib = TikiLib::lib('user');
-		$username = $userlib->get_user_real_case($name);
-		$this->activateSession($username);
-		$_SESSION[$user_cookie_site . '_previous'] = $user;
-	}
+        if (! $perms->admin) {
+            return;
+        }
 
-	function revertSwitch()
-	{
-		global $user_cookie_site;
-		$key = $user_cookie_site . '_previous';
-		$username = $_SESSION[$key];
-		unset($_SESSION[$key]);
-		$this->activateSession($username);
-	}
+        $userlib = TikiLib::lib('user');
+        $username = $userlib->get_user_real_case($name);
+        $this->activateSession($username);
+        $_SESSION[$user_cookie_site . '_previous'] = $user;
+    }
 
-	function isSwitched()
-	{
-		global $user_cookie_site;
-		return isset($_SESSION[$user_cookie_site . '_previous']);
-	}
+    public function revertSwitch()
+    {
+        global $user_cookie_site;
+        $key = $user_cookie_site . '_previous';
+        $username = $_SESSION[$key];
+        unset($_SESSION[$key]);
+        $this->activateSession($username);
+    }
 
-	function logout()
-	{
-		$userlib = TikiLib::lib('user');
-		$userlib->user_logout($this->getUser());
-	}
+    public function isSwitched()
+    {
+        global $user_cookie_site;
+
+        return isset($_SESSION[$user_cookie_site . '_previous']);
+    }
+
+    public function logout()
+    {
+        $userlib = TikiLib::lib('user');
+        $userlib->user_logout($this->getUser());
+    }
 }

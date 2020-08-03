@@ -1,4 +1,5 @@
 <?php
+
 // use file
 // permissioncheck/permission_granted.bin
 // to enable/disable permission check if shell is not available

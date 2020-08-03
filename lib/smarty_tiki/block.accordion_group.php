@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -26,31 +27,31 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 function smarty_block_accordion_group($params, $content, $smarty, $repeat)
 {
-	if ($repeat) {
-		return;
-	}
+    if ($repeat) {
+        return;
+    }
 
-	global $accordion_current_group, $accordion_position;
+    global $accordion_current_group, $accordion_position;
 
-	if (empty($accordion_current_group)) {
-		$accordion_current_group = 'a' . uniqid();
-		$accordion_position = 0;
-	}
+    if (empty($accordion_current_group)) {
+        $accordion_current_group = 'a' . uniqid();
+        $accordion_position = 0;
+    }
 
-	$smarty->loadPlugin('smarty_modifier_escape');
-	$title = smarty_modifier_escape($params['title']);
-	$id = $accordion_current_group . '-' . ++$accordion_position;
+    $smarty->loadPlugin('smarty_modifier_escape');
+    $title = smarty_modifier_escape($params['title']);
+    $id = $accordion_current_group . '-' . ++$accordion_position;
 
-	$first = ($accordion_position == 1) ? 'show' : '';
-	$expanded = ($accordion_position == 1) ? 'true' : 'false';
+    $first = ($accordion_position == 1) ? 'show' : '';
+    $expanded = ($accordion_position == 1) ? 'true' : 'false';
 
-	return <<<CONTENT
+    return <<<CONTENT
 <div class="card card-accordian">
 	<div class="card-header">
 		<h4 class="card-title">

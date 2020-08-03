@@ -17,43 +17,43 @@ $access->check_permission('tiki_p_admin_dynamic');
 $dcslib = TikiLib::lib('dcs');
 
 if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$dcslib->remove_contents($_REQUEST["remove"]);
+    $access->check_authenticity();
+    $dcslib->remove_contents($_REQUEST["remove"]);
 }
 $smarty->assign('description', '');
 $smarty->assign('contentLabel', '');
 $smarty->assign('contentId', 0);
 if (isset($_REQUEST["save"])) {
-	check_ticket('list-contents');
-	$smarty->assign('description', $_REQUEST["description"]);
-	$smarty->assign('contentLabel', $_REQUEST["contentLabel"]);
-	$id = $dcslib->replace_content($_REQUEST["contentId"], $_REQUEST["description"], $_REQUEST["contentLabel"]);
-	$smarty->assign('contentId', $id);
+    check_ticket('list-contents');
+    $smarty->assign('description', $_REQUEST["description"]);
+    $smarty->assign('contentLabel', $_REQUEST["contentLabel"]);
+    $id = $dcslib->replace_content($_REQUEST["contentId"], $_REQUEST["description"], $_REQUEST["contentLabel"]);
+    $smarty->assign('contentId', $id);
 }
 if (isset($_REQUEST["edit"])) {
-	$info = $dcslib->get_content($_REQUEST["edit"]);
-	$smarty->assign('contentId', $info["contentId"]);
-	$smarty->assign('description', $info["description"]);
-	$smarty->assign('contentLabel', $info["contentLabel"]);
+    $info = $dcslib->get_content($_REQUEST["edit"]);
+    $smarty->assign('contentId', $info["contentId"]);
+    $smarty->assign('description', $info["description"]);
+    $smarty->assign('contentLabel', $info["contentLabel"]);
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'contentId_desc';
+    $sort_mode = 'contentId_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 // If offset is set use it if not then use offset =0
 // use the maxRecords php variable to set the limit
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 // Get a list of last changes to the Wiki database

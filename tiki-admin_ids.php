@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -8,86 +9,86 @@
 require_once('tiki-setup.php');
 
 if ($prefs['ids_enabled'] == 'n') {
-	$access->display_error('', tra("Tiki IDS is not enabled"), '403', false);
+    $access->display_error('', tra("Tiki IDS is not enabled"), '403', false);
 }
 
 $access->check_permission('tiki_p_admin');
 
 if (isset($_POST['new_rule']) && $access->checkCsrf()) {
-	$id = $_POST['rule_id'];
-	$rule = new IDS_Rule($id);
+    $id = $_POST['rule_id'];
+    $rule = new IDS_Rule($id);
 
-	$rule->setRegex($_POST['rule_regex']);
-	$rule->setDescription($_POST['rule_description']);
-	$rule->setTags($_POST['rule_tags']);
-	$rule->setImpact($_POST['rule_impact']);
+    $rule->setRegex($_POST['rule_regex']);
+    $rule->setDescription($_POST['rule_description']);
+    $rule->setTags($_POST['rule_tags']);
+    $rule->setImpact($_POST['rule_impact']);
 
-	//Check if a custom rule with the same ID already existes
-	$conflictRule = IDS_Rule::getRule($_POST['rule_id']);
-	if (empty($conflictRule)) {
-		$rule->save();
-		$cookietab = 1;
-	} else {
-		Feedback::error(tra('A custom rule with the same ID already exists.'));
-		$ruleinfo = [
-			'id' => $rule->getId(),
-			'regex' => $rule->getRegex(),
-			'description' => $rule->getDescription(),
-			'tags' => implode(', ', $rule->getTags()),
-			'impact' => $rule->getImpact(),
-			'error' => 1,
-		];
-	}
+    //Check if a custom rule with the same ID already existes
+    $conflictRule = IDS_Rule::getRule($_POST['rule_id']);
+    if (empty($conflictRule)) {
+        $rule->save();
+        $cookietab = 1;
+    } else {
+        Feedback::error(tra('A custom rule with the same ID already exists.'));
+        $ruleinfo = [
+            'id' => $rule->getId(),
+            'regex' => $rule->getRegex(),
+            'description' => $rule->getDescription(),
+            'tags' => implode(', ', $rule->getTags()),
+            'impact' => $rule->getImpact(),
+            'error' => 1,
+        ];
+    }
 } elseif (isset($_POST['editrule']) && isset($_POST['rule_id']) && $access->checkCsrf()) {
-	$rule = IDS_Rule::getRule($_POST['rule_id']);
+    $rule = IDS_Rule::getRule($_POST['rule_id']);
 
-	$rule->setRegex($_POST['rule_regex']);
-	$rule->setDescription($_POST['rule_description']);
-	$rule->setTags($_POST['rule_tags']);
-	$rule->setImpact($_POST['rule_impact']);
-	$rule->save();
+    $rule->setRegex($_POST['rule_regex']);
+    $rule->setDescription($_POST['rule_description']);
+    $rule->setTags($_POST['rule_tags']);
+    $rule->setImpact($_POST['rule_impact']);
+    $rule->save();
 
-	$cookietab = '1';
+    $cookietab = '1';
 } elseif (isset($_REQUEST['rule']) && $_REQUEST['rule']) {
-	$rule = IDS_Rule::getRule($_REQUEST['rule']);
+    $rule = IDS_Rule::getRule($_REQUEST['rule']);
 
-	if (! empty($rule)) {
-		$ruleinfo = [
-			'id' => $rule->getId(),
-			'regex' => $rule->getRegex(),
-			'description' => $rule->getDescription(),
-			'tags' => implode(', ', $rule->getTags()),
-			'impact' => $rule->getImpact(),
-		];
-	} else {
-		$ruleinfo = [
-			'id' => '',
-			'regex' => '',
-			'description' => '',
-			'tags' => '',
-			'impact' => '',
-		];
-	}
+    if (! empty($rule)) {
+        $ruleinfo = [
+            'id' => $rule->getId(),
+            'regex' => $rule->getRegex(),
+            'description' => $rule->getDescription(),
+            'tags' => implode(', ', $rule->getTags()),
+            'impact' => $rule->getImpact(),
+        ];
+    } else {
+        $ruleinfo = [
+            'id' => '',
+            'regex' => '',
+            'description' => '',
+            'tags' => '',
+            'impact' => '',
+        ];
+    }
 
-	$cookietab = 2;
+    $cookietab = 2;
 } else {
-	$_REQUEST['rule'] = 0;
+    $_REQUEST['rule'] = 0;
 }
 
 if (isset($_REQUEST['add'])) {
-	$cookietab = '2';
+    $cookietab = '2';
 }
 
 $idsRules = [];
 
 foreach (IDS_Rule::getAllRules() as $rule) {
-	$idsRules[] = [
-		'id' => $rule->getId(),
-		'regex' => $rule->getRegex(),
-		'description' => $rule->getDescription(),
-		'tags' => implode(', ', $rule->getTags()),
-		'impact' => $rule->getImpact(),
-	];
+    $idsRules[] = [
+        'id' => $rule->getId(),
+        'regex' => $rule->getRegex(),
+        'description' => $rule->getDescription(),
+        'tags' => implode(', ', $rule->getTags()),
+        'impact' => $rule->getImpact(),
+    ];
 }
 
 $smarty->assign('ids_rules', $idsRules);

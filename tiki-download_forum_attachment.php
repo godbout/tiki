@@ -17,15 +17,15 @@ require_once('tiki-setup.php');
 //}
 
 if (! isset($_REQUEST["attId"])) {
-	die;
+    die;
 }
 
 $commentslib = TikiLib::lib('comments');
 $info = $commentslib->get_thread_attachment($_REQUEST["attId"]);
 
 if (empty($info['filetype']) || $info['filetype'] == 'application/x-octetstream' || $info['filetype'] == 'application/octet-stream') {
-	$mimelib = TikiLib::lib('mime');
-	$info['filetype'] = $mimelib->from_filename($info['filename']);
+    $mimelib = TikiLib::lib('mime');
+    $info['filetype'] = $mimelib->from_filename($info['filename']);
 }
 $type = &$info["filetype"];
 $file = &$info["filename"];
@@ -42,11 +42,11 @@ header("Pragma: Public");
 
 // if database has content, means file was uploaded to DB storage
 if (strlen($content) > 0) {
-	echo "$content";
+    echo "$content";
 } elseif (file_exists($info["dir"] . $info["path"])) {
-	// Check if file was uploaded to file syste
-	readfile($info["dir"] . $info["path"]);
+    // Check if file was uploaded to file syste
+    readfile($info["dir"] . $info["path"]);
 } else {
-	// Something is wrong
-	die('File data was not found');
+    // Something is wrong
+    die('File data was not found');
 }

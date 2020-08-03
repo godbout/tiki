@@ -13,13 +13,13 @@
 $in_installer = 1;
 define('TIKI_IN_INSTALLER', 1);
 if (! isset($title)) {
-	$title = 'Tiki Installer';
+    $title = 'Tiki Installer';
 }
 if (! isset($content)) {
-	$content = 'No content specified. Something went wrong.<br/>Please tell your administrator.<br/>If you are the administrator, you may want to check for / file a bug report.';
+    $content = 'No content specified. Something went wrong.<br/>Please tell your administrator.<br/>If you are the administrator, you may want to check for / file a bug report.';
 }
 if (! isset($dberror)) {
-	$dberror = false;
+    $dberror = false;
 }
 
 // Show all errors
@@ -29,9 +29,9 @@ ini_set('display_errors', 1);
 // Check that PHP version is sufficient
 
 if (version_compare(PHP_VERSION, '7.2.0', '<')) {
-	$title = 'PHP 7.2 is required';
-	$content = '<p>Please contact your system administrator ( if you are not the one ;) ). Your version: ' . PHP_VERSION . ' <br /> <br /> ' . '</p>';
-	createPage($title, $content);
+    $title = 'PHP 7.2 is required';
+    $content = '<p>Please contact your system administrator ( if you are not the one ;) ). Your version: ' . PHP_VERSION . ' <br /> <br /> ' . '</p>';
+    createPage($title, $content);
 }
 
 require_once('lib/init/initlib.php');
@@ -44,20 +44,20 @@ $lockFile = 'db/' . $tikidomainslash . 'lock';
 
 // if tiki installer is locked (probably after previous installation) display notice
 if (file_exists($lockFile)) {
-	$title = 'Tiki Installer Disabled';
-	$td = empty($tikidomain) ? '' : '/' . $tikidomain;
-	$content = '
+    $title = 'Tiki Installer Disabled';
+    $td = empty($tikidomain) ? '' : '/' . $tikidomain;
+    $content = '
 							<p class="under-text">As a security precaution, the Tiki Installer has been disabled. To re-enable the installer:</p>
 								<ol class="installer-ordered-list-style">
 									<li class="installer-ordered-list"><p>Use your file manager application to find the directory where you have unpacked your Tiki and remove the <span class="text-danger font-weight-bold">lock</span> file which was created in the <span class="text-danger font-weight-bold">db</span> folder.</p></li>
-									<li class="installer-ordered-list"><p>Re-run <strong ><a class="text-yellow-inst" href="tiki-install.php'  . (empty($tikidomain) ? '' : "?multi=$tikidomain") . '" title="Tiki Installer">tiki-install.php' . (empty($tikidomain) ? '' : "?multi=$tikidomain") . '</a></strong>.</p></li>
+									<li class="installer-ordered-list"><p>Re-run <strong ><a class="text-yellow-inst" href="tiki-install.php' . (empty($tikidomain) ? '' : "?multi=$tikidomain") . '" title="Tiki Installer">tiki-install.php' . (empty($tikidomain) ? '' : "?multi=$tikidomain") . '</a></strong>.</p></li>
 								</ol>
 							';
-	createPage($title, $content);
+    createPage($title, $content);
 }
 
 if (!empty($db) && ! $db->getOne("SELECT COUNT(*) FROM `information_schema`.`character_sets` WHERE `character_set_name` = 'utf8mb4';")) {
-	die(tr('Your database does not support the utf8mb4 character set required in Tiki19 and above. You need to upgrade your mysql or mariadb installation.'));
+    die(tr('Your database does not support the utf8mb4 character set required in Tiki19 and above. You need to upgrade your mysql or mariadb installation.'));
 }
 
 $tikiroot = str_replace('\\', '/', dirname($_SERVER['PHP_SELF']));
@@ -69,45 +69,45 @@ session_start();
 $rootcheck = empty($tikiroot) || $tikiroot === '/' ? '' : $tikiroot;
 $refered = isset($_SERVER['HTTP_REFERER']) ? strpos($_SERVER['HTTP_REFERER'], $rootcheck . '/tiki-install.php') : false;
 if (! $refered || ($refered && ! isset($_POST['install_step']))) {
-	unset($_SESSION['accessible']);
+    unset($_SESSION['accessible']);
 }
 // Were database details defined before? If so, load them
 if (file_exists('db/' . $tikidomainslash . 'local.php')) {
-	include 'db/' . $tikidomainslash . 'local.php';
+    include 'db/' . $tikidomainslash . 'local.php';
 
-	// In case of replication, ignore it during installer.
-	unset($shadow_dbs, $shadow_user, $shadow_pass, $shadow_host);
+    // In case of replication, ignore it during installer.
+    unset($shadow_dbs, $shadow_user, $shadow_pass, $shadow_host);
 
-	// check for provided login details and check against the old, saved details that they're correct
-	if (isset($_POST['dbuser'], $_POST['dbpass'])) {
-		if (($_POST['dbuser'] == $user_tiki) && ($_POST['dbpass'] == $pass_tiki)) {
-			$_SESSION['accessible'] = true;
-			unset($_POST['dbuser']);
-			unset($_POST['dbpass']);
-		} else {
-			$_SESSION['installer_auth_failure'] = isset($_SESSION['installer_auth_failure']) ? $_SESSION['installer_auth_failure'] + 1 : 1;
+    // check for provided login details and check against the old, saved details that they're correct
+    if (isset($_POST['dbuser'], $_POST['dbpass'])) {
+        if (($_POST['dbuser'] == $user_tiki) && ($_POST['dbpass'] == $pass_tiki)) {
+            $_SESSION['accessible'] = true;
+            unset($_POST['dbuser']);
+            unset($_POST['dbpass']);
+        } else {
+            $_SESSION['installer_auth_failure'] = isset($_SESSION['installer_auth_failure']) ? $_SESSION['installer_auth_failure'] + 1 : 1;
 
-			// If there are too many failures during a single session, lock the installer as a precaution
-			if ($_SESSION['installer_auth_failure'] >= 20) {
-				touch($lockFile);
-			}
-		}
-	}
+            // If there are too many failures during a single session, lock the installer as a precaution
+            if ($_SESSION['installer_auth_failure'] >= 20) {
+                touch($lockFile);
+            }
+        }
+    }
 } else {
-	// No database info found, so it's a first-install and thus installer is accessible
-	$_SESSION['accessible'] = true;
+    // No database info found, so it's a first-install and thus installer is accessible
+    $_SESSION['accessible'] = true;
 }
 
 if (isset($_SESSION['accessible'])) {
-	// allowed to access installer, include it
-	$logged = true;
-	$admin_acc = 'y';
-	include_once 'installer/tiki-installer.php';
+    // allowed to access installer, include it
+    $logged = true;
+    $admin_acc = 'y';
+    include_once 'installer/tiki-installer.php';
 } else {
-	// Installer knows db details but no login details were received for this script.
-	// Thus, display a form.
-	$title = 'Tiki Installer Security Precaution';
-	$content = '
+    // Installer knows db details but no login details were received for this script.
+    // Thus, display a form.
+    $title = 'Tiki Installer Security Precaution';
+    $content = '
 							<p class="text-info mt-lg-3 mx-3">You are attempting to run the Tiki Installer. For your protection, this installer can be used only by a site administrator.To verify that you are a site administrator, enter your <strong><em>database</em></strong> credentials (database username and password) here.</p>
 						
 							<p class="text-info mx-3">If you have forgotten your database credentials, find the directory where you have unpacked your Tiki and have a look inside the <strong class="text-yellow-inst">db</strong> folder into the <strong class="text-yellow-inst">local.php</strong> file.</p>
@@ -118,7 +118,7 @@ if (isset($_SESSION['accessible'])) {
 								<p><input type="submit" class="btn btn-primary" value=" Validate and Continue " /></p>
 							</form>
 							<p>&nbsp;</p>';
-	createPage($title, $content);
+    createPage($title, $content);
 }
 
 
@@ -132,7 +132,7 @@ if (isset($_SESSION['accessible'])) {
  */
 function createPage($title, $content)
 {
-	echo <<<END
+    echo <<<END
 <!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -167,5 +167,5 @@ function createPage($title, $content)
 	</body>
 </html>
 END;
-	die;
+    die;
 }

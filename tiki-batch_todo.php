@@ -15,5 +15,5 @@ $access->check_feature('feature_trackers');	// TODO add more features as the lib
 
 $todos = $todolib->listTodoObject();
 foreach ($todos as $todo) {
-	$todolib->applyTodo($todo);
+    $todolib->applyTodo($todo);
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,14 +8,14 @@
 
 function validator_regex($input, $parameter = '', $message = '')
 {
-	$times = preg_match('/' . $parameter . '/', $input, $matches);
-	if (! $times || $matches[0] != $input) {
-		if ($message) {
-			return tra($message);
-		} else {
-			return false;
-		}
-	} else {
-		return true;
-	}
+    $times = preg_match('/' . $parameter . '/', $input, $matches);
+    if (! $times || $matches[0] != $input) {
+        if ($message) {
+            return tra($message);
+        }
+
+        return false;
+    }
+
+    return true;
 }

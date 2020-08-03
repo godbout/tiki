@@ -12,53 +12,53 @@ $index = isset($_POST['index']) ? $_POST['index'] : null;
 $compressXml = ($prefs['fgal_use_diagram_compression_by_default'] !== 'y') ? false : true;
 
 if (! empty($_POST['compressXmlParam']) && ! empty($_POST['compressXml']) && $_POST['compressXml'] === 'false') {
-	$compressXml = false;
+    $compressXml = false;
 }
 
 $galleryId = isset($_REQUEST['galleryId']) ? $_REQUEST['galleryId'] : 0;
 $backLocation = '';
 
 if ($xmlContent) {
-	$xmlContent = base64_decode($xmlContent);
+    $xmlContent = base64_decode($xmlContent);
 
-	$xmlContent = str_replace('<mxfile compressed="false"', '<mxfile', $xmlContent);
-	if (! $compressXml) {
-		$xmlContent = str_replace('<mxfile', '<mxfile compressed="false"', $xmlContent);
-	}
+    $xmlContent = str_replace('<mxfile compressed="false"', '<mxfile', $xmlContent);
+    if (! $compressXml) {
+        $xmlContent = str_replace('<mxfile', '<mxfile compressed="false"', $xmlContent);
+    }
 }
 
 $newDiagram = isset($_REQUEST['newDiagram']) ?: false;
 if ($newDiagram && ! $xmlContent) {
-	$xmlContent = '<mxGraphModel dx="1190" dy="789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>';
+    $xmlContent = '<mxGraphModel dx="1190" dy="789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>';
 }
 
 if ($newDiagram) {
-	$smarty = TikiLib::lib('smarty');
-	$smarty->loadPlugin('smarty_modifier_sefurl');
-	$backLocation = smarty_modifier_sefurl($page ?: $galleryId, $page ? 'wikipage' : 'filegallery');
+    $smarty = TikiLib::lib('smarty');
+    $smarty->loadPlugin('smarty_modifier_sefurl');
+    $backLocation = smarty_modifier_sefurl($page ?: $galleryId, $page ? 'wikipage' : 'filegallery');
 }
 
 $fileId = isset($_POST['fileId']) ? $_POST['fileId'] : 0;
 $fileName = 0;
 
 if (! empty($fileId)) {
-	$userLib = TikiLib::lib('user');
-	$file = \Tiki\FileGallery\File::id($fileId);
-	if (! $file->exists() || ! $userLib->user_has_perm_on_object($user, $file->fileId, 'file', 'tiki_p_download_files')) {
-		Feedback::error(tr('Forbidden'));
-		$smarty->display('tiki.tpl');
-		exit();
-	}
+    $userLib = TikiLib::lib('user');
+    $file = \Tiki\FileGallery\File::id($fileId);
+    if (! $file->exists() || ! $userLib->user_has_perm_on_object($user, $file->fileId, 'file', 'tiki_p_download_files')) {
+        Feedback::error(tr('Forbidden'));
+        $smarty->display('tiki.tpl');
+        exit();
+    }
 
-	$xmlContent = $file->getContents();
-	$xmlContent = preg_replace('/\s+/', ' ', $xmlContent);
-	$fileName = $file->getParam('name');
+    $xmlContent = $file->getContents();
+    $xmlContent = preg_replace('/\s+/', ' ', $xmlContent);
+    $fileName = $file->getParam('name');
 }
 
 if (empty($xmlContent)) {
-	Feedback::error(tr('Invalid request'));
-	$smarty->display('tiki.tpl');
-	exit();
+    Feedback::error(tr('Invalid request'));
+    $smarty->display('tiki.tpl');
+    exit();
 }
 
 $xmlDiagram = $xmlContent;
@@ -66,13 +66,13 @@ $access->setTicket();
 $tickets[] = $access->getTicket();
 
 if ($page && $galleryId) {
-	$access->setTicket();
-	$tickets[] = $access->getTicket();
+    $access->setTicket();
+    $tickets[] = $access->getTicket();
 }
 
 if ($exportImageCache) {
-	$access->setTicket();
-	$tickets[] = $access->getTicket();
+    $access->setTicket();
+    $tickets[] = $access->getTicket();
 }
 
 $tickets = sprintf('"%s"', implode('","', $tickets));
@@ -84,13 +84,13 @@ $headerlib = TikiLib::lib('header');
 
 $oldVendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor', false);
 if ($oldVendorPath) {
-	$errorMessageToAppend = 'Previous xorti/mxgraph-editor package has been deprecated.<br/>';
+    $errorMessageToAppend = 'Previous xorti/mxgraph-editor package has been deprecated.<br/>';
 }
 
 $vendorPath = VendorHelper::getAvailableVendorPath('diagram', 'tikiwiki/diagram', false);
 if (! $vendorPath) {
-	$accesslib = TikiLib::lib('access');
-	$accesslib->display_error('tiki-display.php', tr($errorMessageToAppend . 'To edit diagrams Tiki needs the tikiwiki/diagram package. If you do not have permission to install this package, ask the site administrator.'));
+    $accesslib = TikiLib::lib('access');
+    $accesslib->display_error('tiki-display.php', tr($errorMessageToAppend . 'To edit diagrams Tiki needs the tikiwiki/diagram package. If you do not have permission to install this package, ask the site administrator.'));
 }
 
 $headerlib->add_js_config("var diagramVendorPath = '{$vendorPath}';");

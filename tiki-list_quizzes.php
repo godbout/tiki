@@ -15,20 +15,20 @@ $auto_query_args = ['sort_mode', 'offset', 'find'];
 $access->check_feature('feature_quizzes');
 $access->check_permission('tiki_p_take_quiz');
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'created_desc';
+    $sort_mode = 'created_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $smarty->assign_by_ref('sort_mode', $sort_mode);
@@ -36,11 +36,11 @@ $channels = $quizlib->list_quizzes($offset, $maxRecords, $sort_mode, $find);
 Perms::bulk([ 'type' => 'quiz' ], 'object', $channels['data'], 'quizId');
 $temp_max = count($channels["data"]);
 for ($i = 0; $i < $temp_max; $i++) {
-	$quizperms = Perms::get([ 'type' => 'quiz', 'object' => $channels['data'][$i]['quizId'] ]);
-	$channels["data"][$i]["individual_tiki_p_take_quiz"] = $quizperms->take_quiz ? 'y' : 'n';
-	$channels["data"][$i]["individual_tiki_p_view_quiz_stats"] = $quizperms->view_quiz_stats ? 'y' : 'n';
-	$channels["data"][$i]["individual_tiki_p_view_user_stats"] = $quizperms->view_user_stats ? 'y' : 'n';
-	$channels["data"][$i]["individual_tiki_p_admin_quizzes"] = $quizperms->admin_quizzes ? 'y' : 'n';
+    $quizperms = Perms::get([ 'type' => 'quiz', 'object' => $channels['data'][$i]['quizId'] ]);
+    $channels["data"][$i]["individual_tiki_p_take_quiz"] = $quizperms->take_quiz ? 'y' : 'n';
+    $channels["data"][$i]["individual_tiki_p_view_quiz_stats"] = $quizperms->view_quiz_stats ? 'y' : 'n';
+    $channels["data"][$i]["individual_tiki_p_view_user_stats"] = $quizperms->view_user_stats ? 'y' : 'n';
+    $channels["data"][$i]["individual_tiki_p_admin_quizzes"] = $quizperms->admin_quizzes ? 'y' : 'n';
 }
 $smarty->assign_by_ref('cant_pages', $channels["cant"]);
 $smarty->assign_by_ref('channels', $channels["data"]);

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -15,10 +16,10 @@ $access->check_feature('sitemap_enable');
 $sitemap = new Tiki\Sitemap\Generator();
 
 if (isset($_REQUEST['rebuild'])) {
-	$sitemap->generate($base_url);
+    $sitemap->generate($base_url);
 
-	Feedback::success(tr('New sitemap created!'));
-	$access->redirect('tiki-admin_sitemap.php');
+    Feedback::success(tr('New sitemap created!'));
+    $access->redirect('tiki-admin_sitemap.php');
 }
 
 $smarty->assign('title', tr('Sitemap'));

@@ -16,25 +16,25 @@ $access->check_feature('feature_messages');
 $access->check_permission('tiki_p_messages');
 
 if ((! isset($_REQUEST['msgId']) || $_REQUEST['msgId'] == 0) && empty($_POST['msgdel'])) {
-	$smarty->assign('legend', tra("No more messages"));
-	$smarty->assign('mid', 'messu-read_archive.tpl');
-	$smarty->display("tiki.tpl");
-	die;
+    $smarty->assign('legend', tra("No more messages"));
+    $smarty->assign('mid', 'messu-read_archive.tpl');
+    $smarty->display("tiki.tpl");
+    die;
 }
 
 
-if (isset($_POST['action'])&& $access->checkCsrf()) {
-	$messulib->flag_message($user, $_POST['msgId'], $_POST['action'], $_POST['actionval'], 'archive');
+if (isset($_POST['action']) && $access->checkCsrf()) {
+    $messulib->flag_message($user, $_POST['msgId'], $_POST['action'], $_POST['actionval'], 'archive');
 }
 if (isset($_POST['msgdel']) && $access->checkCsrf(true)) {
-	$result = $messulib->delete_message($user, $_POST['msgdel'], 'archive');
-	if ($result->numRows()) {
-		Feedback::success(tr('Archive message deleted'));
-	} else {
-		Feedback::error(tr('Archive message not deleted'));
-	}
-	header('location: messu-archive.php');
-	exit;
+    $result = $messulib->delete_message($user, $_POST['msgdel'], 'archive');
+    if ($result->numRows()) {
+        Feedback::success(tr('Archive message deleted'));
+    } else {
+        Feedback::error(tr('Archive message not deleted'));
+    }
+    header('location: messu-archive.php');
+    exit;
 }
 
 $smarty->assign('sort_mode', $_REQUEST['sort_mode']);

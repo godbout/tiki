@@ -14,27 +14,28 @@ include_once("tiki-setup.php");
 
 //Enable Two-Factor Auth Input
 $twoFactorForm = 'n';
-if(isset($_REQUEST["twoFactorForm"]))
-	$twoFactorForm = 'y';
+if (isset($_REQUEST["twoFactorForm"])) {
+    $twoFactorForm = 'y';
+}
 $smarty->assign('twoFactorForm', $twoFactorForm);
 
 if ($prefs['login_autologin'] == 'y' && $prefs['login_autologin_redirectlogin'] == 'y' && ! empty($prefs['login_autologin_redirectlogin_url'])) {
-	$access->redirect($prefs['login_autologin_redirectlogin_url']);
+    $access->redirect($prefs['login_autologin_redirectlogin_url']);
 }
 
 if (isset($_REQUEST['clearmenucache'])) {
-	TikiLib::lib('menu')->empty_menu_cache();
+    TikiLib::lib('menu')->empty_menu_cache();
 }
 if (isset($_REQUEST['user'])) {
-	if ($_REQUEST['user'] == 'admin' && (! isset($_SESSION["groups_are_emulated"]) || $_SESSION["groups_are_emulated"] != "y")) {
-		$smarty->assign('showloginboxes', 'y');
-		$smarty->assign('adminuser', $_REQUEST['user']);
-	} else {
-		$smarty->assign('loginuser', $_REQUEST['user']);
-	}
+    if ($_REQUEST['user'] == 'admin' && (! isset($_SESSION["groups_are_emulated"]) || $_SESSION["groups_are_emulated"] != "y")) {
+        $smarty->assign('showloginboxes', 'y');
+        $smarty->assign('adminuser', $_REQUEST['user']);
+    } else {
+        $smarty->assign('loginuser', $_REQUEST['user']);
+    }
 }
 if (($prefs['useGroupHome'] != 'y' || $prefs['limitedGoGroupHome'] == 'y') && ! isset($_SESSION['loginfrom'])) {
-	$_SESSION['loginfrom'] = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $prefs['tikiIndex']);
+    $_SESSION['loginfrom'] = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $prefs['tikiIndex']);
 }
 
 $headerlib->add_js('$(document).ready( function() {$("#login-user").focus().select();} );');

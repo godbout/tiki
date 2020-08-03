@@ -9,7 +9,7 @@
 // $Id$
 
 if (basename($_SERVER['SCRIPT_NAME']) === basename(__FILE__)) {
-	die('This script may only be included.');
+    die('This script may only be included.');
 }
 $feed = tra("Error Message");
 $title = tr("Tiki RSS Feed Error Message: %0", $errmsg);

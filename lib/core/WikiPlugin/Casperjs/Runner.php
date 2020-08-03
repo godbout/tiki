@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,53 +8,53 @@
 
 class WikiPlugin_Casperjs_Runner
 {
-	const BASE_MARKER = "TIKI_BRIDGE";
-	protected $casperBin;
-	protected $casperInstalled = false;
+    const BASE_MARKER = "TIKI_BRIDGE";
+    protected $casperBin;
+    protected $casperInstalled = false;
 
-	public function __construct()
-	{
-		$this->casperBin = TIKI_PATH . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'casperjs';
-		if (file_exists($this->casperBin)) {
-			$this->casperInstalled = true;
-		}
-	}
+    public function __construct()
+    {
+        $this->casperBin = TIKI_PATH . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'casperjs';
+        if (file_exists($this->casperBin)) {
+            $this->casperInstalled = true;
+        }
+    }
 
-	public function run($script, $options = null, $casperInstance = null)
-	{
-		$casperScript = tempnam(false, 'casperjs-script-');
+    public function run($script, $options = null, $casperInstance = null)
+    {
+        $casperScript = tempnam(false, 'casperjs-script-');
 
-		$fullScript =
-			$this->scriptPrefix() . "\n"
-			. $script . "\n"
-			. $this->scriptPostfix($script, $casperInstance);
+        $fullScript =
+            $this->scriptPrefix() . "\n"
+            . $script . "\n"
+            . $this->scriptPostfix($script, $casperInstance);
 
-		file_put_contents($casperScript, $fullScript);
+        file_put_contents($casperScript, $fullScript);
 
-		$optionsString = "";
-		if (is_array($options)) {
-			foreach ($options as $option => $value) {
-				$optionsString .= ' --' . $option . '=' . $value;
-			}
-		}
-		$commandLine = $this->casperBin . ' ' . escapeshellarg($casperScript) . $optionsString;
+        $optionsString = "";
+        if (is_array($options)) {
+            foreach ($options as $option => $value) {
+                $optionsString .= ' --' . $option . '=' . $value;
+            }
+        }
+        $commandLine = $this->casperBin . ' ' . escapeshellarg($casperScript) . $optionsString;
 
-		exec($commandLine, $output);
-		unlink($casperScript);
+        exec($commandLine, $output);
+        unlink($casperScript);
 
-		if (empty($output)) {
-			throw new \Exception('Can not execute CasperJS.');
-		}
+        if (empty($output)) {
+            throw new \Exception('Can not execute CasperJS.');
+        }
 
-		$result = new WikiPlugin_Casperjs_Result($output, $commandLine, $fullScript);
+        $result = new WikiPlugin_Casperjs_Result($output, $commandLine, $fullScript);
 
-		return $result;
-	}
+        return $result;
+    }
 
-	protected function scriptPrefix()
-	{
-		$baseMarker = self::BASE_MARKER;
-		$prefix = <<<EOT
+    protected function scriptPrefix()
+    {
+        $baseMarker = self::BASE_MARKER;
+        $prefix = <<<EOT
 
 var tikiBridge = function(){
     var baseMarker='{$baseMarker}';
@@ -92,19 +93,19 @@ var tikiBridge = function(){
 
 EOT;
 
-		return $prefix;
-	}
+        return $prefix;
+    }
 
-	protected function scriptPostfix($script, $casperInstance = null)
-	{
-		if ($casperInstance === null) {
-			$casperInstance = "casper";
-		}
-		if (strpos($script, $casperInstance . '.run') !== false) {
-			return "";
-		}
+    protected function scriptPostfix($script, $casperInstance = null)
+    {
+        if ($casperInstance === null) {
+            $casperInstance = "casper";
+        }
+        if (strpos($script, $casperInstance . '.run') !== false) {
+            return "";
+        }
 
-		$postfix = <<<EOT
+        $postfix = <<<EOT
 
 /* ********************* Tiki Bridge PostFix ********************* */
 {$casperInstance}.run(function () {
@@ -114,6 +115,6 @@ EOT;
 
 EOT;
 
-		return $postfix;
-	}
+        return $postfix;
+    }
 }

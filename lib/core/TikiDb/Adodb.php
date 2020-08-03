@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,39 +13,39 @@
  */
 class TikiDb_Adodb_Result
 {
-	/** @var ADORecordSet */
-	public $result;
-	/** @var int */
-	public $numrows;
+    /** @var ADORecordSet */
+    public $result;
+    /** @var int */
+    public $numrows;
 
-	/**
-	 * TikiDb_Adodb_Result constructor.
-	 * @param $result
-	 * @param $rowCount
-	 */
-	function __construct($result, $rowCount)
-	{
-		$this->result = &$result;
-		$this->numrows = is_numeric($rowCount) ? $rowCount : $this->result->RowCount();
-	}
+    /**
+     * TikiDb_Adodb_Result constructor.
+     * @param $result
+     * @param $rowCount
+     */
+    public function __construct($result, $rowCount)
+    {
+        $this->result = &$result;
+        $this->numrows = is_numeric($rowCount) ? $rowCount : $this->result->RowCount();
+    }
 
-	/** @return array|int|false */
-	function fetchRow()
-	{
-		if (is_object($this->result)) {
-			return $this->result->fetchRow();
-		} elseif (is_array($this->result)) {
-			return array_shift($this->result);
-		} else {
-			return 0;
-		}
-	}
+    /** @return array|int|false */
+    public function fetchRow()
+    {
+        if (is_object($this->result)) {
+            return $this->result->fetchRow();
+        } elseif (is_array($this->result)) {
+            return array_shift($this->result);
+        }
 
-	/** @return int */
-	function numRows()
-	{
-		return (int) $this->numrows;
-	}
+        return 0;
+    }
+
+    /** @return int */
+    public function numRows()
+    {
+        return (int) $this->numrows;
+    }
 }
 
 /**
@@ -52,69 +53,69 @@ class TikiDb_Adodb_Result
  */
 class TikiDb_Adodb extends TikiDb
 {
-	/** @var ADODB_mysqli */
-	private $db;
-	/** @var int */
-	private $rowCount;
+    /** @var ADODB_mysqli */
+    private $db;
+    /** @var int */
+    private $rowCount;
 
-	function __construct($db) // {{{
-	{
-		if (! $db) {
-			die("Invalid db object passed to TikiDB constructor");
-		}
+    public function __construct($db) // {{{
+    {
+        if (! $db) {
+            die("Invalid db object passed to TikiDB constructor");
+        }
 
-		$this->db = $db;
-		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
-	} // }}}
+        $this->db = $db;
+        $this->db->SetFetchMode(ADODB_FETCH_ASSOC);
+    } // }}}
 
-	function __destruct() // {{{
-	{
-		if ($this->db) {
-			$this->db->Close();
-		}
-	} // }}}
+    public function __destruct() // {{{
+    {
+        if ($this->db) {
+            $this->db->Close();
+        }
+    } // }}}
 
-	function qstr($str) // {{{
-	{
-		return $this->db->quote($str);
-	} // }}}
+    public function qstr($str) // {{{
+    {
+        return $this->db->quote($str);
+    } // }}}
 
-	function query($query = null, $values = null, $numrows = -1, $offset = -1, $reporterrors = parent::ERR_DIRECT) // {{{
-	{
-		global $num_queries;
-		$num_queries++;
+    public function query($query = null, $values = null, $numrows = -1, $offset = -1, $reporterrors = parent::ERR_DIRECT) // {{{
+    {
+        global $num_queries;
+        $num_queries++;
 
-		if ($values === null || is_array($values) && count($values) === 0) {
-			$values = false;
-		}
+        if ($values === null || is_array($values) && count($values) === 0) {
+            $values = false;
+        }
 
-		$numrows = (int)$numrows;
-		$offset = (int)$offset;
-		if ($query == null) {
-			$query = $this->getQuery();
-		}
-		$this->convertQueryTablePrefixes($query);
+        $numrows = (int)$numrows;
+        $offset = (int)$offset;
+        if ($query == null) {
+            $query = $this->getQuery();
+        }
+        $this->convertQueryTablePrefixes($query);
 
-		$starttime = $this->startTimer();
-		if ($numrows == -1 && $offset == -1) {
-			$result = $this->db->Execute($query, $values);
-		} else {
-			$result = $this->db->SelectLimit($query, $numrows, $offset, $values);
-		}
+        $starttime = $this->startTimer();
+        if ($numrows == -1 && $offset == -1) {
+            $result = $this->db->Execute($query, $values);
+        } else {
+            $result = $this->db->SelectLimit($query, $numrows, $offset, $values);
+        }
 
-		$this->stopTimer($starttime);
-		$this->rowCount = $this->db->affected_rows();
-		if (! $result) {
-			$this->rowCount = 0;
-			$this->setErrorMessage($this->db->ErrorMsg());
+        $this->stopTimer($starttime);
+        $this->rowCount = $this->db->affected_rows();
+        if (! $result) {
+            $this->rowCount = 0;
+            $this->setErrorMessage($this->db->ErrorMsg());
 
-			$this->handleQueryError($query, $values, $result, $reporterrors);
-		}
+            $this->handleQueryError($query, $values, $result, $reporterrors);
+        }
 
-		global $num_queries;
-		$num_queries++;
-		$this->setQuery(null);
+        global $num_queries;
+        $num_queries++;
+        $this->setQuery(null);
 
-		return new TikiDb_Adodb_Result($result, $this->rowCount);
-	} // }}}
+        return new TikiDb_Adodb_Result($result, $this->rowCount);
+    } // }}}
 }

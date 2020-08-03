@@ -11,23 +11,22 @@ require_once('tiki-setup.php');
 $access->check_user($user);
 $access->check_feature('wikiplugin_groupedit');
 
-if(isset($_POST['id']) && isset($_POST['name'])){
+if (isset($_POST['id']) && isset($_POST['name'])) {
+    $userlib = TikiLib::lib('user');
 
-	$userlib = TikiLib::lib('user');
+    if ($groupInfo = $userlib->get_groupId_info($_POST['id'])) {
+        $groupName = $groupInfo['groupName'];
+        $perms = Perms::get(['type' => 'group', 'object' => $groupName]);
+        if (!$perms->edit_grouplimitedinfo) {
+            $access->display_error(null, tr("Permission denied."), 403);
+        }
+    } else {
+        $access->display_error(null, tr("Permission denied."), 403);
+    }
 
-	if ($groupInfo = $userlib->get_groupId_info($_POST['id'])) {
-		$groupName = $groupInfo['groupName'];
-		$perms = Perms::get(['type' => 'group', 'object' => $groupName]);
-		if (!$perms->edit_grouplimitedinfo) {
-			$access->display_error(null, tr("Permission denied."), 403);
-		}
-	} else {
-		$access->display_error(null, tr("Permission denied."), 403);
-	}
-
-	if(! $userlib->edit_group($_POST['id'], $_POST['name'], $_POST['desc'])){
-		die;
-	}
-}else{
-	die;
+    if (! $userlib->edit_group($_POST['id'], $_POST['name'], $_POST['desc'])) {
+        die;
+    }
+} else {
+    die;
 }

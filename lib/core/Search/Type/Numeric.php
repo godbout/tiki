@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,15 +8,15 @@
 
 class Search_Type_Numeric implements Search_Type_Interface
 {
-	private $value;
+    private $value;
 
-	function __construct($value)
-	{
-		$this->value = (float) $value;
-	}
+    public function __construct($value)
+    {
+        $this->value = (float) $value;
+    }
 
-	function getValue()
-	{
-		return $this->value;
-	}
+    public function getValue()
+    {
+        return $this->value;
+    }
 }

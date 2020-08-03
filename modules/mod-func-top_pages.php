@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -16,13 +17,13 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function module_top_pages_info()
 {
-	return [
-		'name' => tra('Top Pages'),
-		'description' => tra('Displays the specified number of wiki pages with links to them, starting with the one having the most hits.'),
-		'prefs' => ['feature_wiki'],
-		'params' => [],
-		'common_params' => ['nonums', 'rows']
-	];
+    return [
+        'name' => tra('Top Pages'),
+        'description' => tra('Displays the specified number of wiki pages with links to them, starting with the one having the most hits.'),
+        'prefs' => ['feature_wiki'],
+        'params' => [],
+        'common_params' => ['nonums', 'rows']
+    ];
 }
 
 /**
@@ -31,11 +32,11 @@ function module_top_pages_info()
  */
 function module_top_pages($mod_reference, $module_params)
 {
-	$smarty = TikiLib::lib('smarty');
-	global $ranklib;
-	include_once('lib/rankings/ranklib.php');
-	$categs = $ranklib->get_jail();
-	$ranking = $ranklib->wiki_ranking_top_pages($mod_reference["rows"], $categs ? $categs : []);
+    $smarty = TikiLib::lib('smarty');
+    global $ranklib;
+    include_once('lib/rankings/ranklib.php');
+    $categs = $ranklib->get_jail();
+    $ranking = $ranklib->wiki_ranking_top_pages($mod_reference["rows"], $categs ? $categs : []);
 
-	$smarty->assign('modTopPages', $ranking["data"]);
+    $smarty->assign('modTopPages', $ranking["data"]);
 }

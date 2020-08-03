@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,70 +8,70 @@
 
 class Services_ActivityStream_Controller
 {
-	private $lib;
+    private $lib;
 
-	function setUp()
-	{
-		$this->lib = TikiLib::lib('unifiedsearch');
-		Services_Exception_Disabled::check('wikiplugin_activitystream');
-	}
+    public function setUp()
+    {
+        $this->lib = TikiLib::lib('unifiedsearch');
+        Services_Exception_Disabled::check('wikiplugin_activitystream');
+    }
 
-	function action_render(JitFilter $request)
-	{
-		$encoded = $request->stream->none();
-		$page = $request->page->int() ?: 1;
+    public function action_render(JitFilter $request)
+    {
+        $encoded = $request->stream->none();
+        $page = $request->page->int() ?: 1;
 
-		if (! $baseQuery = Tiki_Security::get()->decode($encoded)) {
-			throw new Services_Exception_Denied('Invalid request performed.');
-		}
+        if (! $baseQuery = Tiki_Security::get()->decode($encoded)) {
+            throw new Services_Exception_Denied('Invalid request performed.');
+        }
 
-		$query = new Search_Query;
-		$this->lib->initQuery($query);
-		$query->filterType('activity');
+        $query = new Search_Query;
+        $this->lib->initQuery($query);
+        $query->filterType('activity');
 
-		$matches = WikiParser_PluginMatcher::match($baseQuery['body']);
+        $matches = WikiParser_PluginMatcher::match($baseQuery['body']);
 
-		$builder = new Search_Query_WikiBuilder($query);
-		$builder->enableAggregate();
-		$builder->apply($matches);
+        $builder = new Search_Query_WikiBuilder($query);
+        $builder->enableAggregate();
+        $builder->apply($matches);
 
-		if ($builder->isNextPossible()) {
-			$query->setPage($page);
-		}
+        if ($builder->isNextPossible()) {
+            $query->setPage($page);
+        }
 
-		$query->setOrder('modification_date_desc');
+        $query->setOrder('modification_date_desc');
 
-		if (! $index = $this->lib->getIndex()) {
-			throw new Services_Exception_NotAvailable(tr('Activity stream currently unavailable.'));
-		}
+        if (! $index = $this->lib->getIndex()) {
+            throw new Services_Exception_NotAvailable(tr('Activity stream currently unavailable.'));
+        }
 
-		$result = $query->search($index);
+        $result = $query->search($index);
 
-		$paginationArguments = $builder->getPaginationArguments();
+        $paginationArguments = $builder->getPaginationArguments();
 
-		$resultBuilder = new Search_ResultSet_WikiBuilder($result);
-		$resultBuilder->setPaginationArguments($paginationArguments);
-		$resultBuilder->apply($matches);
+        $resultBuilder = new Search_ResultSet_WikiBuilder($result);
+        $resultBuilder->setPaginationArguments($paginationArguments);
+        $resultBuilder->apply($matches);
 
-		try {
-			$plugin = new Search_Formatter_Plugin_SmartyTemplate('activity/activitystream.tpl');
-			$plugin->setFields([
-				'like_list' => true,
-				'user_groups' => true,
-				'contributors' => true,
-			]);
-			$formatter = Search_Formatter_Factory::newFormatter($plugin);
-			$out = $formatter->format($result);
-		} catch (SmartyException $e) {
-			throw new Services_Exception_NotAvailable($e->getMessage());
-		}
+        try {
+            $plugin = new Search_Formatter_Plugin_SmartyTemplate('activity/activitystream.tpl');
+            $plugin->setFields([
+                'like_list' => true,
+                'user_groups' => true,
+                'contributors' => true,
+            ]);
+            $formatter = Search_Formatter_Factory::newFormatter($plugin);
+            $out = $formatter->format($result);
+        } catch (SmartyException $e) {
+            throw new Services_Exception_NotAvailable($e->getMessage());
+        }
 
-		return [
-			'autoScroll' => $request->autoscroll->int(),
-			'pageNumber' => $page,
-			'nextPossible' => $builder->isNextPossible(),
-			'stream' => $encoded,
-			'body' => TikiLib::lib('parser')->parse_data($out, ['is_html' => true]),
-		];
-	}
+        return [
+            'autoScroll' => $request->autoscroll->int(),
+            'pageNumber' => $page,
+            'nextPossible' => $builder->isNextPossible(),
+            'stream' => $encoded,
+            'body' => TikiLib::lib('parser')->parse_data($out, ['is_html' => true]),
+        ];
+    }
 }

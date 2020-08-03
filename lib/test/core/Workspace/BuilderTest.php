@@ -2,36 +2,36 @@
 
 class Profile_BuilderTest extends PHPUnit\Framework\TestCase
 {
-	public function testBasicProfile()
-	{
-		$builder = new Services_Workspace_ProfileBuilder;
+    public function testBasicProfile()
+    {
+        $builder = new Services_Workspace_ProfileBuilder;
 
-		$expect = <<<EXPECT
+        $expect = <<<EXPECT
 {  }
 EXPECT;
-		$this->assertIs($expect, $builder->getContent());
-	}
+        $this->assertIs($expect, $builder->getContent());
+    }
 
-	public function testAddObjects()
-	{
-		$builder = new Services_Workspace_ProfileBuilder;
-		$builder->addObject(
-			'wiki_page',
-			'foo',
-			[
-				'name' => 'Foo',
-				'content' => 'Hello',
-			]
-		);
-		$builder->addObject(
-			'trackerfield',
-			'date',
-			[
-				'tracker' => $builder->ref('tracker'),
-			]
-		);
+    public function testAddObjects()
+    {
+        $builder = new Services_Workspace_ProfileBuilder;
+        $builder->addObject(
+            'wiki_page',
+            'foo',
+            [
+                'name' => 'Foo',
+                'content' => 'Hello',
+            ]
+        );
+        $builder->addObject(
+            'trackerfield',
+            'date',
+            [
+                'tracker' => $builder->ref('tracker'),
+            ]
+        );
 
-		$expect = <<<EXPECT
+        $expect = <<<EXPECT
 objects:
   -
     type: wiki_page
@@ -45,17 +45,17 @@ objects:
     data:
       tracker: \$tracker
 EXPECT;
-		$this->assertIs($expect, $builder->getContent());
-	}
+        $this->assertIs($expect, $builder->getContent());
+    }
 
-	public function testGroups()
-	{
-		$builder = new Services_Workspace_ProfileBuilder;
-		$builder->addGroup('Base', $builder->user('group'));
-		$builder->addGroup('Viewer', $builder->user('group') . ' Viewer', true);
-		$builder->setManagingGroup('Base');
+    public function testGroups()
+    {
+        $builder = new Services_Workspace_ProfileBuilder;
+        $builder->addGroup('Base', $builder->user('group'));
+        $builder->addGroup('Viewer', $builder->user('group') . ' Viewer', true);
+        $builder->setManagingGroup('Base');
 
-		$expect = <<<EXPECT
+        $expect = <<<EXPECT
 mappings:
   Base: '\$profilerequest:group\$undefined\$'
   Viewer: '\$profilerequest:group\$undefined\$ Viewer'
@@ -96,16 +96,16 @@ permissions:
           - group_view
           - group_view_members
 EXPECT;
-		$this->assertIs($expect, $builder->getContent());
-	}
+        $this->assertIs($expect, $builder->getContent());
+    }
 
-	public function testReplaceSimpleSyntax()
-	{
-		$builder = new Services_Workspace_ProfileBuilder;
-		$builder->addGroup('Base', '{group}');
-		$builder->setManagingGroup('Base');
+    public function testReplaceSimpleSyntax()
+    {
+        $builder = new Services_Workspace_ProfileBuilder;
+        $builder->addGroup('Base', '{group}');
+        $builder->setManagingGroup('Base');
 
-		$expect = <<<EXPECT
+        $expect = <<<EXPECT
 mappings:
   Base: '\$profilerequest:group\$undefined\$'
 permissions:
@@ -121,23 +121,23 @@ permissions:
           - group_add_member
           - group_remove_member
 EXPECT;
-		$this->assertIs($expect, $builder->getContent());
-	}
+        $this->assertIs($expect, $builder->getContent());
+    }
 
-	public function testAssignDefaultGroup()
-	{
-		$builder = new Services_Workspace_ProfileBuilder;
-		$builder->addObject(
-			'wiki_page',
-			'foo',
-			[
-				'name' => 'Foo',
-				'content' => 'Hello',
-				'categories' => $builder->user('category'),
-			]
-		);
+    public function testAssignDefaultGroup()
+    {
+        $builder = new Services_Workspace_ProfileBuilder;
+        $builder->addObject(
+            'wiki_page',
+            'foo',
+            [
+                'name' => 'Foo',
+                'content' => 'Hello',
+                'categories' => $builder->user('category'),
+            ]
+        );
 
-		$expect = <<<EXPECT
+        $expect = <<<EXPECT
 objects:
   -
     type: categorize
@@ -153,15 +153,15 @@ objects:
       name: Foo
       content: Hello
 EXPECT;
-		$this->assertIs($expect, $builder->getContent());
-	}
+        $this->assertIs($expect, $builder->getContent());
+    }
 
-	private function assertIs($expect, $content)
-	{
-		$matches = WikiParser_PluginMatcher::match($content);
+    private function assertIs($expect, $content)
+    {
+        $matches = WikiParser_PluginMatcher::match($content);
 
-		foreach ($matches as $plugin) {
-			$this->assertEquals(trim($expect), trim($plugin->getBody()));
-		}
-	}
+        foreach ($matches as $plugin) {
+            $this->assertEquals(trim($expect), trim($plugin->getBody()));
+        }
+    }
 }

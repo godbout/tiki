@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,27 +8,27 @@
 
 function wikiplugin_aname_info()
 {
-	return [
-		'name' => tra('Anchor Name'),
-		'documentation' => 'PluginAname',
-		'description' => tra('Create an anchor that can be linked to'),
-		'prefs' => ['wikiplugin_aname'],
-		'body' => tra('The name of the anchor.'),
-		'tags' => [ 'basic' ],
-		'introduced' => 1,
-		'params' => [],
-		'iconname' => 'link',
-	];
+    return [
+        'name' => tra('Anchor Name'),
+        'documentation' => 'PluginAname',
+        'description' => tra('Create an anchor that can be linked to'),
+        'prefs' => ['wikiplugin_aname'],
+        'body' => tra('The name of the anchor.'),
+        'tags' => [ 'basic' ],
+        'introduced' => 1,
+        'params' => [],
+        'iconname' => 'link',
+    ];
 }
 
 function wikiplugin_aname($data, $params)
 {
-	global $tikilib;
-	extract($params, EXTR_SKIP);
+    global $tikilib;
+    extract($params, EXTR_SKIP);
 
-			// the following replace is necessary to maintain compliance with XHTML 1.0 Transitional
-	// and the same behavior as tikilib.php and ALINK. This will change when the world arrives at XHTML 1.0 Strict.
-	$data = preg_replace('/[^a-zA-Z0-9]+/', '_', $data);
+    // the following replace is necessary to maintain compliance with XHTML 1.0 Transitional
+    // and the same behavior as tikilib.php and ALINK. This will change when the world arrives at XHTML 1.0 Strict.
+    $data = preg_replace('/[^a-zA-Z0-9]+/', '_', $data);
 
-	return "<a id=\"$data\"></a>";
+    return "<a id=\"$data\"></a>";
 }

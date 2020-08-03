@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -16,144 +17,152 @@ use TikiLib;
 
 class ProfileInstallCommand extends Command
 {
-	protected function configure()
-	{
-		$this
-			->setName('profile:apply')
-			->setDescription('Apply a profile')
-			->addArgument(
-				'profile',
-				InputArgument::REQUIRED,
-				tr('Profile name')
-			)
-			->addArgument(
-				'repository',
-				InputArgument::OPTIONAL,
-				'Repository',
-				tr('profiles.tiki.org')
-			)
-			->addOption(
-				'force',
-				null,
-				InputOption::VALUE_NONE,
-				tr('Re-apply profiles when already applied.')
-			)
-			->addOption(
-				'dry-run',
-				null,
-				InputOption::VALUE_NONE,
-				tr('Return to the user information about what is going to be applied')
-			);
-	}
+    protected function configure()
+    {
+        $this
+            ->setName('profile:apply')
+            ->setDescription('Apply a profile')
+            ->addArgument(
+                'profile',
+                InputArgument::REQUIRED,
+                tr('Profile name')
+            )
+            ->addArgument(
+                'repository',
+                InputArgument::OPTIONAL,
+                'Repository',
+                tr('profiles.tiki.org')
+            )
+            ->addOption(
+                'force',
+                null,
+                InputOption::VALUE_NONE,
+                tr('Re-apply profiles when already applied.')
+            )
+            ->addOption(
+                'dry-run',
+                null,
+                InputOption::VALUE_NONE,
+                tr('Return to the user information about what is going to be applied')
+            );
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output)
-	{
-		$profileName = $input->getArgument('profile');
-		$repository = $input->getArgument('repository');
-		$force = $input->getOption('force');
-		$dryRun = $input->getOption('dry-run');
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $profileName = $input->getArgument('profile');
+        $repository = $input->getArgument('repository');
+        $force = $input->getOption('force');
+        $dryRun = $input->getOption('dry-run');
 
-		$profile = \Tiki_Profile::fromNames($repository, $profileName);
+        $profile = \Tiki_Profile::fromNames($repository, $profileName);
 
-		if (! $profile) {
-			$output->writeln('<error>Profile not found.</error>');
-			return;
-		}
+        if (! $profile) {
+            $output->writeln('<error>Profile not found.</error>');
 
-		$profileData = $profile->getData();
-		if (! empty( $profileData['error'])) {
-			$output->writeln('<error>' . tr('There were some errors while trying to load the profile definition') . '</error>');
-			$output->writeln('<error>' . $profileData['error'] . '</error>');
-			return;
-		}
+            return;
+        }
 
-		if (! $profile->validateNamedObjectsReferences()) { // sanity check on the Named Objects references
-			$output->writeln('<error>' . tr('Some of the named object references in the profile are invalid') . '</error>');
-			return;
-		}
+        $profileData = $profile->getData();
+        if (! empty($profileData['error'])) {
+            $output->writeln('<error>' . tr('There were some errors while trying to load the profile definition') . '</error>');
+            $output->writeln('<error>' . $profileData['error'] . '</error>');
 
-		$tikilib = \TikiLib::lib('tiki');
+            return;
+        }
 
-		$installer = new \Tiki_Profile_Installer;
-		$isInstalled = $installer->isInstalled($profile);
+        if (! $profile->validateNamedObjectsReferences()) { // sanity check on the Named Objects references
+            $output->writeln('<error>' . tr('Some of the named object references in the profile are invalid') . '</error>');
 
-		if ($isInstalled && $force) {
-			$installer->forget($profile);
-			$isInstalled = false;
-		}
+            return;
+        }
 
-		if (! $isInstalled) {
-			$transaction = $tikilib->begin();
-			if ($installer->install($profile, 'all', $dryRun) && ! $dryRun) {
-				$logChanges = $installer->getTrackProfileChanges();
-				$logChanges['domain'] = $repository;
-				TikiLib::lib('logs')->add_action('profile apply', $profileName, 'system', tr('profile applied'), '', '', '', '', '', '', $logChanges);
-				$transaction->commit();
-				$output->writeln(tr('Profile applied.'));
-			} else {
-				if (! $dryRun) {
-					$output->writeln("<error>" . tr('Installation failed:') . "</error>");
+        $tikilib = \TikiLib::lib('tiki');
 
-					foreach ($installer->getFeedback() as $error) {
-						$output->writeln("<error>$error</error>");
-					}
-				} else {
-					$output->writeln(tr('Dry-run for profile: ') . $profile->profile);
+        $installer = new \Tiki_Profile_Installer;
+        $isInstalled = $installer->isInstalled($profile);
 
-					foreach ($installer->getTrackProfileChanges() as $profileChanges) {
-						if (is_array($profileChanges)) {
-							$type = $profileChanges['type'];
-							$newValue = ! empty($profileChanges['new']) ? $profileChanges['new'] : 'n';
-							$oldValue = ! empty($profileChanges['old']) ? $profileChanges['old'] : 'n';
-							$description = ! empty($profileChanges['description']) ? $profileChanges['description'] : '';
+        if ($isInstalled && $force) {
+            $installer->forget($profile);
+            $isInstalled = false;
+        }
 
-							switch ($type) {
-								case 'permission':
-									$msg = tr('Permission removed: ') . $description[0];
+        if (! $isInstalled) {
+            $transaction = $tikilib->begin();
+            if ($installer->install($profile, 'all', $dryRun) && ! $dryRun) {
+                $logChanges = $installer->getTrackProfileChanges();
+                $logChanges['domain'] = $repository;
+                TikiLib::lib('logs')->add_action('profile apply', $profileName, 'system', tr('profile applied'), '', '', '', '', '', '', $logChanges);
+                $transaction->commit();
+                $output->writeln(tr('Profile applied.'));
+            } else {
+                if (! $dryRun) {
+                    $output->writeln("<error>" . tr('Installation failed:') . "</error>");
 
-									if ($newValue == 'y') {
-										$msg = tr('Permission added: ') . $description[0];
-									}
+                    foreach ($installer->getFeedback() as $error) {
+                        $output->writeln("<error>$error</error>");
+                    }
+                } else {
+                    $output->writeln(tr('Dry-run for profile: ') . $profile->profile);
 
-									$output->writeln($msg);
-									break;
+                    foreach ($installer->getTrackProfileChanges() as $profileChanges) {
+                        if (is_array($profileChanges)) {
+                            $type = $profileChanges['type'];
+                            $newValue = ! empty($profileChanges['new']) ? $profileChanges['new'] : 'n';
+                            $oldValue = ! empty($profileChanges['old']) ? $profileChanges['old'] : 'n';
+                            $description = ! empty($profileChanges['description']) ? $profileChanges['description'] : '';
 
-								case 'user':
-									$msg = tr('User modified: ') . $description;
+                            switch ($type) {
+                                case 'permission':
+                                    $msg = tr('Permission removed: ') . $description[0];
 
-									if ($oldValue == 'n') {
-										$msg = tr('User added: ') . $description;
-									}
+                                    if ($newValue == 'y') {
+                                        $msg = tr('Permission added: ') . $description[0];
+                                    }
 
-									$output->writeln($msg);
-									break;
+                                    $output->writeln($msg);
 
-								case 'group':
-									$msg = tr('Group modified: ') . $description;
+                                    break;
 
-									if ($oldValue == 'n') {
-										$msg = tr('Group added: ') . $description;
-									}
+                                case 'user':
+                                    $msg = tr('User modified: ') . $description;
 
-									$output->writeln($msg);
-									break;
+                                    if ($oldValue == 'n') {
+                                        $msg = tr('User added: ') . $description;
+                                    }
 
-								case 'preference':
-									$output->writeln(tr('Preference set: %0= %1 old value= %2', $description, $newValue, $oldValue));
-									break;
+                                    $output->writeln($msg);
 
-								case 'installer':
-									$output->writeln(tr('Installer added: ') . $description);
-									break;
-							}
-						} else {
-							$output->writeln($profileChanges);
-						}
-					}
-				}
-			}
-		} else {
-			$output->writeln('<info>' . tr('Profile was already applied. Nothing happened.') . '</info>');
-		}
-	}
+                                    break;
+
+                                case 'group':
+                                    $msg = tr('Group modified: ') . $description;
+
+                                    if ($oldValue == 'n') {
+                                        $msg = tr('Group added: ') . $description;
+                                    }
+
+                                    $output->writeln($msg);
+
+                                    break;
+
+                                case 'preference':
+                                    $output->writeln(tr('Preference set: %0= %1 old value= %2', $description, $newValue, $oldValue));
+
+                                    break;
+
+                                case 'installer':
+                                    $output->writeln(tr('Installer added: ') . $description);
+
+                                    break;
+                            }
+                        } else {
+                            $output->writeln($profileChanges);
+                        }
+                    }
+                }
+            }
+        } else {
+            $output->writeln('<info>' . tr('Profile was already applied. Nothing happened.') . '</info>');
+        }
+    }
 }

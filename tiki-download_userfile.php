@@ -14,14 +14,14 @@ require_once('tiki-setup.php');
 include_once('lib/userfiles/userfileslib.php');
 
 if (! isset($_REQUEST["fileId"])) {
-	die;
+    die;
 }
 $access->check_feature('feature_userfiles');
 
 $info = $userfileslib->get_userfile($user, $_REQUEST["fileId"]);
 if (empty($info['filetype']) || $info['filetype'] == 'application/x-octetstream' || $info['filetype'] == 'application/octet-stream') {
-	$mimelib = TikiLib::lib('mime');
-	$info['filetype'] = $mimelib->from_filename($info['filename']);
+    $mimelib = TikiLib::lib('mime');
+    $info['filetype'] = $mimelib->from_filename($info['filename']);
 }
 $type = &$info["filetype"];
 $file = &$info["filename"];
@@ -32,7 +32,7 @@ header("Content-type: $type");
 header("Content-Disposition: inline; filename=\"$file\"");
 
 if ($info["path"]) {
-	readfile($prefs['uf_use_dir'] . $info["path"]);
+    readfile($prefs['uf_use_dir'] . $info["path"]);
 } else {
-	echo "$content";
+    echo "$content";
 }

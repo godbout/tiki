@@ -1,7 +1,8 @@
 <?php
+
 // File header
 
-$lang = array(
+$lang = [
 // "First string" => "First string",
 // "Second string" => "Second string",
 "Used string" => "Another translation",
@@ -10,4 +11,4 @@ $lang = array(
 "Login" => "Another translation",
 "Add user:" => "Translation",
 // "All users" => "All users",
-);
+];

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -6,7 +7,7 @@
 // $Id$
 
 if (PHP_SAPI !== 'cli') {
-	die('Only available through command-line.');
+    die('Only available through command-line.');
 }
 
 require dirname(__FILE__) . '/svntools.php';
@@ -14,14 +15,14 @@ require dirname(__FILE__) . '/svntools.php';
 $dir = realpath(__DIR__ . '/../../') . '/';
 
 $excludeDir = [
-	$dir . 'vendor',
-	$dir . 'vendor_bundled',
-	$dir . 'temp',
+    $dir . 'vendor',
+    $dir . 'vendor_bundled',
+    $dir . 'temp',
 ];
 
 $excludeMissingFiles = [
-	$dir . 'vendor_bundled/vendor',
-	'.'
+    $dir . 'vendor_bundled/vendor',
+    '.'
 ];
 
 $emptyDirectoriesMessage = '';
@@ -31,65 +32,65 @@ $missingHtaccessMessage = '';
 $it = new RecursiveDirectoryIterator(__DIR__ . '/../../');
 
 foreach (new RecursiveIteratorIterator($it) as $file) {
-	$filePath = $file->getRealpath();
-	$fileName = $file->getFilename();
+    $filePath = $file->getRealpath();
+    $fileName = $file->getFilename();
 
-	if (in_array($fileName, ['..'])) {
-		continue;
-	}
+    if (in_array($fileName, ['..'])) {
+        continue;
+    }
 
-	if (strpos($fileName, 'vendor') !== false) {
-		$a = 1;
-	}
+    if (strpos($fileName, 'vendor') !== false) {
+        $a = 1;
+    }
 
-	$excludeFile = toExclude($excludeDir, $filePath);
-	$excludeMissingFile = toExclude($excludeMissingFiles, $filePath);
+    $excludeFile = toExclude($excludeDir, $filePath);
+    $excludeMissingFile = toExclude($excludeMissingFiles, $filePath);
 
-	if ($file->isDir()) {
-		if (isEmptyDir($filePath)) {
-			if ($excludeMissingFile === true) {
-				continue;
-			}
-			if ($excludeFile === true) {
-				continue;
-			}
-			$emptyDirectoriesMessage .= color($filePath, 'blue') . PHP_EOL;
-			$missingIndexMessage .= color($filePath, 'blue') . PHP_EOL;
-			$missingHtaccessMessage .= color($filePath, 'blue') . PHP_EOL;
-		} else {
-			if ($excludeMissingFile === true) {
-				continue;
-			}
-			if ($excludeFile === true) {
-				continue;
-			}
-			if (! file_exists($filePath . '/index.php')) {
-				$missingIndexMessage .= color($filePath, 'blue') . PHP_EOL;
-			}
-			if (! file_exists($filePath . '/.htaccess')) {
-				$missingHtaccessMessage .= color($filePath, 'blue') . PHP_EOL;
-			}
-		}
-	}
+    if ($file->isDir()) {
+        if (isEmptyDir($filePath)) {
+            if ($excludeMissingFile === true) {
+                continue;
+            }
+            if ($excludeFile === true) {
+                continue;
+            }
+            $emptyDirectoriesMessage .= color($filePath, 'blue') . PHP_EOL;
+            $missingIndexMessage .= color($filePath, 'blue') . PHP_EOL;
+            $missingHtaccessMessage .= color($filePath, 'blue') . PHP_EOL;
+        } else {
+            if ($excludeMissingFile === true) {
+                continue;
+            }
+            if ($excludeFile === true) {
+                continue;
+            }
+            if (! file_exists($filePath . '/index.php')) {
+                $missingIndexMessage .= color($filePath, 'blue') . PHP_EOL;
+            }
+            if (! file_exists($filePath . '/.htaccess')) {
+                $missingHtaccessMessage .= color($filePath, 'blue') . PHP_EOL;
+            }
+        }
+    }
 }
 
 if (! empty($emptyDirectoriesMessage) || ! empty($missingIndexMessage) || ! empty($missingHtaccessMessage)) {
-	if (! empty($emptyDirectoriesMessage)) {
-		echo color('The following directories are empty:', 'yellow') . PHP_EOL;
-		info($emptyDirectoriesMessage);
-	}
-	if (! empty($missingIndexMessage)) {
-		echo color('index.php file is missing in the following directories:', 'yellow') . PHP_EOL;
-		info($missingIndexMessage);
-	}
-	if (! empty($missingHtaccessMessage)) {
-		echo color('.htaccess file is missing in the following directories:', 'yellow') . PHP_EOL;
-		info($missingHtaccessMessage);
-	}
-	exit(1);
-} else {
-	important('All directories OK');
+    if (! empty($emptyDirectoriesMessage)) {
+        echo color('The following directories are empty:', 'yellow') . PHP_EOL;
+        info($emptyDirectoriesMessage);
+    }
+    if (! empty($missingIndexMessage)) {
+        echo color('index.php file is missing in the following directories:', 'yellow') . PHP_EOL;
+        info($missingIndexMessage);
+    }
+    if (! empty($missingHtaccessMessage)) {
+        echo color('.htaccess file is missing in the following directories:', 'yellow') . PHP_EOL;
+        info($missingHtaccessMessage);
+    }
+    exit(1);
 }
+    important('All directories OK');
+
 
 /**
  * Check if folder is empty
@@ -99,7 +100,7 @@ if (! empty($emptyDirectoriesMessage) || ! empty($missingIndexMessage) || ! empt
  */
 function isEmptyDir($dir)
 {
-	return (($files = scandir($dir)) && count($files) <= 2);
+    return (($files = scandir($dir)) && count($files) <= 2);
 }
 
 /**
@@ -111,5 +112,5 @@ function isEmptyDir($dir)
  */
 function toExclude($dir, $path)
 {
-	return (str_replace($dir, '', $path) != $path);
+    return (str_replace($dir, '', $path) != $path);
 }

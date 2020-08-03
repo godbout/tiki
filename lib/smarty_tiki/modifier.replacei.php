@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,6 +10,9 @@
  * Smarty plugin
  * @package Smarty
  * @subpackage plugins
+ * @param mixed $string
+ * @param mixed $find
+ * @param mixed $replacement
  */
 
 /**
@@ -21,5 +25,5 @@
  */
 function smarty_modifier_replacei($string, $find, $replacement)
 {
-	return str_ireplace($find, $replacement, $string);
+    return str_ireplace($find, $replacement, $string);
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -46,38 +47,39 @@ $count_r = 0;
  */
 function replace_with_self_links($original, $template_base)
 {
-	global $count_r;
+    global $count_r;
 
-	preg_match_all('/<a.*?\s*href=[^\.]*\.php[^>]*?>(.*?)<\/a>/mi', $original, $phplinks);
-	$replacements = [];
+    preg_match_all('/<a.*?\s*href=[^\.]*\.php[^>]*?>(.*?)<\/a>/mi', $original, $phplinks);
+    $replacements = [];
 
-	$count_r = count($phplinks[0]);
-	for ($j = 0; $j < $count_r; $j++) {
-		$ahref = $phplinks[0][$j];
-		preg_match_all('/([^=\s]*?)="([^"]*?)"/i', $ahref, $attrs);
+    $count_r = count($phplinks[0]);
+    for ($j = 0; $j < $count_r; $j++) {
+        $ahref = $phplinks[0][$j];
+        preg_match_all('/([^=\s]*?)="([^"]*?)"/i', $ahref, $attrs);
 
-		$str = '{self_link ';
-		for ($i = 0, $icount_attrs = count($attrs[1]); $i < $icount_attrs; $i++) {
-			if (strtolower($attrs[1][$i]) == 'href') {
-				$query = parse_url(urldecode(str_replace('&amp;', '&', $attrs[2][$i])));
-				if ($query['path'] != $template_base . '.php') {
-					$str .= ' _script="' . $query['path'] . '" ';
-				}
-				$vars = explode('&', $query['query']);
-				foreach ($vars as &$var) {
-					$ar = explode('=', $var);
-					$var = $ar[0] . '=' . process_value($ar[1]);
-				}
-				$str .= implode(' ', $vars) . ' ';
-			} else {
-				$str .= '_' . $attrs[1][$i] . '=' . process_value($attrs[2][$i]) . ' ';
-			}
-		}
-		$str = trim($str) . '}' . $phplinks[1][$j] . '{/self_link}';
-		$replacements[] = $str;
-	}
-	$replaced = str_replace($phplinks[0], $replacements, $original);
-	return $replaced;
+        $str = '{self_link ';
+        for ($i = 0, $icount_attrs = count($attrs[1]); $i < $icount_attrs; $i++) {
+            if (strtolower($attrs[1][$i]) == 'href') {
+                $query = parse_url(urldecode(str_replace('&amp;', '&', $attrs[2][$i])));
+                if ($query['path'] != $template_base . '.php') {
+                    $str .= ' _script="' . $query['path'] . '" ';
+                }
+                $vars = explode('&', $query['query']);
+                foreach ($vars as &$var) {
+                    $ar = explode('=', $var);
+                    $var = $ar[0] . '=' . process_value($ar[1]);
+                }
+                $str .= implode(' ', $vars) . ' ';
+            } else {
+                $str .= '_' . $attrs[1][$i] . '=' . process_value($attrs[2][$i]) . ' ';
+            }
+        }
+        $str = trim($str) . '}' . $phplinks[1][$j] . '{/self_link}';
+        $replacements[] = $str;
+    }
+    $replaced = str_replace($phplinks[0], $replacements, $original);
+
+    return $replaced;
 }
 
 /**
@@ -86,46 +88,47 @@ function replace_with_self_links($original, $template_base)
  */
 function process_value($var)
 {
-	if (strpos($var, '{$') === 0) {
-		$var = trim($var, '{}');
-		$q = '';
-	} else {
-		$q = '"';
-	}
-	// comment out if's inside attributes for manual processing
-	$var = preg_replace(
-		['/\{if\s([^\}]*)\}/i', '/\{else\}/i', '/\{\/if\}/i', '/\{elseif\s([^\}]*)\}/i'],
-		['{*if $1*}',           '{*else*}',    '{*/if*}',     '/{*elseif $1*}/'],
-		$var
-	);
-	$var = "$q" . $var . "$q";
-	return $var;
+    if (strpos($var, '{$') === 0) {
+        $var = trim($var, '{}');
+        $q = '';
+    } else {
+        $q = '"';
+    }
+    // comment out if's inside attributes for manual processing
+    $var = preg_replace(
+        ['/\{if\s([^\}]*)\}/i', '/\{else\}/i', '/\{\/if\}/i', '/\{elseif\s([^\}]*)\}/i'],
+        ['{*if $1*}',           '{*else*}',    '{*/if*}',     '/{*elseif $1*}/'],
+        $var
+    );
+    $var = "$q" . $var . "$q";
+
+    return $var;
 }
 
 $markup = file_get_contents('templates/' . $tpl . '.tpl');
 $checked = ! empty($_REQUEST['toggle']) ? ' checked=\'checked\'' : '';
 if (! empty($checked)) {
-	$markup = replace_with_self_links($markup, $tpl);
+    $markup = replace_with_self_links($markup, $tpl);
 }
 
  $fp = opendir('templates/');
 
 $tpl_sel = '<select name=\'tpl\' id=\'tpl\' onclick=\'this.form.submit();\'><option>Select tpl</option>';
 while (false !== ($f = readdir($fp))) {
-	preg_match('/^(.*)\.tpl$/', $f, $m);
-	if (count($m) > 0) {
-		$tpl_sel .= '<option value=\'' . $m[1] . '\'';
-		$tpl_sel .= $m[1] == $tpl ? ' selected=\"selected\">' : '>';
-		$tpl_sel .= $m[1] . '.tpl</option>';
-	}
+    preg_match('/^(.*)\.tpl$/', $f, $m);
+    if (count($m) > 0) {
+        $tpl_sel .= '<option value=\'' . $m[1] . '\'';
+        $tpl_sel .= $m[1] == $tpl ? ' selected=\"selected\">' : '>';
+        $tpl_sel .= $m[1] . '.tpl</option>';
+    }
 }
 $tpl_sel .= '</select>';
 
 // cheating - lazy ;)
 $form = str_replace(
-	"\n",
-	'',
-	"<form action='#'>
+    "\n",
+    '',
+    "<form action='#'>
 <label for='toggle'>" . (empty($_REQUEST['toggle']) ? 'Show replacements' : "Showing $count_r replacements") . ":</label>
 <input type='checkbox' id='toggle' name='toggle' onclick='this.form.submit();'$checked />
 $tpl_sel
@@ -133,7 +136,7 @@ $tpl_sel
 );
 
 $headerlib->add_jq_onready(
-<<<JS
+    <<<JS
 \$('#page-bar, .navbar, .titletips, h2').hide();
 \$('a.pagetitle').text('$tpl (tpl)').parent().after(
 	\$("$form")

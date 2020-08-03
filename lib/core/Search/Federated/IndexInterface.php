@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,9 +10,9 @@ namespace Search\Federated;
 
 interface IndexInterface
 {
-	function getTransformations();
+    public function getTransformations();
 
-	function applyContentConditions(\Search_Query $query, $content);
+    public function applyContentConditions(\Search_Query $query, $content);
 
-	function applySimilarConditions(\Search_Query $query, $type, $object);
+    public function applySimilarConditions(\Search_Query $query, $type, $object);
 }

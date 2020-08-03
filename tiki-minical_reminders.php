@@ -13,14 +13,14 @@ include_once('tiki-setup_base.php');
 include_once('lib/minical/minicallib.php');
 $access->check_feature('feature_minical');
 if (! $prefs['minical_reminders']) {
-	die;
+    die;
 }
 //$refresh=$_REQUEST['refresh']*1000;
 $refresh = 1000 * 60 * 1;
 $evs = $minicallib->minical_get_events_to_remind($user, $prefs['minical_reminders']);
 foreach ($evs as $ev) {
-	$command = "<script type='text/javascript'>alert('event " . $ev['title'] . " will start at " . date("h:i", $ev['start']) . "');</script>";
-	print ($command);
-	$minicallib->minical_event_reminded($user, $ev['eventId']);
+    $command = "<script type='text/javascript'>alert('event " . $ev['title'] . " will start at " . date("h:i", $ev['start']) . "');</script>";
+    print($command);
+    $minicallib->minical_event_reminded($user, $ev['eventId']);
 }
-print ('<body onload="window.setInterval(\'location.reload()\',' . $refresh . ');">');
+print('<body onload="window.setInterval(\'location.reload()\',' . $refresh . ');">');

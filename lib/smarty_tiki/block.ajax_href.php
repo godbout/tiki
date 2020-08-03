@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -19,28 +20,29 @@
  */
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 function smarty_block_ajax_href($params, $content, $smarty, $repeat)
 {
-	if ($repeat) {
-		return;
-	}
+    if ($repeat) {
+        return;
+    }
 
-	if (! empty($params['_onclick'])) {
-		$onclick = $params['_onclick'];
-		if (substr($onclick, -1) != ';') {
-			$onclick .= ';';
-		}
-	} else {
-		$onclick = '';
-	}
+    if (! empty($params['_onclick'])) {
+        $onclick = $params['_onclick'];
+        if (substr($onclick, -1) != ';') {
+            $onclick .= ';';
+        }
+    } else {
+        $onclick = '';
+    }
 
-	$attributes = " href=\"" . $content . '" ';
-	if (! empty($onclick)) {
-		$attributes .= "onclick=\"$onclick\" ";
-	}
-	return $attributes;
+    $attributes = " href=\"" . $content . '" ';
+    if (! empty($onclick)) {
+        $attributes .= "onclick=\"$onclick\" ";
+    }
+
+    return $attributes;
 }

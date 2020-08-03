@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 // This script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
-	header('location: index.php');
-	exit;
+    header('location: index.php');
+    exit;
 }
 global $prefs;
 $themelib = TikiLib::lib('theme');
@@ -17,17 +18,17 @@ $csslib = TikiLib::lib('css');
 //handle case when changing the themes in the Look and Feel settings panel
 $a_theme = $prefs['theme'];
 if (isset($_REQUEST['looksetup'])) {
-	if (isset($_REQUEST['theme'])) {
-		if (! isset($_REQUEST['theme_option']) || $_REQUEST['theme_option'] = '') {
-			// theme has no options
-			$_REQUEST['theme_option'] = '';
-		}
-	}
+    if (isset($_REQUEST['theme'])) {
+        if (! isset($_REQUEST['theme_option']) || $_REQUEST['theme_option'] = '') {
+            // theme has no options
+            $_REQUEST['theme_option'] = '';
+        }
+    }
 } else {
-	// just changed theme menu, so refill options
-	if (isset($_REQUEST['theme']) && $_REQUEST['theme'] != '') {
-		$a_theme = $_REQUEST['theme'];
-	}
+    // just changed theme menu, so refill options
+    if (isset($_REQUEST['theme']) && $_REQUEST['theme'] != '') {
+        $a_theme = $_REQUEST['theme'];
+    }
 }
 
 $themes = $themelib->list_themes();
@@ -41,52 +42,52 @@ $smarty->assign('themePrefs', $themePrefs);
 // get thumbnail if there is one
 $thumbfile = $themelib->get_thumbnail_file($prefs['site_theme'], $prefs['site_theme_option']);
 if (empty($thumbfile)) {
-	$thumbfile = $themelib->get_thumbnail_file($prefs['site_theme']);
+    $thumbfile = $themelib->get_thumbnail_file($prefs['site_theme']);
 }
 if (empty($thumbfile)) {
-	$thumbfile = 'img/trans.png';
+    $thumbfile = 'img/trans.png';
 }
 $smarty->assign('thumbfile', $thumbfile);
 
 // hash of themes and their options and their thumbnail images
 if ($prefs['feature_jquery'] == 'y') {
-	$js = 'var theme_options = {';
-	foreach ($themes as $theme => $value) {
-		$js .= "\n'$theme':['" . $themelib->get_thumbnail_file($theme, '') . '\',{';
-		$options = $themelib->list_theme_options($theme);
-		if ($options) {
-			foreach ($options as $option) {
-				$js .= "'$option':'" . $themelib->get_thumbnail_file($theme, $option) . '\',';
-			}
-			$js = substr($js, 0, strlen($js) - 1) . '}';
-		} else {
-			$js .= '}';
-		}
-		$js .= '],';
-	}
-	$js = substr($js, 0, strlen($js) - 1);
-	$js .= '};';
+    $js = 'var theme_options = {';
+    foreach ($themes as $theme => $value) {
+        $js .= "\n'$theme':['" . $themelib->get_thumbnail_file($theme, '') . '\',{';
+        $options = $themelib->list_theme_options($theme);
+        if ($options) {
+            foreach ($options as $option) {
+                $js .= "'$option':'" . $themelib->get_thumbnail_file($theme, $option) . '\',';
+            }
+            $js = substr($js, 0, strlen($js) - 1) . '}';
+        } else {
+            $js .= '}';
+        }
+        $js .= '],';
+    }
+    $js = substr($js, 0, strlen($js) - 1);
+    $js .= '};';
 
-	//Setup theme layouts array matching themes and theme:options with their respective layouts
-	$js .= 'var theme_layouts = ';
-	foreach ($themes as $theme => $value) {
-		$theme_layouts[$theme] = $csslib->list_user_selectable_layouts($theme);
-		$options = $themelib->list_theme_options($theme);
-		if ($options) {
-			foreach ($options as $option) {
-				$theme_layouts[$theme . ':' . $option] = $csslib->list_user_selectable_layouts($theme, $option);
-			}
-		}
-	}
-	//encode $theme_layouts into json to allow js below to fetch layouts based on theme selected by user
-	$theme_layouts_js = json_encode($theme_layouts);
-	$js .= $theme_layouts_js . ";";
+    //Setup theme layouts array matching themes and theme:options with their respective layouts
+    $js .= 'var theme_layouts = ';
+    foreach ($themes as $theme => $value) {
+        $theme_layouts[$theme] = $csslib->list_user_selectable_layouts($theme);
+        $options = $themelib->list_theme_options($theme);
+        if ($options) {
+            foreach ($options as $option) {
+                $theme_layouts[$theme . ':' . $option] = $csslib->list_user_selectable_layouts($theme, $option);
+            }
+        }
+    }
+    //encode $theme_layouts into json to allow js below to fetch layouts based on theme selected by user
+    $theme_layouts_js = json_encode($theme_layouts);
+    $js .= $theme_layouts_js . ";";
 
-	// JS to handle theme/option changes client-side
-	// the var (theme_options) has to be declared in the same block for AJAX call scope
-	$none = json_encode(tr('None'));
-	$headerlib->add_js(
-		<<<JS
+    // JS to handle theme/option changes client-side
+    // the var (theme_options) has to be declared in the same block for AJAX call scope
+    $none = json_encode(tr('None'));
+    $headerlib->add_js(
+        <<<JS
 $js
 
 \$(document).ready( function() {
@@ -173,5 +174,5 @@ $js
 	setupThemeLayouts(\$('.tab-content select[name=theme_admin]'), \$('.tab-content select[name=theme_option_admin]'), \$('.tab-content select[name=site_layout_admin]') );
 });
 JS
-	);
+    );
 }

@@ -13,9 +13,9 @@ require_once('check_composer_exists.php');
 
 require_once('tiki-setup.php');
 if (! headers_sent($header_file, $header_line)) {
-	// rfc2616 wants this to have an absolute URI
-	header('Location: ' . $base_url . $prefs['tikiIndex']);
+    // rfc2616 wants this to have an absolute URI
+    header('Location: ' . $base_url . $prefs['tikiIndex']);
 } else {
-	echo "Header already sent in " . $header_file . " at line " . $header_line;
-	exit();
+    echo "Header already sent in " . $header_file . " at line " . $header_line;
+    exit();
 }

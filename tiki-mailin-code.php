@@ -11,7 +11,7 @@
 use Tiki\MailIn;
 
 if (basename($_SERVER['SCRIPT_NAME']) === basename(__FILE__)) {
-	die('This script may only be included.');
+    die('This script may only be included.');
 }
 
 require_once('tiki-setup.php');
@@ -24,14 +24,15 @@ $accs = $mailinlib->list_active_mailin_accounts(0, -1, 'account_desc', '');
 
 // foreach account
 foreach ($accs['data'] as $acc) {
-	if (empty($acc['account'])) {
-		continue;
-	}
+    if (empty($acc['account'])) {
+        continue;
+    }
 
-	$account = MailIn\Account::fromDb($acc);
-	try {
-		$account->check();
-	} catch (Exception $e) {
-		Feedback::error($e->getMessage());
-	}
+    $account = MailIn\Account::fromDb($acc);
+
+    try {
+        $account->check();
+    } catch (Exception $e) {
+        Feedback::error($e->getMessage());
+    }
 }

@@ -1,9 +1,10 @@
 <?php
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 
 /**
  * File
- * 
+ *
  * PHP versions 4 and 5
  *
  * LICENSE: This source file is subject to version 3.0 of the PHP license
@@ -75,28 +76,28 @@ define('FILE_LOCK_EXCLUSIVE', LOCK_EX | (FILE_LOCKS_BLOCK ? 0 : LOCK_NB), true);
 
 /**
  * Class for handling files
- * 
+ *
  * A class with common functions for writing,
  * reading and handling files and directories
- * 
+ *
  * @author  Richard Heyes <richard@php.net>
  * @author  Tal Peer <tal@php.net>
  * @author  Michael Wallner <mike@php.net>
- * @access  public 
+ * @access  public
  * @package File
- * 
+ *
  * @static
  */
 class File extends PEAR
 {
     /**
      * Destructor
-     * 
+     *
      * Unlocks any locked file pointers and closes all filepointers
-     * 
-     * @access private 
+     *
+     * @access private
      */
-    function _File()
+    public function _File()
     {
         File::closeAll();
     }
@@ -105,14 +106,14 @@ class File extends PEAR
      * Handles file pointers. If a file pointer needs to be opened,
      * it will be. If it already exists (based on filename and mode)
      * then the existing one will be returned.
-     * 
-     * @access  private 
+     *
+     * @access  private
      * @param   string  $filename Filename to be used
      * @param   string  $mode Mode to open the file in
      * @param   mixed   $lock Type of lock to use
      * @return  mixed   PEAR_Error on error or file pointer resource on success
      */
-    function &_getFilePointer($filename, $mode, $lock = false)
+    public function &_getFilePointer($filename, $mode, $lock = false)
     {
         $filePointers = &PEAR::getStaticProperty('File', 'filePointers');
         
@@ -122,17 +123,17 @@ class File extends PEAR
         }
         
         // check if file pointer already exists
-        if (    !isset($filePointers[$filename][$mode]) || 
+        if (!isset($filePointers[$filename][$mode]) ||
                 !is_resource($filePointers[$filename][$mode])) {
             
             // check if we can open the file in the desired mode
-            switch ($mode)
-            {
+            switch ($mode) {
                 case FILE_MODE_READ:
-                    if (    !preg_match('/^.+(?<!file):\/\//i', $filename) &&
+                    if (!preg_match('/^.+(?<!file):\/\//i', $filename) &&
                             !file_exists($filename)) {
                         return PEAR::raiseError("File does not exist: $filename");
                     }
+
                 break;
                 
                 case FILE_MODE_APPEND:
@@ -144,6 +145,7 @@ class File extends PEAR
                     } elseif (!is_writable($dir = dirname($filename))) {
                         return PEAR::raiseError("Cannot create file in directory: $dir");
                     }
+
                 break;
                 
                 default:
@@ -171,23 +173,24 @@ class File extends PEAR
         }
         
         return $filePointers[$filename][$mode];
-    } 
+    }
 
     /**
      * Reads an entire file and returns it.
      * Uses file_get_contents if available.
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename Name of file to read from
      * @param   mixed   $lock Type of lock to use
      * @return  mixed   PEAR_Error if an error has occured or a string with the contents of the the file
      */
-    function readAll($filename, $lock = false)
+    public function readAll($filename, $lock = false)
     {
         if (function_exists('file_get_contents')) {
             if (false === $file = @file_get_contents($filename)) {
                 return PEAR::raiseError("Cannot read file: $filename");
             }
+
             return $file;
         }
         
@@ -206,50 +209,50 @@ class File extends PEAR
     }
 
     /**
-     * Returns a specified number of bytes of a file. 
+     * Returns a specified number of bytes of a file.
      * Defaults to FILE_DEFAULT_READSIZE.  If $size is 0, all file will be read.
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename Name of file to read from
      * @param   integer $size Bytes to read
      * @param   mixed   $lock Type of lock to use
      * @return  mixed   PEAR_Error on error or a string which contains the data read
      *                  Will also return false upon EOF
      */
-    function read($filename, $size = FILE_DEFAULT_READSIZE, $lock = false)
+    public function read($filename, $size = FILE_DEFAULT_READSIZE, $lock = false)
     {
         static $filePointers;
         
         if (0 == $size) {
             return File::readAll($filename, $lock);
-        } 
+        }
 
-        if (    !isset($filePointers[$filename]) || 
+        if (!isset($filePointers[$filename]) ||
                 !is_resource($filePointers[$filename])) {
             if (PEAR::isError($fp = &File::_getFilePointer($filename, FILE_MODE_READ, $lock))) {
                 return $fp;
-            } 
+            }
 
             $filePointers[$filename] = &$fp;
         } else {
             $fp = &$filePointers[$filename];
-        } 
+        }
 
         return !feof($fp) ? fread($fp, $size) : false;
-    } 
+    }
 
     /**
-     * Writes the given data to the given filename. 
+     * Writes the given data to the given filename.
      * Defaults to no lock, append mode.
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename Name of file to write to
      * @param   string  $data Data to write to file
      * @param   string  $mode Mode to open file in
      * @param   mixed   $lock Type of lock to use
      * @return  mixed   PEAR_Error on error or number of bytes written to file.
      */
-    function write($filename, $data, $mode = FILE_MODE_APPEND, $lock = false)
+    public function write($filename, $data, $mode = FILE_MODE_APPEND, $lock = false)
     {
         if (PEAR::isError($fp = &File::_getFilePointer($filename, $mode, $lock))) {
             return $fp;
@@ -257,33 +260,34 @@ class File extends PEAR
         if (-1 === $bytes = @fwrite($fp, $data, strlen($data))) {
             return PEAR::raiseError("Cannot write data: '$data' to file: '$filename'");
         }
+
         return $bytes;
-    } 
+    }
 
     /**
      * Reads and returns a single character from given filename
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename Name of file to read from
      * @param   mixed   $lock Type of lock to use
      * @return  mixed   PEAR_Error on error or one character of the specified file
      */
-    function readChar($filename, $lock = false)
+    public function readChar($filename, $lock = false)
     {
         return File::read($filename, 1, $lock);
-    } 
+    }
 
     /**
      * Writes a single character to a file
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename Name of file to write to
      * @param   string  $char Character to write
      * @param   string  $mode Mode to use when writing
      * @param   mixed   $lock Type of lock to use
      * @return  mixed   PEAR_Error on error, or 1 on success
      */
-    function writeChar($filename, $char, $mode = FILE_MODE_APPEND, $lock = false)
+    public function writeChar($filename, $char, $mode = FILE_MODE_APPEND, $lock = false)
     {
         if (PEAR::isError($fp = &File::_getFilePointer($filename, $mode, $lock))) {
             return $fp;
@@ -291,44 +295,45 @@ class File extends PEAR
         if (-1 === @fwrite($fp, $char, 1)) {
             return PEAR::raiseError("Cannot write data: '$data' to file: '$filename'");
         }
+
         return 1;
-    } 
+    }
 
     /**
      * Returns a line of the file (without trailing CRLF).
      * Maximum read line length is FILE_MAX_LINE_READSIZE.
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename Name of file to read from
      * @param   boolean $lock Whether file should be locked
      * @return  mixed   PEAR_Error on error or a string containing the line read from file
      */
-    function readLine($filename, $lock = false)
+    public function readLine($filename, $lock = false)
     {
         static $filePointers; // Used to prevent unnecessary calls to _getFilePointer()
         
-        if (    !isset($filePointers[$filename]) || 
+        if (!isset($filePointers[$filename]) ||
                 !is_resource($filePointers[$filename])) {
             if (PEAR::isError($fp = &File::_getFilePointer($filename, FILE_MODE_READ, $lock))) {
                 return $fp;
-            } 
+            }
 
             $filePointers[$filename] = &$fp;
         } else {
             $fp = &$filePointers[$filename];
-        } 
+        }
 
         if (feof($fp)) {
             return false;
-        } 
+        }
         
         return rtrim(fgets($fp, FILE_MAX_LINE_READSIZE), "\r\n");
-    } 
+    }
 
     /**
      * Writes a single line, appending a LF (by default)
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename Name of file to write to
      * @param   string  $line Line of data to be written to file
      * @param   string  $mode Write mode, can be either FILE_MODE_WRITE or FILE_MODE_APPEND
@@ -336,7 +341,7 @@ class File extends PEAR
      * @param   mixed   $lock Whether to lock the file
      * @return  mixed   PEAR_Error on error or number of bytes written to file (including appended crlf)
      */
-    function writeLine($filename, $line, $mode = FILE_MODE_APPEND, $crlf = "\n", $lock = false)
+    public function writeLine($filename, $line, $mode = FILE_MODE_APPEND, $crlf = "\n", $lock = false)
     {
         if (PEAR::isError($fp = &File::_getFilePointer($filename, $mode, $lock))) {
             return $fp;
@@ -344,18 +349,19 @@ class File extends PEAR
         if (-1 === $bytes = fwrite($fp, $line . $crlf)) {
             return PEAR::raiseError("Cannot write data: '$data' to file: '$file'");
         }
+
         return $bytes;
-    } 
+    }
 
     /**
      * This rewinds a filepointer to the start of a file
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename The filename
      * @param   string  $mode Mode the file was opened in
      * @return  mixed   PEAR Error on error, true on success
      */
-    function rewind($filename, $mode)
+    public function rewind($filename, $mode)
     {
         if (PEAR::isError($fp = &File::_getFilePointer($filename, $mode))) {
             return $fp;
@@ -363,16 +369,17 @@ class File extends PEAR
         if (!@rewind($fp)) {
             return PEAR::raiseError("Cannot rewind file: $filename");
         }
+
         return true;
-    } 
+    }
 
     /**
      * Closes all open file pointers
-     * 
+     *
      * @access  public
      * @return  void
      */
-    function closeAll()
+    public function closeAll()
     {
         $locks = &PEAR::getStaticProperty('File', 'locks');
         $filePointers = &PEAR::getStaticProperty('File', 'filePointers');
@@ -397,13 +404,13 @@ class File extends PEAR
     
     /**
      * This closes an open file pointer
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename The filename that was opened
      * @param   string  $mode Mode the file was opened in
      * @return  mixed   PEAR Error on error, true otherwise
      */
-    function close($filename, $mode)
+    public function close($filename, $mode)
     {
         $filePointers = &PEAR::getStaticProperty('File', 'filePointers');
         
@@ -427,17 +434,17 @@ class File extends PEAR
         }
         
         return true;
-    } 
+    }
 
     /**
      * This unlocks a locked file pointer.
-     * 
-     * @access  public 
+     *
+     * @access  public
      * @param   string  $filename The filename that was opened
      * @param   string  $mode Mode the file was opened in
      * @return  mixed   PEAR Error on error, true otherwise
      */
-    function unlock($filename, $mode)
+    public function unlock($filename, $mode)
     {
         if (PEAR::isError($fp = &File::_getFilePointer($filename, $mode))) {
             return $fp;
@@ -445,87 +452,109 @@ class File extends PEAR
         if (!@flock($fp, LOCK_UN)) {
             return PEAR::raiseError("Cacnnot unlock file: $filename");
         }
+
         return true;
-    } 
+    }
 
     /**
      * @deprecated
+     * @param mixed $path
+     * @param mixed $separator
      */
-    function stripTrailingSeparators($path, $separator = DIRECTORY_SEPARATOR)
+    public function stripTrailingSeparators($path, $separator = DIRECTORY_SEPARATOR)
     {
         return rtrim($path, $separator);
-    } 
+    }
 
     /**
      * @deprecated
+     * @param mixed $path
+     * @param mixed $separator
      */
-    function stripLeadingSeparators($path, $separator = DIRECTORY_SEPARATOR)
+    public function stripLeadingSeparators($path, $separator = DIRECTORY_SEPARATOR)
     {
         return ltrim($path, $separator);
-    } 
+    }
 
     /**
      * @deprecated      Use File_Util::buildPath() instead.
+     * @param mixed $parts
+     * @param mixed $separator
      */
-    function buildPath($parts, $separator = DIRECTORY_SEPARATOR)
+    public function buildPath($parts, $separator = DIRECTORY_SEPARATOR)
     {
         require_once 'File/Util.php';
+
         return File_Util::buildPath($parts, $separator);
-    } 
+    }
 
     /**
      * @deprecated      Use File_Util::skipRoot() instead.
+     * @param mixed $path
      */
-    function skipRoot($path)
+    public function skipRoot($path)
     {
         require_once 'File/Util.php';
+
         return File_Util::skipRoot($path);
-    } 
+    }
 
     /**
      * @deprecated      Use File_Util::tmpDir() instead.
      */
-    function getTempDir()
+    public function getTempDir()
     {
         require_once 'File/Util.php';
+
         return File_Util::tmpDir();
     }
 
     /**
      * @deprecated      Use File_Util::tmpFile() instead.
+     * @param null|mixed $dirname
      */
-    function getTempFile($dirname = null)
+    public function getTempFile($dirname = null)
     {
         require_once 'File/Util.php';
+
         return File_Util::tmpFile($dirname);
-    } 
+    }
 
     /**
      * @deprecated      Use File_Util::isAbsolute() instead.
+     * @param mixed $path
      */
-    function isAbsolute($path)
+    public function isAbsolute($path)
     {
         require_once 'File/Util.php';
+
         return File_Util::isAbsolute($path);
-    } 
+    }
 
     /**
      * @deprecated      Use File_Util::relativePath() instead.
+     * @param mixed $path
+     * @param mixed $root
+     * @param mixed $separator
      */
-    function relativePath($path, $root, $separator = DIRECTORY_SEPARATOR)
+    public function relativePath($path, $root, $separator = DIRECTORY_SEPARATOR)
     {
         require_once 'File/Util.php';
+
         return File_Util::relativePath($path, $root, $separator);
     }
 
     /**
      * @deprecated      Use File_Util::realpath() instead.
+     * @param mixed $path
+     * @param mixed $separator
      */
-    function realpath($path, $separator = DIRECTORY_SEPARATOR)
+    public function realpath($path, $separator = DIRECTORY_SEPARATOR)
     {
         require_once 'File/Util.php';
+
         return File_Util::realpath($path, $separator);
     }
 }
 
-PEAR::registerShutdownFunc(array('File', '_File'));
+PEAR::registerShutdownFunc(['File', '_File']);

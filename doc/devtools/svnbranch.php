@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -11,7 +12,7 @@ require __DIR__ . '/svntools.php';
 info("Verifying...");
 
 if (! isset($_SERVER['argc']) || $_SERVER['argc'] != 2) {
-	error("Missing argument. Expecting branch to create from trunk as argument.\n\nExamples:\n\tbranches/5.x\n\tbranches/experimental/foobar");
+    error("Missing argument. Expecting branch to create from trunk as argument.\n\nExamples:\n\tbranches/5.x\n\tbranches/experimental/foobar");
 }
 
 $source = full('trunk');
@@ -21,11 +22,11 @@ $repo = get_info($source);
 $target = get_info($branch);
 
 if (isset($target->entry)) {
-	error("The branch already exists.");
+    error("The branch already exists.");
 }
 
 if (! is_valid_branch($branch)) {
-	error("The provided branch is not an acceptable branch location.");
+    error("The provided branch is not an acceptable branch location.");
 }
 
 $revision = (int) $repo->entry->commit['revision'];
@@ -34,5 +35,5 @@ $revision = (int) $repo->entry->commit['revision'];
 info("Branching...");
 
 if (! branch($source, $branch, $revision)) {
-	error("Branch could not be created.");
+    error("Branch could not be created.");
 }

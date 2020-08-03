@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,87 +8,88 @@
 
 // This script may only be included - so it's better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	die;
+    header("location: index.php");
+    die;
 }
 
 class Tiki_Soap
 {
-	private $cookies;
-	public $allowCookies;	// boolean. If true, (session) cookies are handled
+    private $cookies;
+    public $allowCookies;	// boolean. If true, (session) cookies are handled
 
-	function __construct()
-	{
-		$this->cookies = [];
-		$this->allowCookies = false;
-	}
+    public function __construct()
+    {
+        $this->cookies = [];
+        $this->allowCookies = false;
+    }
 
-	/*
-	*   If fullResponse = true, "out" parameters from .NET calls are included in the response.
-	*	If false, only the <request>Response part of the reply is included.
-	*/
-	public function performRequest($wsdl, $operation, $params, $options = [ 'encoding' => 'UTF-8' ], $fullReponse = false)
-	{
-		if (! extension_loaded('soap')) {
-			return 'Extension SOAP not found';
-		}
+    /*
+    *   If fullResponse = true, "out" parameters from .NET calls are included in the response.
+    *	If false, only the <request>Response part of the reply is included.
+    */
+    public function performRequest($wsdl, $operation, $params, $options = [ 'encoding' => 'UTF-8' ], $fullReponse = false)
+    {
+        if (! extension_loaded('soap')) {
+            return 'Extension SOAP not found';
+        }
 
-		if (! isset($options['soap_version'])) {
-			$options['soap_version'] = SOAP_1_1;
-		}
+        if (! isset($options['soap_version'])) {
+            $options['soap_version'] = SOAP_1_1;
+        }
 
-		$client = new Laminas\Soap\Client($wsdl, $options);
-		$soap_params = [];
+        $client = new Laminas\Soap\Client($wsdl, $options);
+        $soap_params = [];
 
-		foreach ($params as $param_name => $param_value) {
-			preg_match('/^(.*)\:(.*)$/', $param_name, $matches);
+        foreach ($params as $param_name => $param_value) {
+            preg_match('/^(.*)\:(.*)$/', $param_name, $matches);
 
-			if (count($matches) == 3) {
-				if (! isset($soap_params[$matches[1]])) {
-					$soap_params[$matches[1]] = [];
-				}
+            if (count($matches) == 3) {
+                if (! isset($soap_params[$matches[1]])) {
+                    $soap_params[$matches[1]] = [];
+                }
 
-				$soap_params[$matches[1]][$matches[2]] = $param_value;
-			} else {
-				$soap_params[$param_name] = $param_value;
-			}
-		}
+                $soap_params[$matches[1]][$matches[2]] = $param_value;
+            } else {
+                $soap_params[$param_name] = $param_value;
+            }
+        }
 
-		try {
-			// Set (Session) cookies before the call
-			if ($this->allowCookies) {
-				if (is_array($this->cookies)) {
-					foreach ($this->cookies as $cookieName => $cookieValue) {
-						$client->setCookie($cookieName, $cookieValue[0]);
-					}
-				}
-			}
+        try {
+            // Set (Session) cookies before the call
+            if ($this->allowCookies) {
+                if (is_array($this->cookies)) {
+                    foreach ($this->cookies as $cookieName => $cookieValue) {
+                        $client->setCookie($cookieName, $cookieValue[0]);
+                    }
+                }
+            }
 
-			// Perform the SOAP request
-			$result = call_user_func_array([$client, $operation], $soap_params);
+            // Perform the SOAP request
+            $result = call_user_func_array([$client, $operation], $soap_params);
 
-			// Pick up any new cookies from the server
-			if ($this->allowCookies) {
-				$last_response = $client->getLastResponseHeaders();
-				$soapClt = $client->getSoapClient();
-				$this->cookies = array_merge($soapClt->_cookies, $this->cookies);
-			}
-		} catch (SoapFault $e) {
-			trigger_error($e->getMessage());
-			return $e->getMessage();
-		}
+            // Pick up any new cookies from the server
+            if ($this->allowCookies) {
+                $last_response = $client->getLastResponseHeaders();
+                $soapClt = $client->getSoapClient();
+                $this->cookies = array_merge($soapClt->_cookies, $this->cookies);
+            }
+        } catch (SoapFault $e) {
+            trigger_error($e->getMessage());
 
-		// Unless the full response result is specified, only reply the returned result, and not the "out" parameter results
-		if (is_object($result) && ! $fullReponse) {
-			$result_name = $operation . 'Result';
+            return $e->getMessage();
+        }
 
-			if (isset($result->$result_name)) {
-				return $result->$result_name;
-			}
-		}
+        // Unless the full response result is specified, only reply the returned result, and not the "out" parameter results
+        if (is_object($result) && ! $fullReponse) {
+            $result_name = $operation . 'Result';
 
-		return $result;
-	}
+            if (isset($result->$result_name)) {
+                return $result->$result_name;
+            }
+        }
+
+        return $result;
+    }
 }
 
 global $soaplib;

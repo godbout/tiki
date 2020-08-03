@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -14,366 +15,376 @@ use \TikiLib;
  */
 class Item
 {
-	public $id;
-	public $type;
-	public $from;
-	public $redirect;
-	public $description;
-	public $active;
-	public $short_url;
+    public $id;
+    public $type;
+    public $from;
+    public $redirect;
+    public $description;
+    public $active;
+    public $short_url;
 
-	const TYPE_DIRECT = 'Direct';
-	const TYPE_OBJECT = 'TikiObject';
-	const TYPE_TRACKER_FIELD = 'TrackerField';
+    const TYPE_DIRECT = 'Direct';
+    const TYPE_OBJECT = 'TikiObject';
+    const TYPE_TRACKER_FIELD = 'TrackerField';
 
-	/**
-	 * Item constructor.
-	 *
-	 * @param $type
-	 * @param $from
-	 * @param $redirect
-	 * @param $description
-	 * @param int $active
-	 * @param int $short_url
-	 * @param null $id
-	 */
-	public function __construct($type, $from, $redirect, $description, $active = 1, $short_url = 0, $id = null)
-	{
-		$this->type = $type;
-		$this->from = $from;
-		$this->redirect = is_array($redirect) ? json_encode($redirect) : $redirect;
-		$this->description = $description;
-		$this->active = $active;
-		$this->short_url = $short_url;
-		$this->id = $id;
-	}
+    /**
+     * Item constructor.
+     *
+     * @param $type
+     * @param $from
+     * @param $redirect
+     * @param $description
+     * @param int $active
+     * @param int $short_url
+     * @param null $id
+     */
+    public function __construct($type, $from, $redirect, $description, $active = 1, $short_url = 0, $id = null)
+    {
+        $this->type = $type;
+        $this->from = $from;
+        $this->redirect = is_array($redirect) ? json_encode($redirect) : $redirect;
+        $this->description = $description;
+        $this->active = $active;
+        $this->short_url = $short_url;
+        $this->id = $id;
+    }
 
-	/**
-	 * Save item in database
-	 */
-	public function save()
-	{
-		$routeLib = TikiLib::lib('custom_route');
-		$id = $routeLib->setRoute($this->type, $this->from, $this->redirect, $this->description, $this->active, $this->short_url, $this->id);
+    /**
+     * Save item in database
+     */
+    public function save()
+    {
+        $routeLib = TikiLib::lib('custom_route');
+        $id = $routeLib->setRoute($this->type, $this->from, $this->redirect, $this->description, $this->active, $this->short_url, $this->id);
 
-		if ($id) {
-			$this->id  = $id;
-		}
-	}
+        if ($id) {
+            $this->id = $id;
+        }
+    }
 
-	/**
-	 * Load a custom route by ID
-	 *
-	 * @param $id
-	 * @return array|null|Item
-	 */
-	public static function load($id)
-	{
-		$routeLib = TikiLib::lib('custom_route');
-		$details = $routeLib->getRoute($id);
+    /**
+     * Load a custom route by ID
+     *
+     * @param $id
+     * @return array|null|Item
+     */
+    public static function load($id)
+    {
+        $routeLib = TikiLib::lib('custom_route');
+        $details = $routeLib->getRoute($id);
 
-		if (empty($details)) {
-			return null;
-		}
+        if (empty($details)) {
+            return null;
+        }
 
-		return new self(
-			$details['type'],
-			$details['from'],
-			$details['redirect'],
-			$details['description'],
-			$details['active'],
-			$details['short_url'],
-			$details['id']
-		);
-	}
+        return new self(
+            $details['type'],
+            $details['from'],
+            $details['redirect'],
+            $details['description'],
+            $details['active'],
+            $details['short_url'],
+            $details['id']
+        );
+    }
 
-	/**
-	 * Check if a given path matches a custom route
-	 *
-	 * @param $path
-	 * @return bool|string
-	 */
-	public function matchRoute($path)
-	{
-		switch ($this->type) {
-			case self::TYPE_DIRECT:
-				if ($path === $this->from) {
-					return true;
-				}
-				break;
-			case self::TYPE_OBJECT:
-				if ($path === $this->from) {
-					return true;
-				}
-				break;
-			case self::TYPE_TRACKER_FIELD:
-				preg_match($this->from, $path, $matches);
-				if (isset($matches[1])) {
-					return true;
-				}
-				break;
-			default:
-				break;
-		}
+    /**
+     * Check if a given path matches a custom route
+     *
+     * @param $path
+     * @return bool|string
+     */
+    public function matchRoute($path)
+    {
+        switch ($this->type) {
+            case self::TYPE_DIRECT:
+                if ($path === $this->from) {
+                    return true;
+                }
 
-		return false;
-	}
+                break;
+            case self::TYPE_OBJECT:
+                if ($path === $this->from) {
+                    return true;
+                }
 
-	/**
-	 * Attempts to determine if is viable to do an in-place redirect and return the appropriate setting (or false)
-	 *
-	 * @param $path
-	 * @return array|bool The setting for in place redirect of false
-	 */
-	public function getInPlaceRoutingParameters($path)
-	{
-		switch ($this->type) {
-			case self::TYPE_OBJECT:
-				$redirectDetails = json_decode($this->redirect, true);
+                break;
+            case self::TYPE_TRACKER_FIELD:
+                preg_match($this->from, $path, $matches);
+                if (isset($matches[1])) {
+                    return true;
+                }
 
-				$objectType = $redirectDetails['type'];
-				$objectId = $redirectDetails['object'];
+                break;
+            default:
+                break;
+        }
 
-				break;
+        return false;
+    }
 
-			case self::TYPE_TRACKER_FIELD:
-				$redirectDetails = json_decode($this->redirect, true);
+    /**
+     * Attempts to determine if is viable to do an in-place redirect and return the appropriate setting (or false)
+     *
+     * @param $path
+     * @return array|bool The setting for in place redirect of false
+     */
+    public function getInPlaceRoutingParameters($path)
+    {
+        switch ($this->type) {
+            case self::TYPE_OBJECT:
+                $redirectDetails = json_decode($this->redirect, true);
 
-				preg_match($this->from, $path, $matches);
+                $objectType = $redirectDetails['type'];
+                $objectId = $redirectDetails['object'];
 
-				if (! isset($matches[1])) {
-					return false;
-				}
+                break;
 
-				if ($redirectDetails['tracker_field'] == 'itemId') {
-					$itemId = $matches[1];
-				} else {
-					$itemId = TikiLib::lib('trk')->get_item_id(
-						$redirectDetails['tracker'],
-						$redirectDetails['tracker_field'],
-						$matches[1]
-					);
-				}
+            case self::TYPE_TRACKER_FIELD:
+                $redirectDetails = json_decode($this->redirect, true);
 
-				if (empty($itemId)) {
-					$itemId = '0';
-				}
+                preg_match($this->from, $path, $matches);
 
-				$objectType = 'tracker item';
-				$objectId = $itemId;
+                if (! isset($matches[1])) {
+                    return false;
+                }
 
-				break;
+                if ($redirectDetails['tracker_field'] == 'itemId') {
+                    $itemId = $matches[1];
+                } else {
+                    $itemId = TikiLib::lib('trk')->get_item_id(
+                        $redirectDetails['tracker'],
+                        $redirectDetails['tracker_field'],
+                        $matches[1]
+                    );
+                }
 
-			default:
-				return false;
-		}
+                if (empty($itemId)) {
+                    $itemId = '0';
+                }
 
-		switch ($objectType) {
-			case 'article':
-				$file = 'tiki-read_article.php';
-				$params = ['articleId' => $objectId];
-				break;
+                $objectType = 'tracker item';
+                $objectId = $itemId;
 
-			case 'blog':
-				$file = 'tiki-view_blog.php';
-				$params = ['blogId' => $objectId];
-				break;
+                break;
 
-			case 'forum':
-				$file = 'tiki-view_forum.php';
-				$params = ['forumId' => $objectId];
-				break;
+            default:
+                return false;
+        }
 
-			case 'tracker item':
-				$file = 'tiki-view_tracker_item.php';
-				$params = ['itemId' => $objectId];
-				break;
+        switch ($objectType) {
+            case 'article':
+                $file = 'tiki-read_article.php';
+                $params = ['articleId' => $objectId];
 
-			case 'wiki page':
-				/** @var \WikiLib $wikiLib */
-				$wikiLib = TikiLib::lib('wiki');
-				$pageName = $wikiLib->get_page_name_from_id($objectId);
-				$pageSlug = $wikiLib->get_slug_by_page($pageName);
+                break;
 
-				if (empty($pageSlug)) {
-					return false;
-				}
+            case 'blog':
+                $file = 'tiki-view_blog.php';
+                $params = ['blogId' => $objectId];
 
-				$file = 'tiki-index.php';
-				$params = ['page' => $pageSlug];
+                break;
 
-				break;
+            case 'forum':
+                $file = 'tiki-view_forum.php';
+                $params = ['forumId' => $objectId];
 
-			default:
-				return false;
-		}
+                break;
 
-		return [
-			'file' => $file,
-			'get_param' => $params
-		];
-	}
+            case 'tracker item':
+                $file = 'tiki-view_tracker_item.php';
+                $params = ['itemId' => $objectId];
 
-	/**
-	 * Check if a given path matches a custom route
-	 *
-	 * @param $path
-	 * @return bool|string
-	 */
-	public function getRedirectPath($path)
-	{
-		switch ($this->type) {
-			case self::TYPE_DIRECT:
-				if ($path === $this->from) {
-					$redirectDetails = json_decode($this->redirect, true);
-					return $redirectDetails['to'];
-				}
-				break;
+                break;
 
-			case self::TYPE_OBJECT:
-				if ($path === $this->from) {
-					$redirectDetails = json_decode($this->redirect, true);
+            case 'wiki page':
+                /** @var \WikiLib $wikiLib */
+                $wikiLib = TikiLib::lib('wiki');
+                $pageName = $wikiLib->get_page_name_from_id($objectId);
+                $pageSlug = $wikiLib->get_slug_by_page($pageName);
 
-					$type = $redirectDetails['type'];
-					$objectId = $redirectDetails['object'];
+                if (empty($pageSlug)) {
+                    return false;
+                }
 
-					if ($type == 'wiki page') {
-						/** @var \WikiLib $wikiLib */
-						$wikiLib = TikiLib::lib('wiki');
-						$pageName = $wikiLib->get_page_name_from_id($objectId);
-						$pageSlug = $wikiLib->get_slug_by_page($pageName);
+                $file = 'tiki-index.php';
+                $params = ['page' => $pageSlug];
 
-						if (empty($pageSlug)) {
-							return false;
-						}
+                break;
 
-						$objectId = $pageSlug;
-					}
+            default:
+                return false;
+        }
 
-					require_once('tiki-sefurl.php');
-					$smarty = TikiLib::lib('smarty');
-					$smarty->loadPlugin('smarty_modifier_sefurl');
-					$isExternal = TikiLib::setExternalContext(true);
-					$url = smarty_modifier_sefurl($objectId, $type);
-					TikiLib::setExternalContext($isExternal);
+        return [
+            'file' => $file,
+            'get_param' => $params
+        ];
+    }
 
-					return $url;
-				}
-				break;
+    /**
+     * Check if a given path matches a custom route
+     *
+     * @param $path
+     * @return bool|string
+     */
+    public function getRedirectPath($path)
+    {
+        switch ($this->type) {
+            case self::TYPE_DIRECT:
+                if ($path === $this->from) {
+                    $redirectDetails = json_decode($this->redirect, true);
 
-			case self::TYPE_TRACKER_FIELD:
-				preg_match($this->from, $path, $matches);
+                    return $redirectDetails['to'];
+                }
 
-				if (! isset($matches[1])) {
-					return false;
-				}
+                break;
 
-				$redirectDetails = json_decode($this->redirect, true);
+            case self::TYPE_OBJECT:
+                if ($path === $this->from) {
+                    $redirectDetails = json_decode($this->redirect, true);
 
-				$trklib = TikiLib::lib('trk');
+                    $type = $redirectDetails['type'];
+                    $objectId = $redirectDetails['object'];
 
-				if ($redirectDetails['tracker_field'] == 'itemId') {
-					$itemId = $matches[1];
-				} else {
-					$itemId = $trklib->get_item_id(
-						$redirectDetails['tracker'],
-						$redirectDetails['tracker_field'],
-						$matches[1]
-					);
-				}
+                    if ($type == 'wiki page') {
+                        /** @var \WikiLib $wikiLib */
+                        $wikiLib = TikiLib::lib('wiki');
+                        $pageName = $wikiLib->get_page_name_from_id($objectId);
+                        $pageSlug = $wikiLib->get_slug_by_page($pageName);
 
-				if (empty($itemId)) {
-					$itemId = '0';
-				}
+                        if (empty($pageSlug)) {
+                            return false;
+                        }
 
-				require_once('tiki-sefurl.php');
-				$smarty = TikiLib::lib('smarty');
-				$smarty->loadPlugin('smarty_modifier_sefurl');
-				$isExternal = TikiLib::setExternalContext(true);
-				$url = smarty_modifier_sefurl($itemId, 'trackeritem');
-				TikiLib::setExternalContext($isExternal);
+                        $objectId = $pageSlug;
+                    }
 
-				return $url;
+                    require_once('tiki-sefurl.php');
+                    $smarty = TikiLib::lib('smarty');
+                    $smarty->loadPlugin('smarty_modifier_sefurl');
+                    $isExternal = TikiLib::setExternalContext(true);
+                    $url = smarty_modifier_sefurl($objectId, $type);
+                    TikiLib::setExternalContext($isExternal);
 
-				break;
-			default:
-				break;
-		}
+                    return $url;
+                }
 
-		return false;
-	}
+                break;
 
-	/**
-	 * Validate the route requirements are met.
-	 *
-	 * @return array
-	 */
-	public function validate()
-	{
-		$errors = [];
+            case self::TYPE_TRACKER_FIELD:
+                preg_match($this->from, $path, $matches);
 
-		if (empty($this->from)) {
-			$errors[] = tr('From is required');
-		}
+                if (! isset($matches[1])) {
+                    return false;
+                }
 
-		$routeLib = TikiLib::lib('custom_route');
-		if ($routeLib->checkRouteExists($this->from, $this->id)) {
-			$errors[] = tr('There is a route with the same From path already defined.');
-		}
+                $redirectDetails = json_decode($this->redirect, true);
 
-		if (empty($this->type)) {
-			$errors[] = tr('Type is required');
-		}
+                $trklib = TikiLib::lib('trk');
 
-		/** @var Type $class */
-		$className = 'Tiki\\CustomRoute\\Type\\' . $this->type;
-		if (class_exists($className)) {
-			$class = new $className();
+                if ($redirectDetails['tracker_field'] == 'itemId') {
+                    $itemId = $matches[1];
+                } else {
+                    $itemId = $trklib->get_item_id(
+                        $redirectDetails['tracker'],
+                        $redirectDetails['tracker_field'],
+                        $matches[1]
+                    );
+                }
 
-			$params = json_decode($this->redirect, true);
-			$errors += $class->validateParams($params);
-		} else {
-			$errors[] = tr('Selected type is not supported');
-		}
+                if (empty($itemId)) {
+                    $itemId = '0';
+                }
 
-		return $errors;
-	}
+                require_once('tiki-sefurl.php');
+                $smarty = TikiLib::lib('smarty');
+                $smarty->loadPlugin('smarty_modifier_sefurl');
+                $isExternal = TikiLib::setExternalContext(true);
+                $url = smarty_modifier_sefurl($itemId, 'trackeritem');
+                TikiLib::setExternalContext($isExternal);
 
-	/**
-	 * Converts the Item object into a array
-	 *
-	 * @return array
-	 */
-	public function toArray()
-	{
-		return [
-			'id' => $this->id,
-			'type' => $this->type,
-			'from' => $this->from,
-			'params' => json_decode($this->redirect, true),
-			'description' => $this->description,
-			'active' => $this->active,
-			'short_url' => $this->short_url,
-		];
-	}
+                return $url;
 
-	/**
-	 * Returns the full short url link
-	 *
-	 * @return string The absolute short url link
-	 * @throws \Exception
-	 */
-	public function getShortUrlLink()
-	{
-		global $base_url;
+                break;
+            default:
+                break;
+        }
 
-		if (! $this->short_url) {
-			throw new \Exception('This custom route is not Short URL');
-		}
+        return false;
+    }
 
-		$link = ! empty($prefs['sefurl_short_url_base_url']) ? $prefs['sefurl_short_url_base_url'] : $base_url;
-		$link = rtrim($link, '/') . '/' . $this->from;
+    /**
+     * Validate the route requirements are met.
+     *
+     * @return array
+     */
+    public function validate()
+    {
+        $errors = [];
 
-		return $link;
-	}
+        if (empty($this->from)) {
+            $errors[] = tr('From is required');
+        }
+
+        $routeLib = TikiLib::lib('custom_route');
+        if ($routeLib->checkRouteExists($this->from, $this->id)) {
+            $errors[] = tr('There is a route with the same From path already defined.');
+        }
+
+        if (empty($this->type)) {
+            $errors[] = tr('Type is required');
+        }
+
+        /** @var Type $class */
+        $className = 'Tiki\\CustomRoute\\Type\\' . $this->type;
+        if (class_exists($className)) {
+            $class = new $className();
+
+            $params = json_decode($this->redirect, true);
+            $errors += $class->validateParams($params);
+        } else {
+            $errors[] = tr('Selected type is not supported');
+        }
+
+        return $errors;
+    }
+
+    /**
+     * Converts the Item object into a array
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'type' => $this->type,
+            'from' => $this->from,
+            'params' => json_decode($this->redirect, true),
+            'description' => $this->description,
+            'active' => $this->active,
+            'short_url' => $this->short_url,
+        ];
+    }
+
+    /**
+     * Returns the full short url link
+     *
+     * @throws \Exception
+     * @return string The absolute short url link
+     */
+    public function getShortUrlLink()
+    {
+        global $base_url;
+
+        if (! $this->short_url) {
+            throw new \Exception('This custom route is not Short URL');
+        }
+
+        $link = ! empty($prefs['sefurl_short_url_base_url']) ? $prefs['sefurl_short_url_base_url'] : $base_url;
+        $link = rtrim($link, '/') . '/' . $this->from;
+
+        return $link;
+    }
 }

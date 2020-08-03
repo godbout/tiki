@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -8,47 +9,47 @@
 class Services_IDS_Controller
 {
 
-	/**
-	 * @var TikiAccessLib
-	 */
-	private $access;
+    /**
+     * @var TikiAccessLib
+     */
+    private $access;
 
-	function setUp()
-	{
-		$this->access = TikiLib::lib('access');
-	}
+    public function setUp()
+    {
+        $this->access = TikiLib::lib('access');
+    }
 
 
-	/**
-	 * @param $input JitFilter
-	 * @return array
-	 * @throws Services_Exception_Denied
-	 * @throws Services_Exception_NotFound
-	 */
-	function action_remove($input)
-	{
-		Services_Exception_Denied::checkGlobal('admin_users');
+    /**
+     * @param $input JitFilter
+     * @throws Services_Exception_Denied
+     * @throws Services_Exception_NotFound
+     * @return array
+     */
+    public function action_remove($input)
+    {
+        Services_Exception_Denied::checkGlobal('admin_users');
 
-		$ruleId = $input->ruleId->int();
-		$confirm = $input->confirm->int();
+        $ruleId = $input->ruleId->int();
+        $confirm = $input->confirm->int();
 
-		$rule = IDS_Rule::getRule($ruleId);
+        $rule = IDS_Rule::getRule($ruleId);
 
-		if (! $rule) {
-			throw new Services_Exception_NotFound;
-		}
+        if (! $rule) {
+            throw new Services_Exception_NotFound;
+        }
 
-		$util = new Services_Utilities();
-		if ($util->isConfirmPost()) {
-			$rule->delete();
+        $util = new Services_Utilities();
+        if ($util->isConfirmPost()) {
+            $rule->delete();
 
-			return [
-				'ruleId' => 0,
-			];
-		}
+            return [
+                'ruleId' => 0,
+            ];
+        }
 
-		return [
-			'ruleId' => $ruleId,
-		];
-	}
+        return [
+            'ruleId' => $ruleId,
+        ];
+    }
 }

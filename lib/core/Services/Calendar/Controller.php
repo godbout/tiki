@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,62 +8,62 @@
 
 class Services_Calendar_Controller
 {
-	function setUp()
-	{
-		Services_Exception_Disabled::check('feature_calendar');
-	}
+    public function setUp()
+    {
+        Services_Exception_Disabled::check('feature_calendar');
+    }
 
-	/**
-	 * Returns the section for use with certain features like banning
-	 * @return string
-	 */
-	function getSection()
-	{
-		return 'calendar';
-	}
+    /**
+     * Returns the section for use with certain features like banning
+     * @return string
+     */
+    public function getSection()
+    {
+        return 'calendar';
+    }
 
-	function action_move($input)
-	{
-		$itemId = $this->getItemId($input);
-		$delta = $input->delta->int();
+    public function action_move($input)
+    {
+        $itemId = $this->getItemId($input);
+        $delta = $input->delta->int();
 
-		$calendarlib = TikiLib::lib('calendar');
-		$calendarlib->move_item($itemId, $delta);
+        $calendarlib = TikiLib::lib('calendar');
+        $calendarlib->move_item($itemId, $delta);
 
-		return [
-			'calitemId' => $itemId,
-		];
-	}
+        return [
+            'calitemId' => $itemId,
+        ];
+    }
 
-	function action_resize($input)
-	{
-		$itemId = $this->getItemId($input);
-		$delta = $input->delta->int();
+    public function action_resize($input)
+    {
+        $itemId = $this->getItemId($input);
+        $delta = $input->delta->int();
 
-		$calendarlib = TikiLib::lib('calendar');
-		$calendarlib->resize_item($itemId, $delta);
+        $calendarlib = TikiLib::lib('calendar');
+        $calendarlib->resize_item($itemId, $delta);
 
-		return [
-			'calitemId' => $itemId,
-		];
-	}
+        return [
+            'calitemId' => $itemId,
+        ];
+    }
 
-	private function getItemId($input)
-	{
-		$calendarlib = TikiLib::lib('calendar');
-		$item = $input->calitemId->int();
+    private function getItemId($input)
+    {
+        $calendarlib = TikiLib::lib('calendar');
+        $item = $input->calitemId->int();
 
-		$cal_id = $calendarlib->get_calendarid($item);
+        $cal_id = $calendarlib->get_calendarid($item);
 
-		if (! $item || ! $cal_id) {
-			throw new Services_Exception_NotFound;
-		}
+        if (! $item || ! $cal_id) {
+            throw new Services_Exception_NotFound;
+        }
 
-		$calperms = Perms::get([ 'type' => 'calendar', 'object' => $cal_id ]);
-		if (! $calperms->change_events) {
-			throw new Services_Exception_Denied;
-		}
+        $calperms = Perms::get([ 'type' => 'calendar', 'object' => $cal_id ]);
+        if (! $calperms->change_events) {
+            throw new Services_Exception_Denied;
+        }
 
-		return $item;
-	}
+        return $item;
+    }
 }

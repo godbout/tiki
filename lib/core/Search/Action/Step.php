@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,11 +8,11 @@
 
 interface Search_Action_Step
 {
-	function getFields();
+    public function getFields();
 
-	function validate(array $entry);
+    public function validate(array $entry);
 
-	function execute(array $entry);
+    public function execute(array $entry);
 
-	function requiresInput();
+    public function requiresInput();
 }

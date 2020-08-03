@@ -5,7 +5,7 @@
 *  The majority of this is _NOT_ my code.  I simply ported it from the
 *  PERL Spreadsheet::WriteExcel module.
 *
-*  The author of the Spreadsheet::WriteExcel module is John McNamara 
+*  The author of the Spreadsheet::WriteExcel module is John McNamara
 *  <jmcnamara@cpan.org>
 *
 *  I _DO_ maintain this code, and John McNamara has nothing to do with the
@@ -34,65 +34,64 @@
 
 /**
 * Class for writing Excel BIFF records.
-* 
+*
 * From "MICROSOFT EXCEL BINARY FILE FORMAT" by Mark O'Brien (Microsoft Corporation):
 *
-* BIFF (BInary File Format) is the file format in which Excel documents are 
+* BIFF (BInary File Format) is the file format in which Excel documents are
 * saved on disk.  A BIFF file is a complete description of an Excel document.
-* BIFF files consist of sequences of variable-length records. There are many 
-* different types of BIFF records.  For example, one record type describes a 
-* formula entered into a cell; one describes the size and location of a 
+* BIFF files consist of sequences of variable-length records. There are many
+* different types of BIFF records.  For example, one record type describes a
+* formula entered into a cell; one describes the size and location of a
 * window into a document; another describes a picture format.
 *
 * @author   Xavier Noguer <xnoguer@php.net>
 * @category FileFormats
 * @package  Spreadsheet_Excel_Writer
 */
-
 class Spreadsheet_Excel_Writer_BIFFwriter extends PEAR
 {
     /**
-    * The BIFF/Excel version (5). 
+    * The BIFF/Excel version (5).
     * @var integer
     */
-    var $_BIFF_version = 0x0500;
+    public $_BIFF_version = 0x0500;
 
     /**
-    * The byte order of this architecture. 0 => little endian, 1 => big endian 
+    * The byte order of this architecture. 0 => little endian, 1 => big endian
     * @var integer
     */
-    var $_byte_order;
+    public $_byte_order;
 
     /**
     * The string containing the data of the BIFF stream
     * @var string
     */
-    var $_data;
+    public $_data;
 
     /**
     * The size of the data in bytes. Should be the same as strlen($this->_data)
     * @var integer
     */
-    var $_datasize;
+    public $_datasize;
 
     /**
     * The maximun length for a BIFF record. See _addContinue()
     * @var integer
     * @see _addContinue()
     */
-    var $_limit;
+    public $_limit;
  
     /**
     * Constructor
     *
     * @access public
     */
-    function __construct()
+    public function __construct()
     {
         $this->_byte_order = '';
-        $this->_data       = '';
-        $this->_datasize   = 0;
-        $this->_limit      = 2080;   
+        $this->_data = '';
+        $this->_datasize = 0;
+        $this->_limit = 2080;
         // Set the byte order
         $this->_setByteOrder();
     }
@@ -103,20 +102,18 @@ class Spreadsheet_Excel_Writer_BIFFwriter extends PEAR
     *
     * @access private
     */
-    function _setByteOrder()
+    public function _setByteOrder()
     {
         // Check if "pack" gives the required IEEE 64bit float
         $teststr = pack("d", 1.2345);
-        $number  = pack("C8", 0x8D, 0x97, 0x6E, 0x12, 0x83, 0xC0, 0xF3, 0x3F);
+        $number = pack("C8", 0x8D, 0x97, 0x6E, 0x12, 0x83, 0xC0, 0xF3, 0x3F);
         if ($number == $teststr) {
             $byte_order = 0;    // Little Endian
-        }
-        elseif ($number == strrev($teststr)){
+        } elseif ($number == strrev($teststr)) {
             $byte_order = 1;    // Big Endian
-        }
-        else {
+        } else {
             // Give up. I'll fix this in a later version.
-            return $this->raiseError("Required floating point format ".
+            return $this->raiseError("Required floating point format " .
                                      "not supported on this platform.");
         }
         $this->_byte_order = $byte_order;
@@ -128,12 +125,12 @@ class Spreadsheet_Excel_Writer_BIFFwriter extends PEAR
     * @param string $data binary data to prepend
     * @access private
     */
-    function _prepend($data)
+    public function _prepend($data)
     {
         if (strlen($data) > $this->_limit) {
             $data = $this->_addContinue($data);
         }
-        $this->_data      = $data.$this->_data;
+        $this->_data = $data . $this->_data;
         $this->_datasize += strlen($data);
     }
 
@@ -143,12 +140,12 @@ class Spreadsheet_Excel_Writer_BIFFwriter extends PEAR
     * @param string $data binary data to append
     * @access private
     */
-    function _append($data)
+    public function _append($data)
     {
         if (strlen($data) > $this->_limit) {
             $data = $this->_addContinue($data);
         }
-        $this->_data      = $this->_data.$data;
+        $this->_data = $this->_data . $data;
         $this->_datasize += strlen($data);
     }
 
@@ -160,29 +157,28 @@ class Spreadsheet_Excel_Writer_BIFFwriter extends PEAR
     *                       0x0010 Worksheet.
     * @access private
     */
-    function _storeBof($type)
+    public function _storeBof($type)
     {
-        $record  = 0x0809;        // Record identifier
+        $record = 0x0809;        // Record identifier
 
         // According to the SDK $build and $year should be set to zero.
         // However, this throws a warning in Excel 5. So, use magic numbers.
         if ($this->_BIFF_version == 0x0500) {
-            $length  = 0x0008;
+            $length = 0x0008;
             $unknown = '';
-            $build   = 0x096C;
-            $year    = 0x07C9;
-        }
-        elseif ($this->_BIFF_version == 0x0600) {
-            $length  = 0x0010;
+            $build = 0x096C;
+            $year = 0x07C9;
+        } elseif ($this->_BIFF_version == 0x0600) {
+            $length = 0x0010;
             $unknown = pack("VV", 0x00000041, 0x00000006); //unknown last 8 bytes for BIFF8
-            $build   = 0x0DBB;
-            $year    = 0x07CC;
+            $build = 0x0DBB;
+            $year = 0x07CC;
         }
         $version = $this->_BIFF_version;
    
-        $header  = pack("vv",   $record, $length);
-        $data    = pack("vvvv", $version, $type, $build, $year);
-        $this->_prepend($header.$data.$unknown);
+        $header = pack("vv", $record, $length);
+        $data = pack("vvvv", $version, $type, $build, $year);
+        $this->_prepend($header . $data . $unknown);
     }
 
     /**
@@ -190,11 +186,11 @@ class Spreadsheet_Excel_Writer_BIFFwriter extends PEAR
     *
     * @access private
     */
-    function _storeEof() 
+    public function _storeEof()
     {
-        $record    = 0x000A;   // Record identifier
-        $length    = 0x0000;   // Number of bytes to follow
-        $header    = pack("vv", $record, $length);
+        $record = 0x000A;   // Record identifier
+        $length = 0x0000;   // Number of bytes to follow
+        $header = pack("vv", $record, $length);
         $this->_append($header);
     }
 
@@ -210,28 +206,27 @@ class Spreadsheet_Excel_Writer_BIFFwriter extends PEAR
     * @return string        A very convenient string of continue blocks
     * @access private
     */
-    function _addContinue($data)
+    public function _addContinue($data)
     {
-        $limit      = $this->_limit;
-        $record     = 0x003C;         // Record identifier
+        $limit = $this->_limit;
+        $record = 0x003C;         // Record identifier
  
         // The first 2080/8224 bytes remain intact. However, we have to change
         // the length field of the record.
-        $tmp = substr($data, 0, 2).pack("v", $limit-4).substr($data, 4, $limit - 4);
+        $tmp = substr($data, 0, 2) . pack("v", $limit - 4) . substr($data, 4, $limit - 4);
         
         $header = pack("vv", $record, $limit);  // Headers for continue records
  
         // Retrieve chunks of 2080/8224 bytes +4 for the header.
-        for($i = $limit; $i < strlen($data) - $limit; $i += $limit)
-        {
+        for ($i = $limit; $i < strlen($data) - $limit; $i += $limit) {
             $tmp .= $header;
             $tmp .= substr($data, $i, $limit);
         }
  
         // Retrieve the last chunk of data
-        $header  = pack("vv", $record, strlen($data) - $i);
-        $tmp    .= $header;
-        $tmp    .= substr($data,$i,strlen($data) - $i);
+        $header = pack("vv", $record, strlen($data) - $i);
+        $tmp .= $header;
+        $tmp .= substr($data, $i, strlen($data) - $i);
  
         return $tmp;
     }

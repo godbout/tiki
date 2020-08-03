@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /*
@@ -16,13 +17,13 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function smarty_function_filegal_manager_url($params, $smarty)
 {
-	global $tikilib, $prefs;
+    global $tikilib, $prefs;
 
-	$return = 'tiki-upload_file.php?galleryId=' . $prefs['home_file_gallery'] . '&view=browse';
+    $return = 'tiki-upload_file.php?galleryId=' . $prefs['home_file_gallery'] . '&view=browse';
 
-	if (! empty($params['area_id'])) {
-		$return .= '&filegals_manager=' . $params['area_id'];
-	}
+    if (! empty($params['area_id'])) {
+        $return .= '&filegals_manager=' . $params['area_id'];
+    }
 
-	return $return;
+    return $return;
 }

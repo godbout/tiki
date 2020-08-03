@@ -13,44 +13,44 @@ include_once('lib/live_support/lsadminlib.php');
 include_once('lib/live_support/lslib.php');
 $access->check_feature('feature_live_support');
 if ($tiki_p_live_support_admin != 'y' && ! $lsadminlib->user_is_operator($user)) {
-	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('errortype', 401);
+    $smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
+    $smarty->display("error.tpl");
+    die;
 }
 $where = '';
 $wheres = [];
 if (! isset($_REQUEST['filter_name'])) {
-	$_REQUEST['filter_user'] = '';
+    $_REQUEST['filter_user'] = '';
 }
 if (! isset($_REQUEST['filter_operator'])) {
-	$_REQUEST['filter_operator'] = '';
+    $_REQUEST['filter_operator'] = '';
 }
 if (($_REQUEST['filter_user'])) {
-	$wheres[] = " tiki_user='" . $_REQUEST['filter_name'] . "'";
+    $wheres[] = " tiki_user='" . $_REQUEST['filter_name'] . "'";
 }
 if (($_REQUEST['filter_operator'])) {
-	$wheres[] = " operator='" . $_REQUEST['filter_operator'] . "'";
+    $wheres[] = " operator='" . $_REQUEST['filter_operator'] . "'";
 }
 $where = implode('and', $wheres);
 if (isset($_REQUEST['where'])) {
-	$where = $_REQUEST['where'];
+    $where = $_REQUEST['where'];
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'chat_started_desc';
+    $sort_mode = 'chat_started_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $smarty->assign('where', $where);
@@ -61,7 +61,7 @@ $smarty->assign_by_ref('items', $items["data"]);
 $smarty->assign('users', $lsadminlib->get_all_tiki_users());
 $smarty->assign('operators', $lsadminlib->get_all_operators());
 if (isset($_REQUEST['view'])) {
-	$smarty->assign('events', $lsadminlib->get_events($_REQUEST['view']));
+    $smarty->assign('events', $lsadminlib->get_events($_REQUEST['view']));
 }
 // Display the template
 $smarty->assign('mid', 'tiki-live_support_transcripts.tpl');

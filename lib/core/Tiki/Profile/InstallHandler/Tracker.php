@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,327 +8,333 @@
 
 class Tiki_Profile_InstallHandler_Tracker extends Tiki_Profile_InstallHandler
 {
-	public function getData() // {{{
-	{
-		if ($this->data) {
-			return $this->data;
-		}
+    public function getData() // {{{
+    {
+        if ($this->data) {
+            return $this->data;
+        }
 
-		$data = $this->obj->getData();
+        $data = $this->obj->getData();
 
-		$data = Tiki_Profile::convertLists($data, ['show' => 'y', 'allow' => 'y'], true);
+        $data = Tiki_Profile::convertLists($data, ['show' => 'y', 'allow' => 'y'], true);
 
-		$data = Tiki_Profile::convertYesNo($data);
+        $data = Tiki_Profile::convertYesNo($data);
 
-		return $this->data = $data;
-	} // }}}
+        return $this->data = $data;
+    } // }}}
 
-	public static function getOptionMap() // {{{
-	{
-		// Also used by TrackerOption
-		return [
-			'name' => '',
-			'description' => '',
-			'fieldPrefix' => '',
-			'show_status' => 'showStatus',
-			'show_status_admin_only' => 'showStatusAdminOnly',
-			'list_default_status' => 'defaultStatus',
-			'email' => 'outboundEmail',
-			'email_simplified' => 'simpleEmail',
-			'default_status' => 'newItemStatus',
-			'modification_status' => 'modItemStatus',
-			'allow_user_see_own' => 'userCanSeeOwn',
-			'allow_group_see_own' => 'groupCanSeeOwn',
-			'allow_creator_modification' => 'writerCanModify',
-			'allow_creator_deletion' => 'writerCanRemove',
-			'allow_creator_group_modification' => 'writerGroupCanModify',
-			'allow_creator_group_deletion' => 'writerGroupCanRemove',
-			'show_creation_date' => 'showCreatedView',
-			'show_list_creation_date' => 'showCreated',
-			'show_modification_date' => 'showLastModifView',
-			'show_list_modification_date' => 'showLastModif',
-			'creation_date_format' => 'showCreatedFormat',
-			'modification_date_format' => 'showLastModifFormat',
-			'sort_default_field' => 'defaultOrderKey',
-			'sort_default_order' => 'defaultOrderDir',
-			'allow_rating' => 'useRatings',
-			'allow_comments' => 'useComments',
-			'show_comments' => 'showComments',
-			'show_last_comment' => 'showLastComment',
-			'save_and_comment' => 'saveAndComment',
-			'allow_attachments' => 'useAttachments',
-			'restrict_start' => 'start',
-			'restrict_end' => 'end',
-			'hide_list_empty_fields' => 'doNotShowEmptyField',
-			'allow_one_item_per_user' => 'oneUserItem',
-			'section_format' => 'sectionFormat',
-			'popup_fields' => 'showPopup',
-			'admin_only_view' => 'adminOnlyViewEditItem',
-			'use_form_classes' => 'useFormClasses',
-			'form_classes' => 'formClasses',
-		];
-	} // }}}
+    public static function getOptionMap() // {{{
+    {
+        // Also used by TrackerOption
+        return [
+            'name' => '',
+            'description' => '',
+            'fieldPrefix' => '',
+            'show_status' => 'showStatus',
+            'show_status_admin_only' => 'showStatusAdminOnly',
+            'list_default_status' => 'defaultStatus',
+            'email' => 'outboundEmail',
+            'email_simplified' => 'simpleEmail',
+            'default_status' => 'newItemStatus',
+            'modification_status' => 'modItemStatus',
+            'allow_user_see_own' => 'userCanSeeOwn',
+            'allow_group_see_own' => 'groupCanSeeOwn',
+            'allow_creator_modification' => 'writerCanModify',
+            'allow_creator_deletion' => 'writerCanRemove',
+            'allow_creator_group_modification' => 'writerGroupCanModify',
+            'allow_creator_group_deletion' => 'writerGroupCanRemove',
+            'show_creation_date' => 'showCreatedView',
+            'show_list_creation_date' => 'showCreated',
+            'show_modification_date' => 'showLastModifView',
+            'show_list_modification_date' => 'showLastModif',
+            'creation_date_format' => 'showCreatedFormat',
+            'modification_date_format' => 'showLastModifFormat',
+            'sort_default_field' => 'defaultOrderKey',
+            'sort_default_order' => 'defaultOrderDir',
+            'allow_rating' => 'useRatings',
+            'allow_comments' => 'useComments',
+            'show_comments' => 'showComments',
+            'show_last_comment' => 'showLastComment',
+            'save_and_comment' => 'saveAndComment',
+            'allow_attachments' => 'useAttachments',
+            'restrict_start' => 'start',
+            'restrict_end' => 'end',
+            'hide_list_empty_fields' => 'doNotShowEmptyField',
+            'allow_one_item_per_user' => 'oneUserItem',
+            'section_format' => 'sectionFormat',
+            'popup_fields' => 'showPopup',
+            'admin_only_view' => 'adminOnlyViewEditItem',
+            'use_form_classes' => 'useFormClasses',
+            'form_classes' => 'formClasses',
+        ];
+    } // }}}
 
-	private static function getDefaults() // {{{
-	{
-		$defaults = array_fill_keys(array_keys(self::getOptionMap()), 'n');
-		$defaults['name'] = '';
-		$defaults['description'] = '';
-		$defaults['creation_date_format'] = '';
-		$defaults['modification_date_format'] = '';
-		$defaults['email'] = '';
-		$defaults['default_status'] = 'o';
-		$defaults['modification_status'] = '';
-		$defaults['list_default_status'] = 'o';
-		$defaults['sort_default_order'] = 'asc';
-		$defaults['sort_default_field'] = '';
-		$defaults['restrict_start'] = '';
-		$defaults['restrict_end'] = '';
-		$defaults['popup_fields'] = '';
-		$defaults['section_format'] = 'flat';
-		return $defaults;
-	} // }}}
+    private static function getDefaults() // {{{
+    {
+        $defaults = array_fill_keys(array_keys(self::getOptionMap()), 'n');
+        $defaults['name'] = '';
+        $defaults['description'] = '';
+        $defaults['creation_date_format'] = '';
+        $defaults['modification_date_format'] = '';
+        $defaults['email'] = '';
+        $defaults['default_status'] = 'o';
+        $defaults['modification_status'] = '';
+        $defaults['list_default_status'] = 'o';
+        $defaults['sort_default_order'] = 'asc';
+        $defaults['sort_default_field'] = '';
+        $defaults['restrict_start'] = '';
+        $defaults['restrict_end'] = '';
+        $defaults['popup_fields'] = '';
+        $defaults['section_format'] = 'flat';
 
-	public static function getOptionConverters() // {{{
-	{
-		// Also used by TrackerOption
-		return [
-			'restrict_start' => new Tiki_Profile_DateConverter,
-			'restrict_end' => new Tiki_Profile_DateConverter,
-			'sort_default_field' => new Tiki_Profile_ValueMapConverter([ 'modification' => -1, 'creation' => -2, 'item' => -3 ]),
-			'list_default_status' => new Tiki_Profile_ValueMapConverter([ 'open' => 'o', 'pending' => 'p', 'closed' => 'c' ]),
-			'default_status' => new Tiki_Profile_ValueMapConverter([ 'open' => 'o', 'pending' => 'p', 'closed' => 'c' ]),
-			'modification_status' => new Tiki_Profile_ValueMapConverter([ 'open' => 'o', 'pending' => 'p', 'closed' => 'c' ]),
-		];
-	} // }}}
+        return $defaults;
+    } // }}}
 
-	function canInstall() // {{{
-	{
-		$data = $this->getData();
+    public static function getOptionConverters() // {{{
+    {
+        // Also used by TrackerOption
+        return [
+            'restrict_start' => new Tiki_Profile_DateConverter,
+            'restrict_end' => new Tiki_Profile_DateConverter,
+            'sort_default_field' => new Tiki_Profile_ValueMapConverter([ 'modification' => -1, 'creation' => -2, 'item' => -3 ]),
+            'list_default_status' => new Tiki_Profile_ValueMapConverter([ 'open' => 'o', 'pending' => 'p', 'closed' => 'c' ]),
+            'default_status' => new Tiki_Profile_ValueMapConverter([ 'open' => 'o', 'pending' => 'p', 'closed' => 'c' ]),
+            'modification_status' => new Tiki_Profile_ValueMapConverter([ 'open' => 'o', 'pending' => 'p', 'closed' => 'c' ]),
+        ];
+    } // }}}
 
-		// Check for mandatory fields
-		if (! isset($data['name'])) {
-			$ref = $this->obj->getRef();
-			throw (new Exception('No name for tracker:' . (empty($ref) ? '' : ' ref=' . $ref)));
-		}
+    public function canInstall() // {{{
+    {
+        $data = $this->getData();
 
-		// Check for unknown fields
-		$optionMap = $this->getOptionMap();
+        // Check for mandatory fields
+        if (! isset($data['name'])) {
+            $ref = $this->obj->getRef();
 
-		$remain = array_diff(array_keys($data), array_keys($optionMap));
-		if (count($remain)) {
-			throw (new Exception('Cannot map object options: "' . implode('","', $remain) . '" for tracker:' . $data['name']));
-		}
+            throw (new Exception('No name for tracker:' . (empty($ref) ? '' : ' ref=' . $ref)));
+        }
 
-		return true;
-	} // }}}
+        // Check for unknown fields
+        $optionMap = $this->getOptionMap();
 
-	function _install() // {{{
-	{
-		$values = self::getDefaults();
+        $remain = array_diff(array_keys($data), array_keys($optionMap));
+        if (count($remain)) {
+            throw (new Exception('Cannot map object options: "' . implode('","', $remain) . '" for tracker:' . $data['name']));
+        }
 
-		$input = $this->getData();
-		$this->replaceReferences($input);
+        return true;
+    } // }}}
 
-		$conversions = self::getOptionConverters();
-		foreach ($input as $key => $value) {
-			if (array_key_exists($key, $conversions)) {
-				$values[$key] = $conversions[$key]->convert($value);
-			} else {
-				$values[$key] = $value;
-			}
-		}
+    public function _install() // {{{
+    {
+        $values = self::getDefaults();
 
-		$name = $values['name'];
-		$description = $values['description'];
+        $input = $this->getData();
+        $this->replaceReferences($input);
 
-		unset($values['name']);
-		unset($values['description']);
+        $conversions = self::getOptionConverters();
+        foreach ($input as $key => $value) {
+            if (array_key_exists($key, $conversions)) {
+                $values[$key] = $conversions[$key]->convert($value);
+            } else {
+                $values[$key] = $value;
+            }
+        }
 
-		$optionMap = $this->getOptionMap();
+        $name = $values['name'];
+        $description = $values['description'];
 
-		$options = [];
-		foreach ($values as $key => $value) {
-			$key = $optionMap[$key];
-			$options[$key] = $value;
-		}
+        unset($values['name']);
+        unset($values['description']);
 
-		$trklib = TikiLib::lib('trk');
+        $optionMap = $this->getOptionMap();
 
-		$trackerId = $trklib->get_tracker_by_name($name);
-		return $trklib->replace_tracker($trackerId, $name, $description, $options, 'y');
-	} // }}}
+        $options = [];
+        foreach ($values as $key => $value) {
+            $key = $optionMap[$key];
+            $options[$key] = $value;
+        }
 
-	/**
-	 * Export trackers
-	 *
-	 * @param Tiki_Profile_Writer $writer
-	 * @param int $trackerId
-	 * @param bool $all
-	 * @return bool
-	 */
-	public static function export(Tiki_Profile_Writer $writer, $trackerId, $all = false) // {{{
-	{
-		$trklib = TikiLib::lib('trk');
+        $trklib = TikiLib::lib('trk');
 
-		if (isset($trackerId) && ! $all) {
-			$listTrackers = [];
-			$listTrackers[] = ['trackerId' => $trackerId];
-		} else {
-			$listTrackers = $trklib->list_trackers();
-			$listTrackers = $listTrackers['data'];
-		}
+        $trackerId = $trklib->get_tracker_by_name($name);
 
-		foreach ($listTrackers as $tracker) {
-			$trackerId = $tracker['trackerId'];
-			$info = $trklib->get_tracker($trackerId);
+        return $trklib->replace_tracker($trackerId, $name, $description, $options, 'y');
+    } // }}}
 
-			if (empty($info)) {
-				return false;
-			}
+    /**
+     * Export trackers
+     *
+     * @param Tiki_Profile_Writer $writer
+     * @param int $trackerId
+     * @param bool $all
+     * @return bool
+     */
+    public static function export(Tiki_Profile_Writer $writer, $trackerId, $all = false) // {{{
+    {
+        $trklib = TikiLib::lib('trk');
 
-			if ($options = $trklib->get_tracker_options($trackerId)) {
-				$info = array_merge($info, $options);
-			}
+        if (isset($trackerId) && ! $all) {
+            $listTrackers = [];
+            $listTrackers[] = ['trackerId' => $trackerId];
+        } else {
+            $listTrackers = $trklib->list_trackers();
+            $listTrackers = $listTrackers['data'];
+        }
 
-			$data = [
-				'name' => $info['name'],
-				'description' => $info['description'],
-			];
+        foreach ($listTrackers as $tracker) {
+            $trackerId = $tracker['trackerId'];
+            $info = $trklib->get_tracker($trackerId);
 
-			$optionMap = array_flip(self::getOptionMap());
-			$defaults = self::getDefaults();
-			$conversions = self::getOptionConverters();
+            if (empty($info)) {
+                return false;
+            }
 
-			$allow = [];
-			$show = [];
+            if ($options = $trklib->get_tracker_options($trackerId)) {
+                $info = array_merge($info, $options);
+            }
 
-			foreach ($info as $key => $value) {
-				if (empty($optionMap[$key])) {
-					continue;
-				}
+            $data = [
+                'name' => $info['name'],
+                'description' => $info['description'],
+            ];
 
-				$optionKey = $optionMap[$key];
-				$default = '';
-				if (isset($defaults[$optionKey])) {
-					$default = $defaults[$optionKey];
-				}
+            $optionMap = array_flip(self::getOptionMap());
+            $defaults = self::getDefaults();
+            $conversions = self::getOptionConverters();
 
-				if ($value != $default) {
-					if (strstr($optionKey, 'allow_')) {
-						$allow[] = str_replace('allow_', '', $optionKey);
-					} elseif (strstr($optionKey, 'show_')) {
-						$show[] = str_replace('show_', '', $optionKey);
-					} elseif (isset($conversions[$optionKey]) && method_exists($conversions[$optionKey], 'reverse')) {
-						$data[$optionKey] = $conversions[$optionKey]->reverse($value);
-					} else {
-						$data[$optionKey] = $value;
-					}
-				}
-			}
+            $allow = [];
+            $show = [];
 
-			if (! empty($allow)) {
-				$data['allow'] = $allow;
-			}
-			if (! empty($show)) {
-				$data['show'] = $show;
-			}
+            foreach ($info as $key => $value) {
+                if (empty($optionMap[$key])) {
+                    continue;
+                }
 
-			$fieldReferences = [];
-			foreach (['sort_default_field', 'popup_fields'] as $key) {
-				if (isset($data[$key])) {
-					$fieldReferences[$key] = $data[$key];
-					unset($data[$key]);
-				}
-			}
+                $optionKey = $optionMap[$key];
+                $default = '';
+                if (isset($defaults[$optionKey])) {
+                    $default = $defaults[$optionKey];
+                }
 
-			$reference = $writer->addObject('tracker', $trackerId, $data);
+                if ($value != $default) {
+                    if (strstr($optionKey, 'allow_')) {
+                        $allow[] = str_replace('allow_', '', $optionKey);
+                    } elseif (strstr($optionKey, 'show_')) {
+                        $show[] = str_replace('show_', '', $optionKey);
+                    } elseif (isset($conversions[$optionKey]) && method_exists($conversions[$optionKey], 'reverse')) {
+                        $data[$optionKey] = $conversions[$optionKey]->reverse($value);
+                    } else {
+                        $data[$optionKey] = $value;
+                    }
+                }
+            }
 
-			$fields = $trklib->list_tracker_fields($trackerId);
-			foreach ($fields['data'] as $field) {
-				$writer->pushReference("{$reference}_{$field['permName']}");
-				Tiki_Profile_InstallHandler_TrackerField::export($writer, $field);
-			}
+            if (! empty($allow)) {
+                $data['allow'] = $allow;
+            }
+            if (! empty($show)) {
+                $data['show'] = $show;
+            }
 
-			foreach (array_filter($fieldReferences) as $key => $value) {
-				$value = preg_replace_callback(
-					'/(\d+)/',
-					function ($match) use ($writer) {
-						return $writer->getReference('tracker_field', $match[1]);
-					},
-					$value
-				);
-				$writer->pushReference("{$reference}_{$key}");
-				$writer->addObject(
-					'tracker_option',
-					"$key-$trackerId",
-					[
-						'tracker' => $writer->getReference('tracker', $trackerId),
-						'name' => $key,
-						'value' => $value,
-					]
-				);
-			}
-		}
+            $fieldReferences = [];
+            foreach (['sort_default_field', 'popup_fields'] as $key) {
+                if (isset($data[$key])) {
+                    $fieldReferences[$key] = $data[$key];
+                    unset($data[$key]);
+                }
+            }
 
-		return true;
-	} // }}}
+            $reference = $writer->addObject('tracker', $trackerId, $data);
 
-	function _export($trackerId, $profileObject) // {{{
-	{
-		$writer = new Tiki_Profile_Writer('temp', 'none');
-		self::export($writer, $trackerId);
-		return $writer->dump();
-	} // }}}
+            $fields = $trklib->list_tracker_fields($trackerId);
+            foreach ($fields['data'] as $field) {
+                $writer->pushReference("{$reference}_{$field['permName']}");
+                Tiki_Profile_InstallHandler_TrackerField::export($writer, $field);
+            }
 
-	/**
-	 * Remove tracker
-	 *
-	 * @param string $tracker
-	 * @return bool
-	 */
-	function remove($tracker)
-	{
-		if (! empty($tracker)) {
-			$trklib = TikiLib::lib('trk');
-			$trackerId = $trklib->get_tracker_by_name($tracker);
-			if (! empty($trackerId) && $trklib->remove_tracker($trackerId)) {
-				return true;
-			}
-		}
+            foreach (array_filter($fieldReferences) as $key => $value) {
+                $value = preg_replace_callback(
+                    '/(\d+)/',
+                    function ($match) use ($writer) {
+                        return $writer->getReference('tracker_field', $match[1]);
+                    },
+                    $value
+                );
+                $writer->pushReference("{$reference}_{$key}");
+                $writer->addObject(
+                    'tracker_option',
+                    "$key-$trackerId",
+                    [
+                        'tracker' => $writer->getReference('tracker', $trackerId),
+                        'name' => $key,
+                        'value' => $value,
+                    ]
+                );
+            }
+        }
 
-		return false;
-	}
+        return true;
+    } // }}}
 
-	/**
-	 * Get current tracker data
-	 *
-	 * @param array $tracker
-	 * @return mixed
-	 */
-	public function getCurrentData($tracker)
-	{
-		$trackerName = ! empty($tracker['name']) ? $tracker['name'] : '';
-		$trklib = TikiLib::lib('trk');
-		$trackerId = $trklib->get_tracker_by_name($trackerName);
-		if (! empty($trackerId)) {
-			$trackerData = $trklib->get_tracker($trackerId);
-			$trackerOptions = $trklib->get_trackers_options($trackerId);
-			$currentOptions = [];
-			if (! empty($trackerOptions)) {
-				foreach ($trackerOptions as $key => $value) {
-					if (! empty($value['name']) && ! empty($value['value'])) {
-						$currentOptions[$value['name']] = $value['value'];
-					}
-				}
-			}
-			$trackerFields = $trklib->list_tracker_fields($trackerId);
-			if (! empty($trackerData)) {
-				$trackerData['options'] = $currentOptions;
-				$trackerData['fields'] = ! empty($trackerFields['data']) ? $trackerFields['data'] : [];
-				return $trackerData;
-			}
-		}
-		return false;
-	}
+    public function _export($trackerId, $profileObject) // {{{
+    {
+        $writer = new Tiki_Profile_Writer('temp', 'none');
+        self::export($writer, $trackerId);
+
+        return $writer->dump();
+    } // }}}
+
+    /**
+     * Remove tracker
+     *
+     * @param string $tracker
+     * @return bool
+     */
+    public function remove($tracker)
+    {
+        if (! empty($tracker)) {
+            $trklib = TikiLib::lib('trk');
+            $trackerId = $trklib->get_tracker_by_name($tracker);
+            if (! empty($trackerId) && $trklib->remove_tracker($trackerId)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Get current tracker data
+     *
+     * @param array $tracker
+     * @return mixed
+     */
+    public function getCurrentData($tracker)
+    {
+        $trackerName = ! empty($tracker['name']) ? $tracker['name'] : '';
+        $trklib = TikiLib::lib('trk');
+        $trackerId = $trklib->get_tracker_by_name($trackerName);
+        if (! empty($trackerId)) {
+            $trackerData = $trklib->get_tracker($trackerId);
+            $trackerOptions = $trklib->get_trackers_options($trackerId);
+            $currentOptions = [];
+            if (! empty($trackerOptions)) {
+                foreach ($trackerOptions as $key => $value) {
+                    if (! empty($value['name']) && ! empty($value['value'])) {
+                        $currentOptions[$value['name']] = $value['value'];
+                    }
+                }
+            }
+            $trackerFields = $trklib->list_tracker_fields($trackerId);
+            if (! empty($trackerData)) {
+                $trackerData['options'] = $currentOptions;
+                $trackerData['fields'] = ! empty($trackerFields['data']) ? $trackerFields['data'] : [];
+
+                return $trackerData;
+            }
+        }
+
+        return false;
+    }
 }

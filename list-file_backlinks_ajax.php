@@ -10,23 +10,23 @@
 
 require_once('tiki-setup.php');
 if ($prefs['feature_file_galleries'] != 'y' || $prefs['feature_jquery'] != 'y' || $prefs['feature_jquery_autocomplete'] != 'y') {
-	/* echo '{}'; */
-	exit;
+    /* echo '{}'; */
+    exit;
 }
 $filegallib = TikiLib::lib('filegal');
 if (empty($_REQUEST['fileId'])) {
-	/* echo '{}'; */
-	exit;
+    /* echo '{}'; */
+    exit;
 }
 $info = $filegallib->get_file($_REQUEST['fileId']);
 if (empty($info)) {
-	/* echo '{}'; */
-	exit;
+    /* echo '{}'; */
+    exit;
 }
 $perms = Perms::get(['type' => 'file gallery', 'object' => $info['galleryId']]);
 if (! $perms->list_file_gallery) {
-	/* echo '{}'; */
-	exit;
+    /* echo '{}'; */
+    exit;
 }
 $backlinks = $filegallib->getFileBacklinks($_REQUEST['fileId']);
 $smarty->assign_by_ref('backlinks', $backlinks);

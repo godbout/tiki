@@ -13,15 +13,15 @@ require_once('tiki-setup.php');
 $access->check_feature('validateUsers');
 
 if (! empty($_REQUEST['user'])) {
-	$user_info = $userlib->get_user_info($_REQUEST['user']);
-	if ($user_info['waiting'] == 'u') {
-		$userlib->send_validation_email($user_info['login'], $user_info['valid'], $user_info['email'], '', 'y');
-	} else {
-		$userlib->send_validation_email($user_info['login'], $user_info['valid'], $user_info['email']);
-	}
-	$smarty->assign('msg', tra('An email has been sent to you with the instructions to follow.'));
+    $user_info = $userlib->get_user_info($_REQUEST['user']);
+    if ($user_info['waiting'] == 'u') {
+        $userlib->send_validation_email($user_info['login'], $user_info['valid'], $user_info['email'], '', 'y');
+    } else {
+        $userlib->send_validation_email($user_info['login'], $user_info['valid'], $user_info['email']);
+    }
+    $smarty->assign('msg', tra('An email has been sent to you with the instructions to follow.'));
 } else {
-	$smarty->assign('msg', tra("The mail can't be sent. Contact the administrator"));
+    $smarty->assign('msg', tra("The mail can't be sent. Contact the administrator"));
 }
 $smarty->assign('mid', 'tiki-information.tpl');
 $smarty->display('tiki.tpl');

@@ -19,25 +19,25 @@ $statslib = TikiLib::lib('stats');
 
 //Define the object
 if (isset($_REQUEST["type"])) {
-	if ($_REQUEST["type"] == "daily") {
-		$renderer = new GD_GRenderer(450, 400);
-		$graph = new MultibarGraphic;
-		$data = $statslib->get_daily_usage_chart_data();
-		$graph->setTitle(tra('Daily Usage'));
-		$graph->setData(['x' => $data['xdata'], 'y0' => $data['ydata']]);
-		$graph->setParam('grid-independant-location', 'vertical');
-		$graph->setParam('grid-independant-major-font', 'Normal-Text');
-		$graph->setParam('grid-independant-major-guide', false);
-	}
+    if ($_REQUEST["type"] == "daily") {
+        $renderer = new GD_GRenderer(450, 400);
+        $graph = new MultibarGraphic;
+        $data = $statslib->get_daily_usage_chart_data();
+        $graph->setTitle(tra('Daily Usage'));
+        $graph->setData(['x' => $data['xdata'], 'y0' => $data['ydata']]);
+        $graph->setParam('grid-independant-location', 'vertical');
+        $graph->setParam('grid-independant-major-font', 'Normal-Text');
+        $graph->setParam('grid-independant-major-guide', false);
+    }
 } else {
-	$renderer = new GD_GRenderer(450, 300);
-	$graph = new MultibarGraphic;
-	$data = $tikilib->get_usage_chart_data();
-	$graph->setTitle(tra('Usage'));
-	$graph->setData(['x' => $data['xdata'], 'y0' => $data['ydata']]);
-	$graph->setParam('grid-independant-location', 'vertical');
-	$graph->setParam('grid-independant-major-font', 'Normal-Text');
-	$graph->setParam('grid-independant-major-guide', false);
+    $renderer = new GD_GRenderer(450, 300);
+    $graph = new MultibarGraphic;
+    $data = $tikilib->get_usage_chart_data();
+    $graph->setTitle(tra('Usage'));
+    $graph->setData(['x' => $data['xdata'], 'y0' => $data['ydata']]);
+    $graph->setParam('grid-independant-location', 'vertical');
+    $graph->setParam('grid-independant-major-font', 'Normal-Text');
+    $graph->setParam('grid-independant-major-guide', false);
 }
 $graph->draw($renderer);
 $renderer->httpOutput('stats.png');

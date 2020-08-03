@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -19,362 +20,365 @@ use Kaltura\Client\Type\UiConfFilter;
 
 class KalturaLib
 {
-	const CONFIGURATION_LIST = 'kaltura_configuration_list';
-	const SESSION_ADMIN = 2;
-	const SESSION_USER = 0;
+    const CONFIGURATION_LIST = 'kaltura_configuration_list';
+    const SESSION_ADMIN = 2;
+    const SESSION_USER = 0;
 
-	private $kconfig;
-	private $client;
-	private $sessionType;
-	private $initialized = false;
+    private $kconfig;
+    private $client;
+    private $sessionType;
+    private $initialized = false;
 
-	function __construct($session_type)
-	{
-		$this->sessionType = $session_type;
-	}
+    public function __construct($session_type)
+    {
+        $this->sessionType = $session_type;
+    }
 
-	public function getSessionKey()
-	{
-		if ($session = $this->storedKey()) {
-			return $session;
-		}
+    public function getSessionKey()
+    {
+        if ($session = $this->storedKey()) {
+            return $session;
+        }
 
-		if ($this->getClient()) {
-			return $this->storedKey();
-		}
+        if ($this->getClient()) {
+            return $this->storedKey();
+        }
 
-		return '';
-	}
+        return '';
+    }
 
-	private function storedKey($key = null)
-	{
-		global $user;
-		$tikilib = TikiLib::lib('tiki');
-		$session = "kaltura_session_{$this->sessionType}_$user";
+    private function storedKey($key = null)
+    {
+        global $user;
+        $tikilib = TikiLib::lib('tiki');
+        $session = "kaltura_session_{$this->sessionType}_$user";
 
-		if (is_null($key)) {
-			if (isset($_SESSION[$session]) && $_SESSION[$session]['expiry'] > $tikilib->now) {
-				return $_SESSION[$session]['key'];
-			}
-		} else {
-			$_SESSION[$session] = [
-				'key' => $key,
-				'expiry' => $tikilib->now + 1800, // Keep for half an hour
-			];
-		}
+        if (is_null($key)) {
+            if (isset($_SESSION[$session]) && $_SESSION[$session]['expiry'] > $tikilib->now) {
+                return $_SESSION[$session]['key'];
+            }
+        } else {
+            $_SESSION[$session] = [
+                'key' => $key,
+                'expiry' => $tikilib->now + 1800, // Keep for half an hour
+            ];
+        }
 
-		return $key;
-	}
+        return $key;
+    }
 
-	private function getConfig()
-	{
-		if (! $this->kconfig) {
-			global $prefs;
-			$this->kconfig = new Configuration($prefs['kaltura_partnerId']);
-			$this->kconfig->setServiceUrl($prefs['kaltura_kServiceUrl']);
-		}
+    private function getConfig()
+    {
+        if (! $this->kconfig) {
+            global $prefs;
+            $this->kconfig = new Configuration($prefs['kaltura_partnerId']);
+            $this->kconfig->setServiceUrl($prefs['kaltura_kServiceUrl']);
+        }
 
-		return $this->kconfig;
-	}
+        return $this->kconfig;
+    }
 
-	private function getClient()
-	{
-		if (! $this->initialized && ! $this->client) {
-			$this->initialized = true;
-			try {
-				$client = new Client($this->getConfig());
-				if ($session = $this->storedKey()) {
-					$client->setKs($session);
-					$this->client = $client;
-				} elseif ($session = $this->initializeClient($client)) {
-					$client->setKs($session);
-					$this->client = $client;
-					$this->storedKey($session);
-				}
-			} catch (Exception $e) {
-				Feedback::error($e->getMessage());
-			}
-		}
+    private function getClient()
+    {
+        if (! $this->initialized && ! $this->client) {
+            $this->initialized = true;
 
-		return $this->client;
-	}
+            try {
+                $client = new Client($this->getConfig());
+                if ($session = $this->storedKey()) {
+                    $client->setKs($session);
+                    $this->client = $client;
+                } elseif ($session = $this->initializeClient($client)) {
+                    $client->setKs($session);
+                    $this->client = $client;
+                    $this->storedKey($session);
+                }
+            } catch (Exception $e) {
+                Feedback::error($e->getMessage());
+            }
+        }
 
-	function getMediaUrl($entryId, $playerId)
-	{
-		global $prefs;
-		$config = $this->getConfig();
-		return $config->getServiceUrl() . "kwidget/wid/_{$prefs['kaltura_partnerId']}/uiconf_id/$playerId/entry_id/$entryId";
-	}
+        return $this->client;
+    }
 
-	function getPlaylist($entryId)
-	{
-		return $this->getClient()->playlist->get($entryId);
-	}
+    public function getMediaUrl($entryId, $playerId)
+    {
+        global $prefs;
+        $config = $this->getConfig();
 
-	function testSetup()
-	{
-		global $prefs;
-		if (empty($prefs['kaltura_partnerId']) || ! is_numeric($prefs['kaltura_partnerId']) || empty($prefs['kaltura_secret']) || empty($prefs['kaltura_adminSecret'])) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+        return $config->getServiceUrl() . "kwidget/wid/_{$prefs['kaltura_partnerId']}/uiconf_id/$playerId/entry_id/$entryId";
+    }
 
-	private function initializeClient($client)
-	{
-		global $prefs, $user;
+    public function getPlaylist($entryId)
+    {
+        return $this->getClient()->playlist->get($entryId);
+    }
 
-		if (! $this->testSetup()) {
-			return false;
-		}
+    public function testSetup()
+    {
+        global $prefs;
+        if (empty($prefs['kaltura_partnerId']) || ! is_numeric($prefs['kaltura_partnerId']) || empty($prefs['kaltura_secret']) || empty($prefs['kaltura_adminSecret'])) {
+            return false;
+        }
 
-		if ($user) {
-			$kuser = $user;
-		} else {
-			$kuser = 'Anonymous';
-		}
+        return true;
+    }
 
-		if ($this->sessionType == self::SESSION_ADMIN) {
-			$session = $client->session->start($prefs['kaltura_adminSecret'], $kuser, self::SESSION_ADMIN, $prefs['kaltura_partnerId'], 86400, 'edit:*');
-		} else {
-			$session = $client->session->start($prefs['kaltura_secret'], $kuser, self::SESSION_USER, $prefs['kaltura_partnerId'], 86400, 'edit:*');
-		}
+    private function initializeClient($client)
+    {
+        global $prefs, $user;
 
-		return $session;
-	}
+        if (! $this->testSetup()) {
+            return false;
+        }
 
-	private function _getPlayersUiConfs()
-	{
-		if ($client = $this->getClient()) {
-			$filter = new UiConfFilter();
-			$filter->objTypeEqual = 1; // 1 denotes Players
-			$filter->orderBy = '-createdAt';
-			$uiConfs = $client->uiConf->listAction($filter);
+        if ($user) {
+            $kuser = $user;
+        } else {
+            $kuser = 'Anonymous';
+        }
 
-			if (is_null($client->error)) {
-				return $uiConfs;
-			}
-		}
+        if ($this->sessionType == self::SESSION_ADMIN) {
+            $session = $client->session->start($prefs['kaltura_adminSecret'], $kuser, self::SESSION_ADMIN, $prefs['kaltura_partnerId'], 86400, 'edit:*');
+        } else {
+            $session = $client->session->start($prefs['kaltura_secret'], $kuser, self::SESSION_USER, $prefs['kaltura_partnerId'], 86400, 'edit:*');
+        }
 
-		$uiConfs = new stdClass();
-		$uiConfs->objects = [];
+        return $session;
+    }
 
-		return $uiConfs;
-	}
+    private function _getPlayersUiConfs()
+    {
+        if ($client = $this->getClient()) {
+            $filter = new UiConfFilter();
+            $filter->objTypeEqual = 1; // 1 denotes Players
+            $filter->orderBy = '-createdAt';
+            $uiConfs = $client->uiConf->listAction($filter);
 
-	function getPlayersUiConfs()
-	{
-		$cachelib = TikiLib::lib('cache');
+            if (is_null($client->error)) {
+                return $uiConfs;
+            }
+        }
 
-		if (! $configurations = $cachelib->getSerialized(self::CONFIGURATION_LIST)) {
-			try {
-				$obj = $this->_getPlayersUiConfs()->objects;
-			} catch (Exception $e) {
-				Feedback::error($e->getMessage());
-				return [];
-			}
-			$configurations = [];
-			foreach ($obj as $o) {
-				$configurations[] = get_object_vars($o);
-			}
+        $uiConfs = new stdClass();
+        $uiConfs->objects = [];
 
-			$cachelib->cacheItem(self::CONFIGURATION_LIST, serialize($configurations));
-		}
+        return $uiConfs;
+    }
 
-		return $configurations;
-	}
+    public function getPlayersUiConfs()
+    {
+        $cachelib = TikiLib::lib('cache');
 
-	function getPlayersUiConf($playerId)
-	{
-		// Ontaining full list, because it is cached
-		$confs = $this->getPlayersUiConfs();
+        if (! $configurations = $cachelib->getSerialized(self::CONFIGURATION_LIST)) {
+            try {
+                $obj = $this->_getPlayersUiConfs()->objects;
+            } catch (Exception $e) {
+                Feedback::error($e->getMessage());
 
-		foreach ($confs as $config) {
-			if ($config['id'] == $playerId) {
-				return $config;
-			}
-		}
-	}
+                return [];
+            }
+            $configurations = [];
+            foreach ($obj as $o) {
+                $configurations[] = get_object_vars($o);
+            }
 
-	function updateStandardTikiKcw()
-	{
-		if ($client = $this->getClient()) {
-			// first check if there is an existing one
-			$pager = null;
-			$filter = new UiConfFilter();
-			$filter->nameLike = 'Tiki.org Standard 2013';
-			$filter->objTypeEqual = UiConfObjType::CONTRIBUTION_WIZARD;
-			$existing = $client->uiConf->listAction($filter, $pager);
-			if (count($existing->objects) > 0) {
-				$current_obj = array_pop($existing->objects);
-				$current = $current_obj->id;
-			} else {
-				$current = '';
-			}
+            $cachelib->cacheItem(self::CONFIGURATION_LIST, serialize($configurations));
+        }
 
-			global $tikipath;
-			$uiConf = new UiConf();
-			$uiConf->name = 'Tiki.org Standard 2013';
-			$uiConf->objType = UiConfObjType::CONTRIBUTION_WIZARD;
-			$filename = $tikipath . "lib/videogals/standardTikiKcw.xml";
-			$fh = fopen($filename, 'r');
-			$confXML = fread($fh, filesize($filename));
-			$uiConf->confFile = $confXML;
-			$uiConf->useCdn = 1;
-			$uiConf->swfUrl = '/flash/kcw/v2.1.4/ContributionWizard.swf';
-			$uiConf->tags = 'autodeploy, content_v3.2.5, content_upload';
+        return $configurations;
+    }
 
-			// first try to update
-			if ($current) {
-				try {
-					$results = $client->uiConf->update($current, $uiConf);
-					if (isset($results->id)) {
-						return $results->id;
-					}
-				} catch (Exception $e) {
-					Feedback::error($e->getMessage());
-				}
-			} else {
-				try {
-					// create if updating failed or not updating
-					$uiConf->creationMode = UiConfCreationMode::ADVANCED;
-					$results = $client->uiConf->add($uiConf);
-					if (isset($results->id)) {
-						return $results->id;
-					} else {
-						return '';
-					}
-				} catch (Exception $e) {
-					Feedback::error($e->getMessage());
-				}
-			}
-		}
+    public function getPlayersUiConf($playerId)
+    {
+        // Ontaining full list, because it is cached
+        $confs = $this->getPlayersUiConfs();
 
-		return '';
-	}
+        foreach ($confs as $config) {
+            if ($config['id'] == $playerId) {
+                return $config;
+            }
+        }
+    }
 
-	public function cloneMix($entryId)
-	{
-		if ($client = $this->getClient()) {
-			return $client->mixing->cloneAction($entryId);
-		}
-	}
+    public function updateStandardTikiKcw()
+    {
+        if ($client = $this->getClient()) {
+            // first check if there is an existing one
+            $pager = null;
+            $filter = new UiConfFilter();
+            $filter->nameLike = 'Tiki.org Standard 2013';
+            $filter->objTypeEqual = UiConfObjType::CONTRIBUTION_WIZARD;
+            $existing = $client->uiConf->listAction($filter, $pager);
+            if (count($existing->objects) > 0) {
+                $current_obj = array_pop($existing->objects);
+                $current = $current_obj->id;
+            } else {
+                $current = '';
+            }
 
-	public function deleteMedia($entryId)
-	{
-		if ($client = $this->getClient()) {
-			return $client->media->delete($entryId);
-		}
-	}
+            global $tikipath;
+            $uiConf = new UiConf();
+            $uiConf->name = 'Tiki.org Standard 2013';
+            $uiConf->objType = UiConfObjType::CONTRIBUTION_WIZARD;
+            $filename = $tikipath . "lib/videogals/standardTikiKcw.xml";
+            $fh = fopen($filename, 'r');
+            $confXML = fread($fh, filesize($filename));
+            $uiConf->confFile = $confXML;
+            $uiConf->useCdn = 1;
+            $uiConf->swfUrl = '/flash/kcw/v2.1.4/ContributionWizard.swf';
+            $uiConf->tags = 'autodeploy, content_v3.2.5, content_upload';
 
-	public function deleteMix($entryId)
-	{
-		if ($client = $this->getClient()) {
-			return $client->mixing->delete($entryId);
-		}
-	}
+            // first try to update
+            if ($current) {
+                try {
+                    $results = $client->uiConf->update($current, $uiConf);
+                    if (isset($results->id)) {
+                        return $results->id;
+                    }
+                } catch (Exception $e) {
+                    Feedback::error($e->getMessage());
+                }
+            } else {
+                try {
+                    // create if updating failed or not updating
+                    $uiConf->creationMode = UiConfCreationMode::ADVANCED;
+                    $results = $client->uiConf->add($uiConf);
+                    if (isset($results->id)) {
+                        return $results->id;
+                    }
 
-	public function flattenVideo($entryId)
-	{
-		if ($client = $this->getClient()) {
-			return $client->mixing->requestFlattening($entryId, 'flv');	// FIXME this method is no longer supported
-		}
-	}
+                    return '';
+                } catch (Exception $e) {
+                    Feedback::error($e->getMessage());
+                }
+            }
+        }
 
-	public function getMix($entryId)
-	{
-		if ($client = $this->getClient()) {
-			return $client->mixing->get($entryId);
-		}
-	}
+        return '';
+    }
 
-	public function updateMix($entryId, array $data)
-	{
-		if ($client = $this->getClient()) {
-			$kentry = new MixEntry();
-			$kentry->name = $data['name'];
-			$kentry->description = $data['description'];
-			$kentry->tags = $data['tags'];
-			$kentry->editorType = $data['editorType'];
-			$kentry->adminTags = $data['adminTags'];
+    public function cloneMix($entryId)
+    {
+        if ($client = $this->getClient()) {
+            return $client->mixing->cloneAction($entryId);
+        }
+    }
 
-			return $client->mixing->update($entryId, $kentry);
-		}
-	}
+    public function deleteMedia($entryId)
+    {
+        if ($client = $this->getClient()) {
+            return $client->media->delete($entryId);
+        }
+    }
 
-	public function getMedia($entryId)
-	{
-		if ($client = $this->getClient()) {
-			return $client->media->get($entryId);
-		}
-	}
+    public function deleteMix($entryId)
+    {
+        if ($client = $this->getClient()) {
+            return $client->mixing->delete($entryId);
+        }
+    }
 
-	public function updateMedia($entryId, array $data)
-	{
-		if ($client = $this->getClient()) {
-			$kentry = new MediaEntry();
-			$kentry->name = $data['name'];
-			$kentry->description = $data['description'];
-			$kentry->tags = $data['tags'];
-			$kentry->adminTags = $data['adminTags'];
+    public function flattenVideo($entryId)
+    {
+        if ($client = $this->getClient()) {
+            return $client->mixing->requestFlattening($entryId, 'flv');	// FIXME this method is no longer supported
+        }
+    }
 
-			return $client->media->update($entryId, $kentry);
-		}
-	}
+    public function getMix($entryId)
+    {
+        if ($client = $this->getClient()) {
+            return $client->mixing->get($entryId);
+        }
+    }
 
-	public function listMix($sort_mode, $page, $page_size, $find)
-	{
-		if ($client = $this->getClient()) {
-			$kpager = new FilterPager();
-			$kpager->pageIndex = $page;
-			$kpager->pageSize = $page_size;
+    public function updateMix($entryId, array $data)
+    {
+        if ($client = $this->getClient()) {
+            $kentry = new MixEntry();
+            $kentry->name = $data['name'];
+            $kentry->description = $data['description'];
+            $kentry->tags = $data['tags'];
+            $kentry->editorType = $data['editorType'];
+            $kentry->adminTags = $data['adminTags'];
 
-			$kfilter = new MixEntryFilter();
-			$kfilter->orderBy = $sort_mode;
-			$kfilter->nameMultiLikeOr = $find;
+            return $client->mixing->update($entryId, $kentry);
+        }
+    }
 
-			return $client->mixing->listAction($kfilter, $kpager);
-		}
-	}
+    public function getMedia($entryId)
+    {
+        if ($client = $this->getClient()) {
+            return $client->media->get($entryId);
+        }
+    }
 
-	public function listMedia($sort_mode, $page, $page_size, $find)
-	{
-		if ($client = $this->getClient()) {
-			$kpager = new FilterPager();
-			$kpager->pageIndex = $page;
-			$kpager->pageSize = $page_size;
+    public function updateMedia($entryId, array $data)
+    {
+        if ($client = $this->getClient()) {
+            $kentry = new MediaEntry();
+            $kentry->name = $data['name'];
+            $kentry->description = $data['description'];
+            $kentry->tags = $data['tags'];
+            $kentry->adminTags = $data['adminTags'];
 
-			$kfilter = new MediaEntryFilter();
-			$kfilter->orderBy = $sort_mode;
-			$kfilter->nameMultiLikeOr = $find;
-			$kfilter->statusIn = '-1,-2,0,1,2';
+            return $client->media->update($entryId, $kentry);
+        }
+    }
 
-			return $client->media->listAction($kfilter, $kpager);
-		}
-	}
+    public function listMix($sort_mode, $page, $page_size, $find)
+    {
+        if ($client = $this->getClient()) {
+            $kpager = new FilterPager();
+            $kpager->pageIndex = $page;
+            $kpager->pageSize = $page_size;
 
-	public function getMovieList(array $movies)
-	{
-		if (count($movies) && $client = $this->getClient()) {
-			$kpager = new FilterPager();
-			$kpager->pageIndex = 0;
-			$kpager->pageSize = count($movies);
+            $kfilter = new MixEntryFilter();
+            $kfilter->orderBy = $sort_mode;
+            $kfilter->nameMultiLikeOr = $find;
 
-			$kfilter = new MediaEntryFilter();
-			$kfilter->idIn = implode(',', $movies);
+            return $client->mixing->listAction($kfilter, $kpager);
+        }
+    }
 
-			$mediaList = [];
-			foreach ($client->media->listAction($kfilter, $kpager)->objects as $media) {
-				$mediaList[] = [
-					'id' => $media->id,
-					'name' => $media->name,
-				];
-			}
+    public function listMedia($sort_mode, $page, $page_size, $find)
+    {
+        if ($client = $this->getClient()) {
+            $kpager = new FilterPager();
+            $kpager->pageIndex = $page;
+            $kpager->pageSize = $page_size;
 
-			return $mediaList;
-		}
+            $kfilter = new MediaEntryFilter();
+            $kfilter->orderBy = $sort_mode;
+            $kfilter->nameMultiLikeOr = $find;
+            $kfilter->statusIn = '-1,-2,0,1,2';
 
-		return [];
-	}
+            return $client->media->listAction($kfilter, $kpager);
+        }
+    }
+
+    public function getMovieList(array $movies)
+    {
+        if (count($movies) && $client = $this->getClient()) {
+            $kpager = new FilterPager();
+            $kpager->pageIndex = 0;
+            $kpager->pageSize = count($movies);
+
+            $kfilter = new MediaEntryFilter();
+            $kfilter->idIn = implode(',', $movies);
+
+            $mediaList = [];
+            foreach ($client->media->listAction($kfilter, $kpager)->objects as $media) {
+                $mediaList[] = [
+                    'id' => $media->id,
+                    'name' => $media->name,
+                ];
+            }
+
+            return $mediaList;
+        }
+
+        return [];
+    }
 }

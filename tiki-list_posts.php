@@ -14,48 +14,48 @@ $access->check_feature('feature_blogs');
 $access->check_permission('tiki_p_blog_admin');
 
 if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$bloglib->remove_post($_REQUEST["remove"]);
+    $access->check_authenticity();
+    $bloglib->remove_post($_REQUEST["remove"]);
 }
 if (isset($_REQUEST['checked'])) {
-	check_ticket('list_posts');
-	$checked = is_array($_REQUEST['checked']) ? $_REQUEST['checked'] : [$_REQUEST['checked']];
-	// Delete post(s)
-	if (isset($_REQUEST['remove']) || isset($_REQUEST['remove_x'])) {
-		$access->check_authenticity(tra('Delete posts'));
-		foreach ($checked as $id) {
-			$bloglib->remove_post($id);
-		}
-	}
+    check_ticket('list_posts');
+    $checked = is_array($_REQUEST['checked']) ? $_REQUEST['checked'] : [$_REQUEST['checked']];
+    // Delete post(s)
+    if (isset($_REQUEST['remove']) || isset($_REQUEST['remove_x'])) {
+        $access->check_authenticity(tra('Delete posts'));
+        foreach ($checked as $id) {
+            $bloglib->remove_post($id);
+        }
+    }
 }
 
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'created_desc';
+    $sort_mode = 'created_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 if (isset($_REQUEST['blogId'])) {
-	$blogId = $_REQUEST['blogId'];
-	$blog = $bloglib->get_blog($blogId);
-	$smarty->assign('blogTitle', $blog['title']);
-	$smarty->assign('blogId', $blogId);
+    $blogId = $_REQUEST['blogId'];
+    $blog = $bloglib->get_blog($blogId);
+    $smarty->assign('blogTitle', $blog['title']);
+    $smarty->assign('blogId', $blogId);
 } else {
-	$blogId = -1;
+    $blogId = -1;
 }
 
 $posts = $bloglib->list_posts($offset, $maxRecords, $sort_mode, $find, $blogId);

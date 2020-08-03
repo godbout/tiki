@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,111 +8,116 @@
 
 class Search_Formatter_Plugin_WikiTemplate implements Search_Formatter_Plugin_Interface
 {
-	private $template;
-	private $format;
+    private $template;
+    private $format;
 
-	function __construct($template)
-	{
-		$this->template = WikiParser_PluginMatcher::match($template);
-		$this->format = self::FORMAT_WIKI;
-	}
+    public function __construct($template)
+    {
+        $this->template = WikiParser_PluginMatcher::match($template);
+        $this->format = self::FORMAT_WIKI;
+    }
 
-	function setRaw($isRaw)
-	{
-		$this->format = $isRaw ? self::FORMAT_HTML : self::FORMAT_WIKI;
-	}
+    public function setRaw($isRaw)
+    {
+        $this->format = $isRaw ? self::FORMAT_HTML : self::FORMAT_WIKI;
+    }
 
-	function getFormat()
-	{
-		return $this->format;
-	}
+    public function getFormat()
+    {
+        return $this->format;
+    }
 
-	function getFields()
-	{
-		$parser = new WikiParser_PluginArgumentParser;
+    public function getFields()
+    {
+        $parser = new WikiParser_PluginArgumentParser;
 
-		$fields = [];
-		foreach ($this->template as $match) {
-			$name = $match->getName();
+        $fields = [];
+        foreach ($this->template as $match) {
+            $name = $match->getName();
 
-			if ($name === 'display') {
-				$arguments = $parser->parse($match->getArguments());
+            if ($name === 'display') {
+                $arguments = $parser->parse($match->getArguments());
 
-				if (isset($arguments['name']) && ! isset($fields[$arguments['name']])) {
-					$fields[$arguments['name']] = isset($arguments['default']) ? $arguments['default'] : null;
-				}
-			}
-		}
+                if (isset($arguments['name']) && ! isset($fields[$arguments['name']])) {
+                    $fields[$arguments['name']] = isset($arguments['default']) ? $arguments['default'] : null;
+                }
+            }
+        }
 
-		return $fields;
-	}
+        return $fields;
+    }
 
-	function prepareEntry($valueFormatter)
-	{
-		$matches = clone $this->template;
+    public function prepareEntry($valueFormatter)
+    {
+        $matches = clone $this->template;
 
-		foreach ($matches as $match) {
-			$name = $match->getName();
+        foreach ($matches as $match) {
+            $name = $match->getName();
 
-			if ($name === 'display') {
-				$match->replaceWith((string) $this->processDisplay($valueFormatter, $match->getBody(), $match->getArguments()));
-			} else if ($name === 'calc') {
-				$match->replaceWith((string) $this->processCalc($valueFormatter, $match));
-			}
-		}
+            if ($name === 'display') {
+                $match->replaceWith((string) $this->processDisplay($valueFormatter, $match->getBody(), $match->getArguments()));
+            } elseif ($name === 'calc') {
+                $match->replaceWith((string) $this->processCalc($valueFormatter, $match));
+            }
+        }
 
-		return $matches->getText();
-	}
+        return $matches->getText();
+    }
 
-	function renderEntries(Search_ResultSet $entries)
-	{
-		$out = '';
-		foreach ($entries as $entry) {
-			$out .= $entry;
-		}
-		return $out;
-	}
+    public function renderEntries(Search_ResultSet $entries)
+    {
+        $out = '';
+        foreach ($entries as $entry) {
+            $out .= $entry;
+        }
 
-	private function processDisplay($valueFormatter, $body, $arguments)
-	{
-		$parser = new WikiParser_PluginArgumentParser;
-		$arguments = $parser->parse($arguments);
+        return $out;
+    }
 
-		$name = $arguments['name'];
+    private function processDisplay($valueFormatter, $body, $arguments)
+    {
+        $parser = new WikiParser_PluginArgumentParser;
+        $arguments = $parser->parse($arguments);
 
-		if (isset($arguments['format'])) {
-			$format = $arguments['format'];
-		} else {
-			$format = 'plain';
-		}
+        $name = $arguments['name'];
 
-		unset($arguments['format']);
-		unset($arguments['name']);
-		return $valueFormatter->$format($name, $arguments);
-	}
+        if (isset($arguments['format'])) {
+            $format = $arguments['format'];
+        } else {
+            $format = 'plain';
+        }
 
-	/**
-	 * Process {calc} plugins
-	 *
-	 * @param \Search_Formatter_ValueFormatter $valueFormatter
-	 * @param \WikiParser_PluginMatcher_Match $match
-	 *
-	 * @return mixed
-	 */
-	private function processCalc($valueFormatter, $match) {
-		$runner = new Math_Formula_Runner(
-			[
-				'Math_Formula_Function_' => '',
-				'Tiki_Formula_Function_' => '',
-			]
-		);
-		try {
-			$runner->setFormula($match->getBody());
-			$runner->setVariables($valueFormatter->getPlainValues());
-			$value = $runner->evaluate();
-		} catch (Math_Formula_Exception $e) {
-			$value = tr('Error evaluating formula %0: %1', $match->getBody(), $e->getMessage());
-		}
-		return $value;
-	}
+        unset($arguments['format']);
+        unset($arguments['name']);
+
+        return $valueFormatter->$format($name, $arguments);
+    }
+
+    /**
+     * Process {calc} plugins
+     *
+     * @param \Search_Formatter_ValueFormatter $valueFormatter
+     * @param \WikiParser_PluginMatcher_Match $match
+     *
+     * @return mixed
+     */
+    private function processCalc($valueFormatter, $match)
+    {
+        $runner = new Math_Formula_Runner(
+            [
+                'Math_Formula_Function_' => '',
+                'Tiki_Formula_Function_' => '',
+            ]
+        );
+
+        try {
+            $runner->setFormula($match->getBody());
+            $runner->setVariables($valueFormatter->getPlainValues());
+            $value = $runner->evaluate();
+        } catch (Math_Formula_Exception $e) {
+            $value = tr('Error evaluating formula %0: %1', $match->getBody(), $e->getMessage());
+        }
+
+        return $value;
+    }
 }

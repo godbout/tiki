@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -34,54 +35,53 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 function smarty_block_tab($params, $content, $smarty, &$repeat)
 {
-	global $prefs, $smarty_tabset, $cookietab, $smarty_tabset_i_tab, $tabset_index;
-	$smarty = TikiLib::lib('smarty');
-	if ($repeat) {
-		return;
-	} else {
-		$print_page = $smarty->getTemplateVars('print_page');
+    global $prefs, $smarty_tabset, $cookietab, $smarty_tabset_i_tab, $tabset_index;
+    $smarty = TikiLib::lib('smarty');
+    if ($repeat) {
+        return;
+    }
+    $print_page = $smarty->getTemplateVars('print_page');
 
-		$name = $smarty_tabset[$tabset_index]['name'];
-		$id = null;
-		$active = null;
-		if ($print_page != 'y') {
-			$smarty_tabset_i_tab = count($smarty_tabset[$tabset_index]['tabs']) + 1;
+    $name = $smarty_tabset[$tabset_index]['name'];
+    $id = null;
+    $active = null;
+    if ($print_page != 'y') {
+        $smarty_tabset_i_tab = count($smarty_tabset[$tabset_index]['tabs']) + 1;
 
-			if (empty($params['name'])) {
-				$params['name'] = "tab" . $smarty_tabset_i_tab;
-			}
+        if (empty($params['name'])) {
+            $params['name'] = "tab" . $smarty_tabset_i_tab;
+        }
 
-			if (empty($params['key'])) {
-				$params['key'] = $smarty_tabset_i_tab;
-			}
+        if (empty($params['key'])) {
+            $params['key'] = $smarty_tabset_i_tab;
+        }
 
-			if (empty($name)) {
-				$name = $tabset_index;
-			}
+        if (empty($name)) {
+            $name = $tabset_index;
+        }
 
-			$id = $id = "content$name-{$params['key']}";
-			$active = ($smarty_tabset_i_tab == $cookietab) ? 'active show' : '';
-			$def = [
-				'label' => $params['name'],
-				'id' => $id,
-				'active' => $active,
-			];
-			$smarty_tabset[$tabset_index]['tabs'][] = $def;
-		} else {
-			// if we print a page then then all tabs would be "not active" so hidden and we would print nothing.
-			// we cannot click something so no js handler involed. thats we use the defaultActive
-			// so get the cookietab as the enabled tab.
-			$active = (isset($params['print']) && $params['print'] == 'y') ? 'active' : '';
-		}
+        $id = $id = "content$name-{$params['key']}";
+        $active = ($smarty_tabset_i_tab == $cookietab) ? 'active show' : '';
+        $def = [
+                'label' => $params['name'],
+                'id' => $id,
+                'active' => $active,
+            ];
+        $smarty_tabset[$tabset_index]['tabs'][] = $def;
+    } else {
+        // if we print a page then then all tabs would be "not active" so hidden and we would print nothing.
+        // we cannot click something so no js handler involed. thats we use the defaultActive
+        // so get the cookietab as the enabled tab.
+        $active = (isset($params['print']) && $params['print'] == 'y') ? 'active' : '';
+    }
 
-		$ret = "<div id='{$id}' class='tab-pane pt-3 $active'>$content</div>";
+    $ret = "<div id='{$id}' class='tab-pane pt-3 $active'>$content</div>";
 
-		return $ret;
-	}
+    return $ret;
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,40 +13,40 @@
  */
 class TestableTikiLib extends TikiLib
 {
-	/**
-	 * List of original objects as they are
-	 * defined by TikiLib::lib()
-	 * @var array
-	 */
-	protected $originalObjects = [];
+    /**
+     * List of original objects as they are
+     * defined by TikiLib::lib()
+     * @var array
+     */
+    protected $originalObjects = [];
 
-	/**
-	 * Override libs defined in TikiLib::lib().
-	 * For each entry in $libs, the key should
-	 * match the key used in TikiLib::lib() and the
-	 * value should be the mock object used as replacement.
-	 *
-	 * @param array $libs
-	 *
-	 * @return void
-	 * @throws Exception
-	 */
-	public function overrideLibs(array $libs)
-	{
-		foreach ($libs as $key => $obj) {
-			$this->originalObjects[$key] = TikiLib::lib($key);
-		}
+    /**
+     * Override libs defined in TikiLib::lib().
+     * For each entry in $libs, the key should
+     * match the key used in TikiLib::lib() and the
+     * value should be the mock object used as replacement.
+     *
+     * @param array $libs
+     *
+     * @throws Exception
+     * @return void
+     */
+    public function overrideLibs(array $libs)
+    {
+        foreach ($libs as $key => $obj) {
+            $this->originalObjects[$key] = TikiLib::lib($key);
+        }
 
-		self::$libraries = array_merge(self::$libraries, $libs);
-	}
+        self::$libraries = array_merge(self::$libraries, $libs);
+    }
 
-	/**
-	 * Restore TikiLib::libraries to its original
-	 * state.
-	 * @return null
-	 */
-	public function __destruct()
-	{
-		self::$libraries = array_merge(self::$libraries, $this->originalObjects);
-	}
+    /**
+     * Restore TikiLib::libraries to its original
+     * state.
+     * @return null
+     */
+    public function __destruct()
+    {
+        self::$libraries = array_merge(self::$libraries, $this->originalObjects);
+    }
 }

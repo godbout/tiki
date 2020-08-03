@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -19,96 +20,98 @@
  */
 class Tiki_Profile_SymbolLoader implements ArrayAccess
 {
-	private $store;
-	private $filters;
-	private $nextFilters;
+    private $store;
+    private $filters;
+    private $nextFilters;
 
-	function __construct($store = null, array $filters = null, array $nextFilters = ['profile', 'domain'])
-	{
-		$this->store = $store ?: new Tiki_Profile_SymbolLoader_Store;
-		$this->nextFilters = $nextFilters;
-		$this->filters = $filters ?: [
-			'profile' => '',
-			'domain' => '',
-		];
-	}
+    public function __construct($store = null, array $filters = null, array $nextFilters = ['profile', 'domain'])
+    {
+        $this->store = $store ?: new Tiki_Profile_SymbolLoader_Store;
+        $this->nextFilters = $nextFilters;
+        $this->filters = $filters ?: [
+            'profile' => '',
+            'domain' => '',
+        ];
+    }
 
-	function offsetGet($name)
-	{
-		return $this->store->get($name, $this->filters);
-	}
+    public function offsetGet($name)
+    {
+        return $this->store->get($name, $this->filters);
+    }
 
-	function offsetExists($name)
-	{
-		return true;
-	}
-	function offsetSet($name, $value)
-	{
-	}
-	function offsetUnset($name)
-	{
-	}
+    public function offsetExists($name)
+    {
+        return true;
+    }
+    public function offsetSet($name, $value)
+    {
+    }
+    public function offsetUnset($name)
+    {
+    }
 
-	function __get($name)
-	{
-		$nextFilters = $this->nextFilters;
-		$next = array_shift($nextFilters);
-		if ($next) {
-			$filters = $this->filters;
-			$filters[$next] = $name;
-			return new self($this->store, $filters, $nextFilters);
-		}
-	}
+    public function __get($name)
+    {
+        $nextFilters = $this->nextFilters;
+        $next = array_shift($nextFilters);
+        if ($next) {
+            $filters = $this->filters;
+            $filters[$next] = $name;
+
+            return new self($this->store, $filters, $nextFilters);
+        }
+    }
 }
 
 class Tiki_Profile_SymbolLoader_Store
 {
-	const KEY = 'profile_symbols_lookup';
-	private $data = false;
+    const KEY = 'profile_symbols_lookup';
+    private $data = false;
 
-	function get($name, $filters)
-	{
-		$this->loadData();
-		$profile = $filters['profile'];
-		$domain = $filters['domain'];
+    public function get($name, $filters)
+    {
+        $this->loadData();
+        $profile = $filters['profile'];
+        $domain = $filters['domain'];
 
-		if (! isset($this->data[$domain][$profile][$name])) {
-			$this->data[$domain][$profile][$name] = $this->fetch($name, $filters);
+        if (! isset($this->data[$domain][$profile][$name])) {
+            $this->data[$domain][$profile][$name] = $this->fetch($name, $filters);
 
-			// Storage should be done at most once per request, but this will only be possible
-			// in 13 reliably
-			$this->storeData();
-		}
+            // Storage should be done at most once per request, but this will only be possible
+            // in 13 reliably
+            $this->storeData();
+        }
 
-		return $this->data[$domain][$profile][$name];
-	}
+        return $this->data[$domain][$profile][$name];
+    }
 
-	function fetch($name, $filters)
-	{
-		$filters = array_filter($filters);
-		$filters['object'] = $name;
+    public function fetch($name, $filters)
+    {
+        $filters = array_filter($filters);
+        $filters['object'] = $name;
 
-		$table = TikiDb::get()->table('tiki_profile_symbols');
-		return $table->fetchOne('value', $filters, 'creation_date_desc');
-	}
+        $table = TikiDb::get()->table('tiki_profile_symbols');
 
-	private function loadData()
-	{
-		if ($this->data !== false) {
-			return;
-		}
+        return $table->fetchOne('value', $filters, 'creation_date_desc');
+    }
 
-		$cache = TikiLib::lib('cache');
-		if (! $data = $cache->getSerialized(self::KEY)) {
-			$data = [];
-		}
+    private function loadData()
+    {
+        if ($this->data !== false) {
+            return;
+        }
 
-		$this->data = $data;
-	}
+        $cache = TikiLib::lib('cache');
+        if (! $data = $cache->getSerialized(self::KEY)) {
+            $data = [];
+        }
 
-	private function storeData()
-	{
-		$cache = TikiLib::lib('cache');
-		$cache->cacheItem(self::KEY, serialize($this->data));
-	}
+        $this->data = $data;
+    }
+
+    private function storeData()
+    {
+        $cache = TikiLib::lib('cache');
+        $cache->cacheItem(self::KEY, serialize($this->data));
+    }
 }

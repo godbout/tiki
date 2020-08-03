@@ -13,9 +13,9 @@ include_once('lib/directory/dirlib.php');
 $access->check_feature('feature_directory');
 $access->check_permission('tiki_p_view_directory');
 if (! isset($_REQUEST['siteId'])) {
-	$smarty->assign('msg', tra("No site indicated"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("No site indicated"));
+    $smarty->display("error.tpl");
+    die;
 }
 $site_info = $dirlib->dir_get_site($_REQUEST['siteId']);
 $url = $site_info['url'];

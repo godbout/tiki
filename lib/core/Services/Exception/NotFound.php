@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,11 +8,11 @@
 
 class Services_Exception_NotFound extends Services_Exception
 {
-	function __construct($message = '')
-	{
-		if (empty($message)) {
-			$message = tr('Not found');
-		}
-		parent::__construct($message, 404);
-	}
+    public function __construct($message = '')
+    {
+        if (empty($message)) {
+            $message = tr('Not found');
+        }
+        parent::__construct($message, 404);
+    }
 }

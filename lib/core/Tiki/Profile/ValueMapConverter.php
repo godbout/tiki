@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,46 +8,45 @@
 
 class Tiki_Profile_ValueMapConverter
 {
-	private $map;
-	private $implode;
+    private $map;
+    private $implode;
 
-	function __construct($map, $implodeArray = false)
-	{
-		$this->map = $map;
-		$this->implode = $implodeArray;
-	}
+    public function __construct($map, $implodeArray = false)
+    {
+        $this->map = $map;
+        $this->implode = $implodeArray;
+    }
 
-	function convert($value)
-	{
-		if (is_array($value)) {
-			foreach ($value as &$v) {
-				if (isset($this->map[$v])) {
-					$v = $this->map[$v];
-				}
-			}
+    public function convert($value)
+    {
+        if (is_array($value)) {
+            foreach ($value as &$v) {
+                if (isset($this->map[$v])) {
+                    $v = $this->map[$v];
+                }
+            }
 
-			if ($this->implode) {
-				return implode('', $value);
-			} else {
-				return $value;
-			}
-		} else {
-			if (isset($this->map[$value])) {
-				return $this->map[$value];
-			} else {
-				return $value;
-			}
-		}
-	}
+            if ($this->implode) {
+                return implode('', $value);
+            }
 
-	function reverse($key)
-	{
-		$tab = array_flip($this->map);
+            return $value;
+        }
+        if (isset($this->map[$value])) {
+            return $this->map[$value];
+        }
 
-		if (isset($tab[$key])) {
-			return $tab[$key];
-		} else {
-			return $key;
-		}
-	}
+        return $value;
+    }
+
+    public function reverse($key)
+    {
+        $tab = array_flip($this->map);
+
+        if (isset($tab[$key])) {
+            return $tab[$key];
+        }
+
+        return $key;
+    }
 }

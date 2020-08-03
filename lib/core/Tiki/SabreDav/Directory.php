@@ -11,135 +11,153 @@ namespace Tiki\SabreDav;
 use Sabre\DAV;
 use TikiLib;
 
-class Directory extends DAV\Collection {
+class Directory extends DAV\Collection
+{
+    private $definition;
 
-	private $definition;
+    public function __construct($path_or_id = '/')
+    {
+        if ((int)$path_or_id == 0) {
+            $result = TikiLib::lib('filegal')->get_objectid_from_virtual_path($path_or_id);
+            if (! $result || $result['type'] != 'filegal') {
+                throw new DAV\Exception\NotFound(tr('The directory with path: ' . $path_or_id . ' could not be found'));
+            }
+            $path_or_id = $result['id'];
+        }
+        $this->definition = TikiLib::lib('filegal')->getGalleryDefinition($path_or_id);
+    }
 
-	function __construct($path_or_id = '/') {
-		if ((int)$path_or_id == 0) {
-			$result = TikiLib::lib('filegal')->get_objectid_from_virtual_path($path_or_id);
-			if (! $result || $result['type'] != 'filegal') {
-				throw new DAV\Exception\NotFound(tr('The directory with path: ' . $path_or_id . ' could not be found'));
-			}
-			$path_or_id = $result['id'];
-		}
-		$this->definition = TikiLib::lib('filegal')->getGalleryDefinition($path_or_id);
-	}
+    public function getChildren()
+    {
+        global $prefs;
 
-	function getChildren() {
-		global $prefs;
+        $children = [];
+        $info = $this->definition->getInfo();
+        if ($info['galleryId'] == $prefs['fgal_root_id']) {
+            $children[] = new WikiDirectory();
+        }
 
-		$children = array();
-		$info = $this->definition->getInfo();
-		if ($info['galleryId'] == $prefs['fgal_root_id']) {
-			$children[] = new WikiDirectory();
-		}
+        $results = $this->galleryChildren();
+        foreach ($results['data'] as $row) {
+            $children[] = $this->getChildFromDB($row);
+        }
 
-		$results = $this->galleryChildren();
-		foreach($results['data'] as $row) {
-			$children[] = $this->getChildFromDB($row);
-		}
+        return $children;
+    }
 
-		return $children;
-	}
+    public function getChildFromDB($row)
+    {
+        if ($row['isgal']) {
+            return new Directory($row['id']);
+        }
 
-	function getChildFromDB($row) {
-		if ($row['isgal']) {
-			return new Directory($row['id']);
-		} else {
-			return new File($row['id']);
-		}
-	}
+        return new File($row['id']);
+    }
 
-	function getChild($name) {
-		$wikiDir = new WikiDirectory();
-		if ($name === $wikiDir->getName()) {
-			return $wikiDir;
-		}
-		$results = $this->galleryChildren();
-		foreach ($results['data'] as $row) {
-			if ($row['filename'] === $name) {
-				return $this->getChildFromDB($row);
-			}
-		}
-		// We have to throw a NotFound exception if the file didn't exist
-		throw new DAV\Exception\NotFound('The file with name: ' . $name . ' could not be found');
-	}
+    public function getChild($name)
+    {
+        $wikiDir = new WikiDirectory();
+        if ($name === $wikiDir->getName()) {
+            return $wikiDir;
+        }
+        $results = $this->galleryChildren();
+        foreach ($results['data'] as $row) {
+            if ($row['filename'] === $name) {
+                return $this->getChildFromDB($row);
+            }
+        }
+        // We have to throw a NotFound exception if the file didn't exist
+        throw new DAV\Exception\NotFound('The file with name: ' . $name . ' could not be found');
+    }
 
-	function childExists($name) {
-		$results = $this->galleryChildren();
-		foreach ($results['data'] as $row) {
-			if ($row['filename'] === $name) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public function childExists($name)
+    {
+        $results = $this->galleryChildren();
+        foreach ($results['data'] as $row) {
+            if ($row['filename'] === $name) {
+                return true;
+            }
+        }
 
-	function getLastModified() {
-		$info = $this->definition->getInfo();
-		return $info['lastModif'];
-	}
+        return false;
+    }
 
-	function getName() {
-		$info = $this->definition->getInfo();
-		return $info['name'];
-	}
+    public function getLastModified()
+    {
+        $info = $this->definition->getInfo();
 
-	function setName($name) {
-		$info = $this->definition->getInfo();
-		$info['name'] = $name;
-		TikiLib::lib('filegal')->replace_file_gallery($info);
-	}
+        return $info['lastModif'];
+    }
 
-	function createFile($name, $data = null) {
-		global $user, $prefs;
+    public function getName()
+    {
+        $info = $this->definition->getInfo();
 
-		Utilities::checkUploadPermission($this->definition);
+        return $info['name'];
+    }
 
-		$info = Utilities::parseContents($name, $data);
+    public function setName($name)
+    {
+        $info = $this->definition->getInfo();
+        $info['name'] = $name;
+        TikiLib::lib('filegal')->replace_file_gallery($info);
+    }
 
-		TikiLib::lib('filegal')->upload_single_file(
-			$this->definition->getInfo(),
-			$name,
-			$info['filesize'],
-			$info['mime'],
-			$info['content']
-		);
-	}
+    public function createFile($name, $data = null)
+    {
+        global $user, $prefs;
 
-	function createDirectory($name) {
-		global $user;
+        Utilities::checkUploadPermission($this->definition);
 
-		Utilities::checkCreatePermission($this->definition);
+        $info = Utilities::parseContents($name, $data);
 
-		// Get parent filegal info as a base
-		$filegalInfo = $this->definition->getInfo();
+        TikiLib::lib('filegal')->upload_single_file(
+            $this->definition->getInfo(),
+            $name,
+            $info['filesize'],
+            $info['mime'],
+            $info['content']
+        );
+    }
 
-		$filegalInfo['parentId'] = $filegalInfo['galleryId'];
-		$filegalInfo['galleryId'] = -1;
-		$filegalInfo['name'] = $name;
-		$filegalInfo['description'] = '';
-		$filegalInfo['user'] = $user;
+    public function createDirectory($name)
+    {
+        global $user;
 
-		TikiLib::lib('filegal')->replace_file_gallery($filegalInfo);
-	}
+        Utilities::checkCreatePermission($this->definition);
 
-	function delete() {
-		Utilities::checkDeleteGalleryPermission($this->definition);
+        // Get parent filegal info as a base
+        $filegalInfo = $this->definition->getInfo();
 
-		$info = $this->definition->getInfo();
-		
-		TikiLib::lib('filegal')->remove_file_gallery($info['galleryId'], $info['galleryId']);
-	}
+        $filegalInfo['parentId'] = $filegalInfo['galleryId'];
+        $filegalInfo['galleryId'] = -1;
+        $filegalInfo['name'] = $name;
+        $filegalInfo['description'] = '';
+        $filegalInfo['user'] = $user;
 
-	function getGalleryId() {
-		$info = $this->definition->getInfo();
-		return $info['galleryId'];
-	}
+        TikiLib::lib('filegal')->replace_file_gallery($filegalInfo);
+    }
 
-	private function galleryChildren($find = null) {
-		$info = $this->definition->getInfo();
-		return TikiLib::lib('filegal')->get_files(0, -1, 'name_desc', $find, $info['galleryId'], false, true);
-	}
+    public function delete()
+    {
+        Utilities::checkDeleteGalleryPermission($this->definition);
+
+        $info = $this->definition->getInfo();
+        
+        TikiLib::lib('filegal')->remove_file_gallery($info['galleryId'], $info['galleryId']);
+    }
+
+    public function getGalleryId()
+    {
+        $info = $this->definition->getInfo();
+
+        return $info['galleryId'];
+    }
+
+    private function galleryChildren($find = null)
+    {
+        $info = $this->definition->getInfo();
+
+        return TikiLib::lib('filegal')->get_files(0, -1, 'name_desc', $find, $info['galleryId'], false, true);
+    }
 }

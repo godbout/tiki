@@ -13,9 +13,9 @@ require_once('tiki-setup.php');
 $quizlib = TikiLib::lib('quiz');
 $access->check_feature('feature_quizzes');
 if (! isset($_REQUEST["quizId"])) {
-	$smarty->assign('msg', tra("No quiz indicated"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("No quiz indicated"));
+    $smarty->display("error.tpl");
+    die;
 }
 $smarty->assign('individual', 'n');
 
@@ -25,15 +25,15 @@ $smarty->assign('quizId', $_REQUEST["quizId"]);
 $quiz_info = $quizlib->get_quiz($_REQUEST["quizId"]);
 $smarty->assign('quiz_info', $quiz_info);
 if (! isset($_REQUEST["resultId"])) {
-	$smarty->assign('msg', tra("No result indicated"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("No result indicated"));
+    $smarty->display("error.tpl");
+    die;
 }
 $smarty->assign('resultId', $_REQUEST["resultId"]);
 if (! isset($_REQUEST["userResultId"])) {
-	$smarty->assign('msg', tra("No result indicated"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("No result indicated"));
+    $smarty->display("error.tpl");
+    die;
 }
 $smarty->assign('userResultId', $_REQUEST["userResultId"]);
 $ur_info = $quizlib->get_user_quiz_result($_REQUEST["userResultId"]);

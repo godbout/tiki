@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,26 +10,25 @@
  * @group unit
  *
  */
-
 class DeclFilter_CatchAllUnsetTest extends TikiTestCase
 {
-	public function testMatch()
-	{
-		$rule = new DeclFilter_CatchAllUnsetRule();
+    public function testMatch()
+    {
+        $rule = new DeclFilter_CatchAllUnsetRule();
 
-		$this->assertTrue($rule->match('hello'));
-	}
+        $this->assertTrue($rule->match('hello'));
+    }
 
-	public function testApply()
-	{
-		$rule = new DeclFilter_CatchAllUnsetRule();
+    public function testApply()
+    {
+        $rule = new DeclFilter_CatchAllUnsetRule();
 
-		$data = [
-			'hello' => '123abc',
-		];
+        $data = [
+            'hello' => '123abc',
+        ];
 
-		$rule->apply($data, 'hello');
+        $rule->apply($data, 'hello');
 
-		$this->assertFalse(isset($data['hello']));
-	}
+        $this->assertFalse(isset($data['hello']));
+    }
 }

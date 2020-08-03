@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -6,8 +7,8 @@
 // $Id$
 
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 
@@ -16,13 +17,13 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function module_map_search_location_info()
 {
-	return [
-		'name' => tra('Map location search'),
-		'description' => tra("Simple search controls for the map."),
-		'prefs' => [],
-		'params' => [
-		],
-	];
+    return [
+        'name' => tra('Map location search'),
+        'description' => tra("Simple search controls for the map."),
+        'prefs' => [],
+        'params' => [
+        ],
+    ];
 }
 
 /**
@@ -31,7 +32,7 @@ function module_map_search_location_info()
  */
 function module_map_search_location($mod_reference, $module_params)
 {
-	static $counter = 0;
-	$smarty = TikiLib::lib('smarty');
-	$smarty->assign('search_location_id', 'search_location_' . ++$counter);
+    static $counter = 0;
+    $smarty = TikiLib::lib('smarty');
+    $smarty->assign('search_location_id', 'search_location_' . ++$counter);
 }

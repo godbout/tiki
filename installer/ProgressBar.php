@@ -2,42 +2,42 @@
 
 class ProgressBar implements SplObserver
 {
-	const EXTRACT_TABLE_REGEX = '/CREATE ((FULLTEXT INDEX|INDEX) \w+ ON|(TABLE)) `?(\w+)`?/';
+    const EXTRACT_TABLE_REGEX = '/CREATE ((FULLTEXT INDEX|INDEX) \w+ ON|(TABLE)) `?(\w+)`?/';
 
-	public function __construct()
-	{
-		$this->generateModal();
-	}
+    public function __construct()
+    {
+        $this->generateModal();
+    }
 
-	public function update(SplSubject $installer)
-	{
-		$queries = $installer->queries;
-		$this->updateProgressBar($queries['executed'], $queries['total'] ?: 1);
+    public function update(SplSubject $installer)
+    {
+        $queries = $installer->queries;
+        $this->updateProgressBar($queries['executed'], $queries['total'] ?: 1);
 
-		$sql = $queries['currentStmt'];
-		if (! empty($sql) && preg_match(self::EXTRACT_TABLE_REGEX, $sql, $match)) {
-			$label_id = false;
-			$table_name = $match[4];
+        $sql = $queries['currentStmt'];
+        if (! empty($sql) && preg_match(self::EXTRACT_TABLE_REGEX, $sql, $match)) {
+            $label_id = false;
+            $table_name = $match[4];
 
-			if (strtoupper($match[3]) === 'TABLE') {
-				$label_id = 'table_name';
-			} elseif (in_array(strtoupper($match[2]), ['FULLTEXT INDEX', 'INDEX'])) {
-				$label_id = 'table_index';
-			}
+            if (strtoupper($match[3]) === 'TABLE') {
+                $label_id = 'table_name';
+            } elseif (in_array(strtoupper($match[2]), ['FULLTEXT INDEX', 'INDEX'])) {
+                $label_id = 'table_index';
+            }
 
-			$label_id && $this->updateLabels($label_id, $table_name);
-		}
+            $label_id && $this->updateLabels($label_id, $table_name);
+        }
 
-		//preg_match('/CREATE\sTABLE\s`([a-zA-Z_]+)`.*/'
-		//preg_match('/CREATE\sFULLTEXT\s[a-zA-Z\s]*\s([a-z_]*)\(/'
-	}
+        //preg_match('/CREATE\sTABLE\s`([a-zA-Z_]+)`.*/'
+        //preg_match('/CREATE\sFULLTEXT\s[a-zA-Z\s]*\s([a-z_]*)\(/'
+    }
 
 
-	public function updateProgressBar($current, $total)
-	{
-		$percent = (int)($current / $total * 100) . "%";
+    public function updateProgressBar($current, $total)
+    {
+        $percent = (int)($current / $total * 100) . "%";
 
-		$scripts = <<<JS
+        $scripts = <<<JS
 		<script class="progress_bar_script">
 			var element = parent.document.getElementById("progress_database_status");
 			element.style.width = "{$percent}";
@@ -45,13 +45,13 @@ class ProgressBar implements SplObserver
 			progress_status_element.innerHTML = "{$percent}";
 		</script>
 JS;
-		echo $scripts;
-		flush();
-	}
+        echo $scripts;
+        flush();
+    }
 
-	public function updateLabels($targetElement, $content)
-	{
-		$scripts = <<<JS
+    public function updateLabels($targetElement, $content)
+    {
+        $scripts = <<<JS
 		<script class="progress_bar_script">
 			var element = parent.document.getElementById("{$targetElement}");
 			if(element) {
@@ -59,37 +59,37 @@ JS;
 			}
 		</script>
 JS;
-		echo $scripts;
-		flush();
-	}
+        echo $scripts;
+        flush();
+    }
 
-	public function generateModal()
-	{
-		// Style
-		$container_layout_style = ";margin: 0;padding: 0;height: 100%;width: 100%; position: absolute; z-index: 10000;";
-		$progressbar_presentation_style = ";display: flex;flex-direction: column;align-items: center;justify-content: center;background: #737373;font-weight: 0.9em;font-family: Raleway, Arial, Helvetica, sans-serif;";
-		$progressbar_wrapper_style = "width: 50%;max-width: 400px;background: #fff;padding: 20px;margin: 0; overflow:hidden; border-radius: 0.25rem;";
-		$progressbar_h_style = "margin-top: 0; margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2; font-size: 2rem;";
-		$progressbar_h1_style = ";font-size:2rem;";
-		$progressbar_h3_style = ";font-size:1.3rem;margin-bottom:1rem;";
-		$progressbar_header = "text-align: center; font-family: Raleway, Arial, Helvetica, sans-serif;";
-		// $progressbar_progress = "position: relative;width: 100%;height: 16px;background: rgb(30, 173, 230);";
-		// $progressbar_progress_status = "position: absolute;height: 100%;width: 0%;background: #143c64;";
+    public function generateModal()
+    {
+        // Style
+        $container_layout_style = ";margin: 0;padding: 0;height: 100%;width: 100%; position: absolute; z-index: 10000;";
+        $progressbar_presentation_style = ";display: flex;flex-direction: column;align-items: center;justify-content: center;background: #737373;font-weight: 0.9em;font-family: Raleway, Arial, Helvetica, sans-serif;";
+        $progressbar_wrapper_style = "width: 50%;max-width: 400px;background: #fff;padding: 20px;margin: 0; overflow:hidden; border-radius: 0.25rem;";
+        $progressbar_h_style = "margin-top: 0; margin-bottom: 0.5rem;font-family: inherit;font-weight: 500;line-height: 1.2; font-size: 2rem;";
+        $progressbar_h1_style = ";font-size:2rem;";
+        $progressbar_h3_style = ";font-size:1.3rem;margin-bottom:1rem;";
+        $progressbar_header = "text-align: center; font-family: Raleway, Arial, Helvetica, sans-serif;";
+        // $progressbar_progress = "position: relative;width: 100%;height: 16px;background: rgb(30, 173, 230);";
+        // $progressbar_progress_status = "position: absolute;height: 100%;width: 0%;background: #143c64;";
 
-		$progress_wrapper_style = ";display: -webkit-box;display: -ms-flexbox;display: flex;height: 1rem;overflow: hidden;font-size: .75rem;background-color: #e9ecef;border-radius: .25rem;";
-		$progress_bar_style_style = ";display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;color: #fff;text-align: center;background-color: #007bff;transition: width .6s ease;";
-		$progress_bar_striped_style = ";background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);background-size: 1rem 1rem;";
-		$progress_bar_bg_info_style = ";background-color: #17a2b8 !important;";
-		$progress_bar_animated = ";-webkit-animation: progress-bar-stripes 1s linear infinite;animation: progress-bar-stripes 1s linear infinite;";
+        $progress_wrapper_style = ";display: -webkit-box;display: -ms-flexbox;display: flex;height: 1rem;overflow: hidden;font-size: .75rem;background-color: #e9ecef;border-radius: .25rem;";
+        $progress_bar_style_style = ";display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;-webkit-box-pack: center;-ms-flex-pack: center;justify-content: center;color: #fff;text-align: center;background-color: #007bff;transition: width .6s ease;";
+        $progress_bar_striped_style = ";background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);background-size: 1rem 1rem;";
+        $progress_bar_bg_info_style = ";background-color: #17a2b8 !important;";
+        $progress_bar_animated = ";-webkit-animation: progress-bar-stripes 1s linear infinite;animation: progress-bar-stripes 1s linear infinite;";
 
 
-		$progressbar_footer = "text-align: center;";
-		$building_patches_style = "margin: 4px 0px 8px;text-align: left;color: #212529;";
-		$progressbar_footer_start = "float: left;font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;";
-		$progressbar_footer_end = "float: right;font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;";
-		$progressbar_footer_table_name = "display: inline;";
+        $progressbar_footer = "text-align: center;";
+        $building_patches_style = "margin: 4px 0px 8px;text-align: left;color: #212529;";
+        $progressbar_footer_start = "float: left;font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;";
+        $progressbar_footer_end = "float: right;font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;";
+        $progressbar_footer_table_name = "display: inline;";
 
-		$page_content = <<<HTML
+        $page_content = <<<HTML
 		<div style="{$container_layout_style}" id="progressBar">
 				<div class="progressbar" style="{$progressbar_presentation_style} {$container_layout_style}">
 					<div class="progressbar_wrapper" style="{$progressbar_wrapper_style}">
@@ -134,7 +134,7 @@ JS;
 			</script>
 HTML;
 
-		echo $page_content;
-		flush();
-	}
+        echo $page_content;
+        flush();
+    }
 }

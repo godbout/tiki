@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -15,225 +16,229 @@ use Tiki\FileGallery;
 
 abstract class Feed_Abstract
 {
-	public $name = "";
-	public $items = [];
-	public $item = [];
-	public $contents = [];
-	public $type = "";
-	public $isFileGal = false;
-	public $version = "0.0";
-	public $encoding = "";
+    public $name = "";
+    public $items = [];
+    public $item = [];
+    public $contents = [];
+    public $type = "";
+    public $isFileGal = false;
+    public $version = "0.0";
+    public $encoding = "";
 
-	function __construct($name = "")
-	{
-		if (empty($name)) {
-			$name = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-			$name = explode('/', $name);
-			array_pop($name);
-			$name = implode($name, '/');
-		} else {
-			$name = str_replace("http://", "", $name);
-			$name = str_replace("https://", "", $name);
-			$name = explode('/', $name);
-			$name = array_shift($name);
-		}
+    public function __construct($name = "")
+    {
+        if (empty($name)) {
+            $name = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+            $name = explode('/', $name);
+            array_pop($name);
+            $name = implode($name, '/');
+        } else {
+            $name = str_replace("http://", "", $name);
+            $name = str_replace("https://", "", $name);
+            $name = explode('/', $name);
+            $name = array_shift($name);
+        }
 
-		$this->name = $this->type . "_" . $name;
-	}
+        $this->name = $this->type . "_" . $name;
+    }
 
-	public function getItems()
-	{
-		$contents = $this->getContents();
+    public function getItems()
+    {
+        $contents = $this->getContents();
 
-		if (empty($contents->entry)) {
-			return [];
-		}
+        if (empty($contents->entry)) {
+            return [];
+        }
 
-		return $contents->entry;
-	}
+        return $contents->entry;
+    }
 
-	public function listItemNames()
-	{
-		$result = [];
-		foreach ($this->getItems() as $item) {
-			if (! empty($item->name)) {
-				$result[] = addslashes(htmlspecialchars($item->name));
-			}
-		}
-		return $result;
-	}
+    public function listItemNames()
+    {
+        $result = [];
+        foreach ($this->getItems() as $item) {
+            if (! empty($item->name)) {
+                $result[] = addslashes(htmlspecialchars($item->name));
+            }
+        }
 
-	public function getItem($name)
-	{
-		foreach ($this->getItems() as $item) {
-			if ($name == $item->name) {
-				return $item;
-			}
-		}
-		return [];
-	}
+        return $result;
+    }
 
-	public function replace()
-	{
-	}
+    public function getItem($name)
+    {
+        foreach ($this->getItems() as $item) {
+            if ($name == $item->name) {
+                return $item;
+            }
+        }
 
-	public function setEncoding($contents)
-	{
-		if (is_array($contents)) {
-			throw new Exception('die');
-		}
-		$this->encoding = mb_detect_encoding($contents, "ASCII, UTF-8, ISO-8859-1");
-	}
+        return [];
+    }
 
-	private function open()
-	{
-		if ($this->isFileGal == true) {
-			$contents = FileGallery\File::filename($this->name)->data();
-		} else {
-			$contents = TikiLib::lib("cache")->getCached($this->name, get_class($this));
-		}
+    public function replace()
+    {
+    }
 
-		$this->setEncoding($contents);
+    public function setEncoding($contents)
+    {
+        if (is_array($contents)) {
+            throw new Exception('die');
+        }
+        $this->encoding = mb_detect_encoding($contents, "ASCII, UTF-8, ISO-8859-1");
+    }
 
-		$contents = json_decode($contents);
-		if (empty($contents)) {
-			return [];
-		}
-		return $contents;
-	}
+    private function open()
+    {
+        if ($this->isFileGal == true) {
+            $contents = FileGallery\File::filename($this->name)->data();
+        } else {
+            $contents = TikiLib::lib("cache")->getCached($this->name, get_class($this));
+        }
 
-	private function save($contents)
-	{
-		$contents = json_encode($contents);
+        $this->setEncoding($contents);
 
-		if ($this->isFileGal == true) {
-			//TODO: abstract
-			FileGallery\File::filename($this->name)
-				->setParam('description', '')
-				->replace($contents);
-		} else {
-			//TODO: abstract
-			TikiLib::lib("cache")->cacheItem($this->name, $contents, get_class($this));
-		}
+        $contents = json_decode($contents);
+        if (empty($contents)) {
+            return [];
+        }
 
-		return $this;
-	}
+        return $contents;
+    }
 
-	public function getContents()
-	{
-		global $tikilib;
-		$contents = $this->open();
+    private function save($contents)
+    {
+        $contents = json_encode($contents);
 
-		if (! empty($contents)) {
-			return $contents;
-		}
+        if ($this->isFileGal == true) {
+            //TODO: abstract
+            FileGallery\File::filename($this->name)
+                ->setParam('description', '')
+                ->replace($contents);
+        } else {
+            //TODO: abstract
+            TikiLib::lib("cache")->cacheItem($this->name, $contents, get_class($this));
+        }
 
-		//at this point contents is empty, so lets fill it
-		$this->replace();
+        return $this;
+    }
 
-		$contents = $this->open();
+    public function getContents()
+    {
+        global $tikilib;
+        $contents = $this->open();
 
-		return $contents;
-	}
+        if (! empty($contents)) {
+            return $contents;
+        }
 
-	public function delete()
-	{
-		global $tikilib;
+        //at this point contents is empty, so lets fill it
+        $this->replace();
 
-		if ($this->isFileGal == true) {
-			FileGallery\File::filename($this->name)->delete();
-		} else {
-			TikiLib::lib("cache")->empty_type_cache(get_class($this));
-		}
-	}
+        $contents = $this->open();
 
-	function appendToContents(&$contents, $items)
-	{
-		if (isset($items->feed->entry)) {
-			$contents->entry[] = $items->feed->entry;
-		} elseif (isset($items)) {
-			$contents->entry[] = $items;
-		}
-	}
+        return $contents;
+    }
 
-	public function addItem($item)
-	{
-		global $tikilib;
-		$contents = $this->open();
+    public function delete()
+    {
+        global $tikilib;
 
-		if (empty($contents)) {
-			$contents = new Feed_Contents($this->type);
-		}
+        if ($this->isFileGal == true) {
+            FileGallery\File::filename($this->name)->delete();
+        } else {
+            TikiLib::lib("cache")->empty_type_cache(get_class($this));
+        }
+    }
 
-		//this allows us to intercept the contents and do things like check the validity of the content being appended to the contents
-		$this->appendToContents($contents, $item);
+    public function appendToContents(&$contents, $items)
+    {
+        if (isset($items->feed->entry)) {
+            $contents->entry[] = $items->feed->entry;
+        } elseif (isset($items)) {
+            $contents->entry[] = $items;
+        }
+    }
 
-		$this->save($contents);
+    public function addItem($item)
+    {
+        global $tikilib;
+        $contents = $this->open();
 
-		return $this;
-	}
+        if (empty($contents)) {
+            $contents = new Feed_Contents($this->type);
+        }
 
-	public function feed($origin = '')
-	{
-		global $tikilib;
-		$contents = $this->getContents();
+        //this allows us to intercept the contents and do things like check the validity of the content being appended to the contents
+        $this->appendToContents($contents, $item);
 
-		//TODO: convert to actual object
-		$feed = new Feed_Container(
-			$this->version,
-			$this->encoding, //we get this from the above call to open
-			$contents,
-			(! empty($origin) ? $origin : $tikilib->tikiUrl() . 'tiki-feed.php'),
-			$this->type
-		);
+        $this->save($contents);
 
-		return $feed;
-	}
+        return $this;
+    }
 
-	public function listArchives()
-	{
-		$archives = [];
+    public function feed($origin = '')
+    {
+        global $tikilib;
+        $contents = $this->getContents();
 
-		if ($this->isFileGal == true) {
-			$file = FileGallery\File::filename($this->name);
-			foreach ($file->listArchives() as $archive) {
-				$archive = $this->open();
-				$archives[$archive->feed->date] = $archive->feed->entry;
-			}
-		}
+        //TODO: convert to actual object
+        $feed = new Feed_Container(
+            $this->version,
+            $this->encoding, //we get this from the above call to open
+            $contents,
+            (! empty($origin) ? $origin : $tikilib->tikiUrl() . 'tiki-feed.php'),
+            $this->type
+        );
 
-		return $archives;
-	}
+        return $feed;
+    }
 
-	public function getItemsFromDate($date)
-	{
-		$archives = $this->listArchives();
-		$archive = $archives[$date];
-		return $archive;
-	}
+    public function listArchives()
+    {
+        $archives = [];
 
-	public function getItemFromDate($name, $date)
-	{
-		$archive = $this->getItemsFromDate($date);
-		foreach ($archive as $item) {
-			if ($name == $item->name) {
-				return $item;
-			}
-		}
-	}
+        if ($this->isFileGal == true) {
+            $file = FileGallery\File::filename($this->name);
+            foreach ($file->listArchives() as $archive) {
+                $archive = $this->open();
+                $archives[$archive->feed->date] = $archive->feed->entry;
+            }
+        }
 
-	public function getItemFromDates($name)
-	{
-		$archives = [];
+        return $archives;
+    }
 
-		foreach ($this->listArchives() as $archive) {
-			foreach ($archive as $item) {
-				if ($name == $item->name) {
-					$archives[] = $item;
-				}
-			}
-		}
+    public function getItemsFromDate($date)
+    {
+        $archives = $this->listArchives();
+        $archive = $archives[$date];
 
-		return $archives;
-	}
+        return $archive;
+    }
+
+    public function getItemFromDate($name, $date)
+    {
+        $archive = $this->getItemsFromDate($date);
+        foreach ($archive as $item) {
+            if ($name == $item->name) {
+                return $item;
+            }
+        }
+    }
+
+    public function getItemFromDates($name)
+    {
+        $archives = [];
+
+        foreach ($this->listArchives() as $archive) {
+            foreach ($archive as $item) {
+                if ($name == $item->name) {
+                    $archives[] = $item;
+                }
+            }
+        }
+
+        return $archives;
+    }
 }

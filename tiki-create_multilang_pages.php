@@ -23,25 +23,25 @@ display();
 
 function create_pages_if_necessary()
 {
-	$smarty = TikiLib::lib('smarty');
-	$template_name = null;
-	if (isset($_REQUEST['template_name'])) {
-		$template_name = $_REQUEST['template_name'];
-	}
-	$pages_to_create = get_pages_to_create();
-	list($inexistant_page, $existing_pages)
-	   = check_for_existence_of_pages($pages_to_create);
-	$smarty->assign('pages_created', $inexistant_page);
-	$smarty->assign('pages_not_created', $existing_pages);
-	if (count($inexistant_page) > 0 || count($existing_pages) > 0) {
-		$smarty->assign('display_creation_result', 'y');
-	} else {
-		$smarty->assign('display_creation_result', 'n');
-	}
-	foreach ($inexistant_page as $lang => $page_name) {
-		create_page($page_name, $lang, $template_name);
-	}
-	make_pages_translations_of_each_other($inexistant_page);
+    $smarty = TikiLib::lib('smarty');
+    $template_name = null;
+    if (isset($_REQUEST['template_name'])) {
+        $template_name = $_REQUEST['template_name'];
+    }
+    $pages_to_create = get_pages_to_create();
+    list($inexistant_page, $existing_pages)
+       = check_for_existence_of_pages($pages_to_create);
+    $smarty->assign('pages_created', $inexistant_page);
+    $smarty->assign('pages_not_created', $existing_pages);
+    if (count($inexistant_page) > 0 || count($existing_pages) > 0) {
+        $smarty->assign('display_creation_result', 'y');
+    } else {
+        $smarty->assign('display_creation_result', 'n');
+    }
+    foreach ($inexistant_page as $lang => $page_name) {
+        create_page($page_name, $lang, $template_name);
+    }
+    make_pages_translations_of_each_other($inexistant_page);
 }
 
 /**
@@ -51,16 +51,16 @@ function create_pages_if_necessary()
  */
 function create_page($page_name, $lang, $template_name = null)
 {
-	global $user;
-	$multilinguallib = TikiLib::lib('multilingual');
-	$tikilib = TikiLib::lib('tiki');
-	$content = '';
-	if ($template_name != null) {
-		$template_id = $multilinguallib->getTemplateIDInLanguage('wiki', $template_name, $lang);
-		$template_data = $templateslib->get_template($template_id, $lang);
-		$content = $template_data['content'];
-	}
-	$tikilib->create_page($page_name, 0, $content, null, '', null, $user, '', $lang);
+    global $user;
+    $multilinguallib = TikiLib::lib('multilingual');
+    $tikilib = TikiLib::lib('tiki');
+    $content = '';
+    if ($template_name != null) {
+        $template_id = $multilinguallib->getTemplateIDInLanguage('wiki', $template_name, $lang);
+        $template_data = $templateslib->get_template($template_id, $lang);
+        $content = $template_data['content'];
+    }
+    $tikilib->create_page($page_name, 0, $content, null, '', null, $user, '', $lang);
 }
 
 /**
@@ -68,22 +68,22 @@ function create_page($page_name, $lang, $template_name = null)
  */
 function make_pages_translations_of_each_other($pages)
 {
-	$multilinguallib = TikiLib::lib('multilingual');
-	$tikilib = TikiLib::lib('tiki');
-	if (count($pages) == 0) {
-		return;
-	}
-	$first_page_id = null;
-	foreach ($pages as $this_page_lang => $this_page_name) {
-		if ($first_page_id == null) {
-			$first_page_id = $tikilib->get_page_id_from_name($this_page_name);
-			$first_page_lang = $this_page_lang;
-		} else {
-			$this_page_info = $tikilib->get_page_info($this_page_name);
-			$this_page_id = $this_page_info['page_id'];
-			$multilinguallib->insertTranslation('wiki page', $first_page_id, $first_page_lang, $this_page_id, $this_page_lang);
-		}
-	}
+    $multilinguallib = TikiLib::lib('multilingual');
+    $tikilib = TikiLib::lib('tiki');
+    if (count($pages) == 0) {
+        return;
+    }
+    $first_page_id = null;
+    foreach ($pages as $this_page_lang => $this_page_name) {
+        if ($first_page_id == null) {
+            $first_page_id = $tikilib->get_page_id_from_name($this_page_name);
+            $first_page_lang = $this_page_lang;
+        } else {
+            $this_page_info = $tikilib->get_page_info($this_page_name);
+            $this_page_id = $this_page_info['page_id'];
+            $multilinguallib->insertTranslation('wiki page', $first_page_id, $first_page_lang, $this_page_id, $this_page_lang);
+        }
+    }
 }
 
 /**
@@ -91,26 +91,27 @@ function make_pages_translations_of_each_other($pages)
  */
 function compute_relevant_languages()
 {
-	global $prefs;
-	$multilinguallib = TikiLib::lib('multilingual');
-	$smarty = TikiLib::lib('smarty');
+    global $prefs;
+    $multilinguallib = TikiLib::lib('multilingual');
+    $smarty = TikiLib::lib('smarty');
 
-	$all_languages_with_country_codes = $prefs['available_languages'];
-	$all_languages = strip_country_code_from_lang_ids($all_languages_with_country_codes);
-	$user_languages_with_country_codes = $multilinguallib->preferredLangs();
-	$user_languages = strip_country_code_from_lang_ids($user_languages_with_country_codes);
+    $all_languages_with_country_codes = $prefs['available_languages'];
+    $all_languages = strip_country_code_from_lang_ids($all_languages_with_country_codes);
+    $user_languages_with_country_codes = $multilinguallib->preferredLangs();
+    $user_languages = strip_country_code_from_lang_ids($user_languages_with_country_codes);
 
-	$other_languages = [];
-	foreach ($all_languages as $index => $lang) {
-		if (! in_array($lang, $user_languages)) {
-			$other_languages[] = $lang;
-		}
-	}
-	$smarty->assign('user_languages', $user_languages);
-	$smarty->assign('other_languages', $other_languages);
+    $other_languages = [];
+    foreach ($all_languages as $index => $lang) {
+        if (! in_array($lang, $user_languages)) {
+            $other_languages[] = $lang;
+        }
+    }
+    $smarty->assign('user_languages', $user_languages);
+    $smarty->assign('other_languages', $other_languages);
 
-	$result = [$user_languages, $other_languages, $all_languages];
-	return $result;
+    $result = [$user_languages, $other_languages, $all_languages];
+
+    return $result;
 }
 
 /**
@@ -118,17 +119,18 @@ function compute_relevant_languages()
  */
 function get_pages_to_create()
 {
-	$pages_to_create = [];
-	foreach ($_REQUEST as $arg_name => $arg_val) {
-		if (preg_match('/page_name_([\s\S]*)/', $arg_name, $matches)) {
-			if ($arg_val != '') {
-				$lang = $matches[1];
-				$pages_to_create[$lang] = $arg_val;
-			}
-		}
-	}
-	set_smarty_page_links($pages_to_create);
-	return $pages_to_create;
+    $pages_to_create = [];
+    foreach ($_REQUEST as $arg_name => $arg_val) {
+        if (preg_match('/page_name_([\s\S]*)/', $arg_name, $matches)) {
+            if ($arg_val != '') {
+                $lang = $matches[1];
+                $pages_to_create[$lang] = $arg_val;
+            }
+        }
+    }
+    set_smarty_page_links($pages_to_create);
+
+    return $pages_to_create;
 }
 
 /**
@@ -137,30 +139,30 @@ function get_pages_to_create()
  */
 function check_for_existence_of_pages($pages_to_create)
 {
-	$tikilib = TikiLib::lib('tiki');
-	$semantic = TikiLib::lib('semantic');
-	$non_existant_pages = [];
-	$existing_pages = [];
+    $tikilib = TikiLib::lib('tiki');
+    $semantic = TikiLib::lib('semantic');
+    $non_existant_pages = [];
+    $existing_pages = [];
 
-	foreach ($pages_to_create as $lang => $page_name) {
-		$exists = false;
-		if ($tikilib->page_exists($page_name)) {
-			$exists = true;
-		} else {
-			$aliases = $semanticlib->getAliasContaining($page_name, true);
-			if (count($aliases) > 0) {
-				$exists = true;
-			}
-		}
+    foreach ($pages_to_create as $lang => $page_name) {
+        $exists = false;
+        if ($tikilib->page_exists($page_name)) {
+            $exists = true;
+        } else {
+            $aliases = $semanticlib->getAliasContaining($page_name, true);
+            if (count($aliases) > 0) {
+                $exists = true;
+            }
+        }
 
-		if ($exists) {
-			$existing_pages[$lang] = $page_name;
-		} else {
-			$non_existant_pages[$lang] = $page_name;
-		}
-	}
+        if ($exists) {
+            $existing_pages[$lang] = $page_name;
+        } else {
+            $non_existant_pages[$lang] = $page_name;
+        }
+    }
 
-	return [$non_existant_pages, $existing_pages];
+    return [$non_existant_pages, $existing_pages];
 }
 
 /**
@@ -168,24 +170,24 @@ function check_for_existence_of_pages($pages_to_create)
  */
 function set_smarty_page_links($page_names)
 {
-	$smarty = TikiLib::lib('smarty');
-	$wikilib = TikiLib::lib('wiki');
+    $smarty = TikiLib::lib('smarty');
+    $wikilib = TikiLib::lib('wiki');
 
-	$page_links = [];
-	foreach ($page_names as $a_page_name) {
-		$page_links[$a_page_name] =
-			"<a href=\"" . $wikilib->url_for_operation_on_a_page('tiki-index.php', $a_page_name, false) . "\">$a_page_name</a>";
-	}
-	$smarty->assign('page_links', $page_links);
+    $page_links = [];
+    foreach ($page_names as $a_page_name) {
+        $page_links[$a_page_name] =
+            "<a href=\"" . $wikilib->url_for_operation_on_a_page('tiki-index.php', $a_page_name, false) . "\">$a_page_name</a>";
+    }
+    $smarty->assign('page_links', $page_links);
 }
 
 function display()
 {
-	$smarty = TikiLib::lib('smarty');
-	// disallow robots to index page:
-	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
-	$smarty->assign('mid', 'tiki-create_multilang_pages.tpl');
-	$smarty->display('tiki.tpl');
+    $smarty = TikiLib::lib('smarty');
+    // disallow robots to index page:
+    $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
+    $smarty->assign('mid', 'tiki-create_multilang_pages.tpl');
+    $smarty->display('tiki.tpl');
 }
 
 /**
@@ -194,16 +196,16 @@ function display()
  */
 function strip_country_code_from_lang_ids($lang_ids_with_country_code)
 {
-	$lang_ids = [];
-	foreach ($lang_ids_with_country_code as $index => $this_lang_id) {
-		if (strlen($this_lang_id) > 2) {
-			preg_match('/^([^\-]*)-/', $this_lang_id, $matches);
-			$this_lang_id = $matches[1];
-		}
-		if (! in_array($this_lang_id, $lang_ids)) {
-			$lang_ids[] = $this_lang_id;
-		}
-	}
+    $lang_ids = [];
+    foreach ($lang_ids_with_country_code as $index => $this_lang_id) {
+        if (strlen($this_lang_id) > 2) {
+            preg_match('/^([^\-]*)-/', $this_lang_id, $matches);
+            $this_lang_id = $matches[1];
+        }
+        if (! in_array($this_lang_id, $lang_ids)) {
+            $lang_ids[] = $this_lang_id;
+        }
+    }
 
-	return $lang_ids;
+    return $lang_ids;
 }

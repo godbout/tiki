@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -21,8 +22,8 @@ global $local_php, $api_tiki, $style_base;
 $local_php = __DIR__ . '/local.php';
 
 if (! is_file($local_php)) {
-	die("\nYou need to setup a new database and create a local.php file for the test suite inside " . __DIR__ .
-		"\nSee lib/test/local.php.dist for further instructions\n\n");
+    die("\nYou need to setup a new database and create a local.php file for the test suite inside " . __DIR__ .
+        "\nSee lib/test/local.php.dist for further instructions\n\n");
 }
 
 $api_tiki = 'adodb';
@@ -32,7 +33,7 @@ $style_base = 'skeleton';
 
 // Force autoloading
 if (! class_exists('ADOConnection')) {
-	die('AdoDb not found.');
+    die('AdoDb not found.');
 }
 
 $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
@@ -40,17 +41,17 @@ $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 $initializer = new TikiDb_Initializer;
 $initializer->setPreferredConnector($api_tiki);
 $db = $initializer->getConnection(
-	[
-		'host' => $host_tiki,
-		'user' => $user_tiki,
-		'pass' => $pass_tiki,
-		'dbs' => $dbs_tiki,
-		'charset' => $client_charset,
-	]
+    [
+        'host' => $host_tiki,
+        'user' => $user_tiki,
+        'pass' => $pass_tiki,
+        'dbs' => $dbs_tiki,
+        'charset' => $client_charset,
+    ]
 );
 
 if (! $db) {
-	die("\nUnable to connect to the database\n\n");
+    die("\nUnable to connect to the database\n\n");
 }
 
 TikiDb::set($db);
@@ -64,20 +65,20 @@ require_once 'lib/init/initlib.php';
 $installer = Installer::getInstance();
 
 if (! $installer->tableExists('tiki_preferences')) {
-	echo "Installing Tiki database...\n";
-	$installer->cleanInstall();
+    echo "Installing Tiki database...\n";
+    $installer->cleanInstall();
 } elseif ($installer->requiresUpdate()) {
-	echo "Updating Tiki database...\n";
-	$installer->update();
-	if (count($installer->queries['failed'])) {
-		foreach ($installer->queries['failed'] as $key => $error) {
-			[$query, $message, $patch] = $error;
+    echo "Updating Tiki database...\n";
+    $installer->update();
+    if (count($installer->queries['failed'])) {
+        foreach ($installer->queries['failed'] as $key => $error) {
+            [$query, $message, $patch] = $error;
 
-			echo "Error $key in $patch\n\t$query\n\t$message\n\n";
-		}
-		echo 'Exiting, fix database issues and try again.';
-		exit(1);
-	}
+            echo "Error $key in $patch\n\t$query\n\t$message\n\n";
+        }
+        echo 'Exiting, fix database issues and try again.';
+        exit(1);
+    }
 }
 
 $smarty = TikiLib::lib('smarty');
@@ -91,21 +92,21 @@ $access = TikiLib::lib('access');
 require_once 'lib/setup/timer.class.php';
 
 $_SESSION = [
-		'u_info' => [
-			'login' => null
-			]
-		];
+        'u_info' => [
+            'login' => null
+            ]
+        ];
 
 require_once(__DIR__ . '/TikiTestCase.php');
 require_once(__DIR__ . '/TestableTikiLib.php');
 
 global $systemConfiguration;
 $systemConfiguration = new Config(
-	[
-		'preference' => [],
-		'rules' => [],
-	],
-	['readOnly' => false]
+    [
+        'preference' => [],
+        'rules' => [],
+    ],
+    ['readOnly' => false]
 );
 
 global $user_overrider_prefs, $prefs;

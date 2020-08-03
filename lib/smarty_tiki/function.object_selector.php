@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -24,82 +25,85 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  *
  * The component will build a drop list for the object selector if the results fit in a reasonable amount
  * of space or will use autocomplete on the object title otherwise.
+ * @param mixed $params
+ * @param mixed $smarty
  */
 function smarty_function_object_selector($params, $smarty)
 {
-	global $prefs;
-	static $uniqid = 0;
+    global $prefs;
+    static $uniqid = 0;
 
-	$arguments = [
-		'simpleid' => null,
-		'simplename' => null,
-		'simplevalue' => null,
-		'simpleclass' => 'd-none',
-		'name' => null,
-		'class' => null,
-		'id' => null,
-		'value' => null,
-		'filter' => [],
-		'title' => null,
-		'searchfield' => $prefs['tiki_object_selector_searchfield'],
-		'threshold' => null,
-		'parent' => null,
-		'parentkey' => null,
-		'format' => null,
-		'placeholder' => tr('Title'),
-		'sort' => null,
-	];
+    $arguments = [
+        'simpleid' => null,
+        'simplename' => null,
+        'simplevalue' => null,
+        'simpleclass' => 'd-none',
+        'name' => null,
+        'class' => null,
+        'id' => null,
+        'value' => null,
+        'filter' => [],
+        'title' => null,
+        'searchfield' => $prefs['tiki_object_selector_searchfield'],
+        'threshold' => null,
+        'parent' => null,
+        'parentkey' => null,
+        'format' => null,
+        'placeholder' => tr('Title'),
+        'sort' => null,
+    ];
 
-	// Handle reserved parameters
-	foreach (array_keys($arguments) as $var) {
-		if (isset($params["_$var"])) {
-			$arguments[$var] = $params["_$var"];
-		}
-		unset($params["_$var"]);
-	}
+    // Handle reserved parameters
+    foreach (array_keys($arguments) as $var) {
+        if (isset($params["_$var"])) {
+            $arguments[$var] = $params["_$var"];
+        }
+        unset($params["_$var"]);
+    }
 
-	if ($prefs['feature_search'] !== 'y') {
-		if ($arguments['simplename'] && isset($arguments['simplevalue'])) {
-			if ($params['type'] === 'trackerfield' && $arguments['separator'] === ',') {
-				$help = tra('Comma-separated list of field IDs');
-			} else {
-				$help = tr('%0 list separated with "%1"', ucfirst($params['type']), $arguments['separator']);
-			}
-			return "<input type='text' name='{$arguments['simplename']}' value='{$arguments['simplevalue']}' size='50'>" .
-					"<div class='form-text'>" . $help . "</div>";
-		} else {
-			return tra('Object selector requires Unified Index to be enabled.');
-		}
-	}
+    if ($prefs['feature_search'] !== 'y') {
+        if ($arguments['simplename'] && isset($arguments['simplevalue'])) {
+            if ($params['type'] === 'trackerfield' && $arguments['separator'] === ',') {
+                $help = tra('Comma-separated list of field IDs');
+            } else {
+                $help = tr('%0 list separated with "%1"', ucfirst($params['type']), $arguments['separator']);
+            }
 
-	if (empty($arguments['id'])) {
-		$arguments['id'] = 'object_selector_' . ++$uniqid;
-	}
-	if (empty($arguments['simpleid'])) {
-		$arguments['simpleid'] = 'object_selector_' . ++$uniqid;
-	}
+            return "<input type='text' name='{$arguments['simplename']}' value='{$arguments['simplevalue']}' size='50'>" .
+                    "<div class='form-text'>" . $help . "</div>";
+        }
 
-	if ($arguments['filter']) {
-		$arguments['filter'] = array_merge($arguments['filter'], $params);
-	} else {
-		$arguments['filter'] = $params;
-	}
+        return tra('Object selector requires Unified Index to be enabled.');
+    }
 
-	if ($arguments['simplevalue'] && ! $arguments['value'] && isset($arguments['filter']['type'])) {
-		$arguments['value'] = "{$arguments['filter']['type']}:{$arguments['simplevalue']}";
-		$arguments['simpleclass'] = null;
-		$arguments['class'] .= ' d-none';
-	}
+    if (empty($arguments['id'])) {
+        $arguments['id'] = 'object_selector_' . ++$uniqid;
+    }
+    if (empty($arguments['simpleid'])) {
+        $arguments['simpleid'] = 'object_selector_' . ++$uniqid;
+    }
 
-	$selector = TikiLib::lib('objectselector');
-	$arguments['current_selection'] = $selector->read($arguments['value'], $arguments['format']);
+    if ($arguments['filter']) {
+        $arguments['filter'] = array_merge($arguments['filter'], $params);
+    } else {
+        $arguments['filter'] = $params;
+    }
 
-	$arguments['filter'] = json_encode($arguments['filter']);
+    if ($arguments['simplevalue'] && ! $arguments['value'] && isset($arguments['filter']['type'])) {
+        $arguments['value'] = "{$arguments['filter']['type']}:{$arguments['simplevalue']}";
+        $arguments['simpleclass'] = null;
+        $arguments['class'] .= ' d-none';
+    }
 
-	$smarty->assign(
-		'object_selector',
-		$arguments
-	);
+    $selector = TikiLib::lib('objectselector');
+    $arguments['current_selection'] = $selector->read($arguments['value'], $arguments['format']);
 
-	return $smarty->fetch('object_selector.tpl');
+    $arguments['filter'] = json_encode($arguments['filter']);
+
+    $smarty->assign(
+        'object_selector',
+        $arguments
+    );
+
+    return $smarty->fetch('object_selector.tpl');
 }

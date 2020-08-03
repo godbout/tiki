@@ -15,92 +15,86 @@ $contributionlib = TikiLib::lib('contribution');
 $access->check_permission(['tiki_p_admin_contribution']);
 
 if (isset($_REQUEST['setting']) && $access->checkCsrf()) {
-	$result = false;
-	if (isset($_REQUEST['feature_contribution_mandatory'])
-		&& $_REQUEST['feature_contribution_mandatory'] == "on")
-	{
-		$result = $tikilib->set_preference('feature_contribution_mandatory', 'y');
-	} else {
-		$result = $tikilib->set_preference('feature_contribution_mandatory', 'n');
-	}
-	if (isset($_REQUEST['feature_contribution_mandatory_forum'])
-		&& $_REQUEST['feature_contribution_mandatory_forum'] == "on")
-	{
-		$result = $tikilib->set_preference('feature_contribution_mandatory_forum', 'y');
-	} else {
-		$result = $tikilib->set_preference('feature_contribution_mandatory_forum', 'n');
-	}
-	if (isset($_REQUEST['feature_contribution_mandatory_comment'])
-		&& $_REQUEST['feature_contribution_mandatory_comment'] == "on")
-	{
-		$result = $tikilib->set_preference('feature_contribution_mandatory_comment', 'y');
-	} else {
-		$result = $tikilib->set_preference('feature_contribution_mandatory_comment', 'n');
-	}
-	if (isset($_REQUEST['feature_contribution_mandatory_blog'])
-		&& $_REQUEST['feature_contribution_mandatory_blog'] == "on")
-	{
-		$result = $tikilib->set_preference('feature_contribution_mandatory_blog', 'y');
-	} else {
-		$result = $tikilib->set_preference('feature_contribution_mandatory_blog', 'n');
-	}
-	if (isset($_REQUEST['feature_contribution_display_in_comment'])
-		&& $_REQUEST['feature_contribution_display_in_comment'] == "on")
-	{
-		$result = $tikilib->set_preference('feature_contribution_display_in_comment', 'y');
-	} else {
-		$result = $tikilib->set_preference('feature_contribution_display_in_comment', 'n');
-	}
-	if (isset($_REQUEST['feature_contributor_wiki']) && $_REQUEST['feature_contributor_wiki'] == "on") {
-		$result = $tikilib->set_preference('feature_contributor_wiki', 'y');
-	} else {
-		$result = $tikilib->set_preference('feature_contributor_wiki', 'n');
-	}
-	if ($result) {
-		Feedback::success(tr('Contribution settings saved'));
-	} else {
-		Feedback::error(tr('Contribution settings not saved'));
-	}
+    $result = false;
+    if (isset($_REQUEST['feature_contribution_mandatory'])
+        && $_REQUEST['feature_contribution_mandatory'] == "on") {
+        $result = $tikilib->set_preference('feature_contribution_mandatory', 'y');
+    } else {
+        $result = $tikilib->set_preference('feature_contribution_mandatory', 'n');
+    }
+    if (isset($_REQUEST['feature_contribution_mandatory_forum'])
+        && $_REQUEST['feature_contribution_mandatory_forum'] == "on") {
+        $result = $tikilib->set_preference('feature_contribution_mandatory_forum', 'y');
+    } else {
+        $result = $tikilib->set_preference('feature_contribution_mandatory_forum', 'n');
+    }
+    if (isset($_REQUEST['feature_contribution_mandatory_comment'])
+        && $_REQUEST['feature_contribution_mandatory_comment'] == "on") {
+        $result = $tikilib->set_preference('feature_contribution_mandatory_comment', 'y');
+    } else {
+        $result = $tikilib->set_preference('feature_contribution_mandatory_comment', 'n');
+    }
+    if (isset($_REQUEST['feature_contribution_mandatory_blog'])
+        && $_REQUEST['feature_contribution_mandatory_blog'] == "on") {
+        $result = $tikilib->set_preference('feature_contribution_mandatory_blog', 'y');
+    } else {
+        $result = $tikilib->set_preference('feature_contribution_mandatory_blog', 'n');
+    }
+    if (isset($_REQUEST['feature_contribution_display_in_comment'])
+        && $_REQUEST['feature_contribution_display_in_comment'] == "on") {
+        $result = $tikilib->set_preference('feature_contribution_display_in_comment', 'y');
+    } else {
+        $result = $tikilib->set_preference('feature_contribution_display_in_comment', 'n');
+    }
+    if (isset($_REQUEST['feature_contributor_wiki']) && $_REQUEST['feature_contributor_wiki'] == "on") {
+        $result = $tikilib->set_preference('feature_contributor_wiki', 'y');
+    } else {
+        $result = $tikilib->set_preference('feature_contributor_wiki', 'n');
+    }
+    if ($result) {
+        Feedback::success(tr('Contribution settings saved'));
+    } else {
+        Feedback::error(tr('Contribution settings not saved'));
+    }
 }
 if (isset($_REQUEST['add']) && isset($_REQUEST['new_contribution_name']) && $access->checkCsrf()) {
-	$result = $contributionlib->add_contribution(
-		$_REQUEST['new_contribution_name'],
-		isset($_REQUEST['description']) ? $_REQUEST['description'] : ''
-	);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('Contribution added'));
-	} else {
-		Feedback::error(tr('Contribution not added'));
-	}
+    $result = $contributionlib->add_contribution(
+        $_REQUEST['new_contribution_name'],
+        isset($_REQUEST['description']) ? $_REQUEST['description'] : ''
+    );
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('Contribution added'));
+    } else {
+        Feedback::error(tr('Contribution not added'));
+    }
 }
 if (isset($_REQUEST['replace'])
-	&& isset($_REQUEST['name'])
-	&& isset($_REQUEST['contributionId'])
-	&& $access->checkCsrf())
-{
-	$result = $contributionlib->replace_contribution(
-		$_REQUEST['contributionId'],
-		$_REQUEST['name'],
-		isset($_REQUEST['description']) ? $_REQUEST['description'] : ''
-	);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('Contribution modified'));
-	} else {
-		Feedback::error(tr('Contribution not modified'));
-	}
-	unset($_REQUEST['contributionId']);
+    && isset($_REQUEST['name'])
+    && isset($_REQUEST['contributionId'])
+    && $access->checkCsrf()) {
+    $result = $contributionlib->replace_contribution(
+        $_REQUEST['contributionId'],
+        $_REQUEST['name'],
+        isset($_REQUEST['description']) ? $_REQUEST['description'] : ''
+    );
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('Contribution modified'));
+    } else {
+        Feedback::error(tr('Contribution not modified'));
+    }
+    unset($_REQUEST['contributionId']);
 }
 if (isset($_REQUEST['remove']) && $access->checkCsrf(true)) {
-	$result = $contributionlib->remove_contribution($_REQUEST['remove']);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('Contribution removed'));
-	} else {
-		Feedback::error(tr('Contribution not removed'));
-	}
+    $result = $contributionlib->remove_contribution($_REQUEST['remove']);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('Contribution removed'));
+    } else {
+        Feedback::error(tr('Contribution not removed'));
+    }
 }
 if (isset($_REQUEST['contributionId'])) {
-	$contribution = $contributionlib->get_contribution($_REQUEST['contributionId']);
-	$smarty->assign('contribution', $contribution);
+    $contribution = $contributionlib->get_contribution($_REQUEST['contributionId']);
+    $smarty->assign('contribution', $contribution);
 }
 $contributions = $contributionlib->list_contributions();
 $smarty->assign_by_ref('contributions', $contributions['data']);

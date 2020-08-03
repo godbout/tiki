@@ -16,64 +16,64 @@ $access->check_feature('feature_faqs');
 $access->check_permission('tiki_p_view_faqs');
 //get_strings tra('Admin FAQs')
 if (! isset($_REQUEST["faqId"])) {
-	$_REQUEST["faqId"] = 0;
+    $_REQUEST["faqId"] = 0;
 }
 $smarty->assign('faqId', $_REQUEST["faqId"]);
 if ($_REQUEST["faqId"]) {
-	$info = $faqlib->get_faq($_REQUEST["faqId"]);
+    $info = $faqlib->get_faq($_REQUEST["faqId"]);
 } else {
-	$info = [];
-	$info["title"] = '';
-	$info["description"] = '';
-	$info["canSuggest"] = 'n';
+    $info = [];
+    $info["title"] = '';
+    $info["description"] = '';
+    $info["canSuggest"] = 'n';
 }
 $smarty->assign('title', $info["title"]);
 $smarty->assign('description', $info["description"]);
 $smarty->assign('canSuggest', $info["canSuggest"]);
 if (isset($_REQUEST["remove"])) {
-	if ($tiki_p_admin_faqs != 'y') {
-		$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
-		$smarty->display("error.tpl");
-		die;
-	}
-	$access->check_authenticity();
-	$faqlib->remove_faq($_REQUEST["remove"]);
+    if ($tiki_p_admin_faqs != 'y') {
+        $smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
+        $smarty->display("error.tpl");
+        die;
+    }
+    $access->check_authenticity();
+    $faqlib->remove_faq($_REQUEST["remove"]);
 }
 if (isset($_REQUEST["save"])) {
-	check_ticket('list-faqs');
-	$access->check_permission('tiki_p_admin_faqs');
-	if (isset($_REQUEST["canSuggest"]) && $_REQUEST["canSuggest"] == 'on') {
-		$canSuggest = 'y';
-	} else {
-		$canSuggest = 'n';
-	}
-	$fid = $faqlib->replace_faq($_REQUEST["faqId"], $_REQUEST["title"], $_REQUEST["description"], $canSuggest);
-	$cat_type = 'faq';
-	$cat_objid = $fid;
-	$cat_desc = substr($_REQUEST["description"], 0, 200);
-	$cat_name = $_REQUEST["title"];
-	$cat_href = "tiki-view_faq.php?faqId=" . $cat_objid;
-	include_once("categorize.php");
-	$smarty->assign('faqId', 0);
-	$smarty->assign('title', '');
-	$smarty->assign('description', '');
-	$smarty->assign('canSuggest', '');
+    check_ticket('list-faqs');
+    $access->check_permission('tiki_p_admin_faqs');
+    if (isset($_REQUEST["canSuggest"]) && $_REQUEST["canSuggest"] == 'on') {
+        $canSuggest = 'y';
+    } else {
+        $canSuggest = 'n';
+    }
+    $fid = $faqlib->replace_faq($_REQUEST["faqId"], $_REQUEST["title"], $_REQUEST["description"], $canSuggest);
+    $cat_type = 'faq';
+    $cat_objid = $fid;
+    $cat_desc = substr($_REQUEST["description"], 0, 200);
+    $cat_name = $_REQUEST["title"];
+    $cat_href = "tiki-view_faq.php?faqId=" . $cat_objid;
+    include_once("categorize.php");
+    $smarty->assign('faqId', 0);
+    $smarty->assign('title', '');
+    $smarty->assign('description', '');
+    $smarty->assign('canSuggest', '');
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'title_asc';
+    $sort_mode = 'title_asc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $smarty->assign_by_ref('sort_mode', $sort_mode);

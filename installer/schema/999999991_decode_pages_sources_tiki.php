@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -6,8 +7,8 @@
 // $Id$
 
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /* ABOUT THE NUMBERING:
@@ -28,13 +29,13 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_999999991_decode_pages_sources_tiki($installer)
 {
-	global $user_overrider_prefs, $systemConfiguration;
-	set_time_limit(60 * 60); // Set maximum execution time to 1 hour since this runs on all pages
-	include_once('tiki-setup.php');
-	$categlib = TikiLib::lib('categ');
-	$wikilib = TikiLib::lib('wiki');
+    global $user_overrider_prefs, $systemConfiguration;
+    set_time_limit(60 * 60); // Set maximum execution time to 1 hour since this runs on all pages
+    include_once('tiki-setup.php');
+    $categlib = TikiLib::lib('categ');
+    $wikilib = TikiLib::lib('wiki');
 
-	$converter = new convertToTiki9();
-	$converter->convertPages();
-	$converter->convertModules();
+    $converter = new convertToTiki9();
+    $converter->convertPages();
+    $converter->convertModules();
 }

@@ -13,37 +13,37 @@ include_once('lib/directory/dirlib.php');
 $access->check_feature('feature_directory');
 $access->check_permission('tiki_p_validate_links');
 if (isset($_REQUEST["validate"]) && isset($_REQUEST['sites'])) {
-	check_ticket('dir-validate');
-	foreach (array_keys($_REQUEST["sites"]) as $siteId) {
-		$dirlib->dir_validate_site($siteId);
-	}
+    check_ticket('dir-validate');
+    foreach (array_keys($_REQUEST["sites"]) as $siteId) {
+        $dirlib->dir_validate_site($siteId);
+    }
 }
 if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$dirlib->dir_remove_site($_REQUEST["remove"]);
+    $access->check_authenticity();
+    $dirlib->dir_remove_site($_REQUEST["remove"]);
 }
 if (isset($_REQUEST["del"]) && isset($_REQUEST['sites'])) {
-	check_ticket('dir-validate');
-	foreach (array_keys($_REQUEST["sites"]) as $siteId) {
-		$dirlib->dir_remove_site($siteId);
-	}
+    check_ticket('dir-validate');
+    foreach (array_keys($_REQUEST["sites"]) as $siteId) {
+        $dirlib->dir_remove_site($siteId);
+    }
 }
 // Listing: invalid sites
 // Pagination resolution
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'created_desc';
+    $sort_mode = 'created_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign_by_ref('offset', $offset);
 $smarty->assign_by_ref('sort_mode', $sort_mode);

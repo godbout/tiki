@@ -7,7 +7,7 @@
 // $Id$
 
 if (isset($_SERVER['REQUEST_METHOD'])) {
-	die('Only available through command-line.');
+    die('Only available through command-line.');
 }
 
 $tikiBase = realpath(__DIR__ . '/../..');
@@ -18,90 +18,97 @@ $composerLockFile = "$tikiBase/vendor_bundled/composer.lock";
 $composerLockFileBackup = str_replace('/composer.', '/composer_https.', $composerLockFile);
 
 if ($_SERVER['argc'] <= 1 || isset($_SERVER['argv']['help'])) {
-	echo 'Changes composer files to use http only for use behind firewalls etc.
+    echo 'Changes composer files to use http only for use behind firewalls etc.
   Options:
     execute : Change composer to use http mode
     revert : Revert changes to use normal https mode
 ';
-	return;
+
+    return;
 } elseif ($_SERVER['argv'][1] === 'revert') {
-	revert();
+    revert();
 } elseif ($_SERVER['argv'][1] === 'execute') {
-	execute();
+    execute();
 }
 
 
 function execute()
 {
-	global $tikiBase, $composerJsonFile, $composerJsonFileBackup, $composerLockFile, $composerLockFileBackup;
+    global $tikiBase, $composerJsonFile, $composerJsonFileBackup, $composerLockFile, $composerLockFileBackup;
 
-	$repoUrlHttps = 'https://composer.tiki.org';
-	$repoUrlHttp = 'http://composer.tiki.org';
+    $repoUrlHttps = 'https://composer.tiki.org';
+    $repoUrlHttp = 'http://composer.tiki.org';
 
-	if (! is_writable("$tikiBase/vendor_bundled/") || ! is_writable($composerJsonFile) || ! is_writable($composerLockFile)) {
-		echo "Error: Cannot write to $tikiBase/vendor_bundled/ or the composer files\n";
-		return;
-	}
+    if (! is_writable("$tikiBase/vendor_bundled/") || ! is_writable($composerJsonFile) || ! is_writable($composerLockFile)) {
+        echo "Error: Cannot write to $tikiBase/vendor_bundled/ or the composer files\n";
 
-	echo "Backing up original files\n";
+        return;
+    }
 
-	// back up both files
-	if (! file_exists($composerJsonFileBackup)) {
-		copy($composerJsonFile, $composerJsonFileBackup);
-	} else {
-		echo "Error: composer.json backup file already exists\n";
-		return;
-	}
-	if (! file_exists($composerLockFileBackup)) {
-		copy($composerLockFile, $composerLockFileBackup);
-	} else {
-		echo "Error: composer.lock backup file already exists\n";
-		return;
-	}
+    echo "Backing up original files\n";
 
-	echo "Processing composer.json\n";
+    // back up both files
+    if (! file_exists($composerJsonFileBackup)) {
+        copy($composerJsonFile, $composerJsonFileBackup);
+    } else {
+        echo "Error: composer.json backup file already exists\n";
 
-	$json = json_decode(file_get_contents($composerJsonFile), true);
+        return;
+    }
+    if (! file_exists($composerLockFileBackup)) {
+        copy($composerLockFile, $composerLockFileBackup);
+    } else {
+        echo "Error: composer.lock backup file already exists\n";
 
-	$json['config']['secure-http'] = false;
-	$json['repositories'][0]['url'] = str_replace($repoUrlHttps, $repoUrlHttp, $json['repositories'][0]['url']);
+        return;
+    }
 
-	file_put_contents($composerJsonFile, json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+    echo "Processing composer.json\n";
 
-	echo "Processing composer.lock\n";
+    $json = json_decode(file_get_contents($composerJsonFile), true);
 
-	$lock = file_get_contents($composerLockFile);
-	$lock = str_replace($repoUrlHttps, $repoUrlHttp, $lock);
-	file_put_contents($composerLockFile, $lock);
+    $json['config']['secure-http'] = false;
+    $json['repositories'][0]['url'] = str_replace($repoUrlHttps, $repoUrlHttp, $json['repositories'][0]['url']);
 
-	echo "Done\n";
+    file_put_contents($composerJsonFile, json_encode($json, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+
+    echo "Processing composer.lock\n";
+
+    $lock = file_get_contents($composerLockFile);
+    $lock = str_replace($repoUrlHttps, $repoUrlHttp, $lock);
+    file_put_contents($composerLockFile, $lock);
+
+    echo "Done\n";
 }
 
 function revert()
 {
-	global $tikiBase, $composerJsonFile, $composerJsonFileBackup, $composerLockFile, $composerLockFileBackup;
+    global $tikiBase, $composerJsonFile, $composerJsonFileBackup, $composerLockFile, $composerLockFileBackup;
 
-	if (! is_writable("$tikiBase/vendor_bundled/") || ! is_writable($composerJsonFile) || ! is_writable($composerLockFile)) {
-		echo "Error: Cannot write to $tikiBase/vendor_bundled/ or the composer files\n";
-		return;
-	}
+    if (! is_writable("$tikiBase/vendor_bundled/") || ! is_writable($composerJsonFile) || ! is_writable($composerLockFile)) {
+        echo "Error: Cannot write to $tikiBase/vendor_bundled/ or the composer files\n";
 
-	// check for back files
-	if (! file_exists($composerJsonFileBackup)) {
-		echo "Error: composer.json backup file not found\n";
-		return;
-	}
-	if (! file_exists($composerLockFileBackup)) {
-		echo "Error: composer.lock backup file not found\n";
-		return;
-	}
+        return;
+    }
 
-	echo "Restoring backup files\n";
+    // check for back files
+    if (! file_exists($composerJsonFileBackup)) {
+        echo "Error: composer.json backup file not found\n";
 
-	unlink($composerJsonFile);
-	rename($composerJsonFileBackup, $composerJsonFile);
-	unlink($composerLockFile);
-	rename($composerLockFileBackup, $composerLockFile);
+        return;
+    }
+    if (! file_exists($composerLockFileBackup)) {
+        echo "Error: composer.lock backup file not found\n";
 
-	echo "Done\n";
+        return;
+    }
+
+    echo "Restoring backup files\n";
+
+    unlink($composerJsonFile);
+    rename($composerJsonFileBackup, $composerJsonFile);
+    unlink($composerLockFile);
+    rename($composerLockFileBackup, $composerLockFile);
+
+    echo "Done\n";
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,39 +13,40 @@ require_once('lib/wizard/wizard.php');
  */
 class ChangesWizardNewIn13 extends Wizard
 {
-	function pageTitle()
-	{
-		return tra('New in Tiki 13');
-	}
+    public function pageTitle()
+    {
+        return tra('New in Tiki 13');
+    }
 
-	function isEditable()
-	{
-		return true;
-	}
+    public function isEditable()
+    {
+        return true;
+    }
 
-	function onSetupPage($homepageUrl)
-	{
-		global $prefs;
-		// Run the parent first
-		parent::onSetupPage($homepageUrl);
+    public function onSetupPage($homepageUrl)
+    {
+        global $prefs;
+        // Run the parent first
+        parent::onSetupPage($homepageUrl);
 
-		$showPage = true;
-		// Show if any more specification is needed
+        $showPage = true;
+        // Show if any more specification is needed
 
-		return $showPage;
-	}
+        return $showPage;
+    }
 
-	function getTemplate()
-	{
-		$wizardTemplate = 'wizard/changes_new_in_13.tpl';
-		return $wizardTemplate;
-	}
+    public function getTemplate()
+    {
+        $wizardTemplate = 'wizard/changes_new_in_13.tpl';
 
-	function onContinue($homepageUrl)
-	{
-		global $tikilib;
+        return $wizardTemplate;
+    }
 
-		// Run the parent first
-		parent::onContinue($homepageUrl);
-	}
+    public function onContinue($homepageUrl)
+    {
+        global $tikilib;
+
+        // Run the parent first
+        parent::onContinue($homepageUrl);
+    }
 }

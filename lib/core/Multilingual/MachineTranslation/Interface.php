@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -8,7 +9,7 @@
 
 interface Multilingual_MachineTranslation_Interface
 {
-	function getSupportedLanguages();
+    public function getSupportedLanguages();
 
-	function translateText($text);
+    public function translateText($text);
 }

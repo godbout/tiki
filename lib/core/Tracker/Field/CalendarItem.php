@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,278 +8,281 @@
 
 class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 {
-	/** @var AttributeLib $attributeLib */
-	private $attributeLib;
+    /** @var AttributeLib $attributeLib */
+    private $attributeLib;
 
-	/** @var CalendarLib $calendarLib */
-	private $calendarLib;
+    /** @var CalendarLib $calendarLib */
+    private $calendarLib;
 
-	public static function getTypes()
-	{
-		$def = [
-			'CAL' => [
-				'name' => tr('Date and Time (Calendar Item)'),
-				'description' => tr('Associate calendar items with tracker items.'),
-				'prefs' => ['trackerfield_calendaritem'],
-				'tags' => ['advanced', 'experimental'],
-				'warning' => tra('Experimental: (work in progress, use with care)'),
-				'default' => 'n',
-				'supported_changes' => ['f', 'j', 'CAL'],
-				'params' => [
-					'calendarId' => [
-						'name' => tr('Calendar Id'),
-						'description' => tr('Calendar to use for associated events'),
-						'filter' => 'int',
-						'profile_reference' => 'calendar',
+    public static function getTypes()
+    {
+        $def = [
+            'CAL' => [
+                'name' => tr('Date and Time (Calendar Item)'),
+                'description' => tr('Associate calendar items with tracker items.'),
+                'prefs' => ['trackerfield_calendaritem'],
+                'tags' => ['advanced', 'experimental'],
+                'warning' => tra('Experimental: (work in progress, use with care)'),
+                'default' => 'n',
+                'supported_changes' => ['f', 'j', 'CAL'],
+                'params' => [
+                    'calendarId' => [
+                        'name' => tr('Calendar Id'),
+                        'description' => tr('Calendar to use for associated events'),
+                        'filter' => 'int',
+                        'profile_reference' => 'calendar',
 
-					],
-					'showEventIdInput' => [
-						'name' => tr('Show Event Id'),
-						'description' => tr('Show an input for the event id when editing the field, allow lost events to be reattached.'),
-						'filter' => 'int',
-						'options' => [
-							0 => tr('No'),
-							1 => tr('Yes'),
-						],
-					],
-				],
-			],
-		];
+                    ],
+                    'showEventIdInput' => [
+                        'name' => tr('Show Event Id'),
+                        'description' => tr('Show an input for the event id when editing the field, allow lost events to be reattached.'),
+                        'filter' => 'int',
+                        'options' => [
+                            0 => tr('No'),
+                            1 => tr('Yes'),
+                        ],
+                    ],
+                ],
+            ],
+        ];
 
-		$parentDef = parent::getTypes();
+        $parentDef = parent::getTypes();
 
-		$def['CAL']['params'] = array_merge($def['CAL']['params'], $parentDef['j']['params']);
+        $def['CAL']['params'] = array_merge($def['CAL']['params'], $parentDef['j']['params']);
 
-		return $def;
-	}
+        return $def;
+    }
 
-	/**
-	 * Tracker_Field_CalendarItem constructor.
-	 * @param array $fieldInfo
-	 * @param array $itemData
-	 * @param Tracker_Definition $trackerDefinition
-	 */
-	function __construct($fieldInfo, $itemData, $trackerDefinition)
-	{
+    /**
+     * Tracker_Field_CalendarItem constructor.
+     * @param array $fieldInfo
+     * @param array $itemData
+     * @param Tracker_Definition $trackerDefinition
+     */
+    public function __construct($fieldInfo, $itemData, $trackerDefinition)
+    {
+        $this->attributeLib = TikiLib::lib('attribute');
+        $this->calendarLib = TikiLib::lib('calendar');
 
-		$this->attributeLib = TikiLib::lib('attribute');
-		$this->calendarLib = TikiLib::lib('calendar');
+        if ($fieldInfo['options_map']['calendarId']) {
+            TikiLib::lib('relation')->add_relation(
+                'tiki.calendar.attach',
+                'tracker',
+                $trackerDefinition->getConfiguration('trackerId'),
+                'calendar',
+                $fieldInfo['options_map']['calendarId'],
+                true
+            );
+        }
 
-		if ($fieldInfo['options_map']['calendarId']) {
-			TikiLib::lib('relation')->add_relation(
-				'tiki.calendar.attach',
-				'tracker',
-				$trackerDefinition->getConfiguration('trackerId'),
-				'calendar',
-				$fieldInfo['options_map']['calendarId'],
-				true
-			);
-		}
+        parent::__construct($fieldInfo, $itemData, $trackerDefinition);
+    }
 
-		parent::__construct($fieldInfo, $itemData, $trackerDefinition);
-	}
+    public function handleSave($value, $oldValue)
+    {
+        $calendarId = $this->getOption('calendarId');
+        $calitemId = $this->getCalendarItemId();
+        $event = $this->calendarLib->get_item($calitemId);
 
-	function handleSave($value, $oldValue)
-	{
-		$calendarId = $this->getOption('calendarId');
-		$calitemId = $this->getCalendarItemId();
-		$event = $this->calendarLib->get_item($calitemId);
+        if ($this->getOption('showEventIdInput')) {
+            // check if event changed or removed
+            $setCalitemId = isset($_POST['calitemId_' . $this->getFieldId()]) ? $_POST['calitemId_' . $this->getFieldId()] : 0;
 
-		if ($this->getOption('showEventIdInput')) {
-			// check if event changed or removed
-			$setCalitemId = isset($_POST['calitemId_' . $this->getFieldId()]) ? $_POST['calitemId_' . $this->getFieldId()] : 0;
+            if ($setCalitemId && $setCalitemId !== $calitemId) {
+                $event = $this->calendarLib->get_item($setCalitemId);
+                if ($event) {
+                    $value = $event['start'];
+                    $this->setCalendarItemId($calitemId);
+                } else {
+                    Feedback::error(tr('Calendar Item %0 not found', $setCalitemId));
+                }
 
-			if ($setCalitemId && $setCalitemId !== $calitemId) {
-				$event = $this->calendarLib->get_item($setCalitemId);
-				if ($event) {
-					$value = $event['start'];
-					$this->setCalendarItemId($calitemId);
-				} else {
-					Feedback::error(tr('Calendar Item %0 not found', $setCalitemId));
-				}
-				return [
-					'value' => $value,
-				];
-			} else if ($setCalitemId === '') {		// event detached
-				$this->removeCalendarItemId();
-				return [
-					'value' => $value,
-				];
-			}
-		}
+                return [
+                    'value' => $value,
+                ];
+            } elseif ($setCalitemId === '') {		// event detached
+                $this->removeCalendarItemId();
 
-		if ($calendarId && $value) {
-			global $user;
+                return [
+                    'value' => $value,
+                ];
+            }
+        }
 
-			/** @var TrackerLib $trklib */
-			$trklib = TikiLib::lib('trk');
+        if ($calendarId && $value) {
+            global $user;
 
-			$itemId = $this->getItemId();
-			if ($itemId) {
+            /** @var TrackerLib $trklib */
+            $trklib = TikiLib::lib('trk');
 
-				$trackerId = $this->getConfiguration('trackerId');
+            $itemId = $this->getItemId();
+            if ($itemId) {
+                $trackerId = $this->getConfiguration('trackerId');
 
-				if (! $event) {	// new calendar item please
+                if (! $event) {	// new calendar item please
 
-					$data = [
-						'calendarId' => $calendarId,
-						'start'      => $value,
-						'end'        => $value + 3600,
-						//		'locationId',
-						//		'categoryId',
-						//		'nlId',
-						//		'priority',
-						//		'status',
-						//		'url',
-						//		'lang'
-						// use the item title for new events
-						'name'       => $trklib->get_isMain_value($trackerId, $itemId),
-						//		'description',
-						//		'user',
-						//		'created',
-						//		'lastmodif',
-						//		'allday',
-						//		'recurrenceId',
-						//		'changed'
-					];
+                    $data = [
+                        'calendarId' => $calendarId,
+                        'start' => $value,
+                        'end' => $value + 3600,
+                        //		'locationId',
+                        //		'categoryId',
+                        //		'nlId',
+                        //		'priority',
+                        //		'status',
+                        //		'url',
+                        //		'lang'
+                        // use the item title for new events
+                        'name' => $trklib->get_isMain_value($trackerId, $itemId),
+                        //		'description',
+                        //		'user',
+                        //		'created',
+                        //		'lastmodif',
+                        //		'allday',
+                        //		'recurrenceId',
+                        //		'changed'
+                    ];
 
-					$calitemId = $this->calendarLib->set_item($user, 0, $data);
-					$this->setCalendarItemId($calitemId);
-				} else if ($event['start'] != $value) {
-					$value = (int) $event['start'];
-				}
-			}
-		}
+                    $calitemId = $this->calendarLib->set_item($user, 0, $data);
+                    $this->setCalendarItemId($calitemId);
+                } elseif ($event['start'] != $value) {
+                    $value = (int) $event['start'];
+                }
+            }
+        }
 
-		return [
-			'value' => $value,
-		];
-	}
+        return [
+            'value' => $value,
+        ];
+    }
 
-	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
-	{
-		$data = parent::getDocumentPart($typeFactory);
+    public function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
+    {
+        $data = parent::getDocumentPart($typeFactory);
 
-		$baseKey = $this->getBaseKey();
-		$calitemId = $this->getCalendarItemId();
-		$recurrenceId = null;
+        $baseKey = $this->getBaseKey();
+        $calitemId = $this->getCalendarItemId();
+        $recurrenceId = null;
 
-		if ($calitemId) {
-			$calItem = TikiLib::lib('calendar')->get_item($calitemId);
-			if ($calItem) {
-				$recurrenceId = $calItem['recurrenceId'];
-			} else {
-				Feedback::error(tr('CalendarItem Tracker Field %0 calendar item not found %1 for itemId %2', $this->getFieldId(), $calitemId, $this->getItemId()), 'session');
-				$calitemId = null;
-			}
-		}
+        if ($calitemId) {
+            $calItem = TikiLib::lib('calendar')->get_item($calitemId);
+            if ($calItem) {
+                $recurrenceId = $calItem['recurrenceId'];
+            } else {
+                Feedback::error(tr('CalendarItem Tracker Field %0 calendar item not found %1 for itemId %2', $this->getFieldId(), $calitemId, $this->getItemId()), 'session');
+                $calitemId = null;
+            }
+        }
 
-		$data = array_merge(
-			$data,
-			[
-				"{$baseKey}_calitemid"    => $typeFactory->numeric($calitemId),
-				"{$baseKey}_recurrenceId" => $typeFactory->numeric($recurrenceId),
-			]
-		);
+        $data = array_merge(
+            $data,
+            [
+                "{$baseKey}_calitemid" => $typeFactory->numeric($calitemId),
+                "{$baseKey}_recurrenceId" => $typeFactory->numeric($recurrenceId),
+            ]
+        );
 
-		return $data;
-	}
+        return $data;
+    }
 
-	function getProvidedFields()
-	{
-		$data = parent::getProvidedFields();
+    public function getProvidedFields()
+    {
+        $data = parent::getProvidedFields();
 
-		$baseKey = $this->getBaseKey();
+        $baseKey = $this->getBaseKey();
 
-		$data = array_merge(
-			$data,
-			[
-				"{$baseKey}_calitemid",
-				"{$baseKey}_recurrenceId",
-			]
-		);
+        $data = array_merge(
+            $data,
+            [
+                "{$baseKey}_calitemid",
+                "{$baseKey}_recurrenceId",
+            ]
+        );
 
-		return $data;
-	}
+        return $data;
+    }
 
-	function getFieldData(array $requestData = [])
-	{
-		$data = parent::getFieldData($requestData);
+    public function getFieldData(array $requestData = [])
+    {
+        $data = parent::getFieldData($requestData);
 
-		if (! empty($data['value']) && ! $this->getCalendarItemId()) {
-			// corresponding calendar irtem missing, so create a new one
-			$this->handleSave($data['value'], '');
-		}
+        if (! empty($data['value']) && ! $this->getCalendarItemId()) {
+            // corresponding calendar irtem missing, so create a new one
+            $this->handleSave($data['value'], '');
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
-	/**
-	 * @param array $context
-	 * @return string
-	 * @throws Exception
-	 */
-	function renderInput($context = [])
-	{
-		global $tikiroot;
+    /**
+     * @param array $context
+     * @throws Exception
+     * @return string
+     */
+    public function renderInput($context = [])
+    {
+        global $tikiroot;
 
-		/** @var Smarty_Tiki $smarty */
-		$smarty = TikiLib::lib('smarty');
+        /** @var Smarty_Tiki $smarty */
+        $smarty = TikiLib::lib('smarty');
 
-		$smarty->assign('datePickerHtml', parent::renderInput($context));
+        $smarty->assign('datePickerHtml', parent::renderInput($context));
 
-		$event = $this->calendarLib->get_item($this->getCalendarItemId());
-		$perms = Perms::get([ 'type' => 'calendar', 'object' => $event['calendarId']]);
+        $event = $this->calendarLib->get_item($this->getCalendarItemId());
+        $perms = Perms::get([ 'type' => 'calendar', 'object' => $event['calendarId']]);
 
-		if ($perms->change_events) {
-			if ($event) {
-				$editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&trackerItemId=' . $this->getItemId() . '&calitemId=' . $event['calitemId'];
-			} else {
-				$editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&trackerItemId=' . $this->getItemId() . '&calendarId=' . $this->getOption('calendarId');
-			}
-			$headerlib = TikiLib::lib('header');
+        if ($perms->change_events) {
+            if ($event) {
+                $editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&trackerItemId=' . $this->getItemId() . '&calitemId=' . $event['calitemId'];
+            } else {
+                $editUrl = 'tiki-calendar_edit_item.php?fullcalendar=y&isModal=1&trackerItemId=' . $this->getItemId() . '&calendarId=' . $this->getOption('calendarId');
+            }
+            $headerlib = TikiLib::lib('header');
 
-			$headerlib->add_js_config('window.CKEDITOR_BASEPATH = "' . $tikiroot . 'vendor_bundled/vendor/ckeditor/ckeditor/";')
-				->add_jsfile('vendor_bundled/vendor/ckeditor/ckeditor/ckeditor.js', true)
-				->add_js('window.dialogData = [];', 1);
-			// ->add_js('window.CKEDITOR.config._TikiRoot = "' . $tikiroot . '";', 1);
-		} else {
-			$editUrl = '';
-		}
+            $headerlib->add_js_config('window.CKEDITOR_BASEPATH = "' . $tikiroot . 'vendor_bundled/vendor/ckeditor/ckeditor/";')
+                ->add_jsfile('vendor_bundled/vendor/ckeditor/ckeditor/ckeditor.js', true)
+                ->add_js('window.dialogData = [];', 1);
+        // ->add_js('window.CKEDITOR.config._TikiRoot = "' . $tikiroot . '";', 1);
+        } else {
+            $editUrl = '';
+        }
 
-		return $this->renderTemplate('trackerinput/calendaritem.tpl', $context, ['editUrl' => $editUrl, 'event' => $event]);
-	}
+        return $this->renderTemplate('trackerinput/calendaritem.tpl', $context, ['editUrl' => $editUrl, 'event' => $event]);
+    }
 
-	function isValid($ins_fields_data)
-	{
-		return parent::isValid($ins_fields_data);
-	}
+    public function isValid($ins_fields_data)
+    {
+        return parent::isValid($ins_fields_data);
+    }
 
-	/**
-	 * @return bool|string
-	 */
-	private function getCalendarItemId()
-	{
-		$calitemId = $this->attributeLib->get_attribute('trackeritem', $this->getItemId(), 'tiki.calendar.item');
-		return $calitemId;
-	}
+    /**
+     * @return bool|string
+     */
+    private function getCalendarItemId()
+    {
+        $calitemId = $this->attributeLib->get_attribute('trackeritem', $this->getItemId(), 'tiki.calendar.item');
 
-	/**
-	 * @param $itemId
-	 */
-	private function removeCalendarItemId()
-	{
-		$this->attributeLib->set_attribute('trackeritem', $this->getItemId(), 'tiki.calendar.item', '');
-	}
+        return $calitemId;
+    }
 
-	/**
-	 * @param $calitemId
-	 */
-	private function setCalendarItemId($calitemId)
-	{
-		$this->attributeLib->set_attribute(
-			'trackeritem', $this->getItemId(), 'tiki.calendar.item',
-			$calitemId
-		);
-	}
+    /**
+     * @param $itemId
+     */
+    private function removeCalendarItemId()
+    {
+        $this->attributeLib->set_attribute('trackeritem', $this->getItemId(), 'tiki.calendar.item', '');
+    }
+
+    /**
+     * @param $calitemId
+     */
+    private function setCalendarItemId($calitemId)
+    {
+        $this->attributeLib->set_attribute(
+            'trackeritem',
+            $this->getItemId(),
+            'tiki.calendar.item',
+            $calitemId
+        );
+    }
 }

@@ -18,24 +18,23 @@ $userprefslib = TikiLib::lib('userprefs');
 // option to resize the image dynamically creating a thumbnail on the fly.
 // you have to check if the user has permission to see this gallery
 if (! isset($_REQUEST["user"])) {
-	die;
+    die;
 }
 
 if (isset($_REQUEST['fullsize']) && $_REQUEST['fullsize'] == 'y' && $prefs["user_store_file_gallery_picture"] == 'y' && $user_picture_id = $userprefslib->get_user_picture_id($_REQUEST["user"])) {
-	header('Location: tiki-download_file.php?fileId=' . $user_picture_id . '&amp;display=y');
-	die;
+    header('Location: tiki-download_file.php?fileId=' . $user_picture_id . '&amp;display=y');
+    die;
 }
 
 $info = $userprefslib->get_user_avatar_img($_REQUEST["user"]);
 $type = $info["avatarFileType"];
 $content = $info["avatarData"];
 if (empty($content)) {
-	if ($prefs['user_default_picture_id']) {
-		header('Location: tiki-download_file.php?fileId=' . $prefs['user_default_picture_id'] . '&amp;display=y');
-		die;
-	} else {
-		$content = file_get_contents('img/noavatar.png');
-	}
+    if ($prefs['user_default_picture_id']) {
+        header('Location: tiki-download_file.php?fileId=' . $prefs['user_default_picture_id'] . '&amp;display=y');
+        die;
+    }
+    $content = file_get_contents('img/noavatar.png');
 }
 header("Content-type: $type");
 echo $content;

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -11,13 +12,13 @@ use Tiki\FileGallery\File;
 
 abstract class Manipulator
 {
-	/** @var File */
-	protected $file;
+    /** @var File */
+    protected $file;
 
-	function __construct(File $file)
-	{
-		$this->file = $file;
-	}
+    public function __construct(File $file)
+    {
+        $this->file = $file;
+    }
 
-	abstract public function run($args);
+    abstract public function run($args);
 }

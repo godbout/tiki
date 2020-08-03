@@ -23,7 +23,7 @@ $result = $tikilib->query($query);
 
 $pages = [];
 while ($row = $result->fetchRow()) {
-	$pages[] = $row['pageName'];
+    $pages[] = $row['pageName'];
 }
 
 $smarty->assign('pagesWithDirectPerms', $pages);

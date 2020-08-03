@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -16,18 +17,18 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function module_search_wiki_page_info()
 {
-	return [
-		'name' => tra('Search For a Wiki Page'),
-		'description' => tra('Search for a wiki page by name.') . ' ' . tra('Deprecated - use the Search module instead'), // Search doesn't support Exact Match
-		'prefs' => ['feature_wiki'],
-		'params' => [
-			'exact' => [
-				'name' => tra('Exact Match'),
-				'description' => tra('Exact match checkbox checked by default if set to "y".') . " " . tr('Default: "n".'),
-				'filter' => 'alpha'
-			],
-		],
-	];
+    return [
+        'name' => tra('Search For a Wiki Page'),
+        'description' => tra('Search for a wiki page by name.') . ' ' . tra('Deprecated - use the Search module instead'), // Search doesn't support Exact Match
+        'prefs' => ['feature_wiki'],
+        'params' => [
+            'exact' => [
+                'name' => tra('Exact Match'),
+                'description' => tra('Exact match checkbox checked by default if set to "y".') . " " . tr('Default: "n".'),
+                'filter' => 'alpha'
+            ],
+        ],
+    ];
 }
 
 /**
@@ -36,11 +37,11 @@ function module_search_wiki_page_info()
  */
 function module_search_wiki_page($mod_reference, $module_params)
 {
-	$smarty = TikiLib::lib('smarty');
-	$request = $smarty->getTemplateVars('exact_match');
-	if (isset($request)) {
-		$smarty->assign('exact', $request);
-	} else {
-		$smarty->assign('exact', isset($module_params['exact']) ? $module_params['exact'] : 'n');
-	}
+    $smarty = TikiLib::lib('smarty');
+    $request = $smarty->getTemplateVars('exact_match');
+    if (isset($request)) {
+        $smarty->assign('exact', $request);
+    } else {
+        $smarty->assign('exact', isset($module_params['exact']) ? $module_params['exact'] : 'n');
+    }
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -11,41 +12,41 @@ use GuzzleHttp\Psr7\ServerRequest;
 
 class Helpers
 {
-	public static function tiki2Psr7Request($tikireq)
-	{
-		$method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
-		$headers = getallheaders();
+    public static function tiki2Psr7Request($tikireq)
+    {
+        $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+        $headers = getallheaders();
 
-		$uri = ServerRequest::getUriFromGlobals();
-		$body = new LazyOpenStream('php://input', 'r+');
-		$protocol = isset($_SERVER['SERVER_PROTOCOL']) ? str_replace('HTTP/', '', $_SERVER['SERVER_PROTOCOL']) : '1.1';
+        $uri = ServerRequest::getUriFromGlobals();
+        $body = new LazyOpenStream('php://input', 'r+');
+        $protocol = isset($_SERVER['SERVER_PROTOCOL']) ? str_replace('HTTP/', '', $_SERVER['SERVER_PROTOCOL']) : '1.1';
 
-		$serverRequest = new ServerRequest($method, $uri, $headers, $body, $protocol, $_SERVER);
+        $serverRequest = new ServerRequest($method, $uri, $headers, $body, $protocol, $_SERVER);
 
-		return $serverRequest
-			->withCookieParams($_COOKIE)
-			->withQueryParams($tikireq->getStored())
-			->withParsedBody($tikireq->getStored())
-			->withUploadedFiles(ServerRequest::normalizeFiles($_FILES));
-	}
+        return $serverRequest
+            ->withCookieParams($_COOKIE)
+            ->withQueryParams($tikireq->getStored())
+            ->withParsedBody($tikireq->getStored())
+            ->withUploadedFiles(ServerRequest::normalizeFiles($_FILES));
+    }
 
-	public static function processPsr7Response($response)
-	{
-		$statusLine = sprintf(
-			'HTTP/%s %s %s',
-			$response->getProtocolVersion(),
-			$response->getStatusCode(),
-			$response->getReasonPhrase()
-		);
-		header($statusLine, true);
+    public static function processPsr7Response($response)
+    {
+        $statusLine = sprintf(
+            'HTTP/%s %s %s',
+            $response->getProtocolVersion(),
+            $response->getStatusCode(),
+            $response->getReasonPhrase()
+        );
+        header($statusLine, true);
 
-		foreach ($response->getHeaders() as $name => $value) {
-			$value = $response->getHeaderLine($name);
-			$responseHeader = sprintf('%s: %s', $name, $value);
-			header($responseHeader, false);
-		}
+        foreach ($response->getHeaders() as $name => $value) {
+            $value = $response->getHeaderLine($name);
+            $responseHeader = sprintf('%s: %s', $name, $value);
+            header($responseHeader, false);
+        }
 
-		echo $response->getBody();
-		exit();
-	}
+        echo $response->getBody();
+        exit();
+    }
 }

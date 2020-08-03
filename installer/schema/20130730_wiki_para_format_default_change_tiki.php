@@ -7,8 +7,8 @@
 // $Id$
 
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -18,10 +18,10 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_20130730_wiki_para_format_default_change_tiki($installer)
 {
-	$value = $installer->getOne("SELECT `value` FROM `tiki_preferences` WHERE `name` = 'feature_wiki_paragraph_formatting'");
+    $value = $installer->getOne("SELECT `value` FROM `tiki_preferences` WHERE `name` = 'feature_wiki_paragraph_formatting'");
 
-	if ($value !== 'y') {	// default values can be empty
-		$preferences = $installer->table('tiki_preferences');
-		$preferences->insertOrUpdate(['value' => 'n'], ['name' => 'feature_wiki_paragraph_formatting']);
-	}
+    if ($value !== 'y') {	// default values can be empty
+        $preferences = $installer->table('tiki_preferences');
+        $preferences->insertOrUpdate(['value' => 'n'], ['name' => 'feature_wiki_paragraph_formatting']);
+    }
 }

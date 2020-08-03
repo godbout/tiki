@@ -15,7 +15,7 @@ require_once('tiki-setup.php');
 $_REQUEST['type'] = (! empty($_REQUEST['type']) ? $_REQUEST['type'] : 'html');
 
 if ($_REQUEST['type'] == 'html') {
-	$access->check_feature('feature_htmlfeed');
-	$feed = new Feed_Html();
-	print_r(json_encode($feed->feed()));
+    $access->check_feature('feature_htmlfeed');
+    $feed = new Feed_Html();
+    print_r(json_encode($feed->feed()));
 }

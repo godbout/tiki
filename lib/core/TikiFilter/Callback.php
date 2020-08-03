@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,17 +8,17 @@
 
 class TikiFilter_Callback implements Laminas\Filter\FilterInterface
 {
-	private $callback;
+    private $callback;
 
-	function __construct($callback)
-	{
-		$this->callback = $callback;
-	}
+    public function __construct($callback)
+    {
+        $this->callback = $callback;
+    }
 
-	function filter($value)
-	{
-		$f = $this->callback;
+    public function filter($value)
+    {
+        $f = $this->callback;
 
-		return $f($value);
-	}
+        return $f($value);
+    }
 }

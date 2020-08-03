@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,265 +8,270 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
-	header('location: index.php');
-	exit;
+    header('location: index.php');
+    exit;
 }
 
 class cssLib extends TikiLib
 {
-	function list_layouts($theme = null, $theme_option = null)
-	{
-		global $prefs;
+    public function list_layouts($theme = null, $theme_option = null)
+    {
+        global $prefs;
 
-		if (empty($theme) && empty($theme_option)) { // if you submit no parameters, return the current theme/theme option
-			if (isset($prefs['site_theme'])) {
-				$theme = $prefs['site_theme'];
-			}
-			if (isset($prefs['theme_option'])) {
-				$theme_option = $prefs['theme_option'];
-			}
-		}
+        if (empty($theme) && empty($theme_option)) { // if you submit no parameters, return the current theme/theme option
+            if (isset($prefs['site_theme'])) {
+                $theme = $prefs['site_theme'];
+            }
+            if (isset($prefs['theme_option'])) {
+                $theme_option = $prefs['theme_option'];
+            }
+        }
 
-		$themelib = TikiLib::lib('theme');
+        $themelib = TikiLib::lib('theme');
 
-		$available_layouts = [];
-		foreach (scandir(TIKI_PATH . '/templates/layouts/') as $layoutName) {
-			if ($layoutName[0] != '.' && $layoutName != 'index.php') {
-				$available_layouts[$layoutName] = ucfirst($layoutName);
-			}
-		}
-		foreach (\Tiki\Package\ExtensionManager::getPaths() as $path) {
-			if (file_exists($path . '/templates/layouts/')) {
-				foreach (scandir($path . '/templates/layouts/') as $layoutName) {
-					if ($layoutName[0] != '.' && $layoutName != 'index.php') {
-						 $available_layouts[$layoutName] = ucfirst($layoutName);
-					}
-				}
-			}
-		}
+        $available_layouts = [];
+        foreach (scandir(TIKI_PATH . '/templates/layouts/') as $layoutName) {
+            if ($layoutName[0] != '.' && $layoutName != 'index.php') {
+                $available_layouts[$layoutName] = ucfirst($layoutName);
+            }
+        }
+        foreach (\Tiki\Package\ExtensionManager::getPaths() as $path) {
+            if (file_exists($path . '/templates/layouts/')) {
+                foreach (scandir($path . '/templates/layouts/') as $layoutName) {
+                    if ($layoutName[0] != '.' && $layoutName != 'index.php') {
+                        $available_layouts[$layoutName] = ucfirst($layoutName);
+                    }
+                }
+            }
+        }
 
-		$main_theme_path = $themelib->get_theme_path($theme, '', '', 'templates'); // path to the main site theme
+        $main_theme_path = $themelib->get_theme_path($theme, '', '', 'templates'); // path to the main site theme
 
-		if (file_exists(TIKI_PATH . "/" . $main_theme_path . '/layouts/')) {
-			foreach (scandir(TIKI_PATH . "/" . $main_theme_path . '/layouts/') as $layoutName) {
-				if ($layoutName[0] != '.' && $layoutName != 'index.php') {
-					$available_layouts[$layoutName] = ucfirst($layoutName);
-				}
-			}
-		}
+        if (file_exists(TIKI_PATH . "/" . $main_theme_path . '/layouts/')) {
+            foreach (scandir(TIKI_PATH . "/" . $main_theme_path . '/layouts/') as $layoutName) {
+                if ($layoutName[0] != '.' && $layoutName != 'index.php') {
+                    $available_layouts[$layoutName] = ucfirst($layoutName);
+                }
+            }
+        }
 
-		if ($theme_option) {
-			$theme_path = $themelib->get_theme_path($theme, $theme_option, '', 'templates'); // path to the site theme options
+        if ($theme_option) {
+            $theme_path = $themelib->get_theme_path($theme, $theme_option, '', 'templates'); // path to the site theme options
 
-			if (file_exists(TIKI_PATH . "/" . $theme_path . '/layouts/')) {
-				foreach (scandir(TIKI_PATH . "/" . $theme_path . '/layouts/') as $layoutName) {
-					if ($layoutName[0] != '.' && $layoutName != 'index.php') {
-						$available_layouts[$layoutName] = ucfirst($layoutName);
-					}
-				}
-			}
-		}
-		return $available_layouts;
-	}
+            if (file_exists(TIKI_PATH . "/" . $theme_path . '/layouts/')) {
+                foreach (scandir(TIKI_PATH . "/" . $theme_path . '/layouts/') as $layoutName) {
+                    if ($layoutName[0] != '.' && $layoutName != 'index.php') {
+                        $available_layouts[$layoutName] = ucfirst($layoutName);
+                    }
+                }
+            }
+        }
 
-	function list_user_selectable_layouts($theme = null, $theme_option = null)
-	{
-		global $prefs;
+        return $available_layouts;
+    }
 
-		if (empty($theme) && empty($theme_option)) { // if you submit no parameters, return the current theme/theme option
-			if (isset($prefs['site_theme'])) {
-				$theme = $prefs['site_theme'];
-			}
-			if (isset($prefs['theme_option'])) {
-				$theme_option = $prefs['theme_option'];
-			}
-		}
+    public function list_user_selectable_layouts($theme = null, $theme_option = null)
+    {
+        global $prefs;
 
-		$selectable_layouts = [];
-		$available_layouts = $this->list_layouts($theme, $theme_option);
+        if (empty($theme) && empty($theme_option)) { // if you submit no parameters, return the current theme/theme option
+            if (isset($prefs['site_theme'])) {
+                $theme = $prefs['site_theme'];
+            }
+            if (isset($prefs['theme_option'])) {
+                $theme_option = $prefs['theme_option'];
+            }
+        }
 
-		foreach ($available_layouts as $layoutName => $layoutLabel) {
-			if ($layoutName == 'mobile'
-				|| $layoutName == 'layout_plain.tpl'
-				|| $layoutName == 'internal'
-			) {
-				// hide layouts that are for internal use only
-				continue;
-			} elseif ($layoutName == 'basic') {
-				$selectable_layouts[$layoutName] = tra('Single Container');
-			} elseif ($layoutName == 'classic') {
-				$selectable_layouts[$layoutName] = tra('Classic Tiki (3 containers - header, middle, footer)');
-			} elseif ($layoutName == 'social') {
-				$selectable_layouts[$layoutName] = tra('Classic Bootstrap (fixed top navbar)');
-			} else {
-				$selectable_layouts[$layoutName] = $layoutLabel;
-			}
-		}
+        $selectable_layouts = [];
+        $available_layouts = $this->list_layouts($theme, $theme_option);
 
-		return $selectable_layouts;
-	}
+        foreach ($available_layouts as $layoutName => $layoutLabel) {
+            if ($layoutName == 'mobile'
+                || $layoutName == 'layout_plain.tpl'
+                || $layoutName == 'internal'
+            ) {
+                // hide layouts that are for internal use only
+                continue;
+            } elseif ($layoutName == 'basic') {
+                $selectable_layouts[$layoutName] = tra('Single Container');
+            } elseif ($layoutName == 'classic') {
+                $selectable_layouts[$layoutName] = tra('Classic Tiki (3 containers - header, middle, footer)');
+            } elseif ($layoutName == 'social') {
+                $selectable_layouts[$layoutName] = tra('Classic Bootstrap (fixed top navbar)');
+            } else {
+                $selectable_layouts[$layoutName] = $layoutLabel;
+            }
+        }
 
-	function list_css($path, $recursive = false)
-	{
-		$files = $this->list_files($path, '.css', $recursive);
-		foreach ($files as $i => $file) {
-			$files[$i] = preg_replace("|^$path/(.*)\.css$|", '$1', $file);
-		}
-		return $files;
-	}
+        return $selectable_layouts;
+    }
 
-	function list_files($path, $extension, $recursive)
-	{
-		$back = [];
+    public function list_css($path, $recursive = false)
+    {
+        $files = $this->list_files($path, '.css', $recursive);
+        foreach ($files as $i => $file) {
+            $files[$i] = preg_replace("|^$path/(.*)\.css$|", '$1', $file);
+        }
 
-		$handle = opendir($path);
+        return $files;
+    }
 
-		while ($file = readdir($handle)) {
-			if ((substr($file, -4, 4) == $extension) and (preg_match('/^[-_a-zA-Z0-9\.]*$/', $file))) {
-				$back[] = "$path/$file";
-			} elseif ($recursive
-								&& $file != '.svn'
-								&& $file != '.'
-								&& $file != '..'
-								&& is_dir("$path/$file")
-								&& ! file_exists("db/$file/local.php")
-			) {
-				$back = array_merge($back, $this->list_files("$path/$file", $extension, $recursive));
-			}
-		}
-		closedir($handle);
-		sort($back);
-		return $back;
-	}
+    public function list_files($path, $extension, $recursive)
+    {
+        $back = [];
 
-	function browse_css($path)
-	{
-		if (! is_file($path)) {
-			return ['error' => "No such file : $path"];
-		}
+        $handle = opendir($path);
 
-		$meat = implode('', file($path));
+        while ($file = readdir($handle)) {
+            if ((substr($file, -4, 4) == $extension) and (preg_match('/^[-_a-zA-Z0-9\.]*$/', $file))) {
+                $back[] = "$path/$file";
+            } elseif ($recursive
+                                && $file != '.svn'
+                                && $file != '.'
+                                && $file != '..'
+                                && is_dir("$path/$file")
+                                && ! file_exists("db/$file/local.php")
+            ) {
+                $back = array_merge($back, $this->list_files("$path/$file", $extension, $recursive));
+            }
+        }
+        closedir($handle);
+        sort($back);
 
-		$find[0] = '/\}/';
-		$repl[0] = "\n}\n";
+        return $back;
+    }
 
-		$find[1] = '/\{/';
-		$repl[1] = "\n{\n";
+    public function browse_css($path)
+    {
+        if (! is_file($path)) {
+            return ['error' => "No such file : $path"];
+        }
 
-		$find[2] = '/\/\*/';
-		$repl[2] = "\n/*\n";
+        $meat = implode('', file($path));
 
-		$find[3] = '/\*\//';
-		$repl[3] = "\n*/\n";
+        $find[0] = '/\}/';
+        $repl[0] = "\n}\n";
 
-		$find[4] = '/;/';
-		$repl[4] = ";\n";
+        $find[1] = '/\{/';
+        $repl[1] = "\n{\n";
 
-		$find[5] = '/(W|w)hite/';
-		$repl[5] = '#FFFFFF';
+        $find[2] = '/\/\*/';
+        $repl[2] = "\n/*\n";
 
-		$find[6] = '/(B|b)lack/';
-		$repl[6] = '#000000';
+        $find[3] = '/\*\//';
+        $repl[3] = "\n*/\n";
 
-		$res = preg_replace($find, $repl, $meat);
-		return [
-			'error' => '',
-			'content' => explode("\n", $res)
-		];
-	}
+        $find[4] = '/;/';
+        $repl[4] = ";\n";
 
-	function parse_css($data)
-	{
-		$back = [];
+        $find[5] = '/(W|w)hite/';
+        $repl[5] = '#FFFFFF';
 
-		$index = 0;
-		$type = '';
+        $find[6] = '/(B|b)lack/';
+        $repl[6] = '#000000';
 
-		foreach ($data as $line) {
-			$line = trim($line);
+        $res = preg_replace($find, $repl, $meat);
 
-			if ($line) {
-				if (($type != 'comment') and ($line == '/*')) {
-					$type = 'comment';
+        return [
+            'error' => '',
+            'content' => explode("\n", $res)
+        ];
+    }
 
-					$index++;
-					$back["$index"]['comment'] = '';
-					$back["$index"]['items'] = [];
-					$back["$index"]['attributes'] = [];
-				} elseif (($type == 'comment') and ($line == '*/')) {
-					$type = '';
-				} elseif ($type == 'comment') {
-					$back["$index"]['comment'] .= "$line\n";
-				} elseif (($type == 'items') and ($line == '{')) {
-					$type = 'attributes';
-				} elseif ($type == 'items') {
-					$li = explode(',', $line);
+    public function parse_css($data)
+    {
+        $back = [];
 
-					foreach ($li as $l) {
-						$l = trim($l);
+        $index = 0;
+        $type = '';
 
-						if ($l) {
-							$back["$index"]['items'][] = $l;
-						}
-					}
-				} elseif (($type == 'attributes') and ($line == '}')) {
-					$type = '';
+        foreach ($data as $line) {
+            $line = trim($line);
 
-					$index++;
-					$back["$index"]['comment'] = '';
-					$back["$index"]['items'] = [];
-					$back["$index"]['attributes'] = [];
-				} elseif ($type == 'attributes') {
-					$parts = explode(':', str_replace(';', '', $line));
+            if ($line) {
+                if (($type != 'comment') and ($line == '/*')) {
+                    $type = 'comment';
 
-					if (isset($parts[0]) && isset($parts[1])) {
-						$obj = trim($parts[0]);
+                    $index++;
+                    $back["$index"]['comment'] = '';
+                    $back["$index"]['items'] = [];
+                    $back["$index"]['attributes'] = [];
+                } elseif (($type == 'comment') and ($line == '*/')) {
+                    $type = '';
+                } elseif ($type == 'comment') {
+                    $back["$index"]['comment'] .= "$line\n";
+                } elseif (($type == 'items') and ($line == '{')) {
+                    $type = 'attributes';
+                } elseif ($type == 'items') {
+                    $li = explode(',', $line);
 
-						$back["$index"]['attributes']["$obj"] = trim($parts[1]);
-					}
-				} else {
-					$li = explode(',', $line);
+                    foreach ($li as $l) {
+                        $l = trim($l);
 
-					foreach ($li as $l) {
-						$l = trim($l);
+                        if ($l) {
+                            $back["$index"]['items'][] = $l;
+                        }
+                    }
+                } elseif (($type == 'attributes') and ($line == '}')) {
+                    $type = '';
 
-						if ($l) {
-							$back["$index"]['items'][] = $l;
-						}
-					}
+                    $index++;
+                    $back["$index"]['comment'] = '';
+                    $back["$index"]['items'] = [];
+                    $back["$index"]['attributes'] = [];
+                } elseif ($type == 'attributes') {
+                    $parts = explode(':', str_replace(';', '', $line));
 
-					$type = 'items';
-				}
+                    if (isset($parts[0]) && isset($parts[1])) {
+                        $obj = trim($parts[0]);
 
-				$back['content'] = $line;
-			}
-		}
+                        $back["$index"]['attributes']["$obj"] = trim($parts[1]);
+                    }
+                } else {
+                    $li = explode(',', $line);
 
-		return $back;
-	}
+                    foreach ($li as $l) {
+                        $l = trim($l);
 
-	/**
-	 * Find the version of Tiki that a CSS is compatible with
-	 *
-	 * @TODO: cache the results
-	 * @TODO: only read the first 30 lines or so of the file
-	 */
-	function version_css($path)
-	{
-		if (! file_exists($path)) {
-			return false;
-		}
+                        if ($l) {
+                            $back["$index"]['items'][] = $l;
+                        }
+                    }
 
-		$data = implode('', file($path));
-		$pos = strpos($data, '@version');
+                    $type = 'items';
+                }
 
-		if ($pos === false) {
-			return false;
-		}
-		// get version
-		preg_match("/(@[V|v]ersion):?\s?([\d]+)\.([\d]+)/i", $data, $matches);
-		$version = $matches[2] . '.' . $matches[3];
+                $back['content'] = $line;
+            }
+        }
 
-		return $version;
-	}
+        return $back;
+    }
+
+    /**
+     * Find the version of Tiki that a CSS is compatible with
+     *
+     * @TODO: cache the results
+     * @TODO: only read the first 30 lines or so of the file
+     * @param mixed $path
+     */
+    public function version_css($path)
+    {
+        if (! file_exists($path)) {
+            return false;
+        }
+
+        $data = implode('', file($path));
+        $pos = strpos($data, '@version');
+
+        if ($pos === false) {
+            return false;
+        }
+        // get version
+        preg_match("/(@[V|v]ersion):?\s?([\d]+)\.([\d]+)/i", $data, $matches);
+        $version = $matches[2] . '.' . $matches[3];
+
+        return $version;
+    }
 }

@@ -14,65 +14,65 @@ $adminlib = TikiLib::lib('admin');
 $access->check_permission('tiki_p_admin');
 
 if (! isset($_REQUEST["extwikiId"])) {
-	$_REQUEST["extwikiId"] = 0;
+    $_REQUEST["extwikiId"] = 0;
 }
 $smarty->assign('extwikiId', $_REQUEST["extwikiId"]);
 if ($_REQUEST["extwikiId"]) {
-	$info = $adminlib->get_extwiki($_REQUEST["extwikiId"]);
+    $info = $adminlib->get_extwiki($_REQUEST["extwikiId"]);
 } else {
-	$info = [
-		'name' => '',
-		'extwiki' => '',
-		'indexname' => '',
-		'groups' => [],
-	];
+    $info = [
+        'name' => '',
+        'extwiki' => '',
+        'indexname' => '',
+        'groups' => [],
+    ];
 }
 $smarty->assign('info', $info);
 if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
-	$result = $adminlib->remove_extwiki($_REQUEST["remove"]);
-	if ($result && $result->numRows()) {
-		Feedback::success(tr('External wiki removed'));
-	} else {
-		Feedback::error(tr('External wiki not removed'));
-	}
+    $result = $adminlib->remove_extwiki($_REQUEST["remove"]);
+    if ($result && $result->numRows()) {
+        Feedback::success(tr('External wiki removed'));
+    } else {
+        Feedback::error(tr('External wiki not removed'));
+    }
 }
 if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
-	$selector = TikiLib::lib('objectselector');
-	$items = $selector->readMultipleSimple('group', $jitRequest->groups->text(), ';');
-	$items = array_map(function ($i) {
-		return $i['id'];
-	}, $items);
+    $selector = TikiLib::lib('objectselector');
+    $items = $selector->readMultipleSimple('group', $jitRequest->groups->text(), ';');
+    $items = array_map(function ($i) {
+        return $i['id'];
+    }, $items);
 
-	$result = $adminlib->replace_extwiki($_REQUEST["extwikiId"], $_REQUEST["extwiki"], $_REQUEST['name'], $jitRequest->indexname->word(), $items);
-	$info = [
-		'name' => '',
-		'extwiki' => '',
-		'indexname' => '',
-		'groups' => [],
-	];
-	if ($result) {
-		Feedback::success(tr('External wiki saved'));
-	} else {
-		Feedback::error(tr('External wiki not saved'));
-	}
-	$smarty->assign('info', $info);
-	$smarty->assign('name', '');
+    $result = $adminlib->replace_extwiki($_REQUEST["extwikiId"], $_REQUEST["extwiki"], $_REQUEST['name'], $jitRequest->indexname->word(), $items);
+    $info = [
+        'name' => '',
+        'extwiki' => '',
+        'indexname' => '',
+        'groups' => [],
+    ];
+    if ($result) {
+        Feedback::success(tr('External wiki saved'));
+    } else {
+        Feedback::error(tr('External wiki not saved'));
+    }
+    $smarty->assign('info', $info);
+    $smarty->assign('name', '');
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'extwikiId_desc';
+    $sort_mode = 'extwikiId_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $smarty->assign_by_ref('sort_mode', $sort_mode);

@@ -17,13 +17,13 @@ unset($_SESSION['current_perspective']);
 unset($_SESSION['current_perspective_name']);
 
 if (isset($_REQUEST['perspective'])) {
-	$perspectivelib->set_perspective($_REQUEST['perspective']);
+    $perspectivelib->set_perspective($_REQUEST['perspective']);
 }
 
 if (isset($_REQUEST['back']) && isset($_SERVER['HTTP_REFERER'])) {
-	$access->redirect($_SERVER['HTTP_REFERER']);
+    $access->redirect($_SERVER['HTTP_REFERER']);
 } else {
-	$access->redirect('index.php');
+    $access->redirect('index.php');
 }
 
 // EOF

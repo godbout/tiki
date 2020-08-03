@@ -16,18 +16,18 @@ $access->check_permission('tiki_p_view_directory');
 //get_strings tra('Browse Directory')
 // If no parent category then the parent category is 0
 if (! isset($_REQUEST["parent"])) {
-	$_REQUEST["parent"] = 0;
+    $_REQUEST["parent"] = 0;
 }
 $smarty->assign('parent', $_REQUEST["parent"]);
 $all = 0;
 if ($_REQUEST["parent"] == 0) {
-	$parent_name = 'Top';
-	$all = 1;
-	$smarty->assign('parent_info', "");
+    $parent_name = 'Top';
+    $all = 1;
+    $smarty->assign('parent_info', "");
 } else {
-	$parent_info = $dirlib->dir_get_category($_REQUEST['parent']);
-	$smarty->assign('parent_info', $parent_info);
-	$parent_name = $parent_info['name'];
+    $parent_info = $dirlib->dir_get_category($_REQUEST['parent']);
+    $smarty->assign('parent_info', $parent_info);
+    $parent_name = $parent_info['name'];
 }
 $smarty->assign('parent_name', $parent_name);
 $smarty->assign('parent', $_REQUEST['parent']);
@@ -46,23 +46,23 @@ $smarty->assign_by_ref('headtitle', $headtitle);
 $categs = $dirlib->dir_list_categories($_REQUEST['parent'], 0, -1, 'name_asc', '');
 $temp_max = count($categs['data']);
 for ($i = 0; $i < $temp_max; $i++) {
-	$categs['data'][$i]['subcats'] = [];
-	if ($categs['data'][$i]['childrenType'] == 'c' && $categs['data'][$i]['viewableChildren'] > 0) {
-		// Generate the subcategories with most hist as the subcategories to show.
-		$subcats = $dirlib->dir_list_categories($categs['data'][$i]['categId'], 0, $categs['data'][$i]['viewableChildren'], 'hits_desc', '');
-		$categs['data'][$i]['subcats'] = $subcats['data'];
-	}
-	if ($categs['data'][$i]['childrenType'] == 'd' && $categs['data'][$i]['viewableChildren'] > 0) {
-		// Generate the subcategories with most hist as the subcategories to show.
-		$categs['data'][$i]['subcats'] = [
-			[
-				"name" => $categs['data'][$i]['description']
-			]
-		];
-	}
-	if ($categs['data'][$i]['childrenType'] == 'r' && $categs['data'][$i]['viewableChildren'] > 0) {
-		$categs['data'][$i]['subcats'] = $dirlib->get_random_subcats($categs['data'][$i]['categId'], $categs['data'][$i]['viewableChildren']);
-	}
+    $categs['data'][$i]['subcats'] = [];
+    if ($categs['data'][$i]['childrenType'] == 'c' && $categs['data'][$i]['viewableChildren'] > 0) {
+        // Generate the subcategories with most hist as the subcategories to show.
+        $subcats = $dirlib->dir_list_categories($categs['data'][$i]['categId'], 0, $categs['data'][$i]['viewableChildren'], 'hits_desc', '');
+        $categs['data'][$i]['subcats'] = $subcats['data'];
+    }
+    if ($categs['data'][$i]['childrenType'] == 'd' && $categs['data'][$i]['viewableChildren'] > 0) {
+        // Generate the subcategories with most hist as the subcategories to show.
+        $categs['data'][$i]['subcats'] = [
+            [
+                "name" => $categs['data'][$i]['description']
+            ]
+        ];
+    }
+    if ($categs['data'][$i]['childrenType'] == 'r' && $categs['data'][$i]['viewableChildren'] > 0) {
+        $categs['data'][$i]['subcats'] = $dirlib->get_random_subcats($categs['data'][$i]['categId'], $categs['data'][$i]['viewableChildren']);
+    }
 }
 $smarty->assign_by_ref('categs', $categs['data']);
 $smarty->assign('cols', $prefs['directory_columns']);
@@ -70,33 +70,33 @@ $smarty->assign('cols', $prefs['directory_columns']);
 $categ_info = $dirlib->dir_get_category($_REQUEST['parent']);
 $smarty->assign_by_ref('categ_info', $categ_info);
 if ($user) {
-	if (in_array($categ_info['editorGroup'], $userlib->get_user_groups($user))) {
-		$tiki_p_admin_directory_sites = 'y';
-		$smarty->assign('tiki_p_admin_directory_sites', 'y');
-	}
+    if (in_array($categ_info['editorGroup'], $userlib->get_user_groups($user))) {
+        $tiki_p_admin_directory_sites = 'y';
+        $smarty->assign('tiki_p_admin_directory_sites', 'y');
+    }
 }
 if ($categ_info['allowSites'] == 'y') {
-	if (! isset($_REQUEST["sort_mode"])) {
-		$sort_mode = 'hits_desc';
-	} else {
-		$sort_mode = $_REQUEST["sort_mode"];
-	}
-	if (! isset($_REQUEST["offset"])) {
-		$offset = 0;
-	} else {
-		$offset = $_REQUEST["offset"];
-	}
-	if (isset($_REQUEST["find"])) {
-		$find = $_REQUEST["find"];
-	} else {
-		$find = '';
-	}
-	$smarty->assign_by_ref('offset', $offset);
-	$smarty->assign_by_ref('sort_mode', $sort_mode);
-	$smarty->assign('find', $find);
-	$items = $dirlib->dir_list_sites($_REQUEST['parent'], $offset, $prefs['directory_links_per_page'], $sort_mode, '', 'y');
-	$smarty->assign_by_ref('cant_pages', $items["cant"]);
-	$smarty->assign_by_ref('items', $items["data"]);
+    if (! isset($_REQUEST["sort_mode"])) {
+        $sort_mode = 'hits_desc';
+    } else {
+        $sort_mode = $_REQUEST["sort_mode"];
+    }
+    if (! isset($_REQUEST["offset"])) {
+        $offset = 0;
+    } else {
+        $offset = $_REQUEST["offset"];
+    }
+    if (isset($_REQUEST["find"])) {
+        $find = $_REQUEST["find"];
+    } else {
+        $find = '';
+    }
+    $smarty->assign_by_ref('offset', $offset);
+    $smarty->assign_by_ref('sort_mode', $sort_mode);
+    $smarty->assign('find', $find);
+    $items = $dirlib->dir_list_sites($_REQUEST['parent'], $offset, $prefs['directory_links_per_page'], $sort_mode, '', 'y');
+    $smarty->assign_by_ref('cant_pages', $items["cant"]);
+    $smarty->assign_by_ref('items', $items["data"]);
 }
 include_once('tiki-section_options.php');
 // Related categs
@@ -107,8 +107,8 @@ $smarty->assign_by_ref('stats', $stats);
 ask_ticket('dir-browse');
 $smarty->assign('mid', 'tiki-directory_browse.tpl');
 if (isset($_REQUEST['print'])) {
-	$smarty->display('tiki-print.tpl');
-	$smarty->assign('print', 'y');
+    $smarty->display('tiki-print.tpl');
+    $smarty->assign('print', 'y');
 } else {
-	$smarty->display('tiki.tpl');
+    $smarty->display('tiki.tpl');
 }

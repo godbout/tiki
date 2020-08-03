@@ -10,45 +10,45 @@
 
 require_once('tiki-setup.php');
 include_once('lib/rankings/ranklib.php');
-$access->check_feature(['feature_file_galleries','feature_file_galleries_rankings']);
+$access->check_feature(['feature_file_galleries', 'feature_file_galleries_rankings']);
 
 if ((isset($tiki_p_list_file_galleries) && $tiki_p_list_file_galleries != 'y') || (! isset($tiki_p_list_file_galleries) && $tiki_p_view_file_gallery != 'y')) {
-	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have permission to view this section"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('errortype', 401);
+    $smarty->assign('msg', tra("You do not have permission to view this section"));
+    $smarty->display("error.tpl");
+    die;
 }
 
 $allrankings = [
-	[
-	'name' => tra('Most-visited file galleries'),
-	'value' => 'filegal_ranking_top_galleries'
-	],
-	[
-	'name' => tra('Most downloaded files'),
-	'value' => 'filegal_ranking_top_files'
-	],
-	[
-	'name' => tra('Last files'),
-	'value' => 'filegal_ranking_last_files'
-	],
+    [
+    'name' => tra('Most-visited file galleries'),
+    'value' => 'filegal_ranking_top_galleries'
+    ],
+    [
+    'name' => tra('Most downloaded files'),
+    'value' => 'filegal_ranking_top_files'
+    ],
+    [
+    'name' => tra('Last files'),
+    'value' => 'filegal_ranking_last_files'
+    ],
 ];
 
 $smarty->assign('allrankings', $allrankings);
 
 if (! isset($_REQUEST["which"])) {
-	$which = 'filegal_ranking_top_files';
+    $which = 'filegal_ranking_top_files';
 } else {
-	$which = $_REQUEST["which"];
+    $which = $_REQUEST["which"];
 }
 
 $smarty->assign('which', $which);
 
 // Get the page from the request var or default it to HomePage
 if (! isset($_REQUEST["limit"])) {
-	$limit = 10;
+    $limit = 10;
 } else {
-	$limit = $_REQUEST["limit"];
+    $limit = $_REQUEST["limit"];
 }
 
 $smarty->assign_by_ref('limit', $limit);

@@ -1,4 +1,5 @@
 <?php
+
 // This is Tiki's preconfiguration file.
 // This holds values which can provide preconfiguration values in the installer, when local.php does not yet exist
 // Uncomment and change values as appropriate

@@ -12,7 +12,7 @@ require_once('tiki-setup.php');
 include_once('lib/wiki-plugins/wikiplugin_snarf.php');
 
 if ($prefs['wikiplugin_snarf'] != 'y') {
-	echo tra('Feature disabled');
-	die;
+    echo tra('Feature disabled');
+    die;
 }
 echo wikiplugin_snarf('', $_REQUEST);

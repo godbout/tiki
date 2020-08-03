@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -13,24 +14,24 @@ $access->check_feature('feature_search_stats');
 $access->check_permission('tiki_p_admin');
 
 if (isset($_REQUEST["clear"])) {
-	check_ticket('search-stats');
-	$searchstatslib->clear_search_stats();
+    check_ticket('search-stats');
+    $searchstatslib->clear_search_stats();
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'hits_desc';
+    $sort_mode = 'hits_desc';
 } else {
-	$sort_mode = $_REQUEST["sort_mode"];
+    $sort_mode = $_REQUEST["sort_mode"];
 }
 if (! isset($_REQUEST["offset"])) {
-	$offset = 0;
+    $offset = 0;
 } else {
-	$offset = $_REQUEST["offset"];
+    $offset = $_REQUEST["offset"];
 }
 $smarty->assign_by_ref('offset', $offset);
 if (isset($_REQUEST["find"])) {
-	$find = $_REQUEST["find"];
+    $find = $_REQUEST["find"];
 } else {
-	$find = '';
+    $find = '';
 }
 $smarty->assign('find', $find);
 $smarty->assign_by_ref('sort_mode', $sort_mode);

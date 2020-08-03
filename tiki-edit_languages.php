@@ -22,140 +22,140 @@ $smarty->assign_by_ref('languages', $languages);
 
 // preserving variables
 if (isset($_REQUEST["edit_language"])) {
-	$smarty->assign('edit_language', $_REQUEST["edit_language"]);
-	$edit_language = $_REQUEST["edit_language"];
+    $smarty->assign('edit_language', $_REQUEST["edit_language"]);
+    $edit_language = $_REQUEST["edit_language"];
 } else {
-	$smarty->assign('edit_language', $prefs['language']);
-	$edit_language = $prefs['language'];
+    $smarty->assign('edit_language', $prefs['language']);
+    $edit_language = $prefs['language'];
 }
 
 $translations = new LanguageTranslations($edit_language);
 
 if (! isset($_REQUEST["action"])) {
-	$_REQUEST['action'] = 'edit_tran_sw';
+    $_REQUEST['action'] = 'edit_tran_sw';
 }
 $smarty->assign('action', $_REQUEST["action"]);
 
 if (isset($_REQUEST['only_db_translations']) && $_REQUEST['only_db_translations'] != 'n') {
-	$smarty->assign('only_db_translations', 'y');
+    $smarty->assign('only_db_translations', 'y');
 } else {
-	$smarty->assign('only_db_translations', 'n');
+    $smarty->assign('only_db_translations', 'n');
 }
 
 if (isset($_REQUEST['only_db_untranslated']) && $_REQUEST['only_db_untranslated'] != 'n') {
-	$smarty->assign('only_db_untranslated', 'y');
+    $smarty->assign('only_db_untranslated', 'y');
 } else {
-	$smarty->assign('only_db_untranslated', 'n');
+    $smarty->assign('only_db_untranslated', 'n');
 }
 
 // Adding strings
 if (isset($_REQUEST["add_tran"])) {
-	check_ticket('edit-languages');
-	$add_tran_source = $_REQUEST["add_tran_source"];
-	$add_tran_tran = $_REQUEST["add_tran_tran"];
+    check_ticket('edit-languages');
+    $add_tran_source = $_REQUEST["add_tran_source"];
+    $add_tran_tran = $_REQUEST["add_tran_tran"];
 
-	if (strlen($add_tran_source) != 0 && strlen($add_tran_tran) != 0) {
-		$add_tran_source = strip_tags($add_tran_source);
-		$add_tran_tran = strip_tags($add_tran_tran);
+    if (strlen($add_tran_source) != 0 && strlen($add_tran_tran) != 0) {
+        $add_tran_source = strip_tags($add_tran_source);
+        $add_tran_tran = strip_tags($add_tran_tran);
 
-		$translations->updateTrans($add_tran_source, $add_tran_tran);
-	}
+        $translations->updateTrans($add_tran_source, $add_tran_tran);
+    }
 }
 
 // Delete all db translations
 if (isset($_REQUEST['delete_all']) && $tiki_p_admin) {
-	$translations->deleteTranslations();
+    $translations->deleteTranslations();
 }
 
 //Selection for untranslated Strings and edit translations
 if (isset($_REQUEST["action"])) {
-	$action = $_REQUEST["action"];
+    $action = $_REQUEST["action"];
 } else {
-	$action = "";
+    $action = "";
 }
 
 if ($action == "edit_rec_sw" || $action == "edit_tran_sw") {
-	check_ticket('edit-languages');
+    check_ticket('edit-languages');
 
-	$offset = isset($_REQUEST["offset"]) ? $_REQUEST['offset'] : 0;
-	$smarty->assign('offset', $offset);
+    $offset = isset($_REQUEST["offset"]) ? $_REQUEST['offset'] : 0;
+    $smarty->assign('offset', $offset);
 
-	$maxRecords = (isset($_REQUEST['maxRecords']) && $_REQUEST['maxRecords'] > 0) ? $_REQUEST['maxRecords'] : $prefs['maxRecords'];
-	$smarty->assign('maxRecords', $maxRecords);
+    $maxRecords = (isset($_REQUEST['maxRecords']) && $_REQUEST['maxRecords'] > 0) ? $_REQUEST['maxRecords'] : $prefs['maxRecords'];
+    $smarty->assign('maxRecords', $maxRecords);
 
-	//check if user has translated something
-	for ($i = 0; $i < $maxRecords; $i++) {
-		// Handle edits in untranslated strings
-		if (isset($_REQUEST["edit_tran_$i"]) || isset($_REQUEST['translate_all'])) {
-			// Handle edits in edit translations
-			if (strlen($_REQUEST["tran_$i"]) > 0 && strlen($_REQUEST["source_$i"]) > 0) {
-				if ($prefs['lang_control_contribution'] == 'y') {
-					if (! isset($_REQUEST["scope_$i"])) {
-						 throw new Exception('scope parameter required');
-					} elseif ($_REQUEST["scope_$i"] == '') {
-						 $general = null;
-					} else {
-						 $general = $_REQUEST["scope_$i"] == 'general';
-					}
-					$optionalParameters = ['general' => $general];
-				} else {
-					$optionalParameters = [];
-				}
-				$translations->updateTrans($_REQUEST["source_$i"], $_REQUEST["tran_$i"], $optionalParameters);
-			}
-		} elseif (isset($_REQUEST["del_tran_$i"])) {
-			// Handle deletes here
-			if (strlen($_REQUEST["source_$i"]) > 0) {
-				$translations->deleteTranslation($_REQUEST["source_$i"]);
-			}
-		}
-	} // end of for ...
-	// for resetting untranslated
-	if (isset($_REQUEST["tran_reset"])) {
-		$translations->deleteAllUntranslated();
-	}
+    //check if user has translated something
+    for ($i = 0; $i < $maxRecords; $i++) {
+        // Handle edits in untranslated strings
+        if (isset($_REQUEST["edit_tran_$i"]) || isset($_REQUEST['translate_all'])) {
+            // Handle edits in edit translations
+            if (strlen($_REQUEST["tran_$i"]) > 0 && strlen($_REQUEST["source_$i"]) > 0) {
+                if ($prefs['lang_control_contribution'] == 'y') {
+                    if (! isset($_REQUEST["scope_$i"])) {
+                        throw new Exception('scope parameter required');
+                    } elseif ($_REQUEST["scope_$i"] == '') {
+                        $general = null;
+                    } else {
+                        $general = $_REQUEST["scope_$i"] == 'general';
+                    }
+                    $optionalParameters = ['general' => $general];
+                } else {
+                    $optionalParameters = [];
+                }
+                $translations->updateTrans($_REQUEST["source_$i"], $_REQUEST["tran_$i"], $optionalParameters);
+            }
+        } elseif (isset($_REQUEST["del_tran_$i"])) {
+            // Handle deletes here
+            if (strlen($_REQUEST["source_$i"]) > 0) {
+                $translations->deleteTranslation($_REQUEST["source_$i"]);
+            }
+        }
+    } // end of for ...
+    // for resetting untranslated
+    if (isset($_REQUEST["tran_reset"])) {
+        $translations->deleteAllUntranslated();
+    }
 
-	// update language array with new translations
-	$query = "select `source`, `tran` from `tiki_language` where `lang`=?";
-	$result = $tikilib->fetchAll($query, [$edit_language]);
+    // update language array with new translations
+    $query = "select `source`, `tran` from `tiki_language` where `lang`=?";
+    $result = $tikilib->fetchAll($query, [$edit_language]);
 
-	foreach ($result as $row) {
-		${"lang_$edit_language"}[ $row['source'] ] = $row['tran'];
-	}
+    foreach ($result as $row) {
+        ${"lang_$edit_language"}[ $row['source'] ] = $row['tran'];
+    }
 
-	//Handle searches
-	$find = '';
+    //Handle searches
+    $find = '';
 
-	if (isset($_REQUEST['find']) && strlen($_REQUEST['find']) > 0) {
-		$find = $_REQUEST['find'];
-		$smarty->assign('find', $find);
-	}
+    if (isset($_REQUEST['find']) && strlen($_REQUEST['find']) > 0) {
+        $find = $_REQUEST['find'];
+        $smarty->assign('find', $find);
+    }
 
-	$sort_mode = "source_asc";
+    $sort_mode = "source_asc";
 
-	$data = [];
+    $data = [];
 
-	if ($action == "edit_rec_sw") {
-		if (isset($_REQUEST['only_db_untranslated']) && $_REQUEST['only_db_untranslated'] != 'n') {
-			// display only database stored untranslated strings
-			$data = $translations->getDbUntranslated($maxRecords, $offset, $find);
-		} else {
-			// display all untranslated strings (language.php + db)
-			$data = $translations->getAllUntranslated($maxRecords, $offset, $find);
-		}
-	} elseif ($action == "edit_tran_sw") {
-		if (isset($_REQUEST['only_db_translations']) && $_REQUEST['only_db_translations'] != 'n') {
-			// display only database stored translations
-			$data = $translations->getDbTranslations($sort_mode, $maxRecords, $offset, $find);
-		} else {
-			// display all available translations (db + custom.php + language.php)
-			$data = $translations->getAllTranslations($maxRecords, $offset, $find);
-		}
-	}
+    if ($action == "edit_rec_sw") {
+        if (isset($_REQUEST['only_db_untranslated']) && $_REQUEST['only_db_untranslated'] != 'n') {
+            // display only database stored untranslated strings
+            $data = $translations->getDbUntranslated($maxRecords, $offset, $find);
+        } else {
+            // display all untranslated strings (language.php + db)
+            $data = $translations->getAllUntranslated($maxRecords, $offset, $find);
+        }
+    } elseif ($action == "edit_tran_sw") {
+        if (isset($_REQUEST['only_db_translations']) && $_REQUEST['only_db_translations'] != 'n') {
+            // display only database stored translations
+            $data = $translations->getDbTranslations($sort_mode, $maxRecords, $offset, $find);
+        } else {
+            // display all available translations (db + custom.php + language.php)
+            $data = $translations->getAllTranslations($maxRecords, $offset, $find);
+        }
+    }
 
-	$smarty->assign_by_ref('translations', $data['translations']);
-	$smarty->assign('total', $data['total']);
-	$smarty->assign('hasDbTranslations', $translations->hasDbTranslations);
+    $smarty->assign_by_ref('translations', $data['translations']);
+    $smarty->assign('total', $data['total']);
+    $smarty->assign('hasDbTranslations', $translations->hasDbTranslations);
 }
 
 $db_languages = Language::getDbTranslatedLanguages();

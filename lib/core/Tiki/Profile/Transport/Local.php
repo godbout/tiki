@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,26 +8,27 @@
 
 class Tiki_Profile_Transport_Local implements Tiki_Profile_Transport_Interface
 {
-	function getPageContent($pageName)
-	{
-		$tikilib = TikiLib::lib('tiki');
-		$info = $tikilib->get_page_info($pageName);
-		if (empty($info)) {
-			return null;
-		}
-		return $info['data'];
-	}
+    public function getPageContent($pageName)
+    {
+        $tikilib = TikiLib::lib('tiki');
+        $info = $tikilib->get_page_info($pageName);
+        if (empty($info)) {
+            return null;
+        }
 
-	function getPageParsed($pageName)
-	{
-		$content = $this->getPageContent($pageName);
+        return $info['data'];
+    }
 
-		if ($content) {
-			return TikiLib::lib('parser')->parse_data($content);
-		}
-	}
+    public function getPageParsed($pageName)
+    {
+        $content = $this->getPageContent($pageName);
 
-	function getProfilePath()
-	{
-	}
+        if ($content) {
+            return TikiLib::lib('parser')->parse_data($content);
+        }
+    }
+
+    public function getProfilePath()
+    {
+    }
 }

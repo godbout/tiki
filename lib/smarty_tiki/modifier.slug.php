@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -25,34 +26,35 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * @param int  $length    defaults to 70
  * @param bool $mixedCase set true to preserve capitalisation
  * @param bool $breakWords set true to break words
- *
- * @return string
+ * @param mixed $string
  *
  * @throws SmartyException
+ * @return string
+ *
  */
-
 function smarty_modifier_slug($string, $length = 70, $mixedCase = false, $breakWords = false)
 {
-	global $prefs;
-	TikiLib::lib('smarty')->loadPlugin('smarty_modifier_nonp');
+    global $prefs;
+    TikiLib::lib('smarty')->loadPlugin('smarty_modifier_nonp');
 
-	if (! $breakWords) {
-		$offset = strrpos($string, ' ', $length - strlen($string));
-		if ($offset) {
-			$length = $offset;
-		}
-	}
-	$string = substr(smarty_modifier_nonp($string), 0, $length);
-	if (! $mixedCase) {
-		$string = mb_strtolower($string);
-	}
+    if (! $breakWords) {
+        $offset = strrpos($string, ' ', $length - strlen($string));
+        if ($offset) {
+            $length = $offset;
+        }
+    }
+    $string = substr(smarty_modifier_nonp($string), 0, $length);
+    if (! $mixedCase) {
+        $string = mb_strtolower($string);
+    }
 
-	$asciiOnly = $prefs['url_only_ascii'] === 'y';
+    $asciiOnly = $prefs['url_only_ascii'] === 'y';
 
-	$str = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $string, $asciiOnly);
+    $str = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $string, $asciiOnly);
 
-	if (!$asciiOnly) {
-		$str = urlencode($str);
-	}
-	return $str;
+    if (!$asciiOnly) {
+        $str = urlencode($str);
+    }
+
+    return $str;
 }

@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -11,9 +12,9 @@ $bloglib = TikiLib::lib('blog');
 $access->check_feature('feature_blogs');
 
 if (! isset($_REQUEST["postId"])) {
-	$smarty->assign('msg', tra("No post indicated"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("No post indicated"));
+    $smarty->display("error.tpl");
+    die;
 }
 
 $postId = $_REQUEST["postId"];
@@ -27,9 +28,9 @@ $access->check_permission('tiki_p_read_blog', '', 'blog post', $postId);
 $blog_data = $bloglib->get_blog($blogId);
 
 if (! $blog_data) {
-	$smarty->assign('msg', tra("Blog not found"));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('msg', tra("Blog not found"));
+    $smarty->display("error.tpl");
+    die;
 }
 
 $parsed_data = TikiLib::lib('parser')->parse_data($post_info["data"], ['is_html' => true]);

@@ -15,7 +15,7 @@ $structlib = TikiLib::lib('struct');
 $wikilib = TikiLib::lib('wiki');
 
 $headerlib->add_js(
-	"var fragments='y';
+    "var fragments='y';
 	var fragmentClass='grow';
 	var fragmentHighlightColor='highlight-blue';"
 );
@@ -30,67 +30,72 @@ $smarty->assign('is_slideshow', 'y');
 
 // Create the HomePage if it doesn't exist
 if (! $tikilib->page_exists($prefs['wikiHomePage'])) {
-	$tikilib->create_page(
-		$prefs['wikiHomePage'], 0, '', date("U"), 'Tiki initialization'
-	);
+    $tikilib->create_page(
+        $prefs['wikiHomePage'],
+        0,
+        '',
+        date("U"),
+        'Tiki initialization'
+    );
 }
 
 if (! isset($_SESSION["thedate"])) {
-	$thedate = date("U");
+    $thedate = date("U");
 } else {
-	$thedate = $_SESSION["thedate"];
+    $thedate = $_SESSION["thedate"];
 }
 
 // Get the page from the request var or default it to HomePage
 if (! isset($_REQUEST["page"])) {
-	$_REQUEST["page"] = $wikilib->get_default_wiki_page();
+    $_REQUEST["page"] = $wikilib->get_default_wiki_page();
 }
 $page = $wikilib->get_page_by_slug($_REQUEST['page']);
 $smarty->assign('page', $page);
 
 // If the page doesn't exist then display an error
 if (! ($info = $tikilib->page_exists($page))) {
-	include_once('tiki-index.php');
-	die;
+    include_once('tiki-index.php');
+    die;
 }
 
 if (isset($_REQUEST['theme'])) {
-	$theme = $_REQUEST['theme'];
+    $theme = $_REQUEST['theme'];
 } else {
-	$theme = "black";
+    $theme = "black";
 }
 
 // Now check permissions to access this page
 $tikilib->get_perm_object($page, 'wiki page', $info);
 if ($tiki_p_view != 'y') {
-	$smarty->assign('errortype', 401);
-	$smarty->assign(
-		'msg', tra("Permission denied. You cannot view this page.")
-	);
+    $smarty->assign('errortype', 401);
+    $smarty->assign(
+        'msg',
+        tra("Permission denied. You cannot view this page.")
+    );
 
-	$smarty->display("error_raw.tpl");
-	die;
+    $smarty->display("error_raw.tpl");
+    die;
 }
 
 // BreadCrumbNavigation here
 // Remember to reverse the array when posting the array
 
 if (! isset($_SESSION["breadCrumb"])) {
-	$_SESSION["breadCrumb"] = [];
+    $_SESSION["breadCrumb"] = [];
 }
 
 if (! in_array($page, $_SESSION["breadCrumb"])) {
-	if (count($_SESSION["breadCrumb"]) > $prefs['userbreadCrumb']) {
-		array_shift($_SESSION["breadCrumb"]);
-	}
+    if (count($_SESSION["breadCrumb"]) > $prefs['userbreadCrumb']) {
+        array_shift($_SESSION["breadCrumb"]);
+    }
 
-	array_push($_SESSION["breadCrumb"], $page);
+    array_push($_SESSION["breadCrumb"], $page);
 } else {
-	// If the page is in the array move to the last position
-	$pos = array_search($page, $_SESSION["breadCrumb"]);
+    // If the page is in the array move to the last position
+    $pos = array_search($page, $_SESSION["breadCrumb"]);
 
-	unset($_SESSION["breadCrumb"][$pos]);
-	array_push($_SESSION["breadCrumb"], $page);
+    unset($_SESSION["breadCrumb"][$pos]);
+    array_push($_SESSION["breadCrumb"], $page);
 }
 
 // Now increment page hits since we are visiting this page
@@ -102,12 +107,12 @@ $info = $tikilib->get_page_info($page);
 $pdata = $parserlib->parse_data_raw($info["data"]);
 
 if (! isset($_REQUEST['pagenum'])) {
-	$_REQUEST['pagenum'] = 1;
+    $_REQUEST['pagenum'] = 1;
 }
 
 //tags need to be removed from data before data formatting
 $tagsArr = [["div", "icon_edit_section", "class"], ["a", "editplugin", "class"],
-			["a", "show-errors-button", "id"], ["a", "heading-link", "class"]];
+            ["a", "show-errors-button", "id"], ["a", "heading-link", "class"]];
 
 
 $pages = $wikilib->get_number_of_pages($pdata);
@@ -119,84 +124,87 @@ $parserlib->replace_preparse($pdata, $preparsed, $noparsed);
 $pdata = formatContent($pdata, $tagsArr);
 
 if (isset($_REQUEST['pdf'])) {
-	$access->check_feature("feature_slideshow_pdfexport");
-	set_time_limit(777);
+    $access->check_feature("feature_slideshow_pdfexport");
+    set_time_limit(777);
 
-	$_POST["html"] = urldecode($_POST["html"]);
+    $_POST["html"] = urldecode($_POST["html"]);
 
-	if (isset($_POST["html"])) {
-		$generator = new PdfGenerator(PdfGenerator::MPDF);
-		if (! empty($generator->getError())) {
-			Feedback::error(
-				tr(
-					'Exporting slideshow as PDF requires a working installation of mPDF.'
-				)
-				. "<br \>"
-				. tr('Export to PDF error: %0', $generator->getError())
-			);
-			$access = Tikilib::lib('access');
-			$access->redirect(
-				str_replace(
-					'tiki-slideshow.php?', 'tiki-index.php?',
-					$_SERVER['HTTP_REFERER']
-				)
-			);
-		}
+    if (isset($_POST["html"])) {
+        $generator = new PdfGenerator(PdfGenerator::MPDF);
+        if (! empty($generator->getError())) {
+            Feedback::error(
+                tr(
+                    'Exporting slideshow as PDF requires a working installation of mPDF.'
+                )
+                . "<br \>"
+                . tr('Export to PDF error: %0', $generator->getError())
+            );
+            $access = Tikilib::lib('access');
+            $access->redirect(
+                str_replace(
+                    'tiki-slideshow.php?',
+                    'tiki-index.php?',
+                    $_SERVER['HTTP_REFERER']
+                )
+            );
+        }
 
-		$params = [
-			'orientation' => isset($_REQUEST['landscape']) ? 'L' : 'P',
-		];
-		$filename = TikiLib::lib('tiki')
-			->remove_non_word_characters_and_accents($_REQUEST['page']);
-		if ($_REQUEST['pdfSettings']) {
-			$_POST['html'] = '<' . $_REQUEST['pdfSettings'] . ' />'
-				. $_POST['html'];
-		}
-		//checking if to export slideshow
-		if ($_REQUEST['printslides']) {
-			$customCSS
-				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em;text-transform:none !important;}  section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
-			$pdata = $customCSS .'<pdfsettings printFriendly="y" header="off" footer="off"></pdfsettings>' . $pdata;
-		} else {
-			//getting css
-			$customCSS .= file_get_contents(
-				'vendor_bundled/vendor/npm-asset/reveal.js/css/reveal.css'
-			);
-			$customCSS .= file_get_contents(
-				'vendor_bundled/vendor/npm-asset/reveal.js/css/theme/' . $theme
-				. '.css'
-			);
-			$customCSS .= '.reveal section{width:90%;text-align:center;padding-top:30px;margin:auto;} section{text-align:center;margin: auto;width:100%;} .ss-heading{line-height:2.5em,padding-bottom:20px;}';
-			$pdata = '<pdfsettings header="off" footer="off" margin_top="0" margin_bottom="0" margin_left="0" margin_right="0" printfriendly="n"></pdfsettings><div class="reveal" style="padding:2%">' . $pdata . '</div>';
+        $params = [
+            'orientation' => isset($_REQUEST['landscape']) ? 'L' : 'P',
+        ];
+        $filename = TikiLib::lib('tiki')
+            ->remove_non_word_characters_and_accents($_REQUEST['page']);
+        if ($_REQUEST['pdfSettings']) {
+            $_POST['html'] = '<' . $_REQUEST['pdfSettings'] . ' />'
+                . $_POST['html'];
+        }
+        //checking if to export slideshow
+        if ($_REQUEST['printslides']) {
+            $customCSS
+                = "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em;text-transform:none !important;}  section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
+            $pdata = $customCSS . '<pdfsettings printFriendly="y" header="off" footer="off"></pdfsettings>' . $pdata;
+        } else {
+            //getting css
+            $customCSS .= file_get_contents(
+                'vendor_bundled/vendor/npm-asset/reveal.js/css/reveal.css'
+            );
+            $customCSS .= file_get_contents(
+                'vendor_bundled/vendor/npm-asset/reveal.js/css/theme/' . $theme
+                . '.css'
+            );
+            $customCSS .= '.reveal section{width:90%;text-align:center;padding-top:30px;margin:auto;} section{text-align:center;margin: auto;width:100%;} .ss-heading{line-height:2.5em,padding-bottom:20px;}';
+            $pdata = '<pdfsettings header="off" footer="off" margin_top="0" margin_bottom="0" margin_left="0" margin_right="0" printfriendly="n"></pdfsettings><div class="reveal" style="padding:2%">' . $pdata . '</div>';
 
-			$pdata = str_replace(
-				"</section><section", "</section><pagebreak /><section",
-				$pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' div.reveal, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.5;height:auto !important; } img{max-height:400px;}  .reveal h1 {font-size: 2.8em; text-transform:none !important;} .reveal li ul li {font-size: 0.95em !important;margin: 0em !important;}</style>'
-			).$pdfStyles;
-		}
+            $pdata = str_replace(
+                "</section><section",
+                "</section><pagebreak /><section",
+                $pdata . '<style>' . str_replace([".reveal {", "vertical-align: baseline;"], [".reveal,.reveal table{ ", "vertical-align:top;"], $customCSS) . ' div.reveal, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.5;height:auto !important; } img{max-height:400px;}  .reveal h1 {font-size: 2.8em; text-transform:none !important;} .reveal li ul li {font-size: 0.95em !important;margin: 0em !important;}</style>'
+            ) . $pdfStyles;
+        }
 
-		$pdf = $generator->getPdf(
-			$filename, $params,
-			preg_replace('/%u([a-fA-F0-9]{4})/', '&#x\\1;', $pdata)
-		);
-		$length = strlen($pdf);
-		header('Cache-Control: private, must-revalidate');
-		header('Pragma: private');
-		header('Content-disposition: inline; filename="' . $filename . '.pdf"');
-		header("Content-Type: application/pdf");
-		header("Content-Transfer-Encoding: binary");
-		header('Content-Length: ' . $length);
-		echo $pdf;
-		exit(0);
-	}
-	die;
+        $pdf = $generator->getPdf(
+            $filename,
+            $params,
+            preg_replace('/%u([a-fA-F0-9]{4})/', '&#x\\1;', $pdata)
+        );
+        $length = strlen($pdf);
+        header('Cache-Control: private, must-revalidate');
+        header('Pragma: private');
+        header('Content-disposition: inline; filename="' . $filename . '.pdf"');
+        header("Content-Type: application/pdf");
+        header("Content-Transfer-Encoding: binary");
+        header('Content-Length: ' . $length);
+        echo $pdf;
+        exit(0);
+    }
+    die;
 }
 $smarty->assign('pages', $pages);
 $smarty->assign_by_ref('parsed', $pdata);
 $smarty->assign_by_ref('lastModif', $info["lastModif"]);
 
 if (empty($info["user"])) {
-	$info["user"] = 'anonymous';
+    $info["user"] = 'anonymous';
 }
 
 $smarty->assign_by_ref('lastUser', $info["user"]);
@@ -205,19 +213,20 @@ include_once('tiki-section_options.php');
 
 
 $headerlib->add_jsfile(
-	'vendor_bundled/vendor/npm-asset/reveal.js/js/reveal.js'
+    'vendor_bundled/vendor/npm-asset/reveal.js/js/reveal.js'
 );
 $headerlib->add_cssfile(
-	'vendor_bundled/vendor/npm-asset/reveal.js/css/reveal.css'
+    'vendor_bundled/vendor/npm-asset/reveal.js/css/reveal.css'
 );
 $headerlib->add_cssfile(
-	'vendor_bundled/vendor/npm-asset/reveal.js/css/theme/' . $theme . '.css'
+    'vendor_bundled/vendor/npm-asset/reveal.js/css/theme/' . $theme . '.css'
 );
 $headerlib->add_css(
-	'.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:50px;left:-2000px;width:230px;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;padding: 10px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section {font-size:135% !important} .reveal p {margin 10px 0 !important;}.reveal li, .reveal li ul li{font-size:130%; !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}} #reveal-controls span,#listSlides{cursor:pointer;color:#999;padding:0.15em} #reveal-controls span:hover,#listSlides:hover{color:#fff} footer{visibility:hidden}  @media (max-width: 1024px) and (orientation: portrait) {#ss-options {min-width:50% !important; font-size:2rem;line-height:4rem;top:8% !important} #reveal-controls span{font-size:150% !important} .p-2{width:100%;display:block;text-align:center} .form-control{font-size:45px !important; height:5rem !important}  #ss-settings-holder{padding-top:4% !important} #ss-settings-holder span{font-size:300% !important}} .scale-1{transform:scale(0.9);transform-origin:top center} .scale-2{transform:scale(0.8);transform-origin:top center} .scale-3{transform:scale(0.7);transform-origin:top center} .scale-4{transform:scale(0.6);transform-origin:top center} .scale-5{transform:scale(0.5);transform-origin:top center} .scale-6{transform:scale(0.45);transform-origin:top center}');
+    '.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:50px;left:-2000px;width:230px;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;padding: 10px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section {font-size:135% !important} .reveal p {margin 10px 0 !important;}.reveal li, .reveal li ul li{font-size:130%; !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}} #reveal-controls span,#listSlides{cursor:pointer;color:#999;padding:0.15em} #reveal-controls span:hover,#listSlides:hover{color:#fff} footer{visibility:hidden}  @media (max-width: 1024px) and (orientation: portrait) {#ss-options {min-width:50% !important; font-size:2rem;line-height:4rem;top:8% !important} #reveal-controls span{font-size:150% !important} .p-2{width:100%;display:block;text-align:center} .form-control{font-size:45px !important; height:5rem !important}  #ss-settings-holder{padding-top:4% !important} #ss-settings-holder span{font-size:300% !important}} .scale-1{transform:scale(0.9);transform-origin:top center} .scale-2{transform:scale(0.8);transform-origin:top center} .scale-3{transform:scale(0.7);transform-origin:top center} .scale-4{transform:scale(0.6);transform-origin:top center} .scale-5{transform:scale(0.5);transform-origin:top center} .scale-6{transform:scale(0.45);transform-origin:top center}'
+);
 
 $headerlib->add_jq_onready(
-	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
+    '$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
 	$("body").append("<style type=\"text/css\">.reveal li,.reveal section p { font-size: 1.3em; line-height:1.4em } .reveal li{margin:0.1em 0.5em 0.1em 0.5em} .reveal li ul li{font-size:0.9em !important; margin:0em !important}.reveal section pre code { font-size: 0.7em !important;} .reveal h1 {font-size: 2.8em; text-transform:none !important;margin-bottom:0 !important;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.03);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:none} .reveal table th, .reveal table td{text-align:center;vertical-align:top !important} .reveal ul{vertical-align:top !important}</style>");
 	var extraElements=["#page-bar",".icon_edit_section",".icon-link-external",".editplugin","#show-errors-button",".wikitext",".icon_edit_section","#toc","footer",".heading-link"];
 	jQuery.each( extraElements, function( i, val ) {
@@ -347,27 +356,28 @@ $headerlib->add_jq_onready(
 			 	});
 			 }
 		});
-		');
+		'
+);
 
 ask_ticket('index-raw');
 
 
-$themesArr=[['black','Black'],
-			['blood','Blood'],
-			['beige','Beige'],
-			['league','League'],
-			['moon','Moon'],
-			['night','Night'],
-			['serif','Serif'],
-			['simple','Simple'],
-			['sky','Sky'],
-			['solarized','Solarized']];
+$themesArr = [['black', 'Black'],
+            ['blood', 'Blood'],
+            ['beige', 'Beige'],
+            ['league', 'League'],
+            ['moon', 'Moon'],
+            ['night', 'Night'],
+            ['serif', 'Serif'],
+            ['simple', 'Simple'],
+            ['sky', 'Sky'],
+            ['solarized', 'Solarized']];
 
 $themeOptions = '';
 
-foreach($themesArr as $themeOption){
-	$themeOption[0]==$theme?$selected='selected="selected"':$selected='';
-	$themeOptions.='<option value="'.$themeOption[0].'" '.$selected.'>'.tra($themeOption[1]).'</option>';
+foreach ($themesArr as $themeOption) {
+    $themeOption[0] == $theme?$selected = 'selected="selected"':$selected = '';
+    $themeOptions .= '<option value="' . $themeOption[0] . '" ' . $selected . '>' . tra($themeOption[1]) . '</option>';
 }
 
 // disallow robots to index page
@@ -384,107 +394,107 @@ $smarty->display("tiki_full.tpl");
 
 function formatContent($content, $tagArr)
 {
+    $doc = new DOMDocument();
 
-	$doc = new DOMDocument();
+    // set error level
+    $internalErrors = libxml_use_internal_errors(true);
 
-	// set error level
-	$internalErrors = libxml_use_internal_errors(true);
+    $doc->loadHTML(
+        mb_convert_encoding('<html lang="en"><body>' . $content . '</body></html>', 'HTML-ENTITIES', 'UTF-8'),
+        LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
+    );
+    $xpath = new DOMXpath($doc);
+    $expression = '(//sslide//h1|//sslide//h2|//sslide//h3)';
+    $elements = $xpath->query($expression);
 
-	$doc->loadHTML(
-		mb_convert_encoding('<html lang="en"><body>' . $content . '</body></html>', 'HTML-ENTITIES', 'UTF-8'),
-		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
-	);
-	$xpath = new DOMXpath($doc);
-	$expression = '(//sslide//h1|//sslide//h2|//sslide//h3)';
-	$elements = $xpath->query($expression);
+    foreach ($elements as $index => $element) {
+        dom_rename_element($element, 'sheading');
+    }
 
-	foreach ($elements as $index => $element) {
-		dom_rename_element($element, 'sheading');
-	}
+    foreach ($tagArr as $tag) {
+        $list = $xpath->query(
+            '//' . $tag[0] . '[contains(concat(\' \', normalize-space(@'
+            . $tag[2] . '), \' \'), "' . $tag[1] . '")]'
+        );
+        for ($i = 0; $i < $list->length; $i++) {
+            $p = $list->item($i);
+            if (isset($tag[3]) && $tag[3] == 1) { //the parameter checks if content of tag has to be preserved
+                $attributes = $p->attributes;
+                while ($attributes->length) {
+                    //preserving href
 
-	foreach ($tagArr as $tag) {
-		$list = $xpath->query(
-			'//' . $tag[0] . '[contains(concat(\' \', normalize-space(@'
-			. $tag[2] . '), \' \'), "' . $tag[1] . '")]'
-		);
-		for ($i = 0; $i < $list->length; $i++) {
-			$p = $list->item($i);
-			if (isset($tag[3]) && $tag[3] == 1) { //the parameter checks if content of tag has to be preserved
-				$attributes = $p->attributes;
-				while ($attributes->length) {
-					//preserving href
-
-					if ($attributes->item(0)->name == "href") {
-						$hrefValue = $attributes->item(0)->value;
-					}
-					$p->removeAttribute($attributes->item(0)->name);
-				}
-				if ($hrefValue) {
-					$p->setAttribute("href", $hrefValue);
-				}
-			} else {
-				$p->parentNode->removeChild($p);
-			}
-		}
-	}
+                    if ($attributes->item(0)->name == "href") {
+                        $hrefValue = $attributes->item(0)->value;
+                    }
+                    $p->removeAttribute($attributes->item(0)->name);
+                }
+                if ($hrefValue) {
+                    $p->setAttribute("href", $hrefValue);
+                }
+            } else {
+                $p->parentNode->removeChild($p);
+            }
+        }
+    }
 
 
-	$content = str_replace(['<html>', '</html>'], '', $doc->saveHTML());
+    $content = str_replace(['<html>', '</html>'], '', $doc->saveHTML());
 
-	// restore error level
-	libxml_use_internal_errors($internalErrors);
+    // restore error level
+    libxml_use_internal_errors($internalErrors);
 
-	$headingsTags = preg_split('/<h[123]/', $content);
-	$firstSlide = 0;
-	if(isset($_REQUEST['pdf'])){
-		$headingStart='<div style="border-bottom:0px;" class="ss-heading">';
-		$slideStart='</div><div>';
-		$slideEnd="</div>";
-	}
-	else{
-		$headingStart='<table width="100%" cellpadding="0" cellspace="0"><tr><td colspan="2" style="border-bottom:0px;" class="ss-heading">';
-		$slideStart='</td></tr><tr><td>';
-		$slideEnd="</td></tr></table>";
-	}
+    $headingsTags = preg_split('/<h[123]/', $content);
+    $firstSlide = 0;
+    if (isset($_REQUEST['pdf'])) {
+        $headingStart = '<div style="border-bottom:0px;" class="ss-heading">';
+        $slideStart = '</div><div>';
+        $slideEnd = "</div>";
+    } else {
+        $headingStart = '<table width="100%" cellpadding="0" cellspace="0"><tr><td colspan="2" style="border-bottom:0px;" class="ss-heading">';
+        $slideStart = '</td></tr><tr><td>';
+        $slideEnd = "</td></tr></table>";
+    }
 
-	$slideContent = '';
+    $slideContent = '';
 
-	foreach ($headingsTags as $slide) {
-		if ($firstSlide == 0) {
-			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
-			$sectionCheck = strpos($slide, '<sslide');
-			if ($sectionCheck == true) {
-				$slideContent .=str_replace("sslide","section",$slide);
-			}
-			$firstSlide = 1;
-		} else {
-			$slideContent .= '<section>'.$headingStart.'<h1' . str_replace(
-					array('</h1>','</h2>', '</h3>'), '</h1>'.$slideStart, $slide
-				) . $slideEnd.'</section>';
-		}
+    foreach ($headingsTags as $slide) {
+        if ($firstSlide == 0) {
+            //checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
+            $sectionCheck = strpos($slide, '<sslide');
+            if ($sectionCheck == true) {
+                $slideContent .= str_replace("sslide", "section", $slide);
+            }
+            $firstSlide = 1;
+        } else {
+            $slideContent .= '<section>' . $headingStart . '<h1' . str_replace(
+                ['</h1>', '</h2>', '</h3>'],
+                '</h1>' . $slideStart,
+                $slide
+            ) . $slideEnd . '</section>';
+        }
+    }
 
-	}
+    //images alignment left or right
+    //replacment for slideshowslide
 
-	//images alignment left or right
-	//replacment for slideshowslide
-
-	return html_entity_decode(str_replace(
-		array('<sslide', '<sheading','</sheading>'), array($slideEnd.'</section><section', $headingStart.'<h1','</sheading>'.$slideStart),
-		$slideContent
-	));
+    return html_entity_decode(str_replace(
+        ['<sslide', '<sheading', '</sheading>'],
+        [$slideEnd . '</section><section', $headingStart . '<h1', '</sheading>' . $slideStart],
+        $slideContent
+    ));
 }
 
 function dom_rename_element(DOMElement $node, $name)
 {
-	$renamed = $node->ownerDocument->createElement($name);
+    $renamed = $node->ownerDocument->createElement($name);
 
-	foreach ($node->attributes as $attribute) {
-		$renamed->setAttribute($attribute->nodeName, $attribute->nodeValue);
-	}
+    foreach ($node->attributes as $attribute) {
+        $renamed->setAttribute($attribute->nodeName, $attribute->nodeValue);
+    }
 
-	while ($node->firstChild) {
-		$renamed->appendChild($node->firstChild);
-	}
+    while ($node->firstChild) {
+        $renamed->appendChild($node->firstChild);
+    }
 
-	return $node->parentNode->replaceChild($renamed, $node);
+    return $node->parentNode->replaceChild($renamed, $node);
 }

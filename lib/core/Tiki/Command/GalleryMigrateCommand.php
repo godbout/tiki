@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -16,24 +17,23 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class GalleryMigrateCommand extends Command
 {
-	protected function configure()
-	{
-		$this
-			->setName('gallery:migrate')
-			->setDescription(tra('Migrate images from the Image Gallery to the File Gallery'));
-	}
+    protected function configure()
+    {
+        $this
+            ->setName('gallery:migrate')
+            ->setDescription(tra('Migrate images from the Image Gallery to the File Gallery'));
+    }
 
-	protected function execute(InputInterface $input, OutputInterface $output)
-	{
-		$fileGalLib = \TikiLib::lib('filegal');
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $fileGalLib = \TikiLib::lib('filegal');
 
-		if ($fileGalLib->is_default_gallery_writable()) {
-			$fileGalLib->migrateFilesFromImageGalleries();
+        if ($fileGalLib->is_default_gallery_writable()) {
+            $fileGalLib->migrateFilesFromImageGalleries();
 
-			$output->writeln('<info>' . tr('All files migrated!') . '</info>');
-
-		} else {
-			$output->writeln('<error>' . tr('No files migrated, default file gallery path is not writable.') . '</error>');
-		}
-	}
+            $output->writeln('<info>' . tr('All files migrated!') . '</info>');
+        } else {
+            $output->writeln('<error>' . tr('No files migrated, default file gallery path is not writable.') . '</error>');
+        }
+    }
 }

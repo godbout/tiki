@@ -17,32 +17,32 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache"); // HTTP/1.0
 $access->check_feature('feature_live_support');
 if ($tiki_p_live_support_admin != 'y' && ! $lsadminlib->is_operator($user)) {
-	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You are neither an administrator nor an operator of live support."));
-	$smarty->display("error.tpl");
-	die;
+    $smarty->assign('errortype', 401);
+    $smarty->assign('msg', tra("You are neither an administrator nor an operator of live support."));
+    $smarty->display("error.tpl");
+    die;
 }
 $smarty->assign('isOperator', $lsadminlib->is_operator($user));
 
 $max_active_request = $lslib->get_max_active_request();
 $smarty->assign('new_requests', 'n');
 if (isset($max_active_request)) {
-	if (! isset($_SESSION['max_request'])) {
-		$_SESSION['max_request'] = $max_active_request;
-		$smarty->assign('new_requests', 'y');
-	} else {
-		if ($max_active_request != $_SESSION['max_request']) {
-			$_SESSION['max_request'] = $max_active_request;
-			$smarty->assign('new_requests', 'y');
-		}
-	}
+    if (! isset($_SESSION['max_request'])) {
+        $_SESSION['max_request'] = $max_active_request;
+        $smarty->assign('new_requests', 'y');
+    } else {
+        if ($max_active_request != $_SESSION['max_request']) {
+            $_SESSION['max_request'] = $max_active_request;
+            $smarty->assign('new_requests', 'y');
+        }
+    }
 }
 $requests = $lslib->get_requests('active');
 $smarty->assign('requests', $requests);
 $smarty->assign('chats', $lslib->get_requests('op_accepted'));
 $smarty->assign('last', $lslib->get_last_request());
 if (isset($_REQUEST['status'])) {
-	$lslib->set_operator_status($user, $_REQUEST['status']);
+    $lslib->set_operator_status($user, $_REQUEST['status']);
 }
 $smarty->assign('status', $lslib->get_operator_status($user));
 // Display the template

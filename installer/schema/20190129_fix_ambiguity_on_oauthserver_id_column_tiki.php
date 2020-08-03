@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -6,8 +7,8 @@
 // $Id$
 
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -17,7 +18,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_20190129_fix_ambiguity_on_oauthserver_id_column_tiki($installer)
 {
-	if (! empty($installer->query("SHOW COLUMNS FROM `tiki_oauthserver_clients` LIKE 'identifier';")->result)) {
-		$installer->query('ALTER TABLE tiki_oauthserver_clients  CHANGE `identifier`  `id` INT(14) NOT NULL AUTO_INCREMENT;');
-	}
+    if (! empty($installer->query("SHOW COLUMNS FROM `tiki_oauthserver_clients` LIKE 'identifier';")->result)) {
+        $installer->query('ALTER TABLE tiki_oauthserver_clients  CHANGE `identifier`  `id` INT(14) NOT NULL AUTO_INCREMENT;');
+    }
 }

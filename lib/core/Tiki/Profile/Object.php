@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,152 +8,156 @@
 
 class Tiki_Profile_Object
 {
-	private $data;
-	private $profile;
-	private $id = false;
+    private $data;
+    private $profile;
+    private $id = false;
 
-	private $references = null;
+    private $references = null;
 
-	public static function serializeNamedObject($object) // {{{
-	{
-		if (strpos($object['domain'], '://') === false) {
-			if (is_dir($object['domain'])) {
-				$object['domain'] = "file://" . $object['domain'];
-			} else {
-				$object['domain'] = "http://" . $object['domain'];
-			}
-		}
-		return sprintf("%s#%s", Tiki_Profile::getProfileKeyfor($object['domain'], $object['profile']), $object['object']);
-	} // }}}
+    public static function serializeNamedObject($object) // {{{
+    {
+        if (strpos($object['domain'], '://') === false) {
+            if (is_dir($object['domain'])) {
+                $object['domain'] = "file://" . $object['domain'];
+            } else {
+                $object['domain'] = "http://" . $object['domain'];
+            }
+        }
 
-	public static function getNamedObjects() // {{{
-	{
-		global $tikilib;
+        return sprintf("%s#%s", Tiki_Profile::getProfileKeyfor($object['domain'], $object['profile']), $object['object']);
+    } // }}}
 
-		$objects = [];
+    public static function getNamedObjects() // {{{
+    {
+        global $tikilib;
 
-		$result = $tikilib->query("SELECT domain, profile, object FROM tiki_profile_symbols WHERE named = 'y'");
-		while ($row = $result->fetchRow()) {
-			$objects[] = $row;
-		}
+        $objects = [];
 
-		return $objects;
-	} // }}}
+        $result = $tikilib->query("SELECT domain, profile, object FROM tiki_profile_symbols WHERE named = 'y'");
+        while ($row = $result->fetchRow()) {
+            $objects[] = $row;
+        }
 
-	function __construct(&$data, Tiki_Profile $profile) // {{{
-	{
-		$this->data = &$data;
-		$this->profile = $profile;
-	} // }}}
+        return $objects;
+    } // }}}
 
-	function getDescription() // {{{
-	{
-		$str = '';
-		if ($this->isWellStructured()) {
-			$str .= $this->getType() . ' ';
-			$name = isset($this->data['data']['name']) ? $this->data['data']['name'] : tra('No name');
-			$str .= '"' . $name . '"';
-		} else {
-			$str .= tra('Bad object');
-		}
-		return $str;
-	} // }}}
+    public function __construct(&$data, Tiki_Profile $profile) // {{{
+    {
+        $this->data = &$data;
+        $this->profile = $profile;
+    } // }}}
 
-	function isWellStructured() // {{{
-	{
-		$is = isset($this->data['type'], $this->data['data']);
-		return $is;
-	} // }}}
+    public function getDescription() // {{{
+    {
+        $str = '';
+        if ($this->isWellStructured()) {
+            $str .= $this->getType() . ' ';
+            $name = isset($this->data['data']['name']) ? $this->data['data']['name'] : tra('No name');
+            $str .= '"' . $name . '"';
+        } else {
+            $str .= tra('Bad object');
+        }
 
-	function getType() // {{{
-	{
-		return $this->data['type'];
-	} // }}}
+        return $str;
+    } // }}}
 
-	function getRef() // {{{
-	{
-		if (isset($this->data['ref'])) {
-			return trim($this->data['ref']);
-		}
-	} // }}}
+    public function isWellStructured() // {{{
+    {
+        $is = isset($this->data['type'], $this->data['data']);
 
-	function getValue() // {{{
-	{
-		return $this->id;
-	} // }}}
+        return $is;
+    } // }}}
 
-	function setValue($value) // {{{
-	{
-		$this->id = $value;
+    public function getType() // {{{
+    {
+        return $this->data['type'];
+    } // }}}
 
-		$named = 'y';
-		if (! $name = $this->getRef()) {
-			$name = uniqid();
-			$named = 'n';
-		}
+    public function getRef() // {{{
+    {
+        if (isset($this->data['ref'])) {
+            return trim($this->data['ref']);
+        }
+    } // }}}
 
-		$this->profile->setSymbol($this->getType(), $name, $this->id, $named);
-	} // }}}
+    public function getValue() // {{{
+    {
+        return $this->id;
+    } // }}}
 
-	function getInternalReferences() // {{{
-	{
-		if (! is_null($this->references)) {
-			return $this->references;
-		}
+    public function setValue($value) // {{{
+    {
+        $this->id = $value;
 
-		$this->references = $this->traverseForReferences($this->data);
-		return $this->references;
-	} // }}}
+        $named = 'y';
+        if (! $name = $this->getRef()) {
+            $name = uniqid();
+            $named = 'n';
+        }
 
-	function getData() // {{{
-	{
-		if (array_key_exists('data', $this->data)) {
-			return $this->data['data'];
-		}
+        $this->profile->setSymbol($this->getType(), $name, $this->id, $named);
+    } // }}}
 
-		return [];
-	} // }}}
+    public function getInternalReferences() // {{{
+    {
+        if (! is_null($this->references)) {
+            return $this->references;
+        }
 
-	public function replaceReferences(&$data, $suppliedUserData = false) // {{{
-	{
-		$this->profile->replaceReferences($data, $suppliedUserData);
-	} // }}}
+        $this->references = $this->traverseForReferences($this->data);
 
-	private function traverseForReferences($value) // {{{
-	{
-		$array = [];
-		if (is_array($value)) {
-			foreach ($value as $v) {
-				$array = array_merge($array, $this->traverseForReferences($v));
-			}
-		} elseif (preg_match(Tiki_Profile::SHORT_PATTERN, $value, $parts)) {
-			$ref = $this->profile->convertReference($parts);
-			if ($this->profile->domain == $ref['domain']
-				&& $this->profile->profile == $ref['profile'] ) {
-				$array[] = $ref['object'];
-			}
-		} elseif (preg_match_all(Tiki_Profile::LONG_PATTERN, $value, $parts, PREG_SET_ORDER)) {
-			foreach ($parts as $row) {
-				$ref = $this->profile->convertReference($row);
-				if ($this->profile->domain == $ref['domain']
-				&& $this->profile->profile == $ref['profile'] ) {
-					$array[] = $ref['object'];
-				}
-			}
-		}
+        return $this->references;
+    } // }}}
 
-			return $array;
-	} // }}}
+    public function getData() // {{{
+    {
+        if (array_key_exists('data', $this->data)) {
+            return $this->data['data'];
+        }
 
-	function getProfile() // {{{
-	{
-		return $this->profile;
-	} // }}}
+        return [];
+    } // }}}
 
-	function __get($name) // {{{
-	{
-		if (array_key_exists($name, $this->data['data'])) {
-			return $this->data['data'][$name];
-		}
-	} // }}}
+    public function replaceReferences(&$data, $suppliedUserData = false) // {{{
+    {
+        $this->profile->replaceReferences($data, $suppliedUserData);
+    } // }}}
+
+    private function traverseForReferences($value) // {{{
+    {
+        $array = [];
+        if (is_array($value)) {
+            foreach ($value as $v) {
+                $array = array_merge($array, $this->traverseForReferences($v));
+            }
+        } elseif (preg_match(Tiki_Profile::SHORT_PATTERN, $value, $parts)) {
+            $ref = $this->profile->convertReference($parts);
+            if ($this->profile->domain == $ref['domain']
+                && $this->profile->profile == $ref['profile']) {
+                $array[] = $ref['object'];
+            }
+        } elseif (preg_match_all(Tiki_Profile::LONG_PATTERN, $value, $parts, PREG_SET_ORDER)) {
+            foreach ($parts as $row) {
+                $ref = $this->profile->convertReference($row);
+                if ($this->profile->domain == $ref['domain']
+                && $this->profile->profile == $ref['profile']) {
+                    $array[] = $ref['object'];
+                }
+            }
+        }
+
+        return $array;
+    } // }}}
+
+    public function getProfile() // {{{
+    {
+        return $this->profile;
+    } // }}}
+
+    public function __get($name) // {{{
+    {
+        if (array_key_exists($name, $this->data['data'])) {
+            return $this->data['data'][$name];
+        }
+    } // }}}
 }

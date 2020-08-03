@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -9,64 +10,64 @@ use Tiki\Package\Extension\Utilities as PackageUtilities;
 
 class ServiceLib
 {
-	private $broker;
-	private $extensionPackageBrokers = [];
+    private $broker;
+    private $extensionPackageBrokers = [];
 
-	function getBroker($ExtensionPackage = '')
-	{
-		if ($ExtensionPackage) {
-			$utilities = new PackageUtilities();
-			if (! $utilities->isInstalled(str_replace('.', '/', $ExtensionPackage))) {
-				$ExtensionPackage = '';
-			}
-		}
+    public function getBroker($ExtensionPackage = '')
+    {
+        if ($ExtensionPackage) {
+            $utilities = new PackageUtilities();
+            if (! $utilities->isInstalled(str_replace('.', '/', $ExtensionPackage))) {
+                $ExtensionPackage = '';
+            }
+        }
 
-		if ($ExtensionPackage && ! isset($this->extensionPackageBrokers[$ExtensionPackage])) {
-			$this->extensionPackageBrokers[$ExtensionPackage] = new Services_Broker(TikiInit::getContainer(), $ExtensionPackage);
-		} elseif (! $this->broker) {
-			$this->broker = new Services_Broker(TikiInit::getContainer());
-		}
+        if ($ExtensionPackage && ! isset($this->extensionPackageBrokers[$ExtensionPackage])) {
+            $this->extensionPackageBrokers[$ExtensionPackage] = new Services_Broker(TikiInit::getContainer(), $ExtensionPackage);
+        } elseif (! $this->broker) {
+            $this->broker = new Services_Broker(TikiInit::getContainer());
+        }
 
-		if ($ExtensionPackage) {
-			return $this->extensionPackageBrokers[$ExtensionPackage];
-		} else {
-			return $this->broker;
-		}
-	}
+        if ($ExtensionPackage) {
+            return $this->extensionPackageBrokers[$ExtensionPackage];
+        }
 
-	function internal($controller, $action, $request = [], $extensionPackage = '')
-	{
-		return $this->getBroker($extensionPackage)->internal($controller, $action, $request);
-	}
+        return $this->broker;
+    }
 
-	function render($controller, $action, $request = [], $extensionPackage = '')
-	{
-		return $this->getBroker($extensionPackage)->internalRender($controller, $action, $request);
-	}
+    public function internal($controller, $action, $request = [], $extensionPackage = '')
+    {
+        return $this->getBroker($extensionPackage)->internal($controller, $action, $request);
+    }
 
-	function getUrl($params)
-	{
-		global $prefs;
+    public function render($controller, $action, $request = [], $extensionPackage = '')
+    {
+        return $this->getBroker($extensionPackage)->internalRender($controller, $action, $request);
+    }
 
-		if (isset($prefs['feature_sefurl']) && $prefs['feature_sefurl'] == 'y') {
-			$url = "tiki-{$params['controller']}";
+    public function getUrl($params)
+    {
+        global $prefs;
 
-			if (isset($params['action'])) {
-				$url .= "-{$params['action']}";
-			} else {
-				$url .= "-x";
-			}
+        if (isset($prefs['feature_sefurl']) && $prefs['feature_sefurl'] == 'y') {
+            $url = "tiki-{$params['controller']}";
 
-			unset($params['controller']);
-			unset($params['action']);
-		} else {
-			$url = 'tiki-ajax_services.php';
-		}
+            if (isset($params['action'])) {
+                $url .= "-{$params['action']}";
+            } else {
+                $url .= "-x";
+            }
 
-		if (count($params)) {
-			$url .= '?' . http_build_query($params, '', '&');
-		}
+            unset($params['controller']);
+            unset($params['action']);
+        } else {
+            $url = 'tiki-ajax_services.php';
+        }
 
-		return TikiLib::tikiUrlOpt($url);
-	}
+        if (count($params)) {
+            $url .= '?' . http_build_query($params, '', '&');
+        }
+
+        return TikiLib::tikiUrlOpt($url);
+    }
 }

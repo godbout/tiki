@@ -1,9 +1,9 @@
 <?php
 
 //this script may only be included - so its better to die if called directly.
-if (strpos($_SERVER["SCRIPT_NAME"],basename(__FILE__)) !== false) {
-  header("location: index.php");
-  exit;
+if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
+    header("location: index.php");
+    exit;
 }
 
 
@@ -26,14 +26,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 APIC::import("org.apicnet.io.File");
 
-class OOoMime extends ErrorManager {
-
-	function __construct($dir, $type){
-		
-		$file = new File($dir."/mimetype");
-		if (!$file->exists()) {
-			$file->writeData("application/vnd.sun.xml.".$type);
-		}
-	}
-
-}	
+class OOoMime extends ErrorManager
+{
+    public function __construct($dir, $type)
+    {
+        $file = new File($dir . "/mimetype");
+        if (!$file->exists()) {
+            $file->writeData("application/vnd.sun.xml." . $type);
+        }
+    }
+}

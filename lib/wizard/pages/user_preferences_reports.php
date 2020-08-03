@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,79 +13,81 @@ require_once('lib/wizard/wizard.php');
  */
 class UserWizardPreferencesReports extends Wizard
 {
-	function pageTitle()
-	{
-		return tra('User Watches:') . ' ' . tra('Report Preferences');
-	}
+    public function pageTitle()
+    {
+        return tra('User Watches:') . ' ' . tra('Report Preferences');
+    }
 
-	function isEditable()
-	{
-		return true;
-	}
+    public function isEditable()
+    {
+        return true;
+    }
 
-	function isVisible()
-	{
-		global	$prefs;
+    public function isVisible()
+    {
+        global	$prefs;
 
-		$linkVisible = false;
+        $linkVisible = false;
 
-		// Show if options is selected
-		if ($prefs['feature_user_watches'] === 'y' && $prefs['feature_daily_report_watches'] === 'y') {
-			$linkVisible = true;
-		}
-		return $linkVisible;
-	}
+        // Show if options is selected
+        if ($prefs['feature_user_watches'] === 'y' && $prefs['feature_daily_report_watches'] === 'y') {
+            $linkVisible = true;
+        }
 
-	function onSetupPage($homepageUrl)
-	{
-		global$user, $prefs;
+        return $linkVisible;
+    }
 
-		$smarty = TikiLib::lib('smarty');
+    public function onSetupPage($homepageUrl)
+    {
+        global$user, $prefs;
 
-		// Run the parent first
-		parent::onSetupPage($homepageUrl);
+        $smarty = TikiLib::lib('smarty');
 
-		$showPage = false;
+        // Run the parent first
+        parent::onSetupPage($homepageUrl);
 
-		// Show if options is selected
-		if ($prefs['feature_user_watches'] === 'y' && $prefs['feature_daily_report_watches'] === 'y') {
-			$showPage = true;
-		}
+        $showPage = false;
 
-		// Setup initial wizard screen
-		$reportsUsers = Reports_Factory::build('Reports_Users');
-		$reportsUsersUser = $reportsUsers->get($user);
-		$smarty->assign_by_ref('report_preferences', $reportsUsersUser);
+        // Show if options is selected
+        if ($prefs['feature_user_watches'] === 'y' && $prefs['feature_daily_report_watches'] === 'y') {
+            $showPage = true;
+        }
 
-		return $showPage;
-	}
+        // Setup initial wizard screen
+        $reportsUsers = Reports_Factory::build('Reports_Users');
+        $reportsUsersUser = $reportsUsers->get($user);
+        $smarty->assign_by_ref('report_preferences', $reportsUsersUser);
 
-	function getTemplate()
-	{
-		$wizardTemplate = 'wizard/user_preferences_reports.tpl';
-		return $wizardTemplate;
-	}
+        return $showPage;
+    }
 
-	function onContinue($homepageUrl)
-	{
-		global $user, $prefs;
+    public function getTemplate()
+    {
+        $wizardTemplate = 'wizard/user_preferences_reports.tpl';
 
-		// Run the parent first
-		parent::onContinue($homepageUrl);
+        return $wizardTemplate;
+    }
 
-		// Show if option is selected
-		if ($prefs['feature_user_watches'] === 'y' && $prefs['feature_daily_report_watches'] === 'y') {
-			$reportsManager = Reports_Factory::build('Reports_Manager');
+    public function onContinue($homepageUrl)
+    {
+        global $user, $prefs;
 
-			$interval = filter_input(INPUT_POST, 'interval', FILTER_SANITIZE_STRING);
-			$view = filter_input(INPUT_POST, 'view', FILTER_SANITIZE_STRING);
-			$type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
-			$always_email = filter_input(INPUT_POST, 'always_email', FILTER_SANITIZE_NUMBER_INT);
-			if ($always_email != 1) {
-				$always_email = 0;
-			}
+        // Run the parent first
+        parent::onContinue($homepageUrl);
 
-			$reportsManager->save($user, $interval, $view, $type, $always_email);
-		}
-	}
+        // Show if option is selected
+        if ($prefs['feature_user_watches'] === 'y' && $prefs['feature_daily_report_watches'] === 'y') {
+            $reportsManager = Reports_Factory::build('Reports_Manager');
+
+            $interval = filter_input(INPUT_POST, 'interval', FILTER_SANITIZE_STRING);
+            $view = filter_input(INPUT_POST, 'view', FILTER_SANITIZE_STRING);
+            $type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);
+            $always_email = filter_input(INPUT_POST, 'always_email', FILTER_SANITIZE_NUMBER_INT);
+            if ($always_email != 1) {
+                $always_email = 0;
+            }
+
+            $reportsManager->save($user, $interval, $view, $type, $always_email);
+        }
+    }
 }

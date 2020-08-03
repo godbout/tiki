@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,25 +8,25 @@
 
 class Math_Formula_Function_Ceil extends Math_Formula_Function
 {
-	function evaluate($element)
-	{
-		$elements = [];
+    public function evaluate($element)
+    {
+        $elements = [];
 
-		if (count($element) > 1) {
-			$this->error(tr('Too many arguments on ceil.'));
-		}
+        if (count($element) > 1) {
+            $this->error(tr('Too many arguments on ceil.'));
+        }
 
-		foreach ($element as $child) {
-			$elements[] = $this->evaluateChild($child);
-		}
+        foreach ($element as $child) {
+            $elements[] = $this->evaluateChild($child);
+        }
 
 
-		$number = array_shift($elements);
+        $number = array_shift($elements);
 
-		if ($number instanceof Math_Formula_Applicator) {
-			return $number->ceil();
-		} else {
-			return ceil($number);
-		}
-	}
+        if ($number instanceof Math_Formula_Applicator) {
+            return $number->ceil();
+        }
+
+        return ceil($number);
+    }
 }

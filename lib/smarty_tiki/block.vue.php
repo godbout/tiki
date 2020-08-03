@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -15,24 +16,24 @@
  * Usage:
 {vue}
 <template>
-	<p>{{ greeting }} World!</p>
+    <p>{{ greeting }} World!</p>
 </template>
 
 <script>
-	export default {
-		data: function () {
-			return {
-				greeting: 'Hello'
-			}
-		}
-	}
+    export default {
+        data: function () {
+            return {
+                greeting: 'Hello'
+            }
+        }
+    }
 </script>
 
 <style scoped>
-	p {
-		font-size: 2em;
-		text-align: center;
-	}
+    p {
+        font-size: 2em;
+        text-align: center;
+    }
 </style>
 {/vue}
  *
@@ -42,8 +43,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
-	header("location: index.php");
-	exit;
+    header("location: index.php");
+    exit;
 }
 
 /**
@@ -52,32 +53,32 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * @param $smarty     Smarty
  * @param $repeat     boolean
  *
- * @return string
  * @throws Exception
+ * @return string
  */
-
 function smarty_block_vue($params, $content, $smarty, &$repeat)
 {
-	global $prefs;
-	$headerlib = TikiLib::lib('header');
+    global $prefs;
+    $headerlib = TikiLib::lib('header');
 
-	if ($repeat || empty($content)) {
-		return '';
-	}
+    if ($repeat || empty($content)) {
+        return '';
+    }
 
-	if ($prefs['vuejs_enable'] === 'n') {
-		Feedback::error(tr('Vue.js is not enabled.'));
-		return '';
-	}
+    if ($prefs['vuejs_enable'] === 'n') {
+        Feedback::error(tr('Vue.js is not enabled.'));
 
-	if ($prefs['vuejs_always_load'] === 'n') {
-		$headerlib->add_jsfile_cdn("vendor_bundled/vendor/npm-asset/vue/dist/{$prefs['vuejs_build_mode']}");
-	}
+        return '';
+    }
 
-	// all ready? then we shall begin
+    if ($prefs['vuejs_always_load'] === 'n') {
+        $headerlib->add_jsfile_cdn("vendor_bundled/vendor/npm-asset/vue/dist/{$prefs['vuejs_build_mode']}");
+    }
 
-	$app = ! (empty($params['app']) || $params['app'] === 'n');
-	$name = ! isset($params['name']) ? '' : $params['name'];
+    // all ready? then we shall begin
 
-	return TikiLib::lib('vuejs')->processVue($content, $name, $app);
+    $app = ! (empty($params['app']) || $params['app'] === 'n');
+    $name = ! isset($params['name']) ? '' : $params['name'];
+
+    return TikiLib::lib('vuejs')->processVue($content, $name, $app);
 }

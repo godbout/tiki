@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -13,10 +14,10 @@
  */
 
 if ($argc < 3) {
-	$helpMsg = "\nUsage: php doc/devtools/mergelang.php pathToSourceTikiVersion pathToTargetTikiVersion [lang=pt-br,es]\n";
-	$helpMsg .= "\nExamples: \n\t\tphp doc/devtools/mergelang.php /home/user/devel/tiki80 /home/user/deve/tiki60";
-	$helpMsg .= "\n\t\tphp doc/devtools/mergelang.php /home/user/devel/tiki80 /home/user/deve/tiki60 lang=pt-br,es\n\n";
-	die($helpMsg);
+    $helpMsg = "\nUsage: php doc/devtools/mergelang.php pathToSourceTikiVersion pathToTargetTikiVersion [lang=pt-br,es]\n";
+    $helpMsg .= "\nExamples: \n\t\tphp doc/devtools/mergelang.php /home/user/devel/tiki80 /home/user/deve/tiki60";
+    $helpMsg .= "\n\t\tphp doc/devtools/mergelang.php /home/user/devel/tiki80 /home/user/deve/tiki60 lang=pt-br,es\n\n";
+    die($helpMsg);
 }
 
 require_once('lib/language/Language.php');
@@ -27,32 +28,32 @@ $sourcePath = $argv[1];
 $targetPath = $argv[2];
 
 if (isset($argv[3])) {
-	list($key, $value) = explode('=', $argv[3]);
-	$languages = explode(',', $value);
+    list($key, $value) = explode('=', $argv[3]);
+    $languages = explode(',', $value);
 } else {
-	$languages = Language::getLanguages();
+    $languages = Language::getLanguages();
 }
 
 if (! file_exists($sourcePath)) {
-	die("\nPath $sourcePath does not exist.\n\n");
+    die("\nPath $sourcePath does not exist.\n\n");
 }
 
 if (! file_exists($targetPath)) {
-	die("\nPath $targetPath does not exist.\n\n");
+    die("\nPath $targetPath does not exist.\n\n");
 }
 
 foreach ($languages as $language) {
-	$sourceLangFile = "$sourcePath/lang/$language/language.php";
-	$targetLangFile = "$targetPath/lang/$language/language.php";
-	$tmpTargetLangFile = "$targetPath/lang/$language/language.php.tmp";
+    $sourceLangFile = "$sourcePath/lang/$language/language.php";
+    $targetLangFile = "$targetPath/lang/$language/language.php";
+    $tmpTargetLangFile = "$targetPath/lang/$language/language.php.tmp";
 
-	try {
-		$sourceObj = new Language_File($sourceLangFile);
-		$targetObj = new Language_File($targetLangFile);
+    try {
+        $sourceObj = new Language_File($sourceLangFile);
+        $targetObj = new Language_File($targetLangFile);
 
-		$mergeFiles = new Language_MergeFiles($sourceObj, $targetObj);
-		$mergeFiles->merge();
-	} catch (Language_Exception $e) {
-		echo "Warning: " . $e->getMessage() . "\n";
-	}
+        $mergeFiles = new Language_MergeFiles($sourceObj, $targetObj);
+        $mergeFiles->merge();
+    } catch (Language_Exception $e) {
+        echo "Warning: " . $e->getMessage() . "\n";
+    }
 }

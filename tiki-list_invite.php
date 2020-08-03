@@ -23,62 +23,63 @@ $access->check_permission('tiki_p_invite');
  */
 function list_inviteds($offset = 0, $max = -1, $inviter = null, $status = null, $nostatus = null, $sort_mode = 'ts_desc')
 {
-	global $tikilib;
-	$bindvars = [];
-	if (! empty($inviter)) {
-		$where[] = 'invite.`inviter` = ?';
-		$bindvars[] = $inviter;
-	}
-	if (! empty($status)) {
-		$where[] = 'guy.`used` = ?';
-		$bindvars[] = $status;
-	}
-	if (! empty($nostatus)) {
-		$where[] = 'guy.`used` != ?';
-		$bindvars[] = $nostatus;
-	}
-	if (empty($where)) {
-		$where[] = '1=1';
-	}
-	$query = ' FROM `tiki_invited` guy LEFT JOIN `tiki_invite` invite ON (guy.`id_invite` = invite.`id`) where ' . implode(' AND ', $where);
-	$query_cant = "SELECT count(*) $query";
-	$query = "SELECT guy.*, invite.* $query ORDER BY " . $tikilib->convertSortMode($sort_mode); // convertSortMode($sort_mode);
-	$result = $tikilib->query($query, $bindvars, $max, $offset);
-	$cant = $tikilib->getOne($query_cant, $bindvars);
-	$ret = [];
-	while ($res = $result->fetchRow()) {
-		$ret[] = $res;
-	}
-	return ['cant' => $cant, 'data' => $ret];
+    global $tikilib;
+    $bindvars = [];
+    if (! empty($inviter)) {
+        $where[] = 'invite.`inviter` = ?';
+        $bindvars[] = $inviter;
+    }
+    if (! empty($status)) {
+        $where[] = 'guy.`used` = ?';
+        $bindvars[] = $status;
+    }
+    if (! empty($nostatus)) {
+        $where[] = 'guy.`used` != ?';
+        $bindvars[] = $nostatus;
+    }
+    if (empty($where)) {
+        $where[] = '1=1';
+    }
+    $query = ' FROM `tiki_invited` guy LEFT JOIN `tiki_invite` invite ON (guy.`id_invite` = invite.`id`) where ' . implode(' AND ', $where);
+    $query_cant = "SELECT count(*) $query";
+    $query = "SELECT guy.*, invite.* $query ORDER BY " . $tikilib->convertSortMode($sort_mode); // convertSortMode($sort_mode);
+    $result = $tikilib->query($query, $bindvars, $max, $offset);
+    $cant = $tikilib->getOne($query_cant, $bindvars);
+    $ret = [];
+    while ($res = $result->fetchRow()) {
+        $ret[] = $res;
+    }
+
+    return ['cant' => $cant, 'data' => $ret];
 }
 
 $auto_query_args = ['max', 'sort_mode', 'offset', 'inviter', 'only_pending', 'only_success'];
 if (! isset($_REQUEST['offset'])) {
-	$_REQUEST['offset'] = 0;
+    $_REQUEST['offset'] = 0;
 }
 if (! isset($_REQUEST['maxRecords'])) {
-	$_REQUEST['maxRecords'] = $prefs['maxRecords'];
+    $_REQUEST['maxRecords'] = $prefs['maxRecords'];
 }
 if (empty($_REQUEST['sort_mode'])) {
-	$_REQUEST['sort_mode'] = 'ts_desc';
+    $_REQUEST['sort_mode'] = 'ts_desc';
 }
 if ($tiki_p_admin == 'y') {
-	if (! empty($_REQUEST['inviter'])) {
-			$inviter = $_REQUEST['inviter'];
-		$smarty->assign_by_ref('inviter', $_REQUEST['inviter']);
-	} else {
-		$inviter = null;
-	}
+    if (! empty($_REQUEST['inviter'])) {
+        $inviter = $_REQUEST['inviter'];
+        $smarty->assign_by_ref('inviter', $_REQUEST['inviter']);
+    } else {
+        $inviter = null;
+    }
 } else {
-	$inviter = $user;
+    $inviter = $user;
 }
 $status = $nostatus = null;
 if (! empty($_REQUEST['only_pending']) && $_REQUEST['only_pending'] == 'on') {
-	$status = 'no';
-	$smarty->assign('only_pending', 'y');
+    $status = 'no';
+    $smarty->assign('only_pending', 'y');
 } elseif (! empty($_REQUEST['only_success'])) {
-	$nostatus = 'no';
-	$smarty->assign('only_success', 'y');
+    $nostatus = 'no';
+    $smarty->assign('only_success', 'y');
 }
 $inviteds = list_inviteds($_REQUEST['offset'], $_REQUEST['maxRecords'], $inviter, $status, $nostatus, $_REQUEST['sort_mode']);
 $smarty->assign_by_ref('inviteds', $inviteds['data']);

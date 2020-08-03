@@ -9,16 +9,16 @@
 // $Id$
 
 $inputConfiguration = [
-	[ 'staticKeyFilters' =>
-		[
-			'clean' => 'striptags',
-			'offset' => 'digits',
-			'numrows' => 'digits',
-			'maxRecords' => 'digits',
-			'find' => 'striptags',
-			'sort_mode' => 'striptags',
-		]
-	]
+    [ 'staticKeyFilters' =>
+        [
+            'clean' => 'striptags',
+            'offset' => 'digits',
+            'numrows' => 'digits',
+            'maxRecords' => 'digits',
+            'find' => 'striptags',
+            'sort_mode' => 'striptags',
+        ]
+    ]
 ];
 
 include_once('tiki-setup.php');
@@ -26,17 +26,17 @@ include_once('tiki-setup.php');
 $access->check_permission('tiki_p_admin');
 
 if ($api_tiki != 'adodb') {
-	$smarty->assign('msg', tra('This feature is disabled') . ': adodb');
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tra('This feature is disabled') . ': adodb');
+    $smarty->display('error.tpl');
+    die;
 }
 
 $query = "show tables like 'adodb_logsql'";
 $result = $tikilib->query($query, []);
 if (! $result->numRows()) {
-	$smarty->assign('msg', tra('This feature is disabled') . ': log_sql');
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tra('This feature is disabled') . ': log_sql');
+    $smarty->display('error.tpl');
+    die;
 }
 // let look at the log even if not active for older logs
 //if ($prefs['log_sql'] != 'y') {
@@ -45,8 +45,8 @@ if (! $result->numRows()) {
 //	die;
 //}
 if (isset($_REQUEST['clean'])) {
-	$access->check_authenticity(tra('Clean the sql logs'));
-	$logslib->clean_logsql();
+    $access->check_authenticity(tra('Clean the sql logs'));
+    $logslib->clean_logsql();
 }
 $auto_query_args = ['offset', 'numrows', 'find', 'sort_mode'];
 $numrows = (isset($_REQUEST['numrows'])) ? $_REQUEST['numrows'] : (isset($_REQUEST['maxRecords']) ? $_REQUEST['maxRecords'] : $prefs['maxRecords']);

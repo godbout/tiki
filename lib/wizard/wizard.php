@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -18,80 +19,81 @@
  */
 abstract class Wizard
 {
-	/**
-	* pageTitle
-	*	Answer the title of the wizard page.
-	* @return string
-	*
-	*/
-	function pageTitle()
-	{
-		return 'Page title not set';
-	}
+    /**
+    * pageTitle
+    *	Answer the title of the wizard page.
+    * @return string
+    *
+    */
+    public function pageTitle()
+    {
+        return 'Page title not set';
+    }
 
-	function getTemplate()
-	{
-		return null;
-	}
+    public function getTemplate()
+    {
+        return null;
+    }
 
-	/**
-	* isVisible
-	*	Answer if the page should be displayed or not.
-	* @return bool		true if the page should be displayed
-	*
-	*/
-	function isVisible()
-	{
-		return true;
-	}
+    /**
+    * isVisible
+    *	Answer if the page should be displayed or not.
+    * @return bool		true if the page should be displayed
+    *
+    */
+    public function isVisible()
+    {
+        return true;
+    }
 
-	/**
-	 * isEditable
-	 *	Answer if any preferences or other settings are changed by the wizard page.
-	 *	If it is editable, the wizard will prompt to Save the page (Save and Continue). Otherwise the "Next" is shown
-	 * @return bool		true if the page alters preferences or other settings
-	 *
-	 */
-	function isEditable()
-	{
-		return false;
-	}
+    /**
+     * isEditable
+     *	Answer if any preferences or other settings are changed by the wizard page.
+     *	If it is editable, the wizard will prompt to Save the page (Save and Continue). Otherwise the "Next" is shown
+     * @return bool		true if the page alters preferences or other settings
+     *
+     */
+    public function isEditable()
+    {
+        return false;
+    }
 
-	/**
-	 * This is method onSetupPage
-	 *
-	 * @param string $homepageUrl The url to return to, when the wizard is complete
-	 * @return bool true if page should be shown. If false, the wizard will skip the page
-	 *
-	 */
-	function onSetupPage($homepageUrl)
-	{
-		return true;
-	}
+    /**
+     * This is method onSetupPage
+     *
+     * @param string $homepageUrl The url to return to, when the wizard is complete
+     * @return bool true if page should be shown. If false, the wizard will skip the page
+     *
+     */
+    public function onSetupPage($homepageUrl)
+    {
+        return true;
+    }
 
-	/**
-	 * onContinue processes the settings on the wizard page.
-	 * @param string $homepageUrl The url to return to, when the wizard is complete
-	 * @return array
-	 *
-	 */
-	function onContinue($homepageUrl)
-	{
-		// Save the user selection for showing the wizard on login or not
-		$showOnLogin = ( isset($_POST['showOnLogin']) && $_POST['showOnLogin'] == 'on' ) ? 'y' : 'n';
+    /**
+     * onContinue processes the settings on the wizard page.
+     * @param string $homepageUrl The url to return to, when the wizard is complete
+     * @return array
+     *
+     */
+    public function onContinue($homepageUrl)
+    {
+        // Save the user selection for showing the wizard on login or not
+        $showOnLogin = (isset($_POST['showOnLogin']) && $_POST['showOnLogin'] == 'on') ? 'y' : 'n';
 
-		// Mark the login mode for the wizard
-		$wizardlib = TikiLib::lib('wizard');
-		$wizardlib->showOnLogin($showOnLogin);
+        // Mark the login mode for the wizard
+        $wizardlib = TikiLib::lib('wizard');
+        $wizardlib->showOnLogin($showOnLogin);
 
-		$changes = [];
-		// Commit any preferences on the page
-		if ($this->isEditable()) {
-			if (isset($_REQUEST['lm_preference'])) {
-				$prefslib = TikiLib::lib('prefs');
-				$changes = $prefslib->applyChanges((array) $_REQUEST['lm_preference'], $_REQUEST);
-			}
-		}
-		return $changes;
-	}
+        $changes = [];
+        // Commit any preferences on the page
+        if ($this->isEditable()) {
+            if (isset($_REQUEST['lm_preference'])) {
+                $prefslib = TikiLib::lib('prefs');
+                $changes = $prefslib->applyChanges((array) $_REQUEST['lm_preference'], $_REQUEST);
+            }
+        }
+
+        return $changes;
+    }
 }

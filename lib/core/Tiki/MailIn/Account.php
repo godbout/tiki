@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,296 +8,297 @@
 
 namespace Tiki\MailIn;
 
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 use TikiLib;
 use TikiMail;
-use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 class Account
 {
-	private $source;
-	private $actionFactory;
+    private $source;
+    private $actionFactory;
 
-	private $accountAddress;
-	private $anonymousAllowed;
-	private $adminAllowed;
-	private $sendResponses;
-	private $discardAfter;
-	private $defaultCategory;
-	private $saveHtml;
-	private $auto_attachments;
-	private $inline_attachments;
+    private $accountAddress;
+    private $anonymousAllowed;
+    private $adminAllowed;
+    private $sendResponses;
+    private $discardAfter;
+    private $defaultCategory;
+    private $saveHtml;
+    private $auto_attachments;
+    private $inline_attachments;
 
-	private static function getSource(array $acc)
-	{
-		if ($acc['protocol'] == 'imap') {
-			return new Source\Imap($acc['host'], $acc['port'], $acc['username'], $acc['pass']);
-		} else {
-			return new Source\Pop3($acc['host'], $acc['port'], $acc['username'], $acc['pass']);
-		}
-	}
+    private static function getSource(array $acc)
+    {
+        if ($acc['protocol'] == 'imap') {
+            return new Source\Imap($acc['host'], $acc['port'], $acc['username'], $acc['pass']);
+        }
 
-	public static function test(array $acc)
-	{
-		$source = self::getSource($acc);
-		return $source->test();
-	}
+        return new Source\Pop3($acc['host'], $acc['port'], $acc['username'], $acc['pass']);
+    }
 
-	public static function fromDb(array $acc)
-	{
-		$account = new self;
-		$account->source = self::getSource($acc);
+    public static function test(array $acc)
+    {
+        $source = self::getSource($acc);
 
-		$wikiParams = [
-			'namespace' => $acc['namespace'],
-			'structure_routing' => $acc['routing'] == 'y',
-		];
+        return $source->test();
+    }
 
-		try {
-			$container = \TikiInit::getContainer();
-			$type = str_replace('-', '', $acc['type']);
-			$provider = $container->get("tiki.mailin.provider.{$type}");
+    public static function fromDb(array $acc)
+    {
+        $account = new self;
+        $account->source = self::getSource($acc);
 
-			$account->actionFactory = $provider->getActionFactory($acc);
-		} catch (ServiceNotFoundException $e) {
-			throw new Exception\MailInException("Action factory not found.");
-		}
+        $wikiParams = [
+            'namespace' => $acc['namespace'],
+            'structure_routing' => $acc['routing'] == 'y',
+        ];
 
-		$account->accountAddress = $acc['account'];
-		$account->anonymousAllowed = $acc['anonymous'] == 'y';
-		$account->adminAllowed = $acc['admin'] == 'y';
-		$account->sendResponses = $acc['respond_email'] == 'y';
-		$account->discardAfter = $acc['discard_after'];
-		$account->defaultCategory = $acc['categoryId'];
-		$account->saveHtml = $acc['save_html'] == 'y';
-		$account->deleteOnError = $acc['leave_email'] != 'y';
-		$account->auto_attachments = $acc['attachments'] == 'y';
-		$account->inline_attachments = $acc['show_inlineImages'] == 'y';
+        try {
+            $container = \TikiInit::getContainer();
+            $type = str_replace('-', '', $acc['type']);
+            $provider = $container->get("tiki.mailin.provider.{$type}");
 
-		return $account;
-	}
+            $account->actionFactory = $provider->getActionFactory($acc);
+        } catch (ServiceNotFoundException $e) {
+            throw new Exception\MailInException("Action factory not found.");
+        }
 
-	private function __construct()
-	{
-	}
+        $account->accountAddress = $acc['account'];
+        $account->anonymousAllowed = $acc['anonymous'] == 'y';
+        $account->adminAllowed = $acc['admin'] == 'y';
+        $account->sendResponses = $acc['respond_email'] == 'y';
+        $account->discardAfter = $acc['discard_after'];
+        $account->defaultCategory = $acc['categoryId'];
+        $account->saveHtml = $acc['save_html'] == 'y';
+        $account->deleteOnError = $acc['leave_email'] != 'y';
+        $account->auto_attachments = $acc['attachments'] == 'y';
+        $account->inline_attachments = $acc['show_inlineImages'] == 'y';
 
-	private function completeSuccess($message)
-	{
-		$message->delete();
-	}
+        return $account;
+    }
 
-	private function completeFailure($message)
-	{
-		if ($this->deleteOnError) {
-			$message->delete();
-		}
-	}
+    private function __construct()
+    {
+    }
 
-	function isAnyoneAllowed()
-	{
-		return $this->anonymousAllowed;
-	}
+    private function completeSuccess($message)
+    {
+        $message->delete();
+    }
 
-	private function canReceive(Source\Message $message)
-	{
-		$user = $message->getAssociatedUser();
-		$perms = TikiLib::lib('tiki')->get_user_permission_accessor($user, null, null);
+    private function completeFailure($message)
+    {
+        if ($this->deleteOnError) {
+            $message->delete();
+        }
+    }
 
-		if (! $user) {
-			return $this->anonymousAllowed;
-		} elseif ($perms->admin) {
-			return $this->adminAllowed;
-		} else {
-			$userlib = TikiLib::lib('user');
-			return $perms->send_mailin;
-		}
-	}
+    public function isAnyoneAllowed()
+    {
+        return $this->anonymousAllowed;
+    }
 
-	private function getAction(Source\Message $message)
-	{
-		return $this->actionFactory->createAction($this, $message);
-	}
+    private function canReceive(Source\Message $message)
+    {
+        $user = $message->getAssociatedUser();
+        $perms = TikiLib::lib('tiki')->get_user_permission_accessor($user, null, null);
 
-	private function prepareMessage(Source\Message $message)
-	{
-		// TODO : This is rather primitive and implies we control the message source, need to make smarter
+        if (! $user) {
+            return $this->anonymousAllowed;
+        } elseif ($perms->admin) {
+            return $this->adminAllowed;
+        }
+        $userlib = TikiLib::lib('user');
 
-		if ($this->discardAfter) {
-			$this->discard($message, $this->discardAfter);
-		}
+        return $perms->send_mailin;
+    }
 
-		$this->discard($message, '<div class="gmail_quote">');
-		$this->discard($message, '<div class="gmail_extra">');
-	}
+    private function getAction(Source\Message $message)
+    {
+        return $this->actionFactory->createAction($this, $message);
+    }
 
-	private function discard($message, $delimitor)
-	{
-		$body = $message->getBody();
-		$pos = strpos($body, $delimitor);
-		if ($pos !== false) {
-			$body = substr($body, 0, $pos);
-			$message->setBody($body);
-		}
+    private function prepareMessage(Source\Message $message)
+    {
+        // TODO : This is rather primitive and implies we control the message source, need to make smarter
 
-		$body = $message->getHtmlBody(false);
-		$pos = strpos($body, $delimitor);
-		if ($pos !== false) {
-			$body = substr($body, 0, $pos);
-			$message->setHtmlBody($body);
-		}
-	}
+        if ($this->discardAfter) {
+            $this->discard($message, $this->discardAfter);
+        }
 
-	function sendFailureResponse(Source\Message $message, $condition)
-	{
-		global $prefs;
-		$l = $prefs['language'];
+        $this->discard($message, '<div class="gmail_quote">');
+        $this->discard($message, '<div class="gmail_extra">');
+    }
 
-		$mail = $this->getReplyMail($message);
-		$pre = tra('Mail-in auto-reply', $l) . "\n\n";
+    private function discard($message, $delimitor)
+    {
+        $body = $message->getBody();
+        $pos = strpos($body, $delimitor);
+        if ($pos !== false) {
+            $body = substr($body, 0, $pos);
+            $message->setBody($body);
+        }
 
-		if ($condition == 'cant_use') {
-			$mail->setText($pre . tra("Sorry, you can't use this feature.", $l));
-		} elseif ($condition == 'disabled') {
-			$mail->setText($pre . tra("The functionality you are trying to access is currently disabled.", $l));
-		} elseif ($condition == 'permission_denied') {
-			$mail->setText($pre . tra("Permission denied.", $l));
-		} elseif ($condition == 'nothing_to_do') {
-			$mail->setText($pre . tra("No required action found.", $l));
-		}
+        $body = $message->getHtmlBody(false);
+        $pos = strpos($body, $delimitor);
+        if ($pos !== false) {
+            $body = substr($body, 0, $pos);
+            $message->setHtmlBody($body);
+        }
+    }
 
-		$this->sendFailureReply($message, $mail);
-	}
+    public function sendFailureResponse(Source\Message $message, $condition)
+    {
+        global $prefs;
+        $l = $prefs['language'];
 
-	function getReplyMail(Source\Message $message)
-	{
-		require_once 'lib/webmail/tikimaillib.php';
-		$mail = new TikiMail();
-		$mail->setFrom($this->accountAddress);
-		$mail->setHeader('In-Reply-To', "<{$message->getMessageId()}>");
-		$mail->setSubject("RE: {$message->getSubject()}");
+        $mail = $this->getReplyMail($message);
+        $pre = tra('Mail-in auto-reply', $l) . "\n\n";
 
-		return $mail;
-	}
+        if ($condition == 'cant_use') {
+            $mail->setText($pre . tra("Sorry, you can't use this feature.", $l));
+        } elseif ($condition == 'disabled') {
+            $mail->setText($pre . tra("The functionality you are trying to access is currently disabled.", $l));
+        } elseif ($condition == 'permission_denied') {
+            $mail->setText($pre . tra("Permission denied.", $l));
+        } elseif ($condition == 'nothing_to_do') {
+            $mail->setText($pre . tra("No required action found.", $l));
+        }
 
-	function getAddress()
-	{
-		return $this->accountAddress;
-	}
+        $this->sendFailureReply($message, $mail);
+    }
 
-	function sendFailureReply(Source\Message $message, TikiMail $mail)
-	{
-		if ($this->sendResponses) {
-			$this->sendReply($message, $mail);
-		}
-	}
+    public function getReplyMail(Source\Message $message)
+    {
+        require_once 'lib/webmail/tikimaillib.php';
+        $mail = new TikiMail();
+        $mail->setFrom($this->accountAddress);
+        $mail->setHeader('In-Reply-To', "<{$message->getMessageId()}>");
+        $mail->setSubject("RE: {$message->getSubject()}");
+
+        return $mail;
+    }
+
+    public function getAddress()
+    {
+        return $this->accountAddress;
+    }
+
+    public function sendFailureReply(Source\Message $message, TikiMail $mail)
+    {
+        if ($this->sendResponses) {
+            $this->sendReply($message, $mail);
+        }
+    }
 
 
-	function sendReply(Source\Message $message, TikiMail $mail)
-	{
-		$mail->send([$message->getFromAddress()], 'mail');
-	}
+    public function sendReply(Source\Message $message, TikiMail $mail)
+    {
+        $mail->send([$message->getFromAddress()], 'mail');
+    }
 
-	function getDefaultCategory()
-	{
-		return $this->defaultCategory;
-	}
+    public function getDefaultCategory()
+    {
+        return $this->defaultCategory;
+    }
 
-	function parseBody($body, $canAllowHtml = true)
-	{
-		global $prefs;
+    public function parseBody($body, $canAllowHtml = true)
+    {
+        global $prefs;
 
-		$is_html = false;
-		$wysiwyg = null;
-		if ($this->containsStringHTML($body)) {
-			$is_html = true;
-			$wysiwyg = 'y';
-		}
+        $is_html = false;
+        $wysiwyg = null;
+        if ($this->containsStringHTML($body)) {
+            $is_html = true;
+            $wysiwyg = 'y';
+        }
 
-		if ($is_html && $this->saveHtml && $canAllowHtml) {
-			// Keep HTML setting. Always save as HTML
-		} elseif ($prefs['feature_wysiwyg'] === 'y' && $prefs['wysiwyg_default'] === 'y' && $prefs['wysiwyg_htmltowiki'] !== 'y'  && $canAllowHtml) {
-			// WYSIWYG HTML editor is active
-			$is_html = true;
-			$wysiwyg = 'y';
-		} elseif ($is_html) {
-			$editlib = TikiLib::lib('edit');
-			$body = $editlib->parseToWiki($body);
-			$is_html = false;
-			$wysiwyg = null;
-		}
+        if ($is_html && $this->saveHtml && $canAllowHtml) {
+            // Keep HTML setting. Always save as HTML
+        } elseif ($prefs['feature_wysiwyg'] === 'y' && $prefs['wysiwyg_default'] === 'y' && $prefs['wysiwyg_htmltowiki'] !== 'y' && $canAllowHtml) {
+            // WYSIWYG HTML editor is active
+            $is_html = true;
+            $wysiwyg = 'y';
+        } elseif ($is_html) {
+            $editlib = TikiLib::lib('edit');
+            $body = $editlib->parseToWiki($body);
+            $is_html = false;
+            $wysiwyg = null;
+        }
 
-		return [
-			'body' => $body,
-			'is_html' => $is_html,
-			'wysiwyg' => $wysiwyg,
-		];
-	}
+        return [
+            'body' => $body,
+            'is_html' => $is_html,
+            'wysiwyg' => $wysiwyg,
+        ];
+    }
 
-	private function containsStringHTML($str)
-	{
-		return preg_match('/<[^>]*>/', $str);
-	}
+    private function containsStringHTML($str)
+    {
+        return preg_match('/<[^>]*>/', $str);
+    }
 
-	function hasAutoAttach()
-	{
-		return $this->auto_attachments;
-	}
+    public function hasAutoAttach()
+    {
+        return $this->auto_attachments;
+    }
 
-	function hasInlineAttach()
-	{
-		return $this->inline_attachments;
-	}
+    public function hasInlineAttach()
+    {
+        return $this->inline_attachments;
+    }
 
-	function check()
-	{
-		global $prefs;
+    public function check()
+    {
+        global $prefs;
 
-		$logs = TikiLib::lib('logs');
-		$messages = $this->source->getMessages();
+        $logs = TikiLib::lib('logs');
+        $messages = $this->source->getMessages();
 
-		foreach ($messages as $message) {
-			$success = false;
+        foreach ($messages as $message) {
+            $success = false;
 
-			if (! $this->canReceive($message)) {
-				try {
-					$this->sendFailureResponse($message, 'cant_use');
-					$this->log($message, tr("Rejected message, user globally denied"));
-				} catch (\Exception $e) {
-					\Feedback::error($e->getMessage());
-				}
-			} elseif ($action = $this->getAction($message)) {
-				$context = new \Perms_Context($message->getAssociatedUser());
-				if (! $action->isEnabled()) {
-					// Action configured, but not enabled
-					$this->log($message, tr("Rejected message, associated action disabled (%0)", $action->getName()));
-					$this->sendFailureResponse($message, 'disabled');
-				} elseif ($this->isAnyoneAllowed() || $action->isAllowed($this, $message)) {
-					$this->prepareMessage($message);
-					$success = $action->execute($this, $message);
-					$this->log($message, tr("Performing action (%0)", $action->getName()));
-				} else {
-					$this->sendFailureResponse($message, 'permission_denied');
-					$this->log($message, tr("Rejected message, user locally denied (%0)", $action->getName()));
-				}
+            if (! $this->canReceive($message)) {
+                try {
+                    $this->sendFailureResponse($message, 'cant_use');
+                    $this->log($message, tr("Rejected message, user globally denied"));
+                } catch (\Exception $e) {
+                    \Feedback::error($e->getMessage());
+                }
+            } elseif ($action = $this->getAction($message)) {
+                $context = new \Perms_Context($message->getAssociatedUser());
+                if (! $action->isEnabled()) {
+                    // Action configured, but not enabled
+                    $this->log($message, tr("Rejected message, associated action disabled (%0)", $action->getName()));
+                    $this->sendFailureResponse($message, 'disabled');
+                } elseif ($this->isAnyoneAllowed() || $action->isAllowed($this, $message)) {
+                    $this->prepareMessage($message);
+                    $success = $action->execute($this, $message);
+                    $this->log($message, tr("Performing action (%0)", $action->getName()));
+                } else {
+                    $this->sendFailureResponse($message, 'permission_denied');
+                    $this->log($message, tr("Rejected message, user locally denied (%0)", $action->getName()));
+                }
 
-				unset($context);
-			} else {
-				$success = false;
+                unset($context);
+            } else {
+                $success = false;
 
-				$this->sendFailureResponse($message, 'nothing_to_do');
-				$this->log($message, tr("Rejected message, no associated action."));
-			}
+                $this->sendFailureResponse($message, 'nothing_to_do');
+                $this->log($message, tr("Rejected message, no associated action."));
+            }
 
-			if ($success) {
-				$this->completeSuccess($message);
-			} else {
-				$this->completeFailure($message);
-			}
-		}
-	}
+            if ($success) {
+                $this->completeSuccess($message);
+            } else {
+                $this->completeFailure($message);
+            }
+        }
+    }
 
-	private function log(Source\Message $message, $detail)
-	{
-		$lib = TikiLib::lib('logs');
-		$lib->add_log('mailin', $detail . ' - ' . $message->getSubject(), $message->getAssociatedUser());
-	}
+    private function log(Source\Message $message, $detail)
+    {
+        $lib = TikiLib::lib('logs');
+        $lib->add_log('mailin', $detail . ' - ' . $message->getSubject(), $message->getAssociatedUser());
+    }
 }

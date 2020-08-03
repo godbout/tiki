@@ -1,13 +1,15 @@
 <?php
 $check_if_model_works = false;
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) == false) {
-	//echo 'This model works';
-	$check_if_model_works = true;
-	return $check_if_model_works;
-} else {
-	echo 'Tiki Read Check: this model works';
-	return;
+    //echo 'This model works';
+    $check_if_model_works = true;
+
+    return $check_if_model_works;
 }
+    echo 'Tiki Read Check: this model works';
+
+    return;
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">

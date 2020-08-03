@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -12,71 +13,72 @@
  */
 class Perms_Resolver_Static implements Perms_Resolver
 {
-	private $known = [];
-	private $from = '';
+    private $known = [];
+    private $from = '';
 
-	/*
-	 * Convert array $known into an internal structure where the permission name is the key.
-	 * I.e. $this->known['customers']['add_object'] == true
-	 * @param array $known - array[groupname] = array(perms)
-	 * @param string $from -type of object the permissons belongs to : i.e 'object', 'category'
-	 */
-	function __construct(array $known, $from = '')
-	{
-		foreach ($known as $group => $perms) {
-			$this->known[$group] = array_fill_keys($perms, true);
-		}
-		$this->from = $from;
-	}
+    /*
+     * Convert array $known into an internal structure where the permission name is the key.
+     * I.e. $this->known['customers']['add_object'] == true
+     * @param array $known - array[groupname] = array(perms)
+     * @param string $from -type of object the permissons belongs to : i.e 'object', 'category'
+     */
+    public function __construct(array $known, $from = '')
+    {
+        foreach ($known as $group => $perms) {
+            $this->known[$group] = array_fill_keys($perms, true);
+        }
+        $this->from = $from;
+    }
 
-	/*
-	 * Check if a specific permission like 'add_object' exist in any of the groups
-	 * @param string $name  - permission name
-	 * @param array $groups - all groups available
-	 * @return bool $success - true if permission was found
-	 */
-	function check($name, array $groups)
-	{
-		foreach ($groups as $groupName) {
-			if (isset($this->known[$groupName])) {
-				if (isset($this->known[$groupName][$name])) {
-					return true;
-				}
-			}
-		}
+    /*
+     * Check if a specific permission like 'add_object' exist in any of the groups
+     * @param string $name  - permission name
+     * @param array $groups - all groups available
+     * @return bool $success - true if permission was found
+     */
+    public function check($name, array $groups)
+    {
+        foreach ($groups as $groupName) {
+            if (isset($this->known[$groupName])) {
+                if (isset($this->known[$groupName][$name])) {
+                    return true;
+                }
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	/*
-	 * Get name of the object type the permissons to check belong to : i.e 'object', 'category'
-	 * @return $string name of object type
-	 */
-	function from()
-	{
-		return $this->from;
-	}
+    /*
+     * Get name of the object type the permissons to check belong to : i.e 'object', 'category'
+     * @return $string name of object type
+     */
+    public function from()
+    {
+        return $this->from;
+    }
 
-	/*
-	 * Get array of applicable groups.
-	 * @return array $ applicableGroups
-	 */
-	function applicableGroups()
-	{
-		return array_keys($this->known);
-	}
+    /*
+     * Get array of applicable groups.
+     * @return array $ applicableGroups
+     */
+    public function applicableGroups()
+    {
+        return array_keys($this->known);
+    }
 
-	function dump()
-	{
-		$result = [
-			'from' => $this->from() ? $this->from() : 'global',
-			'perms' => [],
-		];
-		foreach ($this->known as $group => $perms) {
-			foreach ($perms as $perm => $_) {
-				$result['perms'][$perm][] = $group;
-			}
-		}
-		return $result;
-	}
+    public function dump()
+    {
+        $result = [
+            'from' => $this->from() ? $this->from() : 'global',
+            'perms' => [],
+        ];
+        foreach ($this->known as $group => $perms) {
+            foreach ($perms as $perm => $_) {
+                $result['perms'][$perm][] = $group;
+            }
+        }
+
+        return $result;
+    }
 }

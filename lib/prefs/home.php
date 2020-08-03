@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,37 +8,36 @@
 
 function prefs_home_list($partial = false)
 {
-
-	return [
-		'home_blog' => [
-			'name' => tra('Home blog (main blog)'),
-			'type' => 'list',
-			'options' => $partial ? [] : listblog_pref(),
-			'default' => 0,
-			'profile_reference' => 'blog',
-		],
-		'home_forum' => [
-			'name' => tra('Home forum (main forum)'),
-			'type' => 'text',
-			'default' => 0,
-			'profile_reference' => 'forum',
-		],
-		'home_file_gallery' => [
-			'name' => tra('Home file gallery (main file gallery)'),
-			'description' => tra('Select the default file gallery'),
-			'type' => 'list',
-			'options' => $partial ? [] : listfgal_pref(),
-			'default' => 1,
-			'profile_reference' => 'file_gallery',
-		],
-		'home_gallery' => [
-			'name' => tra('Home gallery (main gallery)'),
-			'type' => 'list',
-			'options' => $partial ? [] : listimgal_pref(),
-			'default' => 0,
-			'profile_reference' => 'image_gallery',
-		],
-	];
+    return [
+        'home_blog' => [
+            'name' => tra('Home blog (main blog)'),
+            'type' => 'list',
+            'options' => $partial ? [] : listblog_pref(),
+            'default' => 0,
+            'profile_reference' => 'blog',
+        ],
+        'home_forum' => [
+            'name' => tra('Home forum (main forum)'),
+            'type' => 'text',
+            'default' => 0,
+            'profile_reference' => 'forum',
+        ],
+        'home_file_gallery' => [
+            'name' => tra('Home file gallery (main file gallery)'),
+            'description' => tra('Select the default file gallery'),
+            'type' => 'list',
+            'options' => $partial ? [] : listfgal_pref(),
+            'default' => 1,
+            'profile_reference' => 'file_gallery',
+        ],
+        'home_gallery' => [
+            'name' => tra('Home gallery (main gallery)'),
+            'type' => 'list',
+            'options' => $partial ? [] : listimgal_pref(),
+            'default' => 0,
+            'profile_reference' => 'image_gallery',
+        ],
+    ];
 }
 
 /**
@@ -48,21 +48,21 @@ function prefs_home_list($partial = false)
  */
 function listimgal_pref()
 {
-	$imagegallib = TikiLib::lib('imagegal');
+    $imagegallib = TikiLib::lib('imagegal');
 
-	$allimgals = $imagegallib->list_visible_galleries(0, -1, 'name_desc', 'admin', '');
+    $allimgals = $imagegallib->list_visible_galleries(0, -1, 'name_desc', 'admin', '');
 
-	$listimgals = [];
+    $listimgals = [];
 
-	if ($allimgals['cant'] > 0) {
-		foreach ($allimgals['data'] as $oneimgal) {
-			$listimgals[ $oneimgal['galleryId'] ] = substr($oneimgal['name'], 0, 30);
-		}
-	} else {
-		$listimgals[''] = tra('No image gallery available (create one first)');
-	}
+    if ($allimgals['cant'] > 0) {
+        foreach ($allimgals['data'] as $oneimgal) {
+            $listimgals[ $oneimgal['galleryId'] ] = substr($oneimgal['name'], 0, 30);
+        }
+    } else {
+        $listimgals[''] = tra('No image gallery available (create one first)');
+    }
 
-	return $listimgals;
+    return $listimgals;
 }
 
 /**
@@ -73,24 +73,24 @@ function listimgal_pref()
  */
 function listfgal_pref()
 {
-	$filegallib = TikiLib::lib('filegal');
+    $filegallib = TikiLib::lib('filegal');
 
-	global $prefs;
-	$allfgals = $filegallib->getSubGalleries($prefs['fgal_root_id']);
-	array_unshift($allfgals['data'], $filegallib->get_file_gallery($prefs['fgal_root_id']));
-	$allfgals['data'][0]['id'] = $allfgals['data'][0]['galleryId'];	// sometimes galleries have a galleryId, sometimes it's in id :(
+    global $prefs;
+    $allfgals = $filegallib->getSubGalleries($prefs['fgal_root_id']);
+    array_unshift($allfgals['data'], $filegallib->get_file_gallery($prefs['fgal_root_id']));
+    $allfgals['data'][0]['id'] = $allfgals['data'][0]['galleryId'];	// sometimes galleries have a galleryId, sometimes it's in id :(
 
-	$listfgals = [];
+    $listfgals = [];
 
-	if ($allfgals['cant'] > 0) {
-		foreach ($allfgals['data'] as $onefgal) {
-			$listfgals[ $onefgal['id'] ] = substr($onefgal['name'], 0, 30);
-		}
-	} else {
-		$listfgals[''] = tra('No file gallery available (create one first)');
-	}
+    if ($allfgals['cant'] > 0) {
+        foreach ($allfgals['data'] as $onefgal) {
+            $listfgals[ $onefgal['id'] ] = substr($onefgal['name'], 0, 30);
+        }
+    } else {
+        $listfgals[''] = tra('No file gallery available (create one first)');
+    }
 
-	return $listfgals;
+    return $listfgals;
 }
 
 /**
@@ -101,18 +101,18 @@ function listfgal_pref()
  */
 function listblog_pref()
 {
-	$bloglib = TikiLib::lib('blog');
+    $bloglib = TikiLib::lib('blog');
 
-	$allblogs = $bloglib->list_blogs(0, -1, 'created_desc', '');
-	$listblogs = ['' => 'None'];
+    $allblogs = $bloglib->list_blogs(0, -1, 'created_desc', '');
+    $listblogs = ['' => 'None'];
 
-	if ($allblogs['cant'] > 0) {
-		foreach ($allblogs['data'] as $blog) {
-			$listblogs[ $blog['blogId'] ] = substr($blog['title'], 0, 30);
-		}
-	} else {
-		$listblogs[''] = tra('No blog available (create one first)');
-	}
+    if ($allblogs['cant'] > 0) {
+        foreach ($allblogs['data'] as $blog) {
+            $listblogs[ $blog['blogId'] ] = substr($blog['title'], 0, 30);
+        }
+    } else {
+        $listblogs[''] = tra('No blog available (create one first)');
+    }
 
-	return $listblogs;
+    return $listblogs;
 }

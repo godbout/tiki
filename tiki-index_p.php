@@ -17,37 +17,37 @@ $wikilib = TikiLib::lib('wiki');
 $parserlib = TikiLib::lib('parser');
 
 if ($prefs['feature_categories'] == 'y') {
-	$categlib = TikiLib::lib('categ');
+    $categlib = TikiLib::lib('categ');
 }
 
 $access->check_feature('feature_wiki');
 
 // Create the HomePage if it doesn't exist
 if (! $tikilib->page_exists($prefs['wikiHomePage'])) {
-	$tikilib->create_page($prefs['wikiHomePage'], 0, '', $tikilib->now, 'Tiki initialization');
+    $tikilib->create_page($prefs['wikiHomePage'], 0, '', $tikilib->now, 'Tiki initialization');
 }
 
 if (! isset($_SESSION["thedate"])) {
-	$thedate = $tikilib->now;
+    $thedate = $tikilib->now;
 } else {
-	$thedate = $_SESSION["thedate"];
+    $thedate = $_SESSION["thedate"];
 }
 
 // Get the page from the request var or default it to HomePage
 if (! isset($_REQUEST["page"])) {
-	$_REQUEST["page"] = $wikilib->get_default_wiki_page();
+    $_REQUEST["page"] = $wikilib->get_default_wiki_page();
 }
 $page = $_REQUEST['page'];
 $smarty->assign('page', $page);
 
 if (! $tikilib->page_exists($prefs['wikiHomePage'])) {
-	$tikilib->create_page($prefs['wikiHomePage'], 0, '', $tikilib->now, 'Tiki initialization');
+    $tikilib->create_page($prefs['wikiHomePage'], 0, '', $tikilib->now, 'Tiki initialization');
 }
 
 if (! ($info = $tikilib->get_page_info($page))) {
-	$smarty->assign('msg', tra('Page cannot be found'));
-	$smarty->display('error.tpl');
-	die;
+    $smarty->assign('msg', tra('Page cannot be found'));
+    $smarty->display('error.tpl');
+    die;
 }
 
 require_once 'lib/wiki/renderlib.php';
@@ -55,7 +55,7 @@ $pageRenderer = new WikiRenderer($info, $user);
 $objectperms = $pageRenderer->applyPermissions();
 
 if ($prefs['flaggedrev_approval'] == 'y' && isset($_REQUEST['latest']) && $objectperms->wiki_view_latest) {
-	$pageRenderer->forceLatest();
+    $pageRenderer->forceLatest();
 }
 
 $access->check_permission('tiki_p_view', '', 'wiki page', $page);
@@ -64,21 +64,21 @@ $access->check_permission('tiki_p_view', '', 'wiki page', $page);
 // Remember to reverse the array when posting the array
 
 if (! isset($_SESSION["breadCrumb"])) {
-	$_SESSION["breadCrumb"] = [];
+    $_SESSION["breadCrumb"] = [];
 }
 
 if (! in_array($page, $_SESSION["breadCrumb"])) {
-	if (count($_SESSION["breadCrumb"]) > $prefs['userbreadCrumb']) {
-		array_shift($_SESSION["breadCrumb"]);
-	}
+    if (count($_SESSION["breadCrumb"]) > $prefs['userbreadCrumb']) {
+        array_shift($_SESSION["breadCrumb"]);
+    }
 
-	array_push($_SESSION["breadCrumb"], $page);
+    array_push($_SESSION["breadCrumb"], $page);
 } else {
-	// If the page is in the array move to the last position
-	$pos = array_search($page, $_SESSION["breadCrumb"]);
+    // If the page is in the array move to the last position
+    $pos = array_search($page, $_SESSION["breadCrumb"]);
 
-	unset($_SESSION["breadCrumb"][$pos]);
-	array_push($_SESSION["breadCrumb"], $page);
+    unset($_SESSION["breadCrumb"][$pos]);
+    array_push($_SESSION["breadCrumb"], $page);
 }
 
 // Now increment page hits since we are visiting this page
@@ -87,53 +87,53 @@ $tikilib->add_hit($page);
 $smarty->assign('page_user', $info['user']);
 
 if (($tiki_p_admin_wiki == 'y')
-	|| ($user and ($user == $info['user']) and ($tiki_p_lock == 'y') and ($prefs['feature_wiki_usrlock'] == 'y'))) {
-	if (isset($_REQUEST["action"])) {
-		check_ticket('index-p');
-		if ($_REQUEST["action"] == 'unlock') {
-			$wikilib->unlock_page($page);
-		}
-	}
+    || ($user and ($user == $info['user']) and ($tiki_p_lock == 'y') and ($prefs['feature_wiki_usrlock'] == 'y'))) {
+    if (isset($_REQUEST["action"])) {
+        check_ticket('index-p');
+        if ($_REQUEST["action"] == 'unlock') {
+            $wikilib->unlock_page($page);
+        }
+    }
 }
 
 // Save to notepad if user wants to
 if ($user && $prefs['feature_wiki_notepad'] == 'y' && $tiki_p_notepad == 'y' && $prefs['feature_notepad'] == 'y' && isset($_REQUEST['savenotepad'])) {
-		check_ticket('index-p');
-	include_once('lib/notepad/notepadlib.php');
+    check_ticket('index-p');
+    include_once('lib/notepad/notepadlib.php');
 
-	$notepadlib->replace_note($user, 0, $_REQUEST['page'], $info['data']);
+    $notepadlib->replace_note($user, 0, $_REQUEST['page'], $info['data']);
 }
 
 // Verify lock status
 if ($info["flag"] == 'L') {
-	$smarty->assign('lock', true);
+    $smarty->assign('lock', true);
 } else {
-	$smarty->assign('lock', false);
+    $smarty->assign('lock', false);
 }
 
 // If not locked and last version is user version then can undo
 $smarty->assign('canundo', 'n');
 
 if ($info["flag"] != 'L' && (($tiki_p_edit == 'y' && $info["user"] == $user) || ($tiki_p_remove == 'y'))) {
-	$smarty->assign('canundo', 'y');
+    $smarty->assign('canundo', 'y');
 }
 
 if ($tiki_p_admin_wiki == 'y') {
-	$smarty->assign('canundo', 'y');
+    $smarty->assign('canundo', 'y');
 }
 
 if (isset($_REQUEST['refresh'])) {
-	$tikilib->invalidate_cache($page);
+    $tikilib->invalidate_cache($page);
 }
 
 $smarty->assign('cached_page', 'n');
 
 if (! isset($_REQUEST['pagenum'])) {
-	$_REQUEST['pagenum'] = 1;
+    $_REQUEST['pagenum'] = 1;
 }
 
 if (isset($_REQUEST['pagenum']) && $_REQUEST['pagenum'] > 0) {
-	$pageRenderer->setPageNumber((int) $_REQUEST['pagenum']);
+    $pageRenderer->setPageNumber((int) $_REQUEST['pagenum']);
 }
 
 

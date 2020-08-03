@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,8 +8,8 @@
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
-	header('location: index.php');
-	exit;
+    header('location: index.php');
+    exit;
 }
 
 /**
@@ -19,123 +20,124 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
  */
 abstract class SerializedList
 {
-	protected $name = '';
-	protected $data;
-	protected $prefPrefix;
+    protected $name = '';
+    protected $data;
+    protected $prefPrefix;
 
-	/**
-	 * Constructor
-	 * poss add the prefPrefix and data init as params
-	 * also getting a named item should be a separate step?
-	 *
-	 * @param string $name
-	 */
-	public function __construct($name)
-	{
-		global $prefs;
+    /**
+     * Constructor
+     * poss add the prefPrefix and data init as params
+     * also getting a named item should be a separate step?
+     *
+     * @param string $name
+     */
+    public function __construct($name)
+    {
+        global $prefs;
 
-		$this->initPrefPrefix();
+        $this->initPrefPrefix();
 
-		$this->name = strtolower(TikiLib::remove_non_word_characters_and_accents($name));
-		if (! empty($this->name) && ! empty($prefs[$this->getPrefName()])) {
-			$this->loadPref();
-		} else {
-			$this->initData();
-		}
-	}
+        $this->name = strtolower(TikiLib::remove_non_word_characters_and_accents($name));
+        if (! empty($this->name) && ! empty($prefs[$this->getPrefName()])) {
+            $this->loadPref();
+        } else {
+            $this->initData();
+        }
+    }
 
-	abstract public function initPrefPrefix();	// to be declared to set $this->prefPrefix = 'your_pref_prefix_'
-	abstract public function initData();		// func to set $this->data as you need it
-	/**
-	 * @param $params
-	 * @return mixed
-	 */
-	abstract public function setData($params);	// func to set the date
+    abstract public function initPrefPrefix();	// to be declared to set $this->prefPrefix = 'your_pref_prefix_'
+    abstract public function initData();		// func to set $this->data as you need it
+    /**
+     * @param $params
+     * @return mixed
+     */
+    abstract public function setData($params);	// func to set the date
 
-	public function getData()
-	{
-		return $this->data;
-	}
+    public function getData()
+    {
+        return $this->data;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getName()
-	{
-		return $this->name;
-	}
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getPrefName()
-	{
-		return $this->prefPrefix . $this->name;
-	}
+    /**
+     * @return string
+     */
+    public function getPrefName()
+    {
+        return $this->prefPrefix . $this->name;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getListName()
-	{
-		return $this->prefPrefix . 'list';
-	}
+    /**
+     * @return string
+     */
+    public function getListName()
+    {
+        return $this->prefPrefix . 'list';
+    }
 
-	/**
-	 * @return array|mixed
-	 */
-	public function getPrefList()
-	{
-		global $prefs;
+    /**
+     * @return array|mixed
+     */
+    public function getPrefList()
+    {
+        global $prefs;
 
-		if (isset($prefs[$this->getListName()])) {
-			$custom = @unserialize($prefs[$this->getListName()]);
-			sort($custom);
-		} else {
-			$custom = [];
-		}
+        if (isset($prefs[$this->getListName()])) {
+            $custom = @unserialize($prefs[$this->getListName()]);
+            sort($custom);
+        } else {
+            $custom = [];
+        }
 
-		return $custom;
-	}
+        return $custom;
+    }
 
-	/**
-	 * @return mixed
-	 */
-	public function loadPref()
-	{
-		global $prefs, $tikilib;
+    /**
+     * @return mixed
+     */
+    public function loadPref()
+    {
+        global $prefs, $tikilib;
 
-		$this->data = unserialize($prefs[$this->getPrefName()]);
-		return $this->data;
-	}
+        $this->data = unserialize($prefs[$this->getPrefName()]);
 
-	public function savePref()
-	{
-		global $prefs, $tikilib;
+        return $this->data;
+    }
 
-		$list = $this->getPrefList();
+    public function savePref()
+    {
+        global $prefs, $tikilib;
 
-		$tikilib->set_preference($this->getPrefName(), serialize($this->data));
+        $list = $this->getPrefList();
 
-		if (! in_array($this->name, $list)) {
-			$list[] = $this->name;
-			$tikilib->set_preference($this->getListName(), serialize($list));
-		}
-	}
+        $tikilib->set_preference($this->getPrefName(), serialize($this->data));
 
-	public function deletePref()
-	{
-		global $prefs, $tikilib;
+        if (! in_array($this->name, $list)) {
+            $list[] = $this->name;
+            $tikilib->set_preference($this->getListName(), serialize($list));
+        }
+    }
 
-		$prefName = $this->getPrefName();
-		if (isset($prefs[$prefName])) {
-			$tikilib->delete_preference($prefName);
-		}
-		$list = $this->getPrefList();
+    public function deletePref()
+    {
+        global $prefs, $tikilib;
 
-		if (in_array($this->name, $list)) {
-			$list = array_diff($list, [$this->name]);
-			$tikilib->set_preference($this->getListName(), serialize($list));
-		}
-	}
+        $prefName = $this->getPrefName();
+        if (isset($prefs[$prefName])) {
+            $tikilib->delete_preference($prefName);
+        }
+        $list = $this->getPrefList();
+
+        if (in_array($this->name, $list)) {
+            $list = array_diff($list, [$this->name]);
+            $tikilib->set_preference($this->getListName(), serialize($list));
+        }
+    }
 }

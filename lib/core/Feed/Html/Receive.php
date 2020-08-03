@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -10,24 +11,24 @@
  */
 class Feed_Html_Receive extends Feed_Abstract
 {
-	public $type = "html_feed";
-	public $href = "";
-	public $version = "0.1";
+    public $type = "html_feed";
+    public $href = "";
+    public $version = "0.1";
 
-	function __construct($href)
-	{
-		$this->href = $href;
-		parent::__construct($href);
-	}
+    public function __construct($href)
+    {
+        $this->href = $href;
+        parent::__construct($href);
+    }
 
-	public function getContents()
-	{
-		if (! empty($this->contents)) {
-			return $this->contents;
-		} else {
-			$feed = json_decode(file_get_contents($this->href));
-			$this->contents = $feed->feed;
-		}
-		return $this->contents;
-	}
+    public function getContents()
+    {
+        if (! empty($this->contents)) {
+            return $this->contents;
+        }
+        $feed = json_decode(file_get_contents($this->href));
+        $this->contents = $feed->feed;
+        
+        return $this->contents;
+    }
 }

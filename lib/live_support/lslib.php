@@ -1,4 +1,5 @@
 <?php
+
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -7,202 +8,205 @@
 
 class Lslib extends TikiLib
 {
-	function set_operator_id($reqId, $senderId)
-	{
-		$query = 'update `tiki_live_support_requests` set `operator_id` = ? where `reqId`=?';
+    public function set_operator_id($reqId, $senderId)
+    {
+        $query = 'update `tiki_live_support_requests` set `operator_id` = ? where `reqId`=?';
 
-		$this->query($query, [$senderId, $reqId]);
-	}
+        $this->query($query, [$senderId, $reqId]);
+    }
 
-	function set_user_id($reqId, $senderId)
-	{
-		$query = 'update `tiki_live_support_requests` set `user_id` = ? where `reqId`=?';
+    public function set_user_id($reqId, $senderId)
+    {
+        $query = 'update `tiki_live_support_requests` set `user_id` = ? where `reqId`=?';
 
-		$this->query($query, [$senderId, $reqId]);
-	}
+        $this->query($query, [$senderId, $reqId]);
+    }
 
-	function new_user_request($user, $tiki_user, $email, $reason)
-	{
-		$reqId = md5(uniqid('.'));
-		$query = 'insert into `tiki_live_support_requests`' .
-						' (`reqId`, `user`, `tiki_user`, `email`, `reason`, `req_timestamp`,' .
-						' `status`, `timestamp`, `operator`, `chat_started`, `chat_ended`, `operator_id`, `user_id`)' .
-						' values(?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    public function new_user_request($user, $tiki_user, $email, $reason)
+    {
+        $reqId = md5(uniqid('.'));
+        $query = 'insert into `tiki_live_support_requests`' .
+                        ' (`reqId`, `user`, `tiki_user`, `email`, `reason`, `req_timestamp`,' .
+                        ' `status`, `timestamp`, `operator`, `chat_started`, `chat_ended`, `operator_id`, `user_id`)' .
+                        ' values(?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
-		$this->query(
-			$query,
-			[$reqId, $user, $tiki_user, $email, $reason, $this->now, 'active', $this->now, '', 0, 0, '', '']
-		);
-		return $reqId;
-	}
+        $this->query(
+            $query,
+            [$reqId, $user, $tiki_user, $email, $reason, $this->now, 'active', $this->now, '', 0, 0, '', '']
+        );
 
-	function get_last_request()
-	{
-		$x = $this->getOne('select max(`timestamp`) from `tiki_live_support_requests`', []);
+        return $reqId;
+    }
 
-		if ($x) {
-			return $x;
-		} else {
-			return 0;
-		}
-	}
+    public function get_last_request()
+    {
+        $x = $this->getOne('select max(`timestamp`) from `tiki_live_support_requests`', []);
 
-	function get_max_active_request()
-	{
-		return $this->getOne('select max(`reqId`) from `tiki_live_support_requests` where `status`=?', ['active']);
-	}
+        if ($x) {
+            return $x;
+        }
 
-	// Remove active requests
-	function purge_requests()
-	{
-		$min = $this->now - 60 * 2; // 1 minute = timeout.
-		$query = 'update `tiki_live_support_requests` set `status`=? where `timestamp` < ?';
-		$this->query($query, ['timeout', $min]);
-	}
+        return 0;
+    }
 
-	// Get status for request
-	function get_request_status($reqId)
-	{
-		return $this->getOne('select `status` from `tiki_live_support_requests` where `reqId`=?', [$reqId]);
-	}
+    public function get_max_active_request()
+    {
+        return $this->getOne('select max(`reqId`) from `tiki_live_support_requests` where `status`=?', ['active']);
+    }
 
-	function set_request_status($reqId, $status)
-	{
-		$query = 'update `tiki_live_support_requests` set `status`=? where `reqId`=?';
+    // Remove active requests
+    public function purge_requests()
+    {
+        $min = $this->now - 60 * 2; // 1 minute = timeout.
+        $query = 'update `tiki_live_support_requests` set `status`=? where `timestamp` < ?';
+        $this->query($query, ['timeout', $min]);
+    }
 
-		$this->query($query, [$status, $reqId]);
-	}
+    // Get status for request
+    public function get_request_status($reqId)
+    {
+        return $this->getOne('select `status` from `tiki_live_support_requests` where `reqId`=?', [$reqId]);
+    }
 
-	// Get request information
-	function get_request($reqId)
-	{
-		$query = 'select * from `tiki_live_support_requests` where `reqId`=?';
+    public function set_request_status($reqId, $status)
+    {
+        $query = 'update `tiki_live_support_requests` set `status`=? where `reqId`=?';
 
-		$result = $this->query($query, [$reqId]);
-		$res = $result->fetchRow();
-		return $res;
-	}
+        $this->query($query, [$status, $reqId]);
+    }
 
-	function set_operator_status($user, $status)
-	{
-		// If switching to offline then sum online time for this operator
-		if ($status == 'offline') {
-			$query = 'update `tiki_live_support_operators` set `time_online` = ? - `status_since` where `user`=? and `status`=?';
+    // Get request information
+    public function get_request($reqId)
+    {
+        $query = 'select * from `tiki_live_support_requests` where `reqId`=?';
 
-			$this->query($query, [$this->now, $user,'online']);
-		}
+        $result = $this->query($query, [$reqId]);
+        $res = $result->fetchRow();
 
-		$query = 'update `tiki_live_support_operators` set `status`=?, `status_since`=? where `user`=?';
-		$this->query($query, [$status, $this->now,$user]);
-	}
+        return $res;
+    }
 
-	function get_operator_status($user)
-	{
-		$status = $this->getOne('select `status` from `tiki_live_support_operators` where `user`=?', [$user]);
+    public function set_operator_status($user, $status)
+    {
+        // If switching to offline then sum online time for this operator
+        if ($status == 'offline') {
+            $query = 'update `tiki_live_support_operators` set `time_online` = ? - `status_since` where `user`=? and `status`=?';
 
-		if (! $status) {
-			$status = 'offline';
-		}
+            $this->query($query, [$this->now, $user, 'online']);
+        }
 
-		return $status;
-	}
+        $query = 'update `tiki_live_support_operators` set `status`=?, `status_since`=? where `user`=?';
+        $this->query($query, [$status, $this->now, $user]);
+    }
 
-	// Accepts a request, change status to op_accepted
-	function operator_accept($reqId, $user, $operator_id)
-	{
-		$query = 'update `tiki_live_support_requests` set `operator_id`=?,operator=?,status=?,timestamp=?,chat_started=? where `reqId`=?';
-		$this->query($query, [$operator_id, $user, 'op_accepted', $this->now, $this->now, $reqId]);
-		$query = 'update `tiki_live_support_operators` set `accepted_requests` = `accepted_requests` + 1 where `user`=?';
-		$this->query($query, [$user]);
-	}
+    public function get_operator_status($user)
+    {
+        $status = $this->getOne('select `status` from `tiki_live_support_operators` where `user`=?', [$user]);
 
-	function user_close_request($reqId)
-	{
-		if (! $reqId) {
-			return;
-		}
+        if (! $status) {
+            $status = 'offline';
+        }
 
-		$query = 'update `tiki_live_support_requests` set `status`=?,timestamp=?,chat_ended=? where `reqId`=?';
-		$this->query($query, ['user closed', $this->now, $this->now, $reqId]);
-	}
+        return $status;
+    }
 
-	function operator_close_request($reqId)
-	{
-		if (! $reqId) {
-			return;
-		}
+    // Accepts a request, change status to op_accepted
+    public function operator_accept($reqId, $user, $operator_id)
+    {
+        $query = 'update `tiki_live_support_requests` set `operator_id`=?,operator=?,status=?,timestamp=?,chat_started=? where `reqId`=?';
+        $this->query($query, [$operator_id, $user, 'op_accepted', $this->now, $this->now, $reqId]);
+        $query = 'update `tiki_live_support_operators` set `accepted_requests` = `accepted_requests` + 1 where `user`=?';
+        $this->query($query, [$user]);
+    }
 
-		$query = 'update `tiki_live_support_requests` set `status`=?,timestamp=?,chat_ended=? where `reqId`=?';
-		$this->query($query, ['operator closed', $this->now, $this->now, $reqId]);
-	}
+    public function user_close_request($reqId)
+    {
+        if (! $reqId) {
+            return;
+        }
 
-	function get_requests($status)
-	{
-		$this->purge_requests();
+        $query = 'update `tiki_live_support_requests` set `status`=?,timestamp=?,chat_ended=? where `reqId`=?';
+        $this->query($query, ['user closed', $this->now, $this->now, $reqId]);
+    }
 
-		$query = 'select * from `tiki_live_support_requests` where `status`=?';
-		$result = $this->query($query, [$status]);
-		$ret = [];
+    public function operator_close_request($reqId)
+    {
+        if (! $reqId) {
+            return;
+        }
 
-		while ($res = $result->fetchRow()) {
-			$ret[] = $res;
-		}
+        $query = 'update `tiki_live_support_requests` set `status`=?,timestamp=?,chat_ended=? where `reqId`=?';
+        $this->query($query, ['operator closed', $this->now, $this->now, $reqId]);
+    }
 
-		return $ret;
-	}
+    public function get_requests($status)
+    {
+        $this->purge_requests();
 
-	//EVENT HANDLING
-	function get_new_events($reqId, $senderId, $last)
-	{
-		$query = 'select * from `tiki_live_support_events` where `senderId`=? and reqId=? and `eventId`>?';
+        $query = 'select * from `tiki_live_support_requests` where `status`=?';
+        $result = $this->query($query, [$status]);
+        $ret = [];
 
-		$result = $this->query($query, [$senderId, $reqId, $last]);
-		$ret = '';
-		$ret = '<?xml version="1.0" ?>';
-		$ret .= '<events>';
+        while ($res = $result->fetchRow()) {
+            $ret[] = $res;
+        }
 
-		while ($res = $result->fetchRow()) {
-			$ret .= '<event>' . '<data>' . $res['data'] . '</data></event>';
-		}
+        return $ret;
+    }
 
-		$ret .= '</events>';
-		return $ret;
-	}
+    //EVENT HANDLING
+    public function get_new_events($reqId, $senderId, $last)
+    {
+        $query = 'select * from `tiki_live_support_events` where `senderId`=? and reqId=? and `eventId`>?';
 
-	function get_last_event($reqId, $senderId)
-	{
-		return $this->getOne(
-			'select max(`seqId`) from `tiki_live_support_events` where `senderId`<>? and reqId=?',
-			[$senderId, $reqId]
-		);
-	}
+        $result = $this->query($query, [$senderId, $reqId, $last]);
+        $ret = '';
+        $ret = '<?xml version="1.0" ?>';
+        $ret .= '<events>';
 
-	function get_support_event($reqId, $event, $senderId)
-	{
-		return $this->getOne(
-			'select `data` from `tiki_live_support_events` where `senderId`<>? and `reqId`=? and `seqId`=?',
-			[$senderId, $reqId, $event]
-		);
-	}
+        while ($res = $result->fetchRow()) {
+            $ret .= '<event>' . '<data>' . $res['data'] . '</data></event>';
+        }
 
-	function put_message($reqId, $msg, $senderId)
-	{
-		$seq = $this->getOne('select max(`seqId`) from `tiki_live_support_events` where `reqId`=?', [$reqId]);
+        $ret .= '</events>';
 
-		if (! $seq) {
-			$seq = 0;
-		}
+        return $ret;
+    }
 
-		$seq++;
-		$query = 'insert into `tiki_live_support_events`(`seqId`, `reqId`, `type`, `senderId`, `data`, `timestamp`)' .
-							' values(?,?,?,?,?,?)';
+    public function get_last_event($reqId, $senderId)
+    {
+        return $this->getOne(
+            'select max(`seqId`) from `tiki_live_support_events` where `senderId`<>? and reqId=?',
+            [$senderId, $reqId]
+        );
+    }
 
-		$this->query($query, [$seq, $reqId, 'msg', $senderId, $msg, $this->now]);
-	}
+    public function get_support_event($reqId, $event, $senderId)
+    {
+        return $this->getOne(
+            'select `data` from `tiki_live_support_events` where `senderId`<>? and `reqId`=? and `seqId`=?',
+            [$senderId, $reqId, $event]
+        );
+    }
 
-	function operators_online()
-	{
-		return $this->getOne('select count(*) from `tiki_live_support_operators` where `status`=?', ['online']);
-	}
+    public function put_message($reqId, $msg, $senderId)
+    {
+        $seq = $this->getOne('select max(`seqId`) from `tiki_live_support_events` where `reqId`=?', [$reqId]);
+
+        if (! $seq) {
+            $seq = 0;
+        }
+
+        $seq++;
+        $query = 'insert into `tiki_live_support_events`(`seqId`, `reqId`, `type`, `senderId`, `data`, `timestamp`)' .
+                            ' values(?,?,?,?,?,?)';
+
+        $this->query($query, [$seq, $reqId, 'msg', $senderId, $msg, $this->now]);
+    }
+
+    public function operators_online()
+    {
+        return $this->getOne('select count(*) from `tiki_live_support_operators` where `status`=?', ['online']);
+    }
 }
 $lslib = new Lslib;
